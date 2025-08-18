@@ -1,0 +1,42 @@
+.recentNewsCard {
+    display: flex;
+    box-sizing: border-box;
+    gap: var(--spacing-large);
+
+    .imageWrapper {
+        flex-shrink: 0;
+        width: 12rem;
+        height: 16rem;
+        z-index: 0;
+        filter: brightness(90%);
+
+        .image {
+            object-fit: cover;
+        }
+    }
+
+    .rightContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-medium);
+
+        .dateContainer {
+            display: flex;
+            gap: var(--spacing-tiny);
+            flex-shrink: 0;
+            z-index: 10;
+        }
+
+        .title {
+            position: relative;
+            flex-shrink: 0;
+            color: var(--color-text-on-dark);
+        }
+
+        .description {
+            position: relative;
+            flex-shrink: 0;
+        }
+    }
+}

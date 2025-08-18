@@ -1,0 +1,49 @@
+.workCard {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: var(--spacing-small);
+
+    .imageWrapper {
+        width: 100%;
+        height: 16rem;
+        z-index: 0;
+        filter: brightness(90%);
+
+        .image {
+            object-fit: cover;
+        }
+    }
+
+    .dateContainer {
+        display: flex;
+        gap: var(--spacing-tiny);
+        flex-shrink: 0;
+        z-index: 10;
+    }
+
+    .title {
+        position: relative;
+        flex-shrink: 0;
+        z-index: 10;
+    }
+
+    .emptyDiv {
+        flex-grow: 1;
+    }
+
+    .description {
+        position: relative;
+        flex-shrink: 0;
+        z-index: 10;
+        font-size: var(--font-size-small);
+    }
+
+    &.noImage {
+        color: var(--color-text);
+
+        .title {
+            color: var(--color-heading);
+        }
+    }
+}

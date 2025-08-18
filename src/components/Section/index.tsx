@@ -14,9 +14,11 @@ interface Props {
     heading?: string;
     headingClassName?: string;
     headingSize?: SizeTypes;
+    headingWithBackground?: boolean;
     children: React.ReactNode;
     className?: string;
     contentClassName?: string;
+    childrenContainerClassName?: string;
 }
 
 export default function Section(props: Props) {
@@ -24,9 +26,11 @@ export default function Section(props: Props) {
         className,
         heading,
         headingClassName,
+        headingWithBackground,
         headingSize = 'extraLarge',
         children,
         contentClassName,
+        childrenContainerClassName,
     } = props;
 
     const ref = useRef<HTMLDivElement | null>(null);
@@ -65,11 +69,16 @@ export default function Section(props: Props) {
                     <Heading
                         className={_cs(headingClassName, styles.heading)}
                         size={headingSize}
+                        withBackground={headingWithBackground}
                     >
                         {heading}
                     </Heading>
                 )}
-                {children}
+                <div
+                    className={_cs(childrenContainerClassName, styles.childrenContainer)}
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

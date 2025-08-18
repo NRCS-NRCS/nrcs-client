@@ -39,6 +39,7 @@ export interface Props {
     ellipsize?: boolean;
     ellipsizeContainerClassName?: string;
     font?: FontTypes;
+    withBackground?: boolean;
 }
 
 function Heading(props: Props) {
@@ -50,6 +51,7 @@ function Heading(props: Props) {
         ellipsize,
         ellipsizeContainerClassName,
         font = 'heading',
+        withBackground,
     } = props;
 
     let title = titleFromProps;
@@ -64,6 +66,7 @@ function Heading(props: Props) {
         sizeToStyleMap[size],
         fontToStyleMap[font],
         classNameFromProps,
+        withBackground && styles.withBackground,
     );
 
     const heading = (
@@ -121,7 +124,12 @@ function Heading(props: Props) {
 
     if (ellipsize) {
         return (
-            <div className={_cs(styles.ellipsizeContainer, ellipsizeContainerClassName)}>
+            <div
+                className={_cs(
+                    styles.ellipsizeContainer,
+                    ellipsizeContainerClassName,
+                )}
+            >
                 {heading}
             </div>
         );

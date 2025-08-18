@@ -1,0 +1,28 @@
+.keyFigureCard {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-medium) var(--spacing-large);
+    background-color: var(--color-background-secondary);
+    gap: var(--spacing-small);
+
+    .icon {
+        flex-shrink: 0;
+        height: 4rem;
+        width: 4rem;
+
+        .image {
+            object-fit: contain;
+        }
+    }
+
+    .rightContent {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--spacing-extra-small);
+    }
+
+    &.transparent {
+        background-color: unset;
+    }
+}

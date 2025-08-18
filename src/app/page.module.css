@@ -1,24 +1,75 @@
 .page {
     display: flex;
-    gap: var(--spacing-universal);
-    padding-bottom: var(--spacing-universal);
+    gap: var(--spacing-galactic);
+    padding-bottom: var(--spacing-galactic);
     flex-direction: column;
 
-    .definition {
-        text-align: center;
+    .homeBanner {
+        height: 80vh;
 
-        .definitionSection{
-            max-width: var(--width-page-min);
-            align-items: center;
-            gap: var(--spacing-large);
+        .bannerImage {
+            height: 80vh;
+            width: 100%;
+            filter: brightness(60%);
 
-            .definitionHeading {
-                color: var(--color-text-accent);
-                font-weight: var(--font-weight-medium);
+            .image {
+                object-fit: cover;
+            }
+        }
+    }
 
-                span {
-                    font-weight: var(--font-weight-extra-bold);
+    .introduction {
+        .introductionContent {
+            .infoCards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+                gap: var(--spacing-large);
+            }
+
+            .bottomContent {
+                display: grid;
+                grid-template-columns: 1.5fr 1fr;
+                grid-template-rows: auto auto;
+                gap: var(--spacing-large);
+                align-items: flex-start;
+
+                .introText {
+                    font-size: var(--font-size-large);
+                    grid-row: 1 / span 2; /* take both rows */
+                    grid-column: 1;
+                    max-width: 50rem;
+                    line-height: 1.8;
                 }
+
+                .keyFigureOne {
+                    grid-column: 2;
+                    justify-self: start; /* align left */
+                    width: 20rem;
+                }
+
+                .keyFigureTwo {
+                    grid-column: 2;
+                    justify-self: end; /* align right */
+                    width: 20rem;
+                }
+            }
+        }
+    }
+
+    .recentNewsChildrenContainer {
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-super-large) var(--spacing-mega-large);
+        background-color: var(--color-background-dark);
+        color: var(--color-text-on-dark);
+    }
+
+    .ourWorks {
+        .worksContent {
+            .worksChildren {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+                gap: var(--spacing-mega-large);
             }
         }
     }

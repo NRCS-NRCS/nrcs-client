@@ -18,7 +18,7 @@ import { _cs } from '@togglecorp/fujs';
 import Heading from '#components/Heading';
 import Image from '#components/ImageWrapper';
 import Link from '#components/Link';
-import logo from '#public/logo.png';
+import logo from '#public/wide-logo.jpg';
 
 import styles from './styles.module.css';
 
@@ -39,7 +39,8 @@ export default function Footer(props: Props) {
             <div className={styles.topContainer}>
                 <div className={styles.leftContainer}>
                     <Image
-                        className={styles.image}
+                        className={styles.imageWrapper}
+                        imageClassName={styles.image}
                         src={logo}
                         alt="logo"
                     />

@@ -38,6 +38,11 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    &.withBackground {
+        background-color: var(--color-primary);
+        color: var(--color-text-on-primary);
+    }
 }
 
 .ellipsizeContainer {

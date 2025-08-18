@@ -32,7 +32,7 @@
     &.button {
         transition: 0.2s all ease-in-out;
         background-color: var(--color-primary);
-        padding: var(--spacing-small) var(--spacing-extra-large);
+        padding: var(--spacing-extra-small) var(--spacing-large);
         color: var(--color-text-on-primary);
         text-transform: uppercase;
         font-size: var(--font-size-medium);
