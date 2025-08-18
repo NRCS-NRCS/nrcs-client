@@ -1,33 +1,24 @@
 .footer {
     display: flex;
     flex-direction: column;
-    background-color: var(--color-primary-light);
     min-height: 30rem;
-    color: var(--color-text-on-tertiary);
-
-    .heading {
-        color: var(--color-text-on-dark);
-    }
 
     .topContainer {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-        flex-shrink: 0;
-        margin: 0 auto;
+        display: flex;
         justify-content: space-between;
-        padding: var(--spacing-mega-large) var(--spacing-large);
+        margin: 0 auto;
         gap: var(--spacing-large);
         width: 100%;
         max-width: var(--width-page-max);
 
         .leftContainer {
             display: flex;
-            align-items: center;
+            flex-basis: 40%;
+            flex-direction: column;
             gap: var(--spacing-medium);
 
             .image {
-                width: 10rem;
-                height: 10rem;
+                width: 5rem;
                 object-fit: contain;
             }
 
@@ -37,51 +28,43 @@
                 gap: var(--spacing-small);
 
                 .description {
-                    font-size: var(--font-size-small);
-                    font-style: italic;
-                    max-width: 20rem;
+                    font-size: var(--font-size-medium);
                 }
+            }
+            .icons {
+                display: flex;
+                gap: var(--spacing-extra-small);
+
+                .icon {
+                    transition: all 200ms ease-in-out;
+
+                    &:hover {
+                        color: var(--color-primary);
+                    }
+                }
+            }
+            .donateButton {
+                align-self: flex-start;
             }
         }
 
-        .rightContainer {
+        .linkGroup {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-medium);
+            gap: var(--spacing-large);
 
-            .linkGroups {
+            .links {
                 display: flex;
-                gap: var(--spacing-large);
+                flex-direction: column;
+                gap: var(--spacing-medium);
 
-                .linkGroup {
+                .link {
                     display: flex;
-                    flex-direction: column;
+                    align-items: baseline;
+                    text-transform: unset;
+                    padding: 0;
+                    font-weight: var(--font-weight-regular);
                     gap: var(--spacing-small);
-
-                    .links {
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--spacing-extra-small);
-
-                        .link {
-                            color: var(--color-text-on-dark);
-                            text-transform: capitalize;
-                            padding: 0;
-                        }
-                    }
-
-                    .icons {
-                        display: flex;
-                        gap: var(--spacing-extra-small);
-
-                        .icon {
-                            transition: all 200ms ease-in-out;
-
-                            &:hover {
-                                color: var(--color-primary);
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -96,6 +79,7 @@
         flex-shrink: 0;
         align-items: center;
         justify-content: center;
-        padding: var(--spacing-extra-small);
+        font-weight: var(--font-weight-bold);
+        padding: var(--spacing-large);
     }
 }

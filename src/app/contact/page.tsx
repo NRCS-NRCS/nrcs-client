@@ -8,7 +8,6 @@ import Banner from '#components/Banner';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import ContactUsImage from '#public/contact.png';
 
 import styles from './page.module.css';
 
@@ -18,7 +17,7 @@ export default function Contact() {
     return (
         <Page contentClassName={styles.contact}>
             <Banner
-                bannerImageSrc={ContactUsImage}
+                // bannerImageSrc={ContactUsImage}
                 eyebrowHeading="CONTACT US"
                 heading={(
                     <>
