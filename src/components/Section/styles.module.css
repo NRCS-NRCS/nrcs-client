@@ -1,0 +1,28 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--spacing-super-large);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--spacing-galactic);
+        flex-grow: 1;
+        margin: 0 auto;
+        max-width: var(--width-page-max);
+        width: 100%;
+
+        .heading {
+            text-align: center;
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,134 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100vw;
+    z-index: 100000;
+    border-bottom: var(--width-separator-thin) solid var(--color-separator);
+    background-color: var(--color-background);
+
+    .upperContent {
+        display: flex;
+        border-bottom: var(--width-separator-thin) solid var(--color-separator);
+
+        .content {
+            display: flex;
+            width: 100%;
+            max-width: var(--width-page-max);
+            margin: auto;
+
+            .imageContainer {
+                flex-grow: 1;
+
+                .image {
+                    height: 2.2rem;
+                    width: auto;
+                    object-fit: contain;
+                    flex-shrink: 0;
+                }
+            }
+
+            .rightContainer {
+                display: flex;
+                flex-shrink: 0;
+
+                .expandedButton {
+                    padding: var(--spacing-medium);
+                    border-left: var(--width-separator-thin) solid var(--color-separator);
+                }
+
+                .donateButton {
+                    background-color: var(--color-primary);
+                }
+
+                .menu {
+                    display: none;
+                    line-height: 100%;
+                    font-size: var(--font-size-extra-large);
+                    padding: var(--spacing-small) var(--spacing-extra-large);
+                }
+            }
+        }
+    }
+
+    .links {
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        color: var(--color-text-black);
+        flex-grow: 1;
+        width: 100%;
+        max-width: var(--width-page-max);
+        gap: var(--spacing-large);
+    }
+
+    .link {
+        text-transform: capitalize;
+    }
+
+    .drawer {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        height: 5rem;
+        padding: 0;
+
+        .imageContainer {
+            padding: var(--spacing-tiny) var(--spacing-super-large);
+            flex-grow: 1;
+        }
+
+        .lowerContent {
+            display: none;
+
+            .links {
+                &.navShown {
+                    display: none;
+                }
+            }
+        }
+
+        .supportLink {
+            display: none;
+        }
+
+        .rightContainer {
+            flex-shrink: 0;
+
+            .menu {
+                display: block;
+            }
+        }
+
+        .drawer {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            flex-direction: column;
+            transform: translateY(-100%);
+            transition: 200ms all ease-in-out;
+            z-index: -1;
+            background-color: var(--color-background);
+            padding: var(--spacing-large);
+            width: 100%;
+            gap: var(--spacing-large);
+
+            &.navShown {
+                transform: translateY(0);
+            }
+
+            .link {
+                text-align: left;
+                text-transform: capitalize;
+            }
+        }
+    }
+}
+
+.popupLink {
+    padding: var(--spacing-super-small) var(--spacing-medium)!important;
+    text-transform: capitalize!important;
+}

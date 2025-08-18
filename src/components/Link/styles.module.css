@@ -1,0 +1,104 @@
+.link {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: var(--font-weight-bold);
+    padding: var(--spacing-super-small) 0;
+
+    .icon {
+        flex-shrink: 0;
+        margin: 0 var(--spacing-tiny);
+        transform: rotate(-31.93deg);
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    &.navigation {
+        color: var(--color-text);
+
+        &.active {
+            color: var(--color-text-link);
+        }
+
+        &:hover {
+            color: var(--color-text-link);
+            text-decoration: underline;
+            transition: 0.2s all ease-in-out;
+        }
+    }
+
+    &.button {
+        transition: 0.2s all ease-in-out;
+        background-color: var(--color-primary);
+        padding: var(--spacing-small) var(--spacing-extra-large);
+        color: var(--color-text-on-primary);
+        text-transform: uppercase;
+        font-size: var(--font-size-medium);
+
+        &:hover {
+            background-color: var(--color-primary-dark);
+            text-decoration: none;
+        }
+    }
+
+    &.reverse {
+        text-transform: uppercase;
+        color: var(--color-text);
+
+        &:hover {
+            background-color: var(--color-primary);
+            text-decoration: unset;
+            transition: 0.2s all ease-in-out;
+        }
+    }
+
+    &.buttonTransparent {
+        transition: 0.2s all ease-in-out;
+        border: var(--width-separator-thin) solid var(--color-primary);
+        padding: var(--spacing-super-small) var(--spacing-medium);
+        color: var(--color-primary);
+        font-size: var(--font-size-medium);
+
+        &:hover {
+            border-color: var(--color-accent);
+            text-decoration: unset;
+            color: var(--color-accent);
+        }
+    }
+
+    &.underline {
+        transition: 0.2s all ease-in-out;
+        color: var(--color-link);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &.icon {
+        display: flex;
+        align-items: center;
+        transition: 0.2s all ease-in-out;
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: var(--spacing-super-small) var(--spacing-extra-small);
+        line-height: 1;
+        color: var(--color-text-on-dark);
+
+        &:hover {
+            background-color: var(--color-accent);
+            text-decoration: unset;
+        }
+    }
+
+    &.div {
+        display: unset;
+        color: unset;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

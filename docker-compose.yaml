@@ -1,0 +1,19 @@
+services:
+  next:
+    build:
+      context: ./
+      target: dev
+    command: sh -c 'pnpm install && pnpm run dev'
+    volumes:
+      - ./:/code
+    ports:
+      - '${PORT:-3000}:${PORT:-3000}'
+    environment:
+      - PORT=${PORT:-3000}
+      - APP_TITLE=${APP_TITLE:-Nepal Red Cross Society}
+      - APP_GRAPHQL_ENDPOINT=${APP_GRAPHQL_ENDPOINT:-http://web:8000/graphiql/}
+      - APP_GRAPHQL_CODEGEN_ENDPOINT=${APP_GRAPHQL_CODEGEN_ENDPOINT:-./backend/schema.graphql}
+    env_file:
+      - .env
+    #     depends_on:
+    #       - web

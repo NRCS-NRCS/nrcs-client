@@ -1,0 +1,25 @@
+.page {
+    display: flex;
+    gap: var(--spacing-universal);
+    padding-bottom: var(--spacing-universal);
+    flex-direction: column;
+
+    .definition {
+        text-align: center;
+
+        .definitionSection{
+            max-width: var(--width-page-min);
+            align-items: center;
+            gap: var(--spacing-large);
+
+            .definitionHeading {
+                color: var(--color-text-accent);
+                font-weight: var(--font-weight-medium);
+
+                span {
+                    font-weight: var(--font-weight-extra-bold);
+                }
+            }
+        }
+    }
+}

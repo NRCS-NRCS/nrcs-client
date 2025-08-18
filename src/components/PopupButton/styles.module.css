@@ -1,0 +1,21 @@
+.popupButton {
+    display: flex;
+    gap: var(--spacing-tiny);
+    align-items: center;
+    color: var(--color-text);
+    font-weight: var(--font-weight-bold);
+
+    &.active {
+        color: var(--color-text-link);
+    }
+}
+
+.popup {
+    padding: calc(var(--spacing-medium) - var(--spacing-small));
+
+    .popupContent {
+        display: flex;
+        flex-direction: column;
+        max-width: max(50vw, 300px);
+    }
+}

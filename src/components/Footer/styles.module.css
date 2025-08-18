@@ -1,0 +1,101 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary-light);
+    min-height: 30rem;
+    color: var(--color-text-on-tertiary);
+
+    .heading {
+        color: var(--color-text-on-dark);
+    }
+
+    .topContainer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        flex-shrink: 0;
+        margin: 0 auto;
+        justify-content: space-between;
+        padding: var(--spacing-mega-large) var(--spacing-large);
+        gap: var(--spacing-large);
+        width: 100%;
+        max-width: var(--width-page-max);
+
+        .leftContainer {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-medium);
+
+            .image {
+                width: 10rem;
+                height: 10rem;
+                object-fit: contain;
+            }
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-small);
+
+                .description {
+                    font-size: var(--font-size-small);
+                    font-style: italic;
+                    max-width: 20rem;
+                }
+            }
+        }
+
+        .rightContainer {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-medium);
+
+            .linkGroups {
+                display: flex;
+                gap: var(--spacing-large);
+
+                .linkGroup {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-small);
+
+                    .links {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--spacing-extra-small);
+
+                        .link {
+                            color: var(--color-text-on-dark);
+                            text-transform: capitalize;
+                            padding: 0;
+                        }
+                    }
+
+                    .icons {
+                        display: flex;
+                        gap: var(--spacing-extra-small);
+
+                        .icon {
+                            transition: all 200ms ease-in-out;
+
+                            &:hover {
+                                color: var(--color-primary);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mid {
+        flex-grow: 1;
+    }
+
+    .bottomContainer {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        padding: var(--spacing-extra-small);
+    }
+}
