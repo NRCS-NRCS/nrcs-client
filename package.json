@@ -11,7 +11,7 @@
         "export": "next export",
         "_prestart": "pnpm generate:type",
         "start": "next start",
-        "prelint": "pnpm prebuild",
+        "_prelint": "pnpm prebuild",
         "lint": "next lint"
     },
     "engines": {
