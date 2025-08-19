@@ -33,7 +33,7 @@
     }
 
     p, li {
-        max-width: 60rem;
+        max-width: 80rem;
         color: var(--color-text);
         font-size: var(--font-size-medium);
     }

@@ -34,8 +34,8 @@ const links = [
         ],
     },
     {
-        label: 'Strategic Directions',
-        link: '/strategic-directions',
+        label: 'Strategic Directives',
+        link: '/strategic-directives',
         children: [
             {
                 label: 'Governance and Organizational Development',
@@ -51,7 +51,7 @@ const links = [
             },
             {
                 label: 'Humanity Principles, values, international law and Diplomacy',
-                link: '/humanity-principles/',
+                link: '/hv-communication/',
             },
         ],
     },

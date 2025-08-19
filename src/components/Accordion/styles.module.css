@@ -1,0 +1,32 @@
+.accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-extra-small);
+
+    .accordionItem {
+        align-self: stretch;
+
+        .accordionHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--color-primary-light);
+            border-bottom: var(--width-separator-thin) solid var(--color-background-gradient-primary);
+            width: 100%;
+            border-radius: 0;
+            font-weight: var(--font-weight-bold);
+        }
+
+        &:hover {
+            .accordionHeader {
+                color: var(--color-primary-dark);
+            }
+        }
+
+        .accordionContent {
+            padding: var(--spacing-large);
+        }
+    }
+
+}
+
