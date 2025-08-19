@@ -64,9 +64,30 @@
         color: var(--color-text-on-dark);
     }
 
+    .nrcsPlanChildrenContainer {
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-super-large) var(--spacing-mega-large);
+        background-color: var(--color-background-dark);
+        color: var(--color-text-on-dark);
+    }
+
     .ourWorks {
         .worksContent {
             .worksChildren {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+                gap: var(--spacing-mega-large);
+            }
+        }
+    }
+
+    .callToActions {
+        padding: var(--spacing-galactic) 0;
+        background-color: var(--color-primary-light);
+
+        .callToActionsContent {
+            .callToActionsChildren {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
                 gap: var(--spacing-mega-large);

@@ -36,6 +36,7 @@
 
         .description {
             position: relative;
+            max-width: 42rem;
             flex-shrink: 0;
         }
     }

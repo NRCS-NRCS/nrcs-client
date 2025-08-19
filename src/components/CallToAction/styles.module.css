@@ -1,0 +1,18 @@
+.callToAction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-medium);
+
+    .imageWrapper {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .title {
+        font-weight: var(--font-weight-medium);
+        text-align: center;
+        max-width: 10rem;
+        height: 7.6rem;
+    }
+}
