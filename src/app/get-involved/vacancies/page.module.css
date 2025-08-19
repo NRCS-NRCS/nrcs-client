@@ -1,0 +1,13 @@
+.vacancies {
+    padding: var(--spacing-enormous) 0 var(--spacing-universal) 0;
+
+    .links {
+        font-weight: var(--font-weight-semi-bold);
+    }
+
+    .vacancyCard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-medium);
+    }
+}

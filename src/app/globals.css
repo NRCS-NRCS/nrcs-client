@@ -18,6 +18,9 @@
     --color-primary-dark: #cd1f29;
     --color-text-link: var(--color-primary);
 
+    --color-background-blue: #C4DFF6;
+    --color-background-yellow: #ECB731;
+
     --color-background-gradient-secondary: #FAFDE9;
     --color-background-gradient-primary: #F3F5E9;
 
@@ -43,6 +46,7 @@
 
     --color-separator: #e8e8e8;
 
+    --border-radius-circle: 50%;
     --border-radius-large: 16px;
     --border-radius-medium: 12px;
     --border-radius-small: 12px;

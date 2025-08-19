@@ -1,0 +1,12 @@
+.procurementDetails {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+    padding: var(--spacing-enormous) 0 var(--spacing-universal) 0;
+
+    .sectionContent {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-small);
+    }
+}
