@@ -1,0 +1,56 @@
+.page {
+    gap: var(--spacing-extra-large);
+
+    .responsibilities {
+        .responsibilitiesContent {
+            .responsibilitiesChildren {
+                display: grid !important;
+                grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+                gap: var(--spacing-extra-large);
+            }
+        }
+    }
+
+    .coverImageContent {
+        .coverImage {
+            height: 35rem;
+        }
+    }
+
+    .ourWorks {
+        .worksContent {
+            .worksChildren {
+                .workCards {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+                    gap: var(--spacing-mega-large);
+                }
+                .viewMoreButton {
+                    align-self: center;
+                }
+            }
+        }
+    }
+    .resources {
+        .resourcesContent {
+            .resourcesChildren {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+                gap: var(--spacing-mega-large);
+            }
+        }
+    }
+    .contact {
+        .contactContent {
+            .contactChildren {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-extra-small);
+                .contactButton {
+                    align-self: center;
+                    text-transform: unset;
+                }
+            }
+        }
+    }
+}
