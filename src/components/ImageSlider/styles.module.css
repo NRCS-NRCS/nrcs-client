@@ -1,0 +1,51 @@
+.croppedGallery {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+
+    .joinImagesWrapper {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(2, 12rem); /* 2 rows */
+        grid-auto-columns: auto;
+        gap: 1.5rem;
+        animation: scroll 50s linear infinite;
+        gap: var(--spacing-super-large);
+        width: 100%;
+        height: 24rem;
+
+        .image:nth-child(3n + 1) {
+            grid-row: span 2;
+        }
+        .joinImages {
+            width: 28rem;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%);
+        }
+
+        @media(max-width: 768px) {
+            .joinImages {
+                width: 22rem;
+                height: 100%;
+            }
+        }
+
+        @media(max-width: 430px) {
+            .joinImages {
+                width: 18rem;
+                height: 100%;
+            }
+        }
+    }
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

@@ -15,11 +15,13 @@ import styles from './styles.module.css';
 interface Props {
     className?: string;
     image?: StaticImageData | string;
-    title: string;
+    title?: string;
     date?: string;
     link?: string;
+    linkLabel?: string;
     headingSize?: SizeTypes;
     description?: string;
+    trimDescription?: number;
 }
 
 export default function RecentNewsCard(props: Props) {
@@ -29,6 +31,8 @@ export default function RecentNewsCard(props: Props) {
         image,
         date: fullDate,
         link,
+        linkLabel = 'Read More',
+        trimDescription = 400,
         description,
         headingSize = 'medium',
     } = props;
@@ -46,11 +50,11 @@ export default function RecentNewsCard(props: Props) {
     }, [fullDate]);
 
     const trimmedDescription = useMemo(() => {
-        if ((description?.length ?? 0) > 400) {
-            return `${description?.substring(0, 400)}...`;
+        if ((description?.length ?? 0) > trimDescription) {
+            return `${description?.substring(0, trimDescription)}...`;
         }
         return description;
-    }, [description]);
+    }, [description, trimDescription]);
 
     return (
         <div
@@ -69,12 +73,14 @@ export default function RecentNewsCard(props: Props) {
                 />
             )}
             <div className={styles.rightContent}>
-                <Heading
-                    className={styles.title}
-                    size={headingSize}
-                >
-                    {title}
-                </Heading>
+                {title && (
+                    <Heading
+                        className={styles.title}
+                        size={headingSize}
+                    >
+                        {title}
+                    </Heading>
+                )}
                 <div className={styles.description}>
                     {trimmedDescription}
                 </div>
@@ -90,7 +96,7 @@ export default function RecentNewsCard(props: Props) {
                         href={link}
                         variant="button"
                     >
-                        Read More
+                        {linkLabel}
                     </Link>
                 )}
             </div>
