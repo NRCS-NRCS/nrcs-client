@@ -1,0 +1,11 @@
+.textInput {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-ultra-small);
+    justify-content: space-between;
+    width: 100%;
+
+    .input {
+        padding: var(--spacing-ultra-small);
+    }
+}

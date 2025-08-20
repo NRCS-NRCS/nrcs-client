@@ -1,53 +1,49 @@
-.contact {
-    padding-bottom: var(--spacing-universal);
+.contactPage {
+    gap: var(--spacing-enormous);
 
-    .wrapper {
-        display: grid;
-        grid-gap: var(--spacing-medium);
-        grid-template-columns: 40% 60%;
-        flex-grow: 1;
-        margin: 0 auto;
-        max-width: var(--width-page-max);
-        width: 100%;
-
-        .leftCard {
-            display: flex;
-            flex-direction: column;
-            padding: var(--spacing-super-large);
-            gap: var(--spacing-extra-large);
-            color: var(--color-text-on-dark);
-            background-color: var(--color-background-dark);
-            border-radius: var(--border-radius-large);
-
-            .heading {
-                color: var(--color-text-on-dark);
-            }
-
-            .item {
-                display: flex;
-                gap: var(--spacing-extra-large);
-
-                .icon {
-                    color: var(--color-primary);
-                }
-
-                .text {
-                    color: var(--color-text-on-dark);
+    .contact {
+        .contactContent {
+            .contactChildren {
+                flex-direction: row !important;
+                gap: var(--spacing-large);
+                .contactForm {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-large);
                 }
             }
         }
+    }
+    .concern {
+        .concernContent {
+            .concernChildren {
+                gap: var(--spacing-large);
 
-        .map {
-            outline: 0;
-            border: var(--width-separator-thin) solid var(--color-secondary);
-            border-radius: var(--border-radius-large);
-            width: 100%;
-            height: 100%;
-            min-height: 20rem;
+                .contactTypes {
+                    display: flex;
+                    gap: var(--spacing-large);
+
+                    .contactItem {
+                        display: flex;
+                        flex-direction: column;
+                        flex-grow: 1;
+                        flex-wrap: wrap;
+                        gap: var(--spacing-ultra-small);
+
+                        .links {
+                            display: flex;
+                            gap: var(--spacing-small);
+                        }
+                    }
+                }
+            }
         }
-
-        @media (max-width: 720px) {
-            grid-template-columns: 1fr;
+    }
+    .faq {
+        .faqContent {
+            .faqChildren {
+                gap: var(--spacing-large);
+            }
         }
     }
 }
