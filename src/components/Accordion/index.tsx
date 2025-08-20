@@ -47,7 +47,7 @@ function Accordion(props: Props) {
 
     return (
         <div className={styles.accordion}>
-            {items.map((item) => {
+            {items?.map((item) => {
                 const isOpen = openItems.includes(item.id);
                 return (
                     <div

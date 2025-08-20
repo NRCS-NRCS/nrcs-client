@@ -43,8 +43,8 @@ function ImageWrapper(props: Props) {
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     {...otherProps}
                     loader={staticLoader}
-                    placeholder={(typeof src !== 'string' && src.blurDataURL) ? 'blur' : 'empty'}
-                    blurDataURL={typeof src !== 'string' ? src.blurDataURL : undefined}
+                    placeholder={(typeof src !== 'string' && src?.blurDataURL) ? 'blur' : 'empty'}
+                    blurDataURL={typeof src !== 'string' ? src?.blurDataURL : undefined}
                 />
             ) : (
                 // eslint-disable-next-line @next/next/no-img-element
