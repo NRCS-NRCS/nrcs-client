@@ -1,0 +1,14 @@
+.searchTable {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-large);
+
+    .searchBar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .table {
+        min-width: fit-content;
+    }         
+}
