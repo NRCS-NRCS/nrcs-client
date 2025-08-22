@@ -3,8 +3,16 @@ import { _cs } from '@togglecorp/fujs';
 
 import Footer from '#components/Footer';
 import Navbar from '#components/Navbar';
+import {
+    type GetStrategicDirectivesSlugsQuery,
+    type GetStrategicDirectivesSlugsQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './styles.module.css';
+
+// eslint-disable-next-line import/order
+import { GET_STRATEGIC_DIRECTIVES_SLUGS } from '@/queries';
 
 interface Props {
     elementId?: string;
@@ -14,7 +22,19 @@ interface Props {
     hideNavbar?: boolean;
 }
 
-export default function Page(props: Props) {
+export default async function Page(props: Props) {
+    const result = await urqlClient.query<
+        GetStrategicDirectivesSlugsQuery,
+        GetStrategicDirectivesSlugsQueryVariables
+    >(GET_STRATEGIC_DIRECTIVES_SLUGS, {}).toPromise();
+
+    const pathsForStrategicDirectives = result.data?.strategicDirectives?.map(
+        (dir) => ({
+            label: dir.title,
+            link: `/${dir.slug}/`,
+        }),
+    );
+
     const {
         elementId,
         className,
@@ -25,7 +45,12 @@ export default function Page(props: Props) {
 
     return (
         <div id={elementId} className={_cs(className, styles.page)}>
-            {!hideNavbar && (<Navbar className={styles.navbar} />)}
+            {!hideNavbar && (
+                <Navbar
+                    className={styles.navbar}
+                    strategicDirectives={pathsForStrategicDirectives ?? []}
+                />
+            )}
             <main
                 className={_cs(styles.mainContent, contentClassName)}
             >

@@ -2,6 +2,7 @@
     display: flex;
     gap: var(--spacing-galactic);
     padding-bottom: var(--spacing-galactic);
+    padding-top: unset !important;
     flex-direction: column;
 
     .homeBanner {

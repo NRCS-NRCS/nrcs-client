@@ -2,6 +2,7 @@
 
 import React, {
     useCallback,
+    useMemo,
     useState,
 } from 'react';
 import { MdMenu } from 'react-icons/md';
@@ -22,6 +23,7 @@ const links = [
     {
         label: 'About Us',
         link: '/about',
+        order: 1,
         children: [
             {
                 label: 'Who we are',
@@ -34,30 +36,9 @@ const links = [
         ],
     },
     {
-        label: 'Strategic Directions',
-        link: '/strategic-directions',
-        children: [
-            {
-                label: 'Governance and Organizational Development',
-                link: '/gov-org-dev/',
-            },
-            {
-                label: 'Disaster and Crisis Management',
-                link: '/disaster-crisis-management/',
-            },
-            {
-                label: 'Health and Community Care',
-                link: '/health-community-care/',
-            },
-            {
-                label: 'Humanity Principles, values, international law and Diplomacy',
-                link: '/humanity-principles/',
-            },
-        ],
-    },
-    {
         label: 'Get Involved',
         link: '/get-involved',
+        order: 3,
         children: [
             {
                 label: 'Donate Blood',
@@ -92,6 +73,7 @@ const links = [
     {
         label: 'Resources',
         link: '/resources/',
+        order: 4,
         children: [
             {
                 label: 'News and Events',
@@ -114,21 +96,38 @@ const links = [
     {
         label: 'District Chapters',
         link: '/district-chapters/',
+        order: 5,
     },
     {
         label: 'Contact',
         link: '/contact/',
+        order: 6,
     },
 ];
 
 interface Props {
     className?: string;
+    strategicDirectives: {label: string; link: string;}[];
 }
 
 export default function Navbar(props: Props) {
     const {
         className,
+        strategicDirectives,
     } = props;
+
+    const finalPaths = useMemo(() => {
+        const newVal = [
+            ...links,
+            {
+                label: 'Strategic Directives',
+                link: '/strategic-directives/',
+                order: 2,
+                children: strategicDirectives,
+            },
+        ];
+        return newVal.sort((a, b) => a.order - b.order);
+    }, [strategicDirectives]);
 
     const pathname = usePathname();
 
@@ -186,7 +185,7 @@ export default function Navbar(props: Props) {
             </div>
             <div className={styles.lowerContent}>
                 <div className={_cs(isNavShown && styles.navShown, styles.links)}>
-                    {links?.map((item) => (item.children ? (
+                    {finalPaths?.map((item) => (item.children ? (
                         <PopupButton
                             key={item.link}
                             persistent={false}
@@ -218,7 +217,7 @@ export default function Navbar(props: Props) {
                 </div>
             </div>
             <div className={_cs(isNavShown && styles.navShown, styles.drawer)}>
-                {links?.map((item) => (item.children ? (
+                {finalPaths?.map((item) => (item.children ? (
                     <div key={item.link}>
                         <Heading size="small">{item.label}</Heading>
                         {item.children.map((child) => (

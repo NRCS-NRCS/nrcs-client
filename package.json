@@ -3,15 +3,17 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "generate:type": "graphql-codegen --require dotenv/config --config codegen.ts",
         "_prebuild": "pnpm generate:type && ts-node -P tsconfig.scripts.json scripts/fetchData.ts",
         "_predev": "pnpm generate:type",
+        "generate-and-watch:type": "graphql-codegen --require dotenv/config --config codegen.ts --watch",
+        "generate:type": "graphql-codegen --require dotenv/config --config codegen.ts",
         "dev": "next dev -p $PORT",
         "build": "next build",
         "export": "next export",
         "_prestart": "pnpm generate:type",
         "start": "next start",
-        "_prelint": "pnpm prebuild",
+        "typecheck": "tsc",
+        "prelint": "pnpm generate:type",
         "lint": "next lint"
     },
     "engines": {
@@ -24,6 +26,8 @@
         "@eslint/json": "^0.12.0",
         "@next/eslint-plugin-next": "^15.1.8",
         "@togglecorp/fujs": "^2.2.0",
+        "@urql/core": "^6.0.1",
+        "@urql/next": "^2.0.0",
         "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-import-newlines": "^1.4.0",
         "eslint-plugin-postcss-modules": "^2.0.0",
@@ -33,12 +37,14 @@
         "graphql": "^16.11.0",
         "graphql-request": "^7.2.0",
         "next": "15.3.1",
+        "next-urql": "^5.0.2",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-icons": "^5.5.0",
         "remark": "^15.0.1",
         "remark-gfm": "^4.0.1",
-        "remark-html": "^16.0.1"
+        "remark-html": "^16.0.1",
+        "urql": "^5.0.0"
     },
     "devDependencies": {
         "@graphql-codegen/cli": "^5.0.7",

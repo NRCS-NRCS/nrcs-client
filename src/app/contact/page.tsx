@@ -18,7 +18,7 @@ export default function Contact() {
         <Page contentClassName={styles.contact}>
             <Banner
                 // bannerImageSrc={ContactUsImage}
-                eyebrowHeading="CONTACT US"
+                eyebrowHeading="Disaster Crisis and Management"
                 heading={(
                     <>
                         Have a Question?
