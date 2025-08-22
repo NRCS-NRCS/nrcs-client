@@ -6,7 +6,7 @@ import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
 
-import { procurements } from '../page';
+import procurements from '../data';
 
 import styles from './page.module.css';
 

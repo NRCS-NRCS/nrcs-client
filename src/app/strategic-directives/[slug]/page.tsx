@@ -33,19 +33,23 @@ export async function generateStaticParams() {
         GET_STRATEGIC_DIRECTIVES_SLUGS,
         {},
     ).toPromise();
+    const data = result?.data?.strategicDirectives;
 
-    if (!result.data?.strategicDirectives) {
+    if (!data) {
         // eslint-disable-next-line no-console
         console.warn('No directives found in GraphQL response');
-        return [];
+        return notFound();
     }
 
-    return result.data?.strategicDirectives?.map((d: { slug: string }) => ({
+    return data?.map((d: { slug: string }) => ({
         slug: d.slug,
     }));
 }
 
-export default async function DirectiveDetailPage({ params }: { params: { slug: string } }) {
+export default async function DirectiveDetailPage(
+    { params }: { params: Promise<{ slug: string }> },
+) {
+    const { slug } = await params;
     const result = await urqlClient.query<
         StrategicDirectivesQuery,
         StrategicDirectivesQueryVariables
@@ -56,7 +60,7 @@ export default async function DirectiveDetailPage({ params }: { params: { slug: 
         return [];
     }
     const directivesFromQuery = result.data?.strategicDirectives;
-    const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === params.slug);
+    const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
 
     const departmentsForDirective = result.data?.departments?.filter(
         (dept) => dept.strategicDirective.id === directive?.id,
