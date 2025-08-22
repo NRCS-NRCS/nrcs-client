@@ -1,0 +1,9 @@
+.procurement {
+    padding: var(--spacing-enormous) 0 var(--spacing-universal) 0;
+    
+    .procurementCard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-medium);
+    }
+}

@@ -1,0 +1,11 @@
+.procurementVacancyCard {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-medium) var(--spacing-large);
+    background-color: var(--color-background-blue);
+    gap: var(--spacing-extra-large);
+
+    &.transparent {
+        background-color: unset;
+    }
+}
