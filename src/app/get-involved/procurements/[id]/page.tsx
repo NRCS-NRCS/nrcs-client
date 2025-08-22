@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import ArticleBody from '#components/ArticleBody';
 import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
@@ -9,11 +11,11 @@ import { procurements } from '../page';
 import styles from './page.module.css';
 
 type Procurement = NonNullable<
-  NonNullable<(typeof procurements)['procurement_description']['items']>
+  NonNullable<(typeof procurements)['results']>
 >;
 
 async function getProcurements() {
-    return procurements.procurement_description.items as unknown as Procurement;
+    return procurements.results as unknown as Procurement;
 }
 
 /* eslint-disable react-refresh/only-export-components */
@@ -39,6 +41,10 @@ export default async function ProcurementDetailPage({ params }: PageProps) {
 
     const procurementDetails = procurement?.find((item) => item.id === id);
 
+    if (!procurementDetails) {
+        return notFound();
+    }
+
     return (
         <Page contentClassName={styles.procurementDetails}>
             <Section
@@ -57,13 +63,11 @@ export default async function ProcurementDetailPage({ params }: PageProps) {
                 <ArticleBody
                     content={procurementDetails?.description}
                 />
-                {procurementDetails && (
-                    <DownloadTemplate
-                        title={procurementDetails.title}
-                        file={procurementDetails.file.url}
-                        fileSize={procurementDetails.file.size}
-                    />
-                )}
+                <DownloadTemplate
+                    title={procurementDetails.title}
+                    file={procurementDetails.file.url}
+                    fileSize={procurementDetails.file.size}
+                />
             </Section>
         </Page>
     );

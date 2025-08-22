@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 import ArticleBody from '#components/ArticleBody';
 import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
@@ -9,11 +11,11 @@ import { vacancies } from '../page';
 import styles from './page.module.css';
 
 export type Vacancy = NonNullable<
-  (typeof vacancies)['vacancy_description']['items']
+  (typeof vacancies)['results']
 >[number];
 
 async function getVacancies(): Promise<Vacancy[]> {
-    return vacancies.vacancy_description.items;
+    return vacancies.results;
 }
 
 /* eslint-disable react-refresh/only-export-components */
@@ -39,6 +41,10 @@ export default async function VacancyDetailPage({ params }: PageProps) {
 
     const vacancyDetails = vacancy?.find((item) => item.id === id);
 
+    if (!vacancyDetails) {
+        return notFound();
+    }
+
     return (
         <Page contentClassName={styles.vacancyDetails}>
             <Section
@@ -57,13 +63,11 @@ export default async function VacancyDetailPage({ params }: PageProps) {
                 <ArticleBody
                     content={vacancyDetails?.description}
                 />
-                {vacancyDetails && (
-                    <DownloadTemplate
-                        title={vacancyDetails.title}
-                        file={vacancyDetails.file.url}
-                        fileSize={vacancyDetails.file.size}
-                    />
-                )}
+                <DownloadTemplate
+                    title={vacancyDetails.title}
+                    file={vacancyDetails.file.url}
+                    fileSize={vacancyDetails.file.size}
+                />
             </Section>
         </Page>
     );

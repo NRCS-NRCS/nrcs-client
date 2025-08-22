@@ -10,4 +10,10 @@
         grid-template-columns: repeat(3, 1fr);
         gap: var(--spacing-medium);
     }
+
+    .vacancyDescription {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-medium);
+    }
 }

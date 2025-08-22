@@ -8,7 +8,6 @@ import styles from './styles.module.css';
 
 interface Props {
     className?: string;
-    name: string;
     title: string;
     date: string;
     link: string;
@@ -16,11 +15,10 @@ interface Props {
     isExternalLink?: boolean;
 }
 
-export default function GetInvolvedCard(props: Props) {
+export default function ProcurementVacancyCard(props: Props) {
     const {
         className,
         title,
-        name,
         date,
         link,
         transparent = false,
@@ -30,7 +28,7 @@ export default function GetInvolvedCard(props: Props) {
     return (
         <Link
             className={_cs(
-                styles.getInvolvedCard,
+                styles.procurementVacancyCard,
                 transparent && styles.transparent,
                 className,
             )}
@@ -44,14 +42,9 @@ export default function GetInvolvedCard(props: Props) {
             >
                 {title}
             </Heading>
-            <div className={styles.content}>
-                <div className={styles.date}>
-                    {date}
-                </div>
-                <span className={styles.redDot} />
-                <div className={styles.name}>
-                    {name}
-                </div>
+            <div className={styles.date}>
+                Expiry Date: &nbsp;
+                {date}
             </div>
         </Link>
     );
