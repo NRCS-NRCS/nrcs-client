@@ -10,8 +10,8 @@ services:
       - '${PORT:-3000}:${PORT:-3000}'
     environment:
       - PORT=${PORT:-3000}
-      - NEXT_PUBLIC_APP_TITLE=${APP_TITLE:-Nepal Red Cross Society}
-      - NEXT_PUBLIC_GRAPHQL_DOMAIN=${APP_GRAPHQL_DOMAIN:-http://web:8000/graphql/}
+      - NEXT_PUBLIC_APP_TITLE=${NEXT_PUBLIC_APP_TITLE:-Nepal Red Cross Society}
+      - NEXT_PUBLIC_GRAPHQL_DOMAIN=${NEXT_PUBLIC_GRAPHQL_DOMAIN:-http://web:8000/graphql/}
       - NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT=${NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT:-./backend/schema.graphql}
     env_file:
       - .env

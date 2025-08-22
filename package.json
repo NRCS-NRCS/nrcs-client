@@ -13,7 +13,7 @@
         "_prestart": "pnpm generate:type",
         "start": "next start",
         "typecheck": "tsc",
-        "_prelint": "pnpm prebuild",
+        "prelint": "pnpm generate:type && pnpm typecheck",
         "lint": "next lint"
     },
     "engines": {

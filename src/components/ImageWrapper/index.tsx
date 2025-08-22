@@ -32,12 +32,13 @@ function ImageWrapper(props: Props) {
     } = props;
 
     const isExternal = String(src)?.startsWith('http');
+    const safeSrc = isExternal ? String(src).replace(/^http:\/\/web:8000/, 'http://localhost:8000') : src;
 
     return (
         <div className={_cs(className, styles.imageWrapper)}>
             {!nonOptimizedImage ? (
                 <Image
-                    src={src}
+                    src={safeSrc}
                     className={_cs(imageClassName, styles.image)}
                     fill={isExternal}
                     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -49,7 +50,7 @@ function ImageWrapper(props: Props) {
             ) : (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                    src={String(src)}
+                    src={String(safeSrc)}
                     className={_cs(imageClassName, styles.image, styles.nonOptimizedImage)}
                     alt={otherProps.alt}
                 />
