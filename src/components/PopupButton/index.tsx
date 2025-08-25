@@ -16,7 +16,7 @@ import Popup from '../Popup';
 
 import styles from './styles.module.css';
 
-export interface PopupButtonProps extends Omit<ButtonProps, 'label'> {
+export interface PopupButtonProps<T extends string | undefined> extends Omit<ButtonProps<T>, 'label'> {
     popupClassName?: string;
     popupContentClassName?: string;
     label: React.ReactNode;
@@ -30,7 +30,7 @@ export interface PopupButtonProps extends Omit<ButtonProps, 'label'> {
     actions?: React.ReactNode;
 }
 
-function PopupButton(props: PopupButtonProps) {
+function PopupButton<T extends string | undefined>(props: PopupButtonProps<T>) {
     const {
         popupClassName,
         popupContentClassName,

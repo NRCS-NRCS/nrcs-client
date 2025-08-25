@@ -12,26 +12,41 @@ const variantToStyleMap: {
     border: styles.border,
     icon: styles.icon,
 };
-export interface Props extends React.HTMLProps<HTMLButtonElement> {
+export interface Props<T extends string | undefined> extends Omit<React.HTMLProps<HTMLButtonElement>, 'ref' | 'onClick' | 'name' >{
     className?: string;
     variant?: Variant;
     elementRef?: React.Ref<HTMLButtonElement>;
+    name: T;
+    onClick?: (name: T, e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 // NOTE: this does not support relative buttons
 
-function Button(props: Props) {
+function Button<T extends string | undefined>(props: Props<T>) {
     const {
         children,
         variant = 'primary',
         className,
         elementRef,
+        name,
+        onClick,
         ...rest
     } = props;
 
+    const handleClick = React.useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>) => {
+            if (onClick) {
+                onClick(name, e);
+            }
+        },
+        [onClick, name],
+    );
+
     return (
         <button
+            name={name}
             ref={elementRef}
+            onClick={onClick ? handleClick : undefined}
             className={_cs(
                 className,
                 styles.button,

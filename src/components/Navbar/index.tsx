@@ -187,6 +187,7 @@ export default function Navbar(props: Props) {
                 <div className={_cs(isNavShown && styles.navShown, styles.links)}>
                     {finalPaths?.map((item) => (item.children ? (
                         <PopupButton
+                            name={undefined}
                             key={item.link}
                             persistent={false}
                             label={item.label}

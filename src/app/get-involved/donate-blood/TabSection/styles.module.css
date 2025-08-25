@@ -1,0 +1,11 @@
+.tabPanel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-mega-large);
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-medium);
+    }
+}
