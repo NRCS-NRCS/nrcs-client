@@ -1,0 +1,12 @@
+.resourcesPage {
+    gap: var(--spacing-galactic);
+    padding-bottom: var(--spacing-galactic);
+
+    .section {
+        .content {
+            .resourcesChildren {
+                gap: var(--spacing-medium);
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+.authorSection {
+    font-size: var(--font-size-small);
+
+    .author {
+        color: var(--color-text-black);
+    }
+
+    .date {
+        color: var(--color-text-neutral);
+    }
+}
