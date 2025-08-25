@@ -12,7 +12,7 @@ interface Props {
     className?: string;
     title: string;
     file: string;
-    fileSize: string;
+    fileSize: number;
     transparent?: boolean;
     isExternalLink?: boolean;
 }
@@ -50,6 +50,7 @@ export default function DownloadTemplate(props: Props) {
                 <Link
                     className={styles.link}
                     href={file}
+                    rel="noopener noreferrer"
                     target={isExternalLink ? '_blank' : ''}
                     variant="button"
                 >

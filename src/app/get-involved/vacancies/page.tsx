@@ -1,14 +1,36 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
-
-import vacancies from './data';
+import {
+    type VacanciesQuery,
+    type VacanciesQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './page.module.css';
 
-export default function Vacancies() {
+// eslint-disable-next-line import/order
+import { VACANCIES } from '@/queries';
+
+export default async function Vacancies() {
+    const result = await urqlClient.query<
+        VacanciesQuery,
+        VacanciesQueryVariables
+    >(VACANCIES, {}).toPromise();
+    if (!result.data?.jobVacancies) {
+        // eslint-disable-next-line no-console
+        console.warn('No directives found in GraphQL response');
+        return [];
+    }
+    const vacancies = result.data?.jobVacancies;
+
+    if (!vacancies) {
+        return notFound();
+    }
+
     return (
         <Page contentClassName={styles.vacancies}>
             <Section
@@ -44,11 +66,11 @@ export default function Vacancies() {
                     </p>
                 </div>
                 <div className={styles.vacancyCard}>
-                    {vacancies?.results?.map((vacancy) => (
+                    {vacancies?.map((vacancy) => (
                         <Card
                             key={vacancy.id}
                             title={vacancy.title}
-                            date={vacancy.expiry_date}
+                            date={vacancy.expiryDate}
                             link={vacancy.id}
                         />
                     ))}

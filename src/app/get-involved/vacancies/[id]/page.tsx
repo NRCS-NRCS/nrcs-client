@@ -5,26 +5,40 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-
-import vacancies from '../data';
+import {
+    type VacanciesQuery,
+    type VacanciesQueryVariables,
+    type VacancyQuery,
+    type VacancyQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './page.module.css';
 
-export type Vacancy = NonNullable<
-  (typeof vacancies)['results']
->[number];
-
-async function getVacancies(): Promise<Vacancy[]> {
-    return vacancies.results;
-}
+// eslint-disable-next-line import/order
+import {
+    VACANCIES,
+    VACANCY,
+} from '@/queries';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const vacancyList = await getVacancies();
-    if (!vacancyList || vacancyList.length === 0) {
-        return [{ id: 'empty' }];
+    const result = await urqlClient.query<
+        VacanciesQuery,
+        VacanciesQueryVariables
+    >(VACANCIES, {}).toPromise();
+
+    const data = result?.data?.jobVacancies;
+
+    if (!data) {
+        // eslint-disable-next-line no-console
+        console.warn('No directives found in GraphQL response');
+        return notFound();
     }
-    return vacancyList.map((item) => ({ id: item.id }));
+
+    return data?.map((d: { id: string }) => ({
+        id: d.id,
+    }));
 }
 
 type PageProps = {
@@ -37,18 +51,20 @@ export default async function VacancyDetailPage({ params }: PageProps) {
     const {
         id,
     } = await params;
-    const vacancy = await getVacancies();
-
-    const vacancyDetails = vacancy?.find((item) => item.id === id);
-
-    if (!vacancyDetails) {
-        return notFound();
+    const result = await urqlClient.query<
+        VacancyQuery,
+        VacancyQueryVariables
+    >(VACANCY, { id }).toPromise();
+    if (!result.data?.jobVacancy) {
+    // eslint-disable-next-line no-console
+        console.warn('No directives found in GraphQL response');
+        return [];
     }
 
     return (
         <Page contentClassName={styles.vacancyDetails}>
             <Section
-                heading={vacancyDetails?.title}
+                heading={result.data.jobVacancy?.title}
             >
                 <Heading
                     className={styles.heading}
@@ -56,17 +72,17 @@ export default async function VacancyDetailPage({ params }: PageProps) {
                     font="normal"
                 >
                     Published on &nbsp;
-                    {vacancyDetails?.published_date}
+                    {/* // TODO: Add published date */}
                 </Heading>
             </Section>
             <Section>
                 <ArticleBody
-                    content={vacancyDetails?.description}
+                    content={result.data.jobVacancy?.description}
                 />
                 <DownloadTemplate
-                    title={vacancyDetails.title}
-                    file={vacancyDetails.file.url}
-                    fileSize={vacancyDetails.file.size}
+                    title={result.data.jobVacancy.title}
+                    file={result.data.jobVacancy.file.url}
+                    fileSize={result.data.jobVacancy.file.size}
                 />
             </Section>
         </Page>
