@@ -67,9 +67,10 @@ export default async function BlogDetailsPage({ params }: PageProps) {
                 <AuthorSection
                     author={blogDetails.title}
                     date={blogDetails.published_date}
+                    articleLength={blogDetails.content.length}
                 />
                 <ArticleBody
-                    content={blogDetails?.content}
+                    content={blogDetails.content}
                 />
             </Section>
         </Page>

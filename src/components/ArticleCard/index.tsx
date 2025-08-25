@@ -3,10 +3,11 @@
 import { _cs } from '@togglecorp/fujs';
 import { type StaticImageData } from 'next/image';
 
-import AuthorSection from '../AuthorSection';
-import Heading from '../Heading';
-import ImageWrapper from '../ImageWrapper';
-import Link from '../Link';
+import AuthorSection from '#components/AuthorSection';
+import Heading from '#components/Heading';
+import ImageWrapper from '#components/ImageWrapper';
+import Link from '#components/Link';
+import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
@@ -19,7 +20,7 @@ interface Props {
     link?: string;
     description: string;
     author: string;
-    date: string;
+    date?: string | null;
 }
 
 export default function ArticleCard(props: Props) {
@@ -43,20 +44,21 @@ export default function ArticleCard(props: Props) {
                 alt={imageAlt}
             />
             <div className={styles.articleCardDescription}>
-                <div>
-                    <Heading
-                        size="small"
-                    >
-                        {heading}
-                    </Heading>
-                    <p className={styles.dateDescription}>
-                        {description}
-                    </p>
-                </div>
+                <Heading
+                    className={styles.heading}
+                    size="small"
+                >
+                    {heading}
+                </Heading>
                 <AuthorSection
+                    className={styles.authorSection}
                     author={author}
                     date={date}
+                    articleLength={description.length}
                 />
+                <p className={styles.description}>
+                    {stripMarkdown(description)}
+                </p>
             </div>
         </>
     );

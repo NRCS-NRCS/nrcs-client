@@ -67,9 +67,10 @@ export default async function NewsDetailsPage({ params }: PageProps) {
                 <AuthorSection
                     author={newsDetails.title}
                     date={newsDetails.published_date}
+                    articleLength={newsDetails.content.length}
                 />
                 <ArticleBody
-                    content={newsDetails?.content}
+                    content={newsDetails.content}
                 />
             </Section>
         </Page>

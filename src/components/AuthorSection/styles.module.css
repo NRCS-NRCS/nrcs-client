@@ -5,7 +5,12 @@
         color: var(--color-text-black);
     }
 
-    .date {
-        color: var(--color-text-neutral);
+    .rightContainer {
+        display: flex;
+        gap: var(--spacing-super-small);
+
+        .date {
+            color: var(--color-text-neutral);
+        }
     }
 }

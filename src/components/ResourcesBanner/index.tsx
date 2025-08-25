@@ -23,7 +23,10 @@ export default function ResourcesBanner(props: Props) {
                 src={imageSrc}
                 alt={imageAlt}
             />
-            <Heading withBackground className={styles.heading}>
+            <Heading
+                className={styles.heading}
+                withBackground
+            >
                 {heading}
             </Heading>
         </div>
