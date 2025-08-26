@@ -5,26 +5,40 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-
-import procurements from '../data';
+import {
+    type ProcurementQuery,
+    type ProcurementQueryVariables,
+    type ProcurementsQuery,
+    type ProcurementsQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './page.module.css';
 
-type Procurement = NonNullable<
-  NonNullable<(typeof procurements)['results']>
->;
-
-async function getProcurements() {
-    return procurements.results as unknown as Procurement;
-}
+// eslint-disable-next-line import/order
+import {
+    PROCUREMENT,
+    PROCUREMENTS,
+} from '@/queries';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const procurementList = await getProcurements();
-    if (!procurementList || procurementList.length === 0) {
-        return [{ id: 'empty' }];
+    const result = await urqlClient.query<
+        ProcurementsQuery,
+        ProcurementsQueryVariables
+    >(PROCUREMENTS, {}).toPromise();
+
+    const data = result?.data?.procurements;
+
+    if (!data) {
+        // eslint-disable-next-line no-console
+        console.warn('No directives found in GraphQL response');
+        return notFound();
     }
-    return procurementList.map((item) => ({ id: item.id }));
+
+    return data?.map((d: { id: string }) => ({
+        id: d.id,
+    }));
 }
 
 type PageProps = {
@@ -37,18 +51,21 @@ export default async function ProcurementDetailPage({ params }: PageProps) {
     const {
         id,
     } = await params;
-    const procurement = await getProcurements();
+    const result = await urqlClient.query<
+        ProcurementQuery,
+        ProcurementQueryVariables
+    >(PROCUREMENT, { id }).toPromise();
 
-    const procurementDetails = procurement?.find((item) => item.id === id);
-
-    if (!procurementDetails) {
+    if (!result.data?.procurement) {
+    // eslint-disable-next-line no-console
+        console.warn('No directives found in GraphQL response');
         return notFound();
     }
 
     return (
         <Page contentClassName={styles.procurementDetails}>
             <Section
-                heading={procurementDetails?.title}
+                heading={result.data?.procurement?.title}
             >
                 <Heading
                     className={styles.heading}
@@ -56,17 +73,17 @@ export default async function ProcurementDetailPage({ params }: PageProps) {
                     font="normal"
                 >
                     Published on &nbsp;
-                    {procurementDetails?.published_date}
+                    {result.data?.procurement?.publishedDate}
                 </Heading>
             </Section>
             <Section>
                 <ArticleBody
-                    content={procurementDetails?.description}
+                    content={result.data?.procurement?.description}
                 />
                 <DownloadTemplate
-                    title={procurementDetails.title}
-                    file={procurementDetails.file.url}
-                    fileSize={procurementDetails.file.size}
+                    title={result.data?.procurement.title}
+                    file={result.data?.procurement.file.url}
+                    fileSize={result.data?.procurement.file.size}
                 />
             </Section>
         </Page>

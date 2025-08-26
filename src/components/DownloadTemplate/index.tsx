@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { MdPictureAsPdf } from 'react-icons/md';
 import { _cs } from '@togglecorp/fujs';
 
@@ -12,7 +12,7 @@ interface Props {
     className?: string;
     title: string;
     file: string;
-    fileSize: string;
+    fileSize: number;
     transparent?: boolean;
     isExternalLink?: boolean;
 }
@@ -22,10 +22,18 @@ export default function DownloadTemplate(props: Props) {
         className,
         title,
         file,
-        fileSize,
+        fileSize: sizeInBytes,
         transparent = false,
         isExternalLink = false,
     } = props;
+
+    const fileSizeWithSuffix = useMemo(() => {
+        if (sizeInBytes === 0) return '0 B';
+        const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(sizeInBytes) / Math.log(1024));
+        const size = sizeInBytes / (1024 ** i);
+        return `${size.toFixed(2)} ${units[i]}`;
+    }, [sizeInBytes]);
 
     return (
         <div
@@ -46,10 +54,11 @@ export default function DownloadTemplate(props: Props) {
                 >
                     {title}
                 </Heading>
-                {fileSize}
+                {fileSizeWithSuffix}
                 <Link
                     className={styles.link}
                     href={file}
+                    rel="noopener noreferrer"
                     target={isExternalLink ? '_blank' : ''}
                     variant="button"
                 >
