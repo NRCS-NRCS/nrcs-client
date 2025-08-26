@@ -29,10 +29,12 @@ const links = [
                 label: 'Who we are',
                 link: '/who-we-are/',
             },
+            /*
             {
                 label: 'Organization Structure',
                 link: '/organization-structure/',
             },
+            */
         ],
     },
     {
