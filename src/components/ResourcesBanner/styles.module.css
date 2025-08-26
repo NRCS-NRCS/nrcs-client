@@ -1,0 +1,12 @@
+.resourcesBanner {
+    position: relative;
+    height: 40rem;
+
+    .heading {
+        position: absolute;
+        bottom: 60px;
+        left: 60px;
+        padding: var(--spacing-medium) var(--spacing-extra-small);
+        max-width: 60rem;
+    }
+}

@@ -57,3 +57,42 @@ export const GET_STRATEGIC_DIRECTIVES_SLUGS = gql`
         }
     }
 `;
+
+export const GET_WORKS = gql`
+    query GetWorks {
+        works {
+            title
+            startDate
+            id
+            endDate
+            description
+            coverImage {
+                url
+            }
+            strategicDirective {
+                id
+                slug
+                title
+            }
+        }
+    }
+`;
+
+export const GET_WORK_DETAILS = gql`
+    query GetWorkDetails($workId: ID!) {
+        work(id: $workId) {
+            id
+            title
+            startDate
+            endDate
+            description
+            coverImage {
+                url
+            }
+            strategicDirective {
+                id
+                title
+            }
+        }
+    }
+`;
