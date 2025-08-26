@@ -13,40 +13,39 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import {
+    type FaqsQuery,
+    type FaqsQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 import bannerImg from '#public/banner.png';
 
 import ContactForm from './ContactForm';
 
 import styles from './page.module.css';
 
-const faqs = [
-    {
-        id: '1',
-        title: 'How is NRCS funded?',
-        description: 'NRCS relies on donations from individuals, communities, partner organizations, and international support.',
-    },
-    {
-        id: '2',
-        title: 'Can I volunteer with NRCS?',
-        description: 'Yes. With more than 75,000 volunteers nationwide, NRCS welcomes individuals willing to contribute time and skills. You can apply through your local Red Cross branch or the NRCS headquarters.',
-    },
-    {
-        id: '3',
-        title: 'What kind of services does NRCS provide?',
-        description: 'NRCS delivers disaster response and preparedness, emergency health services, blood transfusion, water and sanitation programs, and community development across Nepal.',
-    },
-    {
-        id: '4',
-        title: 'How can I donate to NRCS?',
-        description: 'You can donate through the official NRCS website, bank transfer, or authorized donation platforms. All donations directly support humanitarian work and disaster response.',
-    },
-];
+// eslint-disable-next-line import/order
+import { FAQS } from '@/queries';
+
 const contactUsHeading = 'We’d love to hear from you.';
 const contactUsText = 'Have questions, need support or possible partnership? We\'re here to help. Reach out to us through the form below or use the contact details provided — we\'ll get back to you as soon as possible.';
 const reportConcernHeading = 'You can report a concern';
 const reportConcernText = 'If you’ve witnessed or experienced something that concerns you, we encourage you to report it. Your feedback helps us ensure accountability, transparency, and a safer environment for all.';
 
-export default function Contact() {
+export default async function Contact() {
+    const result = await urqlClient.query<
+        FaqsQuery,
+        FaqsQueryVariables
+    >(FAQS, {}).toPromise();
+
+    const faqs = result.data?.faqs?.sort((a, b) => a.orderIndex - b.orderIndex).map(
+        (faq) => ({
+            id: faq.id,
+            title: faq.question,
+            description: faq.answer,
+        }),
+    );
+
     return (
         <Page contentClassName={styles.contactPage}>
             <Section
@@ -179,7 +178,7 @@ export default function Contact() {
                     Frequently Asked Questions
                 </Heading>
                 <Accordion
-                    items={faqs}
+                    items={faqs ?? []}
                     allowMultipleExpansion
                 />
             </Section>

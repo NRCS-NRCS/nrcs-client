@@ -78,17 +78,6 @@ export const GET_WORKS = gql`
     }
 `;
 
-export const VACANCIES = gql`
-    query Vacancies {
-        jobVacancies {
-            id
-            title
-            expiryDate
-            position
-        }
-    }
-`;
-
 export const GET_WORK_DETAILS = gql`
     query GetWorkDetails($workId: ID!) {
         work(id: $workId) {
@@ -104,6 +93,17 @@ export const GET_WORK_DETAILS = gql`
                 id
                 title
             }
+        }
+    }
+`;
+
+export const VACANCIES = gql`
+    query Vacancies {
+        jobVacancies {
+            id
+            title
+            expiryDate
+            position
         }
     }
 `;
@@ -151,6 +151,17 @@ export const PROCUREMENT = gql`
             }
             expiryDate
             description
+        }
+    }
+`;
+
+export const FAQS = gql`
+    query Faqs {
+        faqs {
+            id
+            answer
+            orderIndex
+            question
         }
     }
 `;

@@ -4,8 +4,9 @@
     .contact {
         .contactContent {
             .contactChildren {
-                flex-direction: row !important;
-                gap: var(--spacing-large);
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+                gap: var(--spacing-extra-large);
                 .contactForm {
                     display: flex;
                     flex-direction: column;
@@ -20,8 +21,9 @@
                 gap: var(--spacing-large);
 
                 .contactTypes {
-                    display: flex;
-                    gap: var(--spacing-large);
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+                    gap: var(--spacing-extra-large);
 
                     .contactItem {
                         display: flex;
