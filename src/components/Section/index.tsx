@@ -15,6 +15,7 @@ interface Props {
     headingClassName?: string;
     headingSize?: SizeTypes;
     headingWithBackground?: boolean;
+    skipAnimation?: boolean;
     children: React.ReactNode;
     className?: string;
     contentClassName?: string;
@@ -31,13 +32,14 @@ export default function Section(props: Props) {
         children,
         contentClassName,
         childrenContainerClassName,
+        skipAnimation,
     } = props;
 
     const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const element = ref.current;
-        if (!element) {
+        if (!element || skipAnimation) {
             return undefined;
         }
 
@@ -55,12 +57,16 @@ export default function Section(props: Props) {
         observer.observe(element);
 
         return () => observer.disconnect();
-    }, []);
+    }, [skipAnimation]);
 
     return (
         <div
             ref={ref}
-            className={_cs(className, styles.section)}
+            className={_cs(
+                className,
+                styles.section,
+                skipAnimation && styles.visible,
+            )}
         >
             <div
                 className={_cs(contentClassName, styles.content)}
