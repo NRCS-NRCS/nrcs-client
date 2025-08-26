@@ -22,10 +22,11 @@ export default async function Vacancies() {
     >(VACANCIES, {}).toPromise();
     if (!result.data?.jobVacancies) {
         // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No vacancies found in GraphQL response');
         return [];
     }
     const vacancies = result.data?.jobVacancies;
+    console.log('vacancies', vacancies);
 
     if (!vacancies) {
         return notFound();

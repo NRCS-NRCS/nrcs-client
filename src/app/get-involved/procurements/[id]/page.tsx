@@ -55,10 +55,11 @@ export default async function ProcurementDetailPage({ params }: PageProps) {
         ProcurementQuery,
         ProcurementQueryVariables
     >(PROCUREMENT, { id }).toPromise();
+
     if (!result.data?.procurement) {
     // eslint-disable-next-line no-console
         console.warn('No directives found in GraphQL response');
-        return [];
+        return notFound();
     }
 
     return (

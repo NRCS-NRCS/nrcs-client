@@ -32,7 +32,7 @@ export async function generateStaticParams() {
 
     if (!data) {
         // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No vacancies found in GraphQL response');
         return notFound();
     }
 
@@ -55,10 +55,11 @@ export default async function VacancyDetailPage({ params }: PageProps) {
         VacancyQuery,
         VacancyQueryVariables
     >(VACANCY, { id }).toPromise();
+
     if (!result.data?.jobVacancy) {
     // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
-        return [];
+        console.warn('No vacancies found in GraphQL response');
+        return notFound();
     }
 
     return (
