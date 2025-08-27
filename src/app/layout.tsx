@@ -24,11 +24,7 @@ export const metadata: Metadata = {
     description: 'Nepal Red Cross Society',
 };
 
-export default function RootLayout({
-    children,
-}: Readonly<{
-        children: React.ReactNode;
-    }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en">
             <body className={`${montserrat.variable} ${openSans.variable}`}>
