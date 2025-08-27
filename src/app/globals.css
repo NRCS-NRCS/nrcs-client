@@ -28,6 +28,8 @@
 
     --color-background-gradient: linear-gradient(180deg,var(--color-background-gradient-primary) 0%, var(--color-secondary-light) 50%, var(--color-background-gradient-secondary) 100%);
 
+    --color-separator: #E5E7EB;
+
     --color-text: #3f3f3f;
     --color-text-alternative: #193351;
     --color-text-accent: #05445e;
