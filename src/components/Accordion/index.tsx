@@ -11,8 +11,8 @@ import styles from './styles.module.css';
 
 interface AccordionItem {
     id: string;
-    title: string;
-    description: string;
+    title: React.ReactNode;
+    description: React.ReactNode;
 }
 interface Props {
     items: AccordionItem[];

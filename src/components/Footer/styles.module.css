@@ -5,17 +5,18 @@
     border-top: var(--width-separator-thin) solid var(--color-separator);
 
     .topContainer {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 2.5fr 1fr 1fr;
+        grid-template-rows: auto auto;
         margin: 0 auto;
+        flex-wrap: wrap;
         gap: var(--spacing-large);
-        padding: var(--spacing-mega-large) 0;
+        padding: var(--spacing-mega-large) var(--spacing-super-large);
         width: 100%;
         max-width: var(--width-page-max);
 
         .leftContainer {
             display: flex;
-            flex-basis: 40%;
             align-items: flex-start;
             flex-direction: column;
             gap: var(--spacing-medium);
@@ -74,6 +75,10 @@
                     gap: var(--spacing-small);
                 }
             }
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
         }
     }
 
