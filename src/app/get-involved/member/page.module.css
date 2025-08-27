@@ -1,0 +1,41 @@
+.page {
+    gap: var(--spacing-super-large);
+
+    .member {
+        .memberContent {
+            .memberChildren {
+                gap: var(--spacing-medium);
+            }
+        }
+    }
+    .downloadButton {
+        align-self: flex-start;
+    }
+    .membershipTypes {
+        .membershipTypesContent {
+            .membershipTypesChildren {
+                padding: 0 var(--spacing-extra-large);
+                gap: var(--spacing-small);
+                .item {
+                    display: grid;
+                    grid-template-columns: 20% 70%;
+                    padding: var(--spacing-large);
+                    gap: var(--spacing-mega-large);
+
+                    &:not(:last-child){
+                        border-bottom: var(--width-separator-thin) solid var(--color-separator);
+                    }
+
+                    .title {
+                        flex-basis: 25%;
+                    }
+                    .description {
+                        display: flex;
+                        flex-direction: column;
+                        gap: var(--spacing-medium);
+                    }
+                }
+            }
+        }
+    }
+}
