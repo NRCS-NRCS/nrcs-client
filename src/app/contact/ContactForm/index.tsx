@@ -27,8 +27,7 @@ export default function ContactForm() {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = () => {
         // eslint-disable-next-line no-console
         console.log('Submitted data:', formValues);
     };

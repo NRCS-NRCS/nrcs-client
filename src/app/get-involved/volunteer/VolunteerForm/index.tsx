@@ -133,14 +133,9 @@ export default function VolunteerForm() {
         }
     };
 
-    const handleClick = (
-        name: string | undefined,
-        e: React.MouseEvent<HTMLButtonElement>,
-    ) => {
-        e.preventDefault();
-        // TODO: Add forward to email logic!!
+    const handleSubmit = () => {
         // eslint-disable-next-line no-console
-        console.log('Clicked:', name, formValues);
+        console.log('Submitted data:', formValues);
     };
 
     return (
@@ -515,9 +510,9 @@ export default function VolunteerForm() {
                 &nbsp; I certify I have read the NRCS Code of Conduct.
             </label>
             <Button
-                name={undefined}
+                name="submit"
                 className={styles.submitButton}
-                onClick={handleClick}
+                onClick={handleSubmit}
                 variant="border"
             >
                 Continue
