@@ -165,3 +165,73 @@ export const FAQS = gql`
         }
     }
 `;
+
+export const GET_BLOGS = gql`
+    query GetBlogs {
+        blogs {
+            id
+            featured
+            content
+            author
+            publishedDate
+            slug
+            status
+            title
+            coverImage {
+                name
+                url
+            }
+        }
+    }
+`;
+
+export const GET_BLOG_DETAILS = gql`
+    query GetBlogDetails($blogId: ID!) {
+        blog(id: $blogId) {
+            id
+            featured
+            content
+            author
+            publishedDate
+            slug
+            status
+            title
+            coverImage {
+                name
+                url
+            }
+        }
+    }
+`;
+
+export const GET_RESOURCES = gql`
+    query GetResources {
+        resources {
+            id
+            content
+            publishedDate
+            title
+            file {
+                url
+                name
+                size
+            }
+        }
+    }
+`;
+
+export const GET_RESOURCE_DETAILS = gql`
+    query GetResourceDetails($resourceId: ID!) {
+        resource(id: $resourceId) {
+            id
+            content
+            publishedDate
+            title
+            file {
+                url
+                name
+                size
+            }
+        }
+    }
+`;
