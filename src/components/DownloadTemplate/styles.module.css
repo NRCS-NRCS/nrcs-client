@@ -1,15 +1,16 @@
 .downloadTemplate {
     display: flex;
-    flex-wrap: wrap;
     padding: var(--spacing-medium) var(--spacing-large);
     background-color: var(--color-text-alternative);
     gap: var(--spacing-extra-large);
     color: var(--color-text-on-dark);
-    width: 30rem;
+    max-width: 30rem;
+    width: 100%;
 
     .icon {
         display: inline-flex;
         align-items: center;
+        flex-shrink: 0;
         justify-content: center;
         width: 4rem;
         height: 4rem;
@@ -19,6 +20,7 @@
 
     .content {
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-medium);

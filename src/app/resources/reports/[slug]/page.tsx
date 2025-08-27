@@ -24,7 +24,6 @@ import {
     GET_RESOURCES,
 } from '@/queries';
 
-/* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
     const result = await urqlClient.query<
         GetResourcesQuery,
