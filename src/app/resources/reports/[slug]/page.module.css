@@ -1,6 +1,6 @@
 .resourcesPage {
-    gap: var(--spacing-galactic);
     padding-bottom: var(--spacing-galactic);
+    gap: var(--spacing-extra-large);
 
     .section {
         .content {

@@ -35,7 +35,7 @@ export async function generateStaticParams() {
     const data = result?.data?.works;
     if (!data) {
         // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No works found in GraphQL response');
         return notFound();
     }
 
