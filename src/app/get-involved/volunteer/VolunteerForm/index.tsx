@@ -4,11 +4,30 @@ import { useState } from 'react';
 
 import Button from '#components/Button';
 import Heading from '#components/Heading';
+import TextArea from '#components/TextArea';
 import TextInput from '#components/TextInput';
 
+import provincesData from './provinces.json';
 import styles from './styles.module.css';
 
-const gender = ['Male', 'Female', 'other'];
+const genders = ['Male', 'Female', 'Other'];
+
+interface Nplp {
+    id: number;
+    name: string;
+}
+
+interface District {
+    id: number;
+    name: string;
+    nplp: Nplp[];
+}
+
+interface Province {
+    id: number;
+    name: string;
+    district: District[];
+}
 
 const SECTOR_OPTIONS = [
     'Blood service',
@@ -36,15 +55,19 @@ interface FormValues {
     nationality: string;
     dateOfBirth: string;
     gender: string;
-    province: string;
-    district: string;
-    municipality: string;
-    ward: string;
-    permanentAddress: string;
+    permanentProvince: string;
+    permanentDistrict: string;
+    permanentMunicipality: string;
+    permanentWard: string;
+    temporaryProvince: string;
+    temporaryDistrict: string;
+    temporaryMunicipality: string;
+    temporaryWard: string;
     expertise: string;
     trainings: string;
     sectors: string[];
     otherSector: string;
+    termsAccepted: boolean;
 }
 
 export default function VolunteerForm() {
@@ -56,31 +79,73 @@ export default function VolunteerForm() {
         nationality: '',
         dateOfBirth: '',
         gender: '',
-        province: '',
-        district: '',
-        municipality: '',
-        ward: '',
-        permanentAddress: '',
+        temporaryProvince: '',
+        temporaryDistrict: '',
+        temporaryMunicipality: '',
+        temporaryWard: '',
+        permanentProvince: '',
+        permanentDistrict: '',
+        permanentMunicipality: '',
+        permanentWard: '',
         expertise: '',
         trainings: '',
         sectors: [],
         otherSector: '',
+        termsAccepted: false,
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormValues((prev) => ({ ...prev, [name]: value }));
+    const provinces: Province[] = provincesData;
+    const permanentDisctricts = provinces ? provinces.find(
+        (province) => province.id === Number(formValues.permanentProvince),
+    )?.district || [] : [];
+
+    const permanentMunicipalities = permanentDisctricts ? permanentDisctricts.find(
+        (district) => district.id === Number(formValues.permanentDistrict),
+    )?.nplp || [] : [];
+
+    const tempDistricts = provinces ? provinces.find(
+        (province) => province.id === Number(formValues.temporaryProvince),
+    )?.district || [] : [];
+
+    const tempMunicipalities = tempDistricts ? tempDistricts.find(
+        (district) => district.id === Number(formValues.temporaryDistrict),
+    )?.nplp || [] : [];
+
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+    ) => {
+        const { name, value, type } = e.target;
+        if (type === 'checkbox') {
+            const input = e.target as HTMLInputElement;
+            const { checked } = input;
+
+            setFormValues((prev) => {
+                if (name === 'sectors') {
+                    const current = prev.sectors;
+                    return checked
+                        ? { ...prev, sectors: [...current, value] }
+                        : { ...prev, sectors: current.filter((v) => v !== value) };
+                }
+                return { ...prev, [name]: checked };
+            });
+        } else {
+            setFormValues((prev) => ({ ...prev, [name]: value }));
+        }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleClick = (
+        name: string | undefined,
+        e: React.MouseEvent<HTMLButtonElement>,
+    ) => {
         e.preventDefault();
-        console.log('Submitted data:', formValues);
+        // TODO: Add forward to email logic!!
+        // eslint-disable-next-line no-console
+        console.log('Clicked:', name, formValues);
     };
 
     return (
         <form
             className={styles.form}
-            // FIX ME: Add email link here??
             onSubmit={undefined}
         >
             <div className={styles.formHeader}>
@@ -89,7 +154,10 @@ export default function VolunteerForm() {
                 >
                     Volunteer with us
                 </Heading>
-                Want to make a difference? Sign up to volunteer and support our humanitarian work.
+                <p className={styles.subHeading}>
+                    Want to make a difference?
+                    Sign up to volunteer and support our humanitarian work.
+                </p>
             </div>
             <div className={styles.content}>
                 <TextInput
@@ -97,30 +165,30 @@ export default function VolunteerForm() {
                     label="First Name"
                     value={formValues.firstName}
                     onChange={handleChange}
-                    placeholder="Eg. name"
+                    placeholder="First Name"
                 />
                 <TextInput
                     name="lastName"
                     label="Last Name"
                     value={formValues.lastName}
                     onChange={handleChange}
-                    placeholder="Eg. name"
+                    placeholder="Last Name"
                 />
             </div>
             <div className={styles.content}>
                 <TextInput
-                    name="emailAddress"
+                    name="email"
                     label="Email Address"
                     value={formValues.email}
                     onChange={handleChange}
-                    placeholder="email"
+                    placeholder="Email Address"
                 />
                 <TextInput
                     name="phoneNumber"
                     label="Phone Number"
                     value={formValues.phoneNumber}
                     onChange={handleChange}
-                    placeholder="Enter your phone number"
+                    placeholder="Phone Number"
                 />
             </div>
             <div className={styles.content}>
@@ -129,105 +197,328 @@ export default function VolunteerForm() {
                     label="Nationality"
                     value={formValues.nationality}
                     onChange={handleChange}
-                    placeholder="Enter your nationality"
+                    placeholder="Nationality"
                 />
-                {/* // TODO: Fix this add date */}
-                <TextInput
-                    name="dateOfBirth"
-                    label="Date of Birth"
-                    value={formValues.dateOfBirth}
-                    onChange={handleChange}
-                    placeholder="Enter your date of birth"
-                />
-            </div>
-            <div>
-                <Heading
-                    size="extraSmall"
-                    font="normal"
-                >
-                    Gender
-                </Heading>
-                <div className={styles.content}>
-                    {gender.map((g) => (
-                        <label htmlFor={g}>
-                            <input
-                                type="radio"
-                                name="gender"
-                                value={formValues.gender}
-                                checked={formValues.gender === g}
-                                onChange={handleChange}
-                            />
-                            {g}
-                        </label>
-                    ))}
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        Date of Birth
+                    </Heading>
+                    <input
+                        className={styles.input}
+                        name="dateOfBirth"
+                        type="date"
+                        value={formValues.dateOfBirth}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
-            Permanent Address
-            <div className={styles.content}>
-                <TextInput
-                    name="province"
-                    label="Province"
-                    value={formValues.province}
-                    onChange={handleChange}
-                    placeholder="Enter your province"
-                />
-                <TextInput
-                    name="district"
-                    label="District"
-                    value={formValues.district}
-                    onChange={handleChange}
-                    placeholder="Enter your district"
-                />
-            </div>
-            <div className={styles.content}>
-                <TextInput
-                    name="municipality"
-                    label="Municipality"
-                    value={formValues.municipality}
-                    onChange={handleChange}
-                    placeholder="Enter your municipality"
-                />
-                <TextInput
-                    name="ward"
-                    label="Ward No."
-                    value={formValues.ward}
-                    onChange={handleChange}
-                    placeholder="Enter your ward number"
-                />
-            </div>
             <Heading
                 size="extraSmall"
                 font="normal"
             >
-                Area of expertise, special skills
+                Gender
             </Heading>
-            <textarea
-                className={styles.input}
-            />
-            <Heading
-                size="extraSmall"
-                font="normal"
-            >
-                Skills and/or trainings I would like to get
-            </Heading>
-            <textarea
-                className={styles.input}
-            />
-            {/*
+            <div className={styles.content}>
+                {genders?.map((gender) => (
+                    <label
+                        htmlFor="gender"
+                        key={gender}
+                        className={styles.radioButton}
+                    >
+                        <input
+                            id="gender"
+                            type="radio"
+                            name="gender"
+                            value={gender}
+                            checked={formValues.gender === gender}
+                            onChange={handleChange}
+                        />
+                        <Heading
+                            size="extraSmall"
+                            font="normal"
+                        >
+                            {gender}
+                        </Heading>
+                    </label>
+                ))}
+            </div>
+            <div className={styles.separator} />
+            <p className={styles.subSection}>
+                Permanent Address
+            </p>
+            <div className={styles.content}>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        Province
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="permanentProvince"
+                        value={formValues.permanentProvince}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Province
+                        </option>
+                        {provinces?.map((province) => (
+                            <option
+                                key={province.id}
+                                value={province.id}
+                            >
+                                {province.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        District
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="permanentDistrict"
+                        value={formValues.permanentDistrict}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Disctrict
+                        </option>
+                        {permanentDisctricts?.map((district) => (
+                            <option
+                                key={district.id}
+                                value={district.id}
+                            >
+                                {district.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+            <div className={styles.content}>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        Municipality
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="permanentMunicipality"
+                        value={formValues.permanentMunicipality}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Municipality
+                        </option>
+                        {permanentMunicipalities?.map((municipality) => (
+                            <option
+                                key={municipality.id}
+                                value={municipality.id}
+                            >
+                                {municipality.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <TextInput
+                    name="permanentWard"
+                    label="Ward Number"
+                    value={formValues.permanentWard}
+                    onChange={handleChange}
+                    placeholder="Ward Number"
+                />
+            </div>
+            <p className={styles.subSection}>
+                Temporary Address
+            </p>
+            <div className={styles.content}>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        Province
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="temporaryProvince"
+                        value={formValues.temporaryProvince}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Province
+                        </option>
+                        {provinces?.map((province) => (
+                            <option
+                                key={province.id}
+                                value={province.id}
+                            >
+                                {province.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        District
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="temporaryDistrict"
+                        value={formValues.temporaryDistrict}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Disctrict
+                        </option>
+                        {tempDistricts?.map((district) => (
+                            <option
+                                key={district.id}
+                                value={district.id}
+                            >
+                                {district.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+            <div className={styles.content}>
+                <div className={styles.inputContent}>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                    >
+                        Municipality
+                    </Heading>
+                    <select
+                        className={styles.input}
+                        name="temporaryMunicipality"
+                        value={formValues.temporaryMunicipality}
+                        onChange={handleChange}
+                    >
+                        <option value="">
+                            Select Municipality
+                        </option>
+                        {tempMunicipalities?.map((municipality) => (
+                            <option
+                                key={municipality.id}
+                                value={municipality.id}
+                            >
+                                {municipality.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <TextInput
+                    name="temporaryWard"
+                    label="Ward Number"
+                    value={formValues.temporaryWard}
+                    onChange={handleChange}
+                    placeholder="Ward Number"
+                />
+            </div>
+            <div className={styles.separator} />
+            <div className={styles.textArea}>
+                <TextArea
+                    label="Area of expertise, special skills"
+                    name="expertise"
+                    value={formValues?.expertise}
+                    onChange={handleChange}
+                />
+                <TextArea
+                    label="Skills and/or trainings I would like to get"
+                    name="trainings"
+                    value={formValues?.trainings}
+                    onChange={handleChange}
+                />
+            </div>
             <Heading
                 size="extraSmall"
                 font="normal"
             >
                 In which sector do you want to volunteer?
             </Heading>
-            <input
-                type="checkbox"
-                className={styles.input}
-            />
-            */}
+            <div className={styles.checkbox}>
+                {SECTOR_OPTIONS.map((sector) => {
+                    const id = `sector-${sector}`;
+                    return (
+                        <div key={sector} className={styles.options}>
+                            <input
+                                id={id}
+                                name="sectors"
+                                type="checkbox"
+                                value={sector}
+                                checked={formValues.sectors.includes(sector)}
+                                onChange={handleChange}
+                            />
+                            <label
+                                htmlFor={id}
+                            >
+                                {sector}
+                            </label>
+                        </div>
+                    );
+                })}
+            </div>
+            {formValues.sectors.includes('Other (please specify)') && (
+                <TextInput
+                    name="otherSector"
+                    label="Please specify others"
+                    value={formValues.otherSector}
+                    onChange={handleChange}
+                    placeholder="Please specify other"
+                />
+            )}
+            <div className={styles.separator} />
+            <p className={styles.term}>
+                Submitting this volunteer application, I certify I understand
+                <a
+                    href="mailto:nrcs@nrcs.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <span className={styles.link}>
+                        &nbsp;
+                        the code of conduct of nepal red cross society
+                        &nbsp;
+                    </span>
+                </a>
+                and agree  to follow it always when serving as a red cross volunteer.
+            </p>
+            <p className={styles.term}>
+                Agree to the terms
+            </p>
+            <label
+                htmlFor="terms"
+                className={styles.termAccepted}
+            >
+                <input
+                    id="terms"
+                    name="termsAccepted"
+                    type="checkbox"
+                    checked={formValues.termsAccepted}
+                    onChange={handleChange}
+                />
+                &nbsp; I certify I have read the NRCS Code of Conduct.
+            </label>
             <Button
+                name={undefined}
                 className={styles.submitButton}
-                onClick={handleSubmit}
+                onClick={handleClick}
+                variant="border"
             >
                 Continue
             </Button>
