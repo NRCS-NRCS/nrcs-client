@@ -21,7 +21,6 @@ import {
     PROCUREMENTS,
 } from '@/queries';
 
-/* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
     const result = await urqlClient.query<
         ProcurementsQuery,
@@ -30,10 +29,10 @@ export async function generateStaticParams() {
 
     const data = result?.data?.procurements;
 
-    if (!data) {
+    if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No directives found in GraphQL response');
-        return notFound();
+        return [{ id: 'dummy' }];
     }
 
     return data?.map((d: { id: string }) => ({
@@ -41,13 +40,9 @@ export async function generateStaticParams() {
     }));
 }
 
-type PageProps = {
-    params: Promise<{
-        id: string;
-    }>;
-};
-
-export default async function ProcurementDetailPage({ params }: PageProps) {
+export default async function ProcurementDetailPage(
+    { params }: { params: Promise<{ id: string }> },
+) {
     const {
         id,
     } = await params;

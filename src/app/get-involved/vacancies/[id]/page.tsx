@@ -30,10 +30,10 @@ export async function generateStaticParams() {
 
     const data = result?.data?.jobVacancies;
 
-    if (!data) {
+    if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No vacancies found in GraphQL response');
-        return notFound();
+        return [{ id: 'dummy' }];
     }
 
     return data?.map((d: { id: string }) => ({
