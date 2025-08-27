@@ -5,6 +5,10 @@ import React, {
     useMemo,
     useState,
 } from 'react';
+import {
+    IoChevronDownOutline,
+    IoChevronUpOutline,
+} from 'react-icons/io5';
 import { MdMenu } from 'react-icons/md';
 import { _cs } from '@togglecorp/fujs';
 import { usePathname } from 'next/navigation';
@@ -139,6 +143,15 @@ export default function Navbar(props: Props) {
         setNavShown((oldVal) => !oldVal);
     }, []);
 
+    const [openItems, setOpenItems] = useState<string[]>([]);
+    const toggleItem = useCallback((id: string) => {
+        setOpenItems((prev) => (
+            prev.includes(id)
+                ? prev.filter((i) => i !== id)
+                : [...prev, id]
+        ));
+    }, []);
+
     return (
         <div className={_cs(className, styles.navbar)}>
             <div className={styles.upperContent}>
@@ -156,20 +169,20 @@ export default function Navbar(props: Props) {
                     </div>
                     <div className={styles.rightContainer}>
                         <Link
-                            className={styles.expandedButton}
+                            className={_cs(styles.hideableIcon, styles.expandedButton)}
                             href="/volunteer/"
                         >
                             Volunteer
                         </Link>
                         <Link
-                            className={styles.expandedButton}
+                            className={_cs(styles.hideableIcon, styles.expandedButton)}
                             variant="button"
                             href="/donate/"
                         >
                             Donate
                         </Link>
                         <Link
-                            className={styles.expandedButton}
+                            className={_cs(styles.hideableIcon, styles.expandedButton)}
                             href="tel:1130"
                         >
                             1130
@@ -222,8 +235,25 @@ export default function Navbar(props: Props) {
             <div className={_cs(isNavShown && styles.navShown, styles.drawer)}>
                 {finalPaths?.map((item) => (item.children ? (
                     <div key={item.link}>
-                        <Heading size="small">{item.label}</Heading>
-                        {item.children.map((child) => (
+                        <Button
+                            className={styles.drawerLinkHeader}
+                            name={item.link}
+                            variant="transparent"
+                            onClick={toggleItem}
+                        >
+                            <Heading
+                                className={styles.drawerLinkHeaderLabel}
+                                size="small"
+                            >
+                                {item.label}
+                            </Heading>
+                            {openItems.includes(item.link) ? (
+                                <IoChevronUpOutline className={styles.drawerLinkHeaderButton} />
+                            ) : (
+                                <IoChevronDownOutline className={styles.drawerLinkHeaderButton} />
+                            )}
+                        </Button>
+                        {openItems.includes(item.link) && item.children.map((child) => (
                             <Link
                                 key={child.link}
                                 className={styles.link}
