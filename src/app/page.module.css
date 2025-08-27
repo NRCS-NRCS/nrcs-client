@@ -53,6 +53,19 @@
                     justify-self: end; /* align right */
                     width: 20rem;
                 }
+
+                @media (max-width: 768px) {
+                    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+                    .keyFigureOne {
+                        grid-column: unset;
+                        justify-self: center;
+                    }
+                    .keyFigureTwo {
+                        grid-column: unset;
+                        justify-self: center;
+                    }
+                }
             }
         }
     }

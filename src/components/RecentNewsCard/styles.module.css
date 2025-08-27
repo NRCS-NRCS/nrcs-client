@@ -39,4 +39,12 @@
             flex-shrink: 0;
         }
     }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .imageWrapper {
+            width: 100%;
+        }
+    }
 }
