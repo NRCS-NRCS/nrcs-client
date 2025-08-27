@@ -1,30 +1,47 @@
 import { isNotDefined } from '@togglecorp/fujs';
+import { notFound } from 'next/navigation';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-
-import { blogs } from '../page';
+import {
+    type GetBlogDetailsQuery,
+    type GetBlogDetailsQueryVariables,
+    type GetBlogsQuery,
+    type GetBlogsQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './page.module.css';
 
-export type Blog = NonNullable<
-    (typeof blogs)['results']
->[number];
-
-async function getBlogs(): Promise<Blog[]> {
-    return blogs.results;
-}
+// eslint-disable-next-line import/order
+import {
+    GET_BLOG_DETAILS,
+    GET_BLOGS,
+} from '@/queries';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const blogList = await getBlogs();
-    if (!blogList || blogList.length === 0) {
-        return [{ slug: 'empty' }];
+    const result = await urqlClient.query<
+        GetBlogsQuery,
+        GetBlogsQueryVariables
+    >(
+        GET_BLOGS,
+        {},
+    ).toPromise();
+
+    const data = result?.data?.blogs;
+    if (!data) {
+        // eslint-disable-next-line no-console
+        console.warn('No blogs found in GraphQL response');
+        return notFound();
     }
-    return blogList.map((item) => ({ slug: item.slug }));
+
+    return data?.map((d: { id: string }) => ({
+        slug: d.id,
+    }));
 }
 
 type PageProps = {
@@ -38,9 +55,20 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const blog = await getBlogs();
+    const result = await urqlClient.query<
+        GetBlogDetailsQuery,
+        GetBlogDetailsQueryVariables
+    >(
+        GET_BLOG_DETAILS,
+        { blogId: slug },
+    ).toPromise();
 
-    const blogDetails = blog?.find((item) => item.slug === slug);
+    if (!result.data?.blog) {
+        // eslint-disable-next-line no-console
+        console.warn('No blog found in GraphQL response');
+    }
+
+    const blogDetails = result?.data?.blog;
 
     if (isNotDefined(blogDetails)) {
         return (
@@ -54,7 +82,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         <Page contentClassName={styles.resourcesPage}>
             <Section>
                 <ResourcesBanner
-                    imageSrc={blogDetails.cover_image}
+                    imageSrc={blogDetails.coverImage?.url ?? ''}
                     imageAlt={blogDetails.title}
                     heading={blogDetails.title}
                 />
@@ -65,8 +93,8 @@ export default async function BlogDetailsPage({ params }: PageProps) {
                 childrenContainerClassName={styles.resourcesChildren}
             >
                 <AuthorSection
-                    author={blogDetails.title}
-                    date={blogDetails.published_date}
+                    author={blogDetails.author}
+                    date={blogDetails.publishedDate}
                     articleLength={blogDetails.content.length}
                 />
                 <ArticleBody
