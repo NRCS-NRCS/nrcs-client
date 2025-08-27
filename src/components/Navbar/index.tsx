@@ -127,7 +127,7 @@ export default function Navbar(props: Props) {
             ...links,
             {
                 label: 'Strategic Directives',
-                link: '/strategic-directives/',
+                link: '/strategic-directives',
                 order: 2,
                 children: strategicDirectives,
             },

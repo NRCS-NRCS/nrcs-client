@@ -34,10 +34,10 @@ export async function generateStaticParams() {
     ).toPromise();
 
     const data = result?.data?.resources;
-    if (!data) {
+    if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No resources found in GraphQL response');
-        return notFound();
+        return [{ slug: 'dummy' }];
     }
 
     return data?.map((d: { id: string }) => ({

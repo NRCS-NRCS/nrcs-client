@@ -25,8 +25,7 @@ interface Blogs {
     results: BlogsItem[];
 }
 
-/* eslint-disable react-refresh/only-export-components */
-export const blogs: Blogs = {
+const blogs: Blogs = {
     results: [
         {
             id: 1,

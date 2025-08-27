@@ -4,15 +4,15 @@ name: CD
 on:
   push:
     branches:
-      - main
+      - develop
 
   schedule:
     # Runs "At 00:01. every day" (see https://crontab.guru)
     - cron: '1 0 * * *'
 
 env:
-  APP_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.APP_GRAPHQL_CODEGEN_ENDPOINT }}
-  APP_GRAPHQL_ENDPOINT: ${{ vars.APP_GRAPHQL_ENDPOINT }}
+  NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT }}
+  NEXT_PUBLIC_GRAPHQL_DOMAIN: ${{ vars.NEXT_PUBLIC_GRAPHQL_DOMAIN }}
   GITHUB_WORKFLOW: true
 
 jobs:
@@ -50,16 +50,16 @@ jobs:
       - name: Prebuild (generate types + fetch data)
         run: pnpm prebuild
         env:
-          APP_GRAPHQL_ENDPOINT: ${{ vars.APP_GRAPHQL_ENDPOINT }}
-          APP_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.APP_GRAPHQL_CODEGEN_ENDPOINT }}
+          NEXT_PUBLIC_GRAPHQL_DOMAIN: ${{ vars.NEXT_PUBLIC_GRAPHQL_DOMAIN }}
+          NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT }}
 
       - name: Build + Test
         run: pnpm run build
         timeout-minutes: 30
         env:
           # Common
-          APP_GRAPHQL_ENDPOINT: ${{ vars.APP_GRAPHQL_ENDPOINT }}
-          APP_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.APP_GRAPHQL_CODEGEN_ENDPOINT }}
+          NEXT_PUBLIC_GRAPHQL_DOMAIN: ${{ vars.NEXT_PUBLIC_GRAPHQL_DOMAIN }}
+          NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT }}
           BASE_PREFIX: ${{ vars.BASE_PREFIX }}
           NODE_OPTIONS: --max_old_space_size=4096
 

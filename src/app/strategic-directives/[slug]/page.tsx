@@ -35,10 +35,10 @@ export async function generateStaticParams() {
     ).toPromise();
     const data = result?.data?.strategicDirectives;
 
-    if (!data) {
+    if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No directives found in GraphQL response');
-        return notFound();
+        return [{ slug: 'dummy' }];
     }
 
     return data?.map((d: { slug: string }) => ({
@@ -57,7 +57,7 @@ export default async function DirectiveDetailPage(
     if (!result.data?.strategicDirectives) {
         // eslint-disable-next-line no-console
         console.warn('No directives found in GraphQL response');
-        return [];
+        return notFound();
     }
     const directivesFromQuery = result.data?.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);

@@ -1,5 +1,4 @@
 import { isNotDefined } from '@togglecorp/fujs';
-import { notFound } from 'next/navigation';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
@@ -33,10 +32,11 @@ export async function generateStaticParams() {
     ).toPromise();
 
     const data = result?.data?.blogs;
-    if (!data) {
+
+    if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No blogs found in GraphQL response');
-        return notFound();
+        return [{ slug: 'dummy' }];
     }
 
     return data?.map((d: { id: string }) => ({
