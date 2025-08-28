@@ -1,5 +1,4 @@
 import { isNotDefined } from '@togglecorp/fujs';
-import { notFound } from 'next/navigation';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';

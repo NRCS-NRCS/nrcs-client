@@ -10,6 +10,19 @@
     }
     .downloadButton {
         align-self: flex-start;
+        outline: none;
+        border: 0;
+        transition: 0.2s all ease-in-out;
+        border-radius: var(--border-radius-extra-small);
+        background-color: var(--color-primary);
+        padding: var(--spacing-small) var(--spacing-extra-large);
+        color: var(--color-text-on-primary);
+        text-transform: uppercase;
+        font-size: var(--font-size-medium);
+
+        &:hover {
+            background-color: var(--color-primary-dark);
+        }
     }
     .membershipTypes {
         .membershipTypesContent {

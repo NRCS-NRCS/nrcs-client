@@ -1,5 +1,7 @@
-import { isNotDefined } from '@togglecorp/fujs';
-import { notFound } from 'next/navigation';
+import {
+    isDefined,
+    isNotDefined,
+} from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
@@ -101,11 +103,13 @@ export default async function resourceDetailsPage({ params }: PageProps) {
                 <ArticleBody
                     content={resourceDetails.content}
                 />
-                <DownloadTemplate
-                    title={resourceDetails.file.name}
-                    file={resourceDetails.file.url}
-                    fileSize={resourceDetails.file.size}
-                />
+                {isDefined(resourceDetails.file) && (
+                    <DownloadTemplate
+                        title={resourceDetails.file.name}
+                        file={resourceDetails.file.url}
+                        fileSize={resourceDetails.file.size}
+                    />
+                )}
             </Section>
         </Page>
     );

@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 type Props = {
     className?: string;
     name: string;
-    label: string;
+    label?: string;
     value: string;
     placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -28,12 +28,14 @@ export default function TextInput(props: Props) {
 
     return (
         <div className={_cs(styles.textInput, className)}>
-            <Heading
-                size="extraSmall"
-                font="normal"
-            >
-                {label}
-            </Heading>
+            {label && (
+                <Heading
+                    size="extraSmall"
+                    font="normal"
+                >
+                    {label}
+                </Heading>
+            )}
             <input
                 className={styles.input}
                 type={type}

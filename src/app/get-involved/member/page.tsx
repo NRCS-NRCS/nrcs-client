@@ -2,7 +2,6 @@ import React from 'react';
 import { IoDownload } from 'react-icons/io5';
 
 import ArticleBody from '#components/ArticleBody';
-import Button from '#components/Button';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
@@ -68,15 +67,18 @@ export default function Volunteer() {
                 childrenContainerClassName={styles.memberChildren}
             >
                 <ArticleBody content={memberText} />
-                <Button
-                    name="membershipForm"
+                <a
                     className={styles.downloadButton}
+                    href="/life-member-application-nepali.pdf"
+                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     // TODO: Make this button download the membership form
                 >
                     Fill out the form
                     &nbsp;
                     <IoDownload />
-                </Button>
+                </a>
             </Section>
             <Section
                 className={styles.membershipTypes}

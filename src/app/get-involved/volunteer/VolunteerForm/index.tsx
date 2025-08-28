@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import Button from '#components/Button';
 import Heading from '#components/Heading';
+import Link from '#components/Link';
+import SelectInput from '#components/SelectInput';
 import TextArea from '#components/TextArea';
 import TextInput from '#components/TextInput';
 
@@ -95,11 +97,11 @@ export default function VolunteerForm() {
     });
 
     const provinces: Province[] = provincesData;
-    const permanentDisctricts = provinces ? provinces.find(
+    const permanentDistricts = provinces ? provinces.find(
         (province) => province.id === Number(formValues.permanentProvince),
     )?.district || [] : [];
 
-    const permanentMunicipalities = permanentDisctricts ? permanentDisctricts.find(
+    const permanentMunicipalities = permanentDistricts ? permanentDistricts.find(
         (district) => district.id === Number(formValues.permanentDistrict),
     )?.nplp || [] : [];
 
@@ -224,24 +226,19 @@ export default function VolunteerForm() {
             <div className={styles.content}>
                 {genders?.map((gender) => (
                     <label
-                        htmlFor="gender"
+                        htmlFor={gender}
                         key={gender}
                         className={styles.radioButton}
                     >
                         <input
-                            id="gender"
+                            id={gender}
                             type="radio"
                             name="gender"
                             value={gender}
                             checked={formValues.gender === gender}
                             onChange={handleChange}
                         />
-                        <Heading
-                            size="extraSmall"
-                            font="normal"
-                        >
-                            {gender}
-                        </Heading>
+                        {gender}
                     </label>
                 ))}
             </div>
@@ -250,86 +247,34 @@ export default function VolunteerForm() {
                 Permanent Address
             </p>
             <div className={styles.content}>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        Province
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="permanentProvince"
-                        value={formValues.permanentProvince}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Province
-                        </option>
-                        {provinces?.map((province) => (
-                            <option
-                                key={province.id}
-                                value={province.id}
-                            >
-                                {province.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        District
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="permanentDistrict"
-                        value={formValues.permanentDistrict}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Disctrict
-                        </option>
-                        {permanentDisctricts?.map((district) => (
-                            <option
-                                key={district.id}
-                                value={district.id}
-                            >
-                                {district.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    name="permanentProvince"
+                    label="Province"
+                    placeholder="Select Province"
+                    value={formValues.permanentProvince}
+                    options={provinces}
+                    onChange={handleChange}
+                />
+                <SelectInput
+                    name="permanentDistrict"
+                    label="District"
+                    placeholder="Select District"
+                    value={formValues.permanentDistrict}
+                    options={permanentDistricts}
+                    onChange={handleChange}
+                    disabled={formValues.permanentProvince === ''}
+                />
             </div>
             <div className={styles.content}>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        Municipality
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="permanentMunicipality"
-                        value={formValues.permanentMunicipality}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Municipality
-                        </option>
-                        {permanentMunicipalities?.map((municipality) => (
-                            <option
-                                key={municipality.id}
-                                value={municipality.id}
-                            >
-                                {municipality.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    name="permanentMunicipality"
+                    label="Municipality"
+                    placeholder="Select Municipality"
+                    value={formValues.permanentMunicipality}
+                    options={permanentMunicipalities}
+                    onChange={handleChange}
+                    disabled={formValues.permanentDistrict === ''}
+                />
                 <TextInput
                     name="permanentWard"
                     label="Ward Number"
@@ -342,86 +287,34 @@ export default function VolunteerForm() {
                 Temporary Address
             </p>
             <div className={styles.content}>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        Province
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="temporaryProvince"
-                        value={formValues.temporaryProvince}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Province
-                        </option>
-                        {provinces?.map((province) => (
-                            <option
-                                key={province.id}
-                                value={province.id}
-                            >
-                                {province.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        District
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="temporaryDistrict"
-                        value={formValues.temporaryDistrict}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Disctrict
-                        </option>
-                        {tempDistricts?.map((district) => (
-                            <option
-                                key={district.id}
-                                value={district.id}
-                            >
-                                {district.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    name="temporaryProvince"
+                    label="Province"
+                    placeholder="Select Province"
+                    value={formValues.temporaryProvince}
+                    options={provinces}
+                    onChange={handleChange}
+                />
+                <SelectInput
+                    name="temporaryDistrict"
+                    label="District"
+                    placeholder="Select District"
+                    value={formValues.temporaryDistrict}
+                    options={tempDistricts}
+                    onChange={handleChange}
+                    disabled={formValues.temporaryProvince === ''}
+                />
             </div>
             <div className={styles.content}>
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        Municipality
-                    </Heading>
-                    <select
-                        className={styles.input}
-                        name="temporaryMunicipality"
-                        value={formValues.temporaryMunicipality}
-                        onChange={handleChange}
-                    >
-                        <option value="">
-                            Select Municipality
-                        </option>
-                        {tempMunicipalities?.map((municipality) => (
-                            <option
-                                key={municipality.id}
-                                value={municipality.id}
-                            >
-                                {municipality.name}
-                            </option>
-                        ))}
-                    </select>
-                </div>
+                <SelectInput
+                    name="temporaryMunicipality"
+                    label="Municipality"
+                    placeholder="Select Municipality"
+                    value={formValues.temporaryMunicipality}
+                    options={tempMunicipalities}
+                    onChange={handleChange}
+                    disabled={formValues.temporaryDistrict === ''}
+                />
                 <TextInput
                     name="temporaryWard"
                     label="Ward Number"
@@ -485,17 +378,15 @@ export default function VolunteerForm() {
             <div className={styles.separator} />
             <p className={styles.term}>
                 Submitting this volunteer application, I certify I understand
-                <a
-                    href="mailto:nrcs@nrcs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                <Link
+                    href="/life-member-application-nepali.pdf"
                 >
                     <span className={styles.link}>
                         &nbsp;
                         the code of conduct of nepal red cross society
                         &nbsp;
                     </span>
-                </a>
+                </Link>
                 and agree  to follow it always when serving as a red cross volunteer.
             </p>
             <p className={styles.term}>
