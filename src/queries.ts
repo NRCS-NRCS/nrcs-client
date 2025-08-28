@@ -235,3 +235,53 @@ export const GET_RESOURCE_DETAILS = gql`
         }
     }
 `;
+
+export const NEWS_LIST = gql`
+    query NewsList {
+        news {
+            content
+            id
+            publishedDate
+            slug
+            title
+            coverImage {
+                name
+                size
+                url
+            }
+            directive {
+                pk
+            }
+            file {
+                name
+                size
+                url
+            }
+        }
+    }
+`;
+
+export const NEWS_ITEM = gql`
+    query NewsItem($newsId: ID!) {
+        newsItem(id: $newsId) {
+            content
+            coverImage {
+                name
+                size
+                url
+            }
+            directive {
+                pk
+            }
+            file {
+                name
+                size
+                url
+            }
+            id
+            publishedDate
+            slug
+            title
+        }
+    }
+`;

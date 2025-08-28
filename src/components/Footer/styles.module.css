@@ -74,6 +74,12 @@
                     font-weight: var(--font-weight-regular);
                     gap: var(--spacing-small);
                 }
+
+                .phoneNumbers {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: var(--spacing-small);
+                }
             }
         }
 

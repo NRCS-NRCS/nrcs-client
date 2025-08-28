@@ -1,122 +1,50 @@
-import { isNotDefined } from '@togglecorp/fujs';
-import { type StaticImageData } from 'next/image';
+import {
+    isDefined,
+    isNotDefined,
+} from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import cardImage from '#public/card.png';
+import {
+    type NewsItemQuery,
+    type NewsItemQueryVariables,
+    type NewsListQuery,
+    type NewsListQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 
 import styles from './page.module.css';
 
-interface BlogsItem {
-    id: number;
-    title: string;
-    content: string;
-    slug: string;
-    featured: boolean;
-    status: string;
-    work: number;
-    cover_image: StaticImageData;
-    department: number;
-    strategic_directive: number;
-    published_date: string;
-    author: string;
-}
-
-interface Blogs {
-    results: BlogsItem[];
-}
-const blogs: Blogs = {
-    results: [
-        {
-            id: 1,
-            title: 'Shaping the Future of Disaster Response',
-            slug: 'shaping-the-future-of-disaster-response',
-            published_date: '2025-08-01',
-            author: 'Jane Doe',
-            content: 'Exploring modern approaches to crisis management.\n\n![response](cardImage)',
-            cover_image: cardImage,
-            featured: true,
-            department: 1,
-            strategic_directive: 1,
-            status: 'published',
-            work: 1,
-        },
-        {
-            id: 2,
-            title: 'Community Voices in Action',
-            slug: 'community-voices-in-action',
-            published_date: '2025-07-15',
-            author: 'John Smith',
-            content: 'Community-led responses that matter.\n\n![community](cardImage)',
-            cover_image: cardImage,
-            featured: false,
-            department: 2,
-            strategic_directive: 2,
-            status: 'draft',
-            work: 2,
-        },
-        {
-            id: 3,
-            title: 'Technology for Humanitarian Impact',
-            slug: 'technology-for-humanitarian-impact',
-            published_date: '2025-06-20',
-            author: 'Priya Sharma',
-            content: 'How AI and data science are changing humanitarian aid.\n\n![ai](cardImage)',
-            cover_image: cardImage,
-            featured: false,
-            department: 1,
-            strategic_directive: 1,
-            status: 'published',
-            work: 2,
-        },
-        {
-            id: 4,
-            title: 'Rebuilding After the Storm',
-            slug: 'rebuilding-after-the-storm',
-            published_date: '2025-05-10',
-            author: 'Carlos Rivera',
-            content: 'Stories of resilience from communities hit hardest by disasters.\n\n![storm](cardImage)',
-            cover_image: cardImage,
-            featured: true,
-            department: 2,
-            strategic_directive: 2,
-            status: 'published',
-            work: 1,
-        },
-        {
-            id: 5,
-            title: 'Youth Leading Climate Action',
-            slug: 'youth-leading-climate-action',
-            published_date: '2025-04-02',
-            author: 'Fatima Ali',
-            content: 'Empowering youth voices in climate adaptation strategies.\n\n![youth](cardImage)',
-            cover_image: cardImage,
-            featured: false,
-            department: 1,
-            strategic_directive: 2,
-            status: 'draft',
-            work: 1,
-        },
-    ],
-};
-export type News = NonNullable<
-    (typeof blogs)['results']
->[number];
-
-async function getNews(): Promise<News[]> {
-    return blogs.results;
-}
+// eslint-disable-next-line import/order
+import {
+    NEWS_ITEM,
+    NEWS_LIST,
+} from '@/queries';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const newsList = await getNews();
-    if (!newsList || newsList.length === 0) {
-        return [{ slug: 'empty' }];
+    const result = await urqlClient.query<
+        NewsListQuery,
+        NewsListQueryVariables
+    >(
+        NEWS_LIST,
+        {},
+    ).toPromise();
+
+    const data = result?.data?.news;
+
+    if (!data || data.length === 0) {
+        // eslint-disable-next-line no-console
+        console.warn('No news found in GraphQL response');
+        return [{ slug: 'dummy' }];
     }
-    return newsList.map((item) => ({ slug: item.slug }));
+
+    return data?.map((d: { id: string }) => ({
+        slug: d.id,
+    }));
 }
 
 type PageProps = {
@@ -130,9 +58,20 @@ export default async function NewsDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const news = await getNews();
+    const result = await urqlClient.query<
+        NewsItemQuery,
+        NewsItemQueryVariables
+    >(
+        NEWS_ITEM,
+        { newsId: slug },
+    ).toPromise();
 
-    const newsDetails = news?.find((item) => item.slug === slug);
+    if (!result.data?.newsItem) {
+        // eslint-disable-next-line no-console
+        console.warn('No news found in GraphQL response');
+    }
+
+    const newsDetails = result?.data?.newsItem;
 
     if (isNotDefined(newsDetails)) {
         return (
@@ -145,11 +84,13 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     return (
         <Page contentClassName={styles.resourcesPage}>
             <Section>
-                <ResourcesBanner
-                    imageSrc={newsDetails.cover_image}
-                    imageAlt={newsDetails.title}
-                    heading={newsDetails.title}
-                />
+                {isDefined(newsDetails.coverImage) && (
+                    <ResourcesBanner
+                        imageSrc={newsDetails.coverImage?.url}
+                        imageAlt={newsDetails.coverImage?.name}
+                        heading={newsDetails.title}
+                    />
+                )}
             </Section>
             <Section
                 className={styles.section}
@@ -158,7 +99,7 @@ export default async function NewsDetailsPage({ params }: PageProps) {
             >
                 <AuthorSection
                     author={newsDetails.title}
-                    date={newsDetails.published_date}
+                    date={newsDetails.publishedDate}
                     articleLength={newsDetails.content.length}
                 />
                 <ArticleBody

@@ -37,8 +37,20 @@
                 flex-shrink: 0;
 
                 .expandedButton {
+                    display: flex;
+                    flex-direction: column;
                     padding: var(--spacing-medium);
                     border-left: var(--width-separator-thin) solid var(--color-separator);
+                    gap: var(--spacing-ultra-small);
+
+                    .linkDescription {
+                        display: block;
+                        font-size: var(--font-size-small);
+                    }
+                    .hotline {
+                        display: flex;
+                        align-items: center;
+                    }
                 }
 
                 .donateButton {

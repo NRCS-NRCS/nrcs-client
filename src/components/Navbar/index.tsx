@@ -9,7 +9,10 @@ import {
     IoChevronDownOutline,
     IoChevronUpOutline,
 } from 'react-icons/io5';
-import { MdMenu } from 'react-icons/md';
+import {
+    MdLocalPhone,
+    MdMenu,
+} from 'react-icons/md';
 import { _cs } from '@togglecorp/fujs';
 import { usePathname } from 'next/navigation';
 
@@ -33,12 +36,10 @@ const links = [
                 label: 'Who we are',
                 link: '/who-we-are/',
             },
-            /*
             {
                 label: 'Organization Structure',
                 link: '/organization-structure/',
             },
-            */
         ],
     },
     {
@@ -78,7 +79,7 @@ const links = [
     },
     {
         label: 'Resources',
-        link: '/resources/',
+        link: '/resources',
         order: 4,
         children: [
             {
@@ -100,8 +101,8 @@ const links = [
         ],
     },
     {
-        label: 'District Chapters',
-        link: '/district-chapters/',
+        label: 'Our Presence',
+        link: '/our-presence/',
         order: 5,
     },
     {
@@ -185,7 +186,14 @@ export default function Navbar(props: Props) {
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
                             href="tel:1130"
                         >
-                            1130
+                            <span className={styles.linkDescription}>
+                                NRCS Hotline
+                            </span>
+                            <span className={styles.hotline}>
+                                <MdLocalPhone />
+                                &nbsp;
+                                1130
+                            </span>
                         </Link>
                         <Button
                             className={_cs(styles.menu)}
