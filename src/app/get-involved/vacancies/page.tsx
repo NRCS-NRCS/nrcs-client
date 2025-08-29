@@ -26,7 +26,6 @@ export default async function Vacancies() {
         return [];
     }
     const vacancies = result.data?.jobVacancies;
-    console.log('vacancies', vacancies);
 
     if (!vacancies) {
         return notFound();

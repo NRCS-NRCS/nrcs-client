@@ -9,8 +9,8 @@
     border-spacing: 0;
     font-size: inherit;
 
-    .header-row {
-        .header-cell {
+    .headerRow {
+        .headerCell {
             padding: var(--spacing-medium);
             text-align: left;
         }

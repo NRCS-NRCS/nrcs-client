@@ -2,7 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-small);
-    border: 1px solid black;
+    border: var(--width-separator-thin) solid transparent;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-small);
     padding: var(--font-size-mega-large);
     margin-top: calc(-1 * (3 * var(--spacing-universal)));
     background-color: var(--color-background);
@@ -15,12 +17,76 @@
         flex-direction: column;
         gap: var(--spacing-large);
         align-items: center;
+
+        .subHeading {
+            color: var(--color-text);
+        }
     }
     .content {
         display: flex;
         gap: var(--font-size-extra-large);
+
+        .inputContent {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-ultra-small);
+            justify-content: space-between;
+            width: 100%;
+
+            .input {
+                padding: var(--spacing-extra-small);
+                background-color: transparent;
+                font-family: var(--font-text);
+                border: var(--width-separator-thin) solid var(--color-separator);
+                font-size: var(--font-size-small);
+                color: var(--color-text-neutral);
+            }
+        }
+
+        .radioButton {
+            display: flex;
+            gap: var(--spacing-ultra-small);
+        }
     }
+
+    .checkbox {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--spacing-small);
+
+        .options {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-extra-small);
+        }
+    }
+
+    .separator {
+        display: inline-block;
+        background-color: var(--color-separator);
+        width: 100%;
+        height: var(--width-separator-thin);
+        margin: var(--spacing-medium) 0;
+    }
+
+    .textArea {
+        width: 100%;
+    }
+
+    .term {
+        color: var(--color-text);
+
+        .link {
+            color: var(--color-primary)
+        }
+    }
+
+    .subSection {
+        color: var(--color-text);
+    }
+
     .submitButton {
+        border: var(--width-separator-thin) solid var(--color-primary);
         align-self: flex-start;
     }
 }

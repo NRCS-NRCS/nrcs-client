@@ -135,15 +135,27 @@ export default function Footer(props: Props) {
                         Contact Us
                     </Heading>
                     <div className={styles.links}>
-                        <Link
-                            className={styles.link}
-                            href="tel:+977-1-5370650"
-                        >
+                        <div className={styles.phoneNumbers}>
                             <FaPhone />
-                            <span>
+                            <Link
+                                className={styles.link}
+                                href="tel:+977-1-5370650"
+                            >
                                 +977-1-5370650
-                            </span>
-                        </Link>
+                            </Link>
+                            <Link
+                                className={styles.link}
+                                href="tel:+977-1-537 2761"
+                            >
+                                +977-1-537 2761
+                            </Link>
+                            <Link
+                                className={styles.link}
+                                href="tel:+977-1-537 2761"
+                            >
+                                +977-1-537 2761
+                            </Link>
+                        </div>
                         <Link
                             href="mailto:info@nrcs.org"
                             className={styles.link}

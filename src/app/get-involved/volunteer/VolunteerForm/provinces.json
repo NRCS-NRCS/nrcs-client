@@ -1,0 +1,3514 @@
+[
+    {
+        "id": 1,
+        "name": "Province 1",
+        "district": [
+            {
+                "id": 1,
+                "name": "Taplejung",
+                "nplp": [
+                    {
+                        "id": 1,
+                        "name": "Athrai Tribeni GP"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Faktanglung GP"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Fungling Municipality"
+                    },
+                    {
+                        "id": 4,
+                        "name": "Maiwakhola GP"
+                    },
+                    {
+                        "id": 5,
+                        "name": "Meringden GP"
+                    },
+                    {
+                        "id": 6,
+                        "name": "Mikhwakhola GP"
+                    },
+                    {
+                        "id": 7,
+                        "name": "Sidingwa GP"
+                    },
+                    {
+                        "id": 8,
+                        "name": "Sirijunga GP"
+                    },
+                    {
+                        "id": 9,
+                        "name": "Yangwarak GP"
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "name": "Panchthar",
+                "nplp": [
+                    {
+                        "id": 10,
+                        "name": "Falelung GP"
+                    },
+                    {
+                        "id": 11,
+                        "name": "Falgunanda GP"
+                    },
+                    {
+                        "id": 12,
+                        "name": "Fidim Municipality"
+                    },
+                    {
+                        "id": 13,
+                        "name": "Hilihang GP"
+                    },
+                    {
+                        "id": 14,
+                        "name": "Kummayek GP"
+                    },
+                    {
+                        "id": 15,
+                        "name": "Miklajung GP"
+                    },
+                    {
+                        "id": 16,
+                        "name": "Tumwewa GP"
+                    },
+                    {
+                        "id": 17,
+                        "name": "Yangwarak GP"
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Ilam",
+                "nplp": [
+                    {
+                        "id": 18,
+                        "name": "Chulachuli GP"
+                    },
+                    {
+                        "id": 19,
+                        "name": "Deumai Municipality"
+                    },
+                    {
+                        "id": 20,
+                        "name": "Fakfokthum GP"
+                    },
+                    {
+                        "id": 21,
+                        "name": "Illam Municipality"
+                    },
+                    {
+                        "id": 22,
+                        "name": "Mai Municipality"
+                    },
+                    {
+                        "id": 23,
+                        "name": "Maijogmai GP"
+                    },
+                    {
+                        "id": 24,
+                        "name": "Mangsebung GP"
+                    },
+                    {
+                        "id": 25,
+                        "name": "Rong GP"
+                    },
+                    {
+                        "id": 26,
+                        "name": "Sandakpur GP"
+                    },
+                    {
+                        "id": 27,
+                        "name": "Suryodaya Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "name": "Jhapa",
+                "nplp": [
+                    {
+                        "id": 28,
+                        "name": "Arjundhara Municipality"
+                    },
+                    {
+                        "id": 29,
+                        "name": "Barhadashi GP"
+                    },
+                    {
+                        "id": 30,
+                        "name": "Bhadrapur Municipality"
+                    },
+                    {
+                        "id": 31,
+                        "name": "Birtamod Municipality"
+                    },
+                    {
+                        "id": 32,
+                        "name": "Buddhashanti GP"
+                    },
+                    {
+                        "id": 33,
+                        "name": "Damak Municipality"
+                    },
+                    {
+                        "id": 34,
+                        "name": "Gauradaha Municipality"
+                    },
+                    {
+                        "id": 35,
+                        "name": "Gaurigunj GP"
+                    },
+                    {
+                        "id": 36,
+                        "name": "Haldibari GP"
+                    },
+                    {
+                        "id": 37,
+                        "name": "Jhapa GP"
+                    },
+                    {
+                        "id": 38,
+                        "name": "Kachankawal GP"
+                    },
+                    {
+                        "id": 39,
+                        "name": "Kamal GP"
+                    },
+                    {
+                        "id": 40,
+                        "name": "Kankai Municipality"
+                    },
+                    {
+                        "id": 41,
+                        "name": "Mechinagar Municipality"
+                    },
+                    {
+                        "id": 42,
+                        "name": "Shivasatakshi Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "name": "Morang",
+                "nplp": [
+                    {
+                        "id": 43,
+                        "name": "Belbari Municipality"
+                    },
+                    {
+                        "id": 44,
+                        "name": "Biratnagar Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 45,
+                        "name": "Budhiganga GP"
+                    },
+                    {
+                        "id": 46,
+                        "name": "Dhanpalthan GP"
+                    },
+                    {
+                        "id": 47,
+                        "name": "Gramthan GP"
+                    },
+                    {
+                        "id": 48,
+                        "name": "Jahada GP"
+                    },
+                    {
+                        "id": 49,
+                        "name": "Kanepokhari GP"
+                    },
+                    {
+                        "id": 50,
+                        "name": "Katahari GP"
+                    },
+                    {
+                        "id": 51,
+                        "name": "Kerabari GP"
+                    },
+                    {
+                        "id": 52,
+                        "name": "Letang Municipality"
+                    },
+                    {
+                        "id": 53,
+                        "name": "Miklajung GP"
+                    },
+                    {
+                        "id": 54,
+                        "name": "Pathari Sanischare Municipality"
+                    },
+                    {
+                        "id": 55,
+                        "name": "Rangeli Municipality"
+                    },
+                    {
+                        "id": 56,
+                        "name": "Ratuwamai Municipality"
+                    },
+                    {
+                        "id": 57,
+                        "name": "Sunawarsi Municipality"
+                    },
+                    {
+                        "id": 58,
+                        "name": "Sundarharaincha Municipality"
+                    },
+                    {
+                        "id": 59,
+                        "name": "Urlabari Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "name": "Sunsari",
+                "nplp": [
+                    {
+                        "id": 60,
+                        "name": "Barah Municipality"
+                    },
+                    {
+                        "id": 61,
+                        "name": "Barju GP"
+                    },
+                    {
+                        "id": 62,
+                        "name": "Bhokraha GP"
+                    },
+                    {
+                        "id": 63,
+                        "name": "Dewangunj GP"
+                    },
+                    {
+                        "id": 64,
+                        "name": "Dharan Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 65,
+                        "name": "Duhabi Municipality"
+                    },
+                    {
+                        "id": 66,
+                        "name": "Gadhi GP"
+                    },
+                    {
+                        "id": 67,
+                        "name": "Harinagara GP"
+                    },
+                    {
+                        "id": 68,
+                        "name": "Inaruwa Municipality"
+                    },
+                    {
+                        "id": 69,
+                        "name": "Itahari Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 70,
+                        "name": "Koshi GP"
+                    },
+                    {
+                        "id": 71,
+                        "name": "Ramdhuni Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "name": "Dhankuta",
+                "nplp": [
+                    {
+                        "id": 72,
+                        "name": "Chaubise GP"
+                    },
+                    {
+                        "id": 73,
+                        "name": "Chhathar Jorpati GP"
+                    },
+                    {
+                        "id": 74,
+                        "name": "Dhankuta Municipality"
+                    },
+                    {
+                        "id": 75,
+                        "name": "Khalsa Chhintang Sahidbhumi GP"
+                    },
+                    {
+                        "id": 76,
+                        "name": "Mahalaxmi Municipality"
+                    },
+                    {
+                        "id": 77,
+                        "name": "Pakhribas Municipality"
+                    },
+                    {
+                        "id": 78,
+                        "name": "Sangurigadhi GP"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "name": "Terhathum",
+                "nplp": [
+                    {
+                        "id": 79,
+                        "name": "Aatharai GP"
+                    },
+                    {
+                        "id": 80,
+                        "name": "Chhathar GP"
+                    },
+                    {
+                        "id": 81,
+                        "name": "Fedap GP"
+                    },
+                    {
+                        "id": 82,
+                        "name": "Laligurans Municipality"
+                    },
+                    {
+                        "id": 83,
+                        "name": "Menchhayayem GP"
+                    },
+                    {
+                        "id": 84,
+                        "name": "Myanglung Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 9,
+                "name": "Sankhuwasabha",
+                "nplp": [
+                    {
+                        "id": 85,
+                        "name": "Bhotkhola GP"
+                    },
+                    {
+                        "id": 86,
+                        "name": "Chainpur Municipality"
+                    },
+                    {
+                        "id": 87,
+                        "name": "Chichila GP"
+                    },
+                    {
+                        "id": 88,
+                        "name": "Dharmadevi Municipality"
+                    },
+                    {
+                        "id": 89,
+                        "name": "Khandbari Municipality"
+                    },
+                    {
+                        "id": 90,
+                        "name": "Madi Municipality"
+                    },
+                    {
+                        "id": 91,
+                        "name": "Makalu GP"
+                    },
+                    {
+                        "id": 92,
+                        "name": "Panchkhapan Municipality"
+                    },
+                    {
+                        "id": 93,
+                        "name": "Sabhapokhari GP"
+                    },
+                    {
+                        "id": 94,
+                        "name": "Silichong GP"
+                    }
+                ]
+            },
+            {
+                "id": 10,
+                "name": "Bhojpur",
+                "nplp": [
+                    {
+                        "id": 95,
+                        "name": "Aamchowk GP"
+                    },
+                    {
+                        "id": 96,
+                        "name": "Arun GP"
+                    },
+                    {
+                        "id": 97,
+                        "name": "Bhojpur Municipality"
+                    },
+                    {
+                        "id": 98,
+                        "name": "Hatuwagadhi GP"
+                    },
+                    {
+                        "id": 99,
+                        "name": "Pauwadungma GP"
+                    },
+                    {
+                        "id": 100,
+                        "name": "Ramprasadrai GP"
+                    },
+                    {
+                        "id": 101,
+                        "name": "Sadananda Municipality"
+                    },
+                    {
+                        "id": 102,
+                        "name": "Salpasilichho GP"
+                    },
+                    {
+                        "id": 103,
+                        "name": "Tyamkemaiyum GP"
+                    }
+                ]
+            },
+            {
+                "id": 11,
+                "name": "Solukhumbu",
+                "nplp": [
+                    {
+                        "id": 104,
+                        "name": "Dudhakausika GP"
+                    },
+                    {
+                        "id": 105,
+                        "name": "Dudhakoshi GP"
+                    },
+                    {
+                        "id": 106,
+                        "name": "Khumbu Pasang Lhamu GP"
+                    },
+                    {
+                        "id": 107,
+                        "name": "Likhu Pike GP"
+                    },
+                    {
+                        "id": 108,
+                        "name": "Mahakulung GP"
+                    },
+                    {
+                        "id": 109,
+                        "name": "Nechasalyan GP"
+                    },
+                    {
+                        "id": 110,
+                        "name": "Solududhakunda Municipality"
+                    },
+                    {
+                        "id": 111,
+                        "name": "Sotang GP"
+                    }
+                ]
+            },
+            {
+                "id": 12,
+                "name": "Okhaldhunga",
+                "nplp": [
+                    {
+                        "id": 112,
+                        "name": "Champadevi GP"
+                    },
+                    {
+                        "id": 113,
+                        "name": "Chisankhugadhi GP"
+                    },
+                    {
+                        "id": 114,
+                        "name": "Khijidemwa GP"
+                    },
+                    {
+                        "id": 115,
+                        "name": "Likhu GP"
+                    },
+                    {
+                        "id": 116,
+                        "name": "Manebhanjyang GP"
+                    },
+                    {
+                        "id": 117,
+                        "name": "Molung GP"
+                    },
+                    {
+                        "id": 118,
+                        "name": "Siddhicharan Municipality"
+                    },
+                    {
+                        "id": 119,
+                        "name": "Sunkoshi GP"
+                    }
+                ]
+            },
+            {
+                "id": 13,
+                "name": "Khotang",
+                "nplp": [
+                    {
+                        "id": 120,
+                        "name": "Aiselukharka GP"
+                    },
+                    {
+                        "id": 121,
+                        "name": "Barahpokhari GP"
+                    },
+                    {
+                        "id": 122,
+                        "name": "Diprung GP"
+                    },
+                    {
+                        "id": 123,
+                        "name": "Halesituwachung Municipality"
+                    },
+                    {
+                        "id": 124,
+                        "name": "Jantedhunga GP"
+                    },
+                    {
+                        "id": 125,
+                        "name": "Kepilasgadhi GP"
+                    },
+                    {
+                        "id": 126,
+                        "name": "Khotehang GP"
+                    },
+                    {
+                        "id": 127,
+                        "name": "Lamidanda GP"
+                    },
+                    {
+                        "id": 128,
+                        "name": "Rupakot Majhuwagadhi Municipality"
+                    },
+                    {
+                        "id": 129,
+                        "name": "Sakela GP"
+                    }
+                ]
+            },
+            {
+                "id": 14,
+                "name": "Udaypur",
+                "nplp": [
+                    {
+                        "id": 130,
+                        "name": "Belaka Municipality"
+                    },
+                    {
+                        "id": 131,
+                        "name": "Chaudandigadhi Municipality"
+                    },
+                    {
+                        "id": 132,
+                        "name": "Katari Municipality"
+                    },
+                    {
+                        "id": 133,
+                        "name": "Rautamai GP"
+                    },
+                    {
+                        "id": 134,
+                        "name": "Sunkoshi GP"
+                    },
+                    {
+                        "id": 135,
+                        "name": "Tapli GP"
+                    },
+                    {
+                        "id": 136,
+                        "name": "Triyuga Municipality"
+                    },
+                    {
+                        "id": 137,
+                        "name": "Udayapurgadhi GP"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Province 2",
+        "district": [
+            {
+                "id": 15,
+                "name": "Saptari",
+                "nplp": [
+                    {
+                        "id": 138,
+                        "name": "Agnisair Krishnaasabaran GP"
+                    },
+                    {
+                        "id": 139,
+                        "name": "Balaan Bihul GP"
+                    },
+                    {
+                        "id": 140,
+                        "name": "Belhi Chapena GP"
+                    },
+                    {
+                        "id": 141,
+                        "name": "Bishnupur GP"
+                    },
+                    {
+                        "id": 142,
+                        "name": "Bodebarsain Municipality"
+                    },
+                    {
+                        "id": 143,
+                        "name": "Chhinnamasta GP"
+                    },
+                    {
+                        "id": 144,
+                        "name": "Dakneshwori Municipality"
+                    },
+                    {
+                        "id": 145,
+                        "name": "Hanumannagar Kankalini Municipality"
+                    },
+                    {
+                        "id": 146,
+                        "name": "Kanchanrup Municipality"
+                    },
+                    {
+                        "id": 147,
+                        "name": "Khadak Municipality"
+                    },
+                    {
+                        "id": 148,
+                        "name": "Mahadeva GP"
+                    },
+                    {
+                        "id": 149,
+                        "name": "Rajbiraj Municipality"
+                    },
+                    {
+                        "id": 150,
+                        "name": "Rupani GP"
+                    },
+                    {
+                        "id": 151,
+                        "name": "Sambhunath Municipality"
+                    },
+                    {
+                        "id": 152,
+                        "name": "Saptakoshi Municipality"
+                    },
+                    {
+                        "id": 153,
+                        "name": "Surunga Municipality"
+                    },
+                    {
+                        "id": 154,
+                        "name": "Tilathi Koiladi GP"
+                    },
+                    {
+                        "id": 155,
+                        "name": "Tirahut GP"
+                    }
+                ]
+            },
+            {
+                "id": 16,
+                "name": "Siraha",
+                "nplp": [
+                    {
+                        "id": 156,
+                        "name": "Arnama GP"
+                    },
+                    {
+                        "id": 157,
+                        "name": "Aurahi GP"
+                    },
+                    {
+                        "id": 158,
+                        "name": "Bariyarpatti GP"
+                    },
+                    {
+                        "id": 159,
+                        "name": "Bhagawanpur GP"
+                    },
+                    {
+                        "id": 160,
+                        "name": "Bishnupur GP"
+                    },
+                    {
+                        "id": 161,
+                        "name": "Dhangadhimai Municipality"
+                    },
+                    {
+                        "id": 162,
+                        "name": "Golbazar Municipality"
+                    },
+                    {
+                        "id": 163,
+                        "name": "Kalyanpur Municipality"
+                    },
+                    {
+                        "id": 164,
+                        "name": "Karjanha GP"
+                    },
+                    {
+                        "id": 165,
+                        "name": "Lahan Municipality"
+                    },
+                    {
+                        "id": 166,
+                        "name": "Laxmipur Patari GP"
+                    },
+                    {
+                        "id": 167,
+                        "name": "Mirchaiya Municipality"
+                    },
+                    {
+                        "id": 168,
+                        "name": "Naraha GP"
+                    },
+                    {
+                        "id": 169,
+                        "name": "Nawarajpur GP"
+                    },
+                    {
+                        "id": 170,
+                        "name": "Sakhuwanankarkatti GP"
+                    },
+                    {
+                        "id": 171,
+                        "name": "Siraha Municipality"
+                    },
+                    {
+                        "id": 172,
+                        "name": "Sukhipur Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 17,
+                "name": "Dhanusha",
+                "nplp": [
+                    {
+                        "id": 173,
+                        "name": "Aurahi GP"
+                    },
+                    {
+                        "id": 174,
+                        "name": "Bateshwor GP"
+                    },
+                    {
+                        "id": 175,
+                        "name": "Chhireshwornath Municipality"
+                    },
+                    {
+                        "id": 176,
+                        "name": "Dhanauji GP"
+                    },
+                    {
+                        "id": 177,
+                        "name": "Dhanusadham Municipality"
+                    },
+                    {
+                        "id": 178,
+                        "name": "Ganeshman Charnath Municipality"
+                    },
+                    {
+                        "id": 179,
+                        "name": "Hansapur Municipality"
+                    },
+                    {
+                        "id": 180,
+                        "name": "Janaknandini GP"
+                    },
+                    {
+                        "id": 181,
+                        "name": "Janakpur Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 182,
+                        "name": "Kamala Siddidatri GP"
+                    },
+                    {
+                        "id": 183,
+                        "name": "Laxminiya GP"
+                    },
+                    {
+                        "id": 184,
+                        "name": "Mithila Bihari GP"
+                    },
+                    {
+                        "id": 185,
+                        "name": "Mithila Municipality"
+                    },
+                    {
+                        "id": 186,
+                        "name": "Mukhiyapatti Musaharmiya GP"
+                    },
+                    {
+                        "id": 187,
+                        "name": "Nagarain Municipality"
+                    },
+                    {
+                        "id": 188,
+                        "name": "Sabaila Municipality"
+                    },
+                    {
+                        "id": 189,
+                        "name": "Sahidnagar Municipality"
+                    },
+                    {
+                        "id": 190,
+                        "name": "Videha Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 18,
+                "name": "Mahottari",
+                "nplp": [
+                    {
+                        "id": 191,
+                        "name": "Aurahi Municipality"
+                    },
+                    {
+                        "id": 192,
+                        "name": "Balawa Municipality"
+                    },
+                    {
+                        "id": 193,
+                        "name": "Bardibas Municipality"
+                    },
+                    {
+                        "id": 194,
+                        "name": "Bhanggaha Municipality"
+                    },
+                    {
+                        "id": 195,
+                        "name": "Ekdara GP"
+                    },
+                    {
+                        "id": 196,
+                        "name": "Gausala Municipality"
+                    },
+                    {
+                        "id": 197,
+                        "name": "Jaleshwor Municipality"
+                    },
+                    {
+                        "id": 198,
+                        "name": "Loharpatti Municipality"
+                    },
+                    {
+                        "id": 199,
+                        "name": "Mahottari GP"
+                    },
+                    {
+                        "id": 200,
+                        "name": "Manara Sisawa Municipality"
+                    },
+                    {
+                        "id": 201,
+                        "name": "Matihani Municipality"
+                    },
+                    {
+                        "id": 202,
+                        "name": "Pipara GP"
+                    },
+                    {
+                        "id": 203,
+                        "name": "Ramgopalpur Municipality"
+                    },
+                    {
+                        "id": 204,
+                        "name": "Samsi GP"
+                    },
+                    {
+                        "id": 205,
+                        "name": "Sonama GP"
+                    }
+                ]
+            },
+            {
+                "id": 19,
+                "name": "Sarlahi",
+                "nplp": [
+                    {
+                        "id": 206,
+                        "name": "Bagmati Municipality"
+                    },
+                    {
+                        "id": 207,
+                        "name": "Balara Municipality"
+                    },
+                    {
+                        "id": 208,
+                        "name": "Barahathawa Municipality"
+                    },
+                    {
+                        "id": 209,
+                        "name": "Basbariya GP"
+                    },
+                    {
+                        "id": 210,
+                        "name": "Bishnu GP"
+                    },
+                    {
+                        "id": 211,
+                        "name": "Bramhapuri GP"
+                    },
+                    {
+                        "id": 212,
+                        "name": "Chakraghatta GP"
+                    },
+                    {
+                        "id": 213,
+                        "name": "Chandranagar GP"
+                    },
+                    {
+                        "id": 214,
+                        "name": "Dhankaul GP"
+                    },
+                    {
+                        "id": 215,
+                        "name": "Godaita Municipality"
+                    },
+                    {
+                        "id": 216,
+                        "name": "Haripur Municipality"
+                    },
+                    {
+                        "id": 217,
+                        "name": "Haripurba Municipality"
+                    },
+                    {
+                        "id": 218,
+                        "name": "Hariwan Municipality"
+                    },
+                    {
+                        "id": 219,
+                        "name": "Ishworpur Municipality"
+                    },
+                    {
+                        "id": 220,
+                        "name": "Kabilasi GP"
+                    },
+                    {
+                        "id": 221,
+                        "name": "Kaudena GP"
+                    },
+                    {
+                        "id": 222,
+                        "name": "Lalbandi Municipality"
+                    },
+                    {
+                        "id": 223,
+                        "name": "Malangawa Municipality"
+                    },
+                    {
+                        "id": 224,
+                        "name": "Parsa GP"
+                    },
+                    {
+                        "id": 225,
+                        "name": "Ramnagar GP"
+                    }
+                ]
+            },
+            {
+                "id": 20,
+                "name": "Rautahat",
+                "nplp": [
+                    {
+                        "id": 226,
+                        "name": "Baudhimai Municipality"
+                    },
+                    {
+                        "id": 227,
+                        "name": "Brindaban Municipality"
+                    },
+                    {
+                        "id": 228,
+                        "name": "Chandrapur Municipality"
+                    },
+                    {
+                        "id": 229,
+                        "name": "Dewahi Gonahi Municipality"
+                    },
+                    {
+                        "id": 230,
+                        "name": "Durga Bhagawati GP"
+                    },
+                    {
+                        "id": 231,
+                        "name": "Fatuwa Bijayapur Municipality"
+                    },
+                    {
+                        "id": 232,
+                        "name": "Gadhimai Municipality"
+                    },
+                    {
+                        "id": 233,
+                        "name": "Garuda Municipality"
+                    },
+                    {
+                        "id": 234,
+                        "name": "Gaur Municipality"
+                    },
+                    {
+                        "id": 235,
+                        "name": "Gujara Municipality"
+                    },
+                    {
+                        "id": 236,
+                        "name": "Ishanath Municipality"
+                    },
+                    {
+                        "id": 237,
+                        "name": "Katahariya Municipality"
+                    },
+                    {
+                        "id": 238,
+                        "name": "Madhav Narayan Municipality"
+                    },
+                    {
+                        "id": 239,
+                        "name": "Maulapur Municipality"
+                    },
+                    {
+                        "id": 240,
+                        "name": "Paroha Municipality"
+                    },
+                    {
+                        "id": 241,
+                        "name": "Rajdevi Municipality"
+                    },
+                    {
+                        "id": 242,
+                        "name": "Rajpur Municipality"
+                    },
+                    {
+                        "id": 243,
+                        "name": "Yamunamai GP"
+                    }
+                ]
+            },
+            {
+                "id": 21,
+                "name": "Bara",
+                "nplp": [
+                    {
+                        "id": 244,
+                        "name": "Adarsha Kotwal GP"
+                    },
+                    {
+                        "id": 245,
+                        "name": "Baragadhi GP"
+                    },
+                    {
+                        "id": 246,
+                        "name": "Bishrampur GP"
+                    },
+                    {
+                        "id": 247,
+                        "name": "Devtaal GP"
+                    },
+                    {
+                        "id": 248,
+                        "name": "Jitpursimara Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 249,
+                        "name": "Kalaiya Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 250,
+                        "name": "Karaiyamai GP"
+                    },
+                    {
+                        "id": 251,
+                        "name": "Kolhawi Municipality"
+                    },
+                    {
+                        "id": 252,
+                        "name": "Mahagadhimai Municipality"
+                    },
+                    {
+                        "id": 253,
+                        "name": "Nijgadh Municipality"
+                    },
+                    {
+                        "id": 254,
+                        "name": "Pacharauta GP"
+                    },
+                    {
+                        "id": 255,
+                        "name": "Parwanipur GP"
+                    },
+                    {
+                        "id": 256,
+                        "name": "Pheta GP"
+                    },
+                    {
+                        "id": 257,
+                        "name": "Prasauni GP"
+                    },
+                    {
+                        "id": 258,
+                        "name": "Simraungadh Municipality"
+                    },
+                    {
+                        "id": 259,
+                        "name": "Subarna GP"
+                    }
+                ]
+            },
+            {
+                "id": 22,
+                "name": "Parsa",
+                "nplp": [
+                    {
+                        "id": 260,
+                        "name": "Bahudarmai GP"
+                    },
+                    {
+                        "id": 261,
+                        "name": "Belawa GP"
+                    },
+                    {
+                        "id": 262,
+                        "name": "Bindabasini GP"
+                    },
+                    {
+                        "id": 263,
+                        "name": "Birgunj Metropolitan City"
+                    },
+                    {
+                        "id": 264,
+                        "name": "Chhipaharmai GP"
+                    },
+                    {
+                        "id": 265,
+                        "name": "Dhobini GP"
+                    },
+                    {
+                        "id": 266,
+                        "name": "Jagarnathpur GP"
+                    },
+                    {
+                        "id": 267,
+                        "name": "Pakaha Mainapur GP"
+                    },
+                    {
+                        "id": 268,
+                        "name": "Parsagadhi Municipality"
+                    },
+                    {
+                        "id": 269,
+                        "name": "Paterwa Sugauli GP"
+                    },
+                    {
+                        "id": 270,
+                        "name": "Pokhariya Municipality"
+                    },
+                    {
+                        "id": 271,
+                        "name": "Sakhuwa Prasauni GP"
+                    },
+                    {
+                        "id": 272,
+                        "name": "Subarnapur GP"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Bagmati",
+        "district": [
+            {
+                "id": 23,
+                "name": "Sindhuli",
+                "nplp": [
+                    {
+                        "id": 273,
+                        "name": "Dudhauli Municipality"
+                    },
+                    {
+                        "id": 274,
+                        "name": "Fikkal GP"
+                    },
+                    {
+                        "id": 275,
+                        "name": "Ghyanglekh GP"
+                    },
+                    {
+                        "id": 276,
+                        "name": "Golanjor GP"
+                    },
+                    {
+                        "id": 277,
+                        "name": "Hariharpurgadhi GP"
+                    },
+                    {
+                        "id": 278,
+                        "name": "Kamalamai Municipality"
+                    },
+                    {
+                        "id": 279,
+                        "name": "Marin GP"
+                    },
+                    {
+                        "id": 280,
+                        "name": "Sunkoshi GP"
+                    },
+                    {
+                        "id": 281,
+                        "name": "Tinpatan GP"
+                    }
+                ]
+            },
+            {
+                "id": 24,
+                "name": "Ramechhap",
+                "nplp": [
+                    {
+                        "id": 282,
+                        "name": "Doramba GP"
+                    },
+                    {
+                        "id": 283,
+                        "name": "Gokulganga GP"
+                    },
+                    {
+                        "id": 284,
+                        "name": "Khandadevi GP"
+                    },
+                    {
+                        "id": 285,
+                        "name": "Likhu GP"
+                    },
+                    {
+                        "id": 286,
+                        "name": "Manthali Municipality"
+                    },
+                    {
+                        "id": 287,
+                        "name": "Ramechhap Municipality"
+                    },
+                    {
+                        "id": 288,
+                        "name": "Sunapati GP"
+                    },
+                    {
+                        "id": 289,
+                        "name": "Umakunda GP"
+                    }
+                ]
+            },
+            {
+                "id": 25,
+                "name": "Dolakha",
+                "nplp": [
+                    {
+                        "id": 290,
+                        "name": "Baiteshwor GP"
+                    },
+                    {
+                        "id": 291,
+                        "name": "Bhimeshwor Municipality"
+                    },
+                    {
+                        "id": 292,
+                        "name": "Bigu GP"
+                    },
+                    {
+                        "id": 293,
+                        "name": "Gaurishankar GP"
+                    },
+                    {
+                        "id": 294,
+                        "name": "Jiri Municipality"
+                    },
+                    {
+                        "id": 295,
+                        "name": "Kalinchowk GP"
+                    },
+                    {
+                        "id": 296,
+                        "name": "Melung GP"
+                    },
+                    {
+                        "id": 297,
+                        "name": "Shailung GP"
+                    },
+                    {
+                        "id": 298,
+                        "name": "Tamakoshi GP"
+                    }
+                ]
+            },
+            {
+                "id": 26,
+                "name": "Sindhupalchok",
+                "nplp": [
+                    {
+                        "id": 299,
+                        "name": "Balephi GP"
+                    },
+                    {
+                        "id": 300,
+                        "name": "Barabise Municipality"
+                    },
+                    {
+                        "id": 301,
+                        "name": "Bhotekoshi GP"
+                    },
+                    {
+                        "id": 302,
+                        "name": "Chautara Sangachowkgadhi Municipality"
+                    },
+                    {
+                        "id": 303,
+                        "name": "Helambu GP"
+                    },
+                    {
+                        "id": 304,
+                        "name": "Indrabati GP"
+                    },
+                    {
+                        "id": 305,
+                        "name": "Jugal GP"
+                    },
+                    {
+                        "id": 306,
+                        "name": "Lisankhu Pakhar GP"
+                    },
+                    {
+                        "id": 307,
+                        "name": "Melamchi Municipality"
+                    },
+                    {
+                        "id": 308,
+                        "name": "Panchpokhari Thanpal GP"
+                    },
+                    {
+                        "id": 309,
+                        "name": "Sunkoshi GP"
+                    },
+                    {
+                        "id": 310,
+                        "name": "Tripurasundari GP"
+                    }
+                ]
+            },
+            {
+                "id": 27,
+                "name": "Kavre",
+                "nplp": [
+                    {
+                        "id": 311,
+                        "name": "Banepa Municipality"
+                    },
+                    {
+                        "id": 312,
+                        "name": "Bethanchowk GP"
+                    },
+                    {
+                        "id": 313,
+                        "name": "Bhumlu GP"
+                    },
+                    {
+                        "id": 314,
+                        "name": "Chaurideurali GP"
+                    },
+                    {
+                        "id": 315,
+                        "name": "Dhulikhel Municipality"
+                    },
+                    {
+                        "id": 316,
+                        "name": "Khanikhola GP"
+                    },
+                    {
+                        "id": 317,
+                        "name": "Mahabharat GP"
+                    },
+                    {
+                        "id": 318,
+                        "name": "Mandandeupur Municipality"
+                    },
+                    {
+                        "id": 319,
+                        "name": "Namobuddha Municipality"
+                    },
+                    {
+                        "id": 320,
+                        "name": "Panauti Municipality"
+                    },
+                    {
+                        "id": 321,
+                        "name": "Panchkhal Municipality"
+                    },
+                    {
+                        "id": 322,
+                        "name": "Roshi GP"
+                    },
+                    {
+                        "id": 323,
+                        "name": "Temal GP"
+                    }
+                ]
+            },
+            {
+                "id": 28,
+                "name": "Lalitpur",
+                "nplp": [
+                    {
+                        "id": 324,
+                        "name": "Bagmati GP"
+                    },
+                    {
+                        "id": 325,
+                        "name": "Godawari Municipality"
+                    },
+                    {
+                        "id": 326,
+                        "name": "Konjyosom GP"
+                    },
+                    {
+                        "id": 327,
+                        "name": "Lalitpur Metropolitican City"
+                    },
+                    {
+                        "id": 328,
+                        "name": "Mahalaxmi Municipality"
+                    },
+                    {
+                        "id": 329,
+                        "name": "Mahankal GP"
+                    }
+                ]
+            },
+            {
+                "id": 29,
+                "name": "Bhaktapur",
+                "nplp": [
+                    {
+                        "id": 330,
+                        "name": "Bhaktapur Municipality"
+                    },
+                    {
+                        "id": 331,
+                        "name": "Changu Narayan Municipality"
+                    },
+                    {
+                        "id": 332,
+                        "name": "Madhyapur Thimi Municipality"
+                    },
+                    {
+                        "id": 333,
+                        "name": "Suryabinayak Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 30,
+                "name": "Kathmandu",
+                "nplp": [
+                    {
+                        "id": 334,
+                        "name": "Budhanilkantha Municipality"
+                    },
+                    {
+                        "id": 335,
+                        "name": "Chandragiri Municipality"
+                    },
+                    {
+                        "id": 336,
+                        "name": "Dakchinkali Municipality"
+                    },
+                    {
+                        "id": 337,
+                        "name": "Gokarneshwor Municipality"
+                    },
+                    {
+                        "id": 338,
+                        "name": "Kageshwori Manohara Municipality"
+                    },
+                    {
+                        "id": 339,
+                        "name": "Kathmandu Metropolitican City"
+                    },
+                    {
+                        "id": 340,
+                        "name": "Kirtipur Municipality"
+                    },
+                    {
+                        "id": 341,
+                        "name": "Nagarjun Municipality"
+                    },
+                    {
+                        "id": 342,
+                        "name": "Shankharapur Municipality"
+                    },
+                    {
+                        "id": 343,
+                        "name": "Tarkeshwor Municipality"
+                    },
+                    {
+                        "id": 344,
+                        "name": "Tokha Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 31,
+                "name": "Nuwakot",
+                "nplp": [
+                    {
+                        "id": 345,
+                        "name": "Belkotgadhi Municipality"
+                    },
+                    {
+                        "id": 346,
+                        "name": "Bidur Municipality"
+                    },
+                    {
+                        "id": 347,
+                        "name": "Dupcheshwor GP"
+                    },
+                    {
+                        "id": 348,
+                        "name": "Kakani GP"
+                    },
+                    {
+                        "id": 349,
+                        "name": "Kispang GP"
+                    },
+                    {
+                        "id": 350,
+                        "name": "Likhu GP"
+                    },
+                    {
+                        "id": 351,
+                        "name": "Meghang GP"
+                    },
+                    {
+                        "id": 352,
+                        "name": "Panchakanya GP"
+                    },
+                    {
+                        "id": 353,
+                        "name": "Shivapuri GP"
+                    },
+                    {
+                        "id": 354,
+                        "name": "Suryagadhi GP"
+                    },
+                    {
+                        "id": 355,
+                        "name": "Tadi GP"
+                    },
+                    {
+                        "id": 356,
+                        "name": "Tarkeshwor GP"
+                    }
+                ]
+            },
+            {
+                "id": 32,
+                "name": "Rasuwa",
+                "nplp": [
+                    {
+                        "id": 357,
+                        "name": "Gosainkunda GP"
+                    },
+                    {
+                        "id": 358,
+                        "name": "Kalika GP"
+                    },
+                    {
+                        "id": 359,
+                        "name": "Naukunda GP"
+                    },
+                    {
+                        "id": 360,
+                        "name": "Parbatikunda GP"
+                    },
+                    {
+                        "id": 361,
+                        "name": "Uttargaya GP"
+                    }
+                ]
+            },
+            {
+                "id": 33,
+                "name": "Dhading",
+                "nplp": [
+                    {
+                        "id": 362,
+                        "name": "Benighat Rorang GP"
+                    },
+                    {
+                        "id": 363,
+                        "name": "Dhunibeshi Municipality"
+                    },
+                    {
+                        "id": 364,
+                        "name": "Gajuri GP"
+                    },
+                    {
+                        "id": 365,
+                        "name": "Galchhi GP"
+                    },
+                    {
+                        "id": 366,
+                        "name": "Gangajamuna GP"
+                    },
+                    {
+                        "id": 367,
+                        "name": "Jwalamukhi GP"
+                    },
+                    {
+                        "id": 368,
+                        "name": "Khaniyabash GP"
+                    },
+                    {
+                        "id": 369,
+                        "name": "Netrabati GP"
+                    },
+                    {
+                        "id": 370,
+                        "name": "Nilkantha Municipality"
+                    },
+                    {
+                        "id": 371,
+                        "name": "Rubi Valley GP"
+                    },
+                    {
+                        "id": 372,
+                        "name": "Siddhalek GP"
+                    },
+                    {
+                        "id": 373,
+                        "name": "Thakre GP"
+                    },
+                    {
+                        "id": 374,
+                        "name": "Tripurasundari GP"
+                    }
+                ]
+            },
+            {
+                "id": 34,
+                "name": "Makwanpur",
+                "nplp": [
+                    {
+                        "id": 375,
+                        "name": "Bagmati GP"
+                    },
+                    {
+                        "id": 376,
+                        "name": "Bakaiya GP"
+                    },
+                    {
+                        "id": 377,
+                        "name": "Bhimfedi GP"
+                    },
+                    {
+                        "id": 378,
+                        "name": "Hetauda Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 379,
+                        "name": "Indrasarobar GP"
+                    },
+                    {
+                        "id": 380,
+                        "name": "Kailash GP"
+                    },
+                    {
+                        "id": 381,
+                        "name": "Makwanpurgadhi GP"
+                    },
+                    {
+                        "id": 382,
+                        "name": "Manahari GP"
+                    },
+                    {
+                        "id": 383,
+                        "name": "Raksirang GP"
+                    },
+                    {
+                        "id": 384,
+                        "name": "Thaha Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 35,
+                "name": "Chitawan",
+                "nplp": [
+                    {
+                        "id": 385,
+                        "name": "Bharatpur Metropolitican City"
+                    },
+                    {
+                        "id": 386,
+                        "name": "Ichchhyakamana GP"
+                    },
+                    {
+                        "id": 387,
+                        "name": "Kalika Municipality"
+                    },
+                    {
+                        "id": 388,
+                        "name": "Khairahani Municipality"
+                    },
+                    {
+                        "id": 389,
+                        "name": "Madi Municipality"
+                    },
+                    {
+                        "id": 390,
+                        "name": "Rapti Municipality"
+                    },
+                    {
+                        "id": 391,
+                        "name": "Ratnanagar Municipality"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Gandaki",
+        "district": [
+            {
+                "id": 36,
+                "name": "Gorkha",
+                "nplp": [
+                    {
+                        "id": 392,
+                        "name": "Aarughat GP"
+                    },
+                    {
+                        "id": 393,
+                        "name": "Ajirkot GP"
+                    },
+                    {
+                        "id": 394,
+                        "name": "Bhimsen GP"
+                    },
+                    {
+                        "id": 395,
+                        "name": "Chumnubri GP"
+                    },
+                    {
+                        "id": 396,
+                        "name": "Dharche GP"
+                    },
+                    {
+                        "id": 397,
+                        "name": "Gandaki GP"
+                    },
+                    {
+                        "id": 398,
+                        "name": "Gorkha Municipality"
+                    },
+                    {
+                        "id": 399,
+                        "name": "Palungtar Municipality"
+                    },
+                    {
+                        "id": 400,
+                        "name": "Sahid Lakhan GP"
+                    },
+                    {
+                        "id": 401,
+                        "name": "Siranchok GP"
+                    },
+                    {
+                        "id": 402,
+                        "name": "Sulikot GP"
+                    }
+                ]
+            },
+            {
+                "id": 37,
+                "name": "Lamjung",
+                "nplp": [
+                    {
+                        "id": 403,
+                        "name": "Beshi Sahar Municipality"
+                    },
+                    {
+                        "id": 404,
+                        "name": "Dordi GP"
+                    },
+                    {
+                        "id": 405,
+                        "name": "Dudhapokhari GP"
+                    },
+                    {
+                        "id": 406,
+                        "name": "Kobholasothar GP"
+                    },
+                    {
+                        "id": 407,
+                        "name": "Madhya Nepal Municipality"
+                    },
+                    {
+                        "id": 408,
+                        "name": "Marsyandi GP"
+                    },
+                    {
+                        "id": 409,
+                        "name": "Rainas Municipality"
+                    },
+                    {
+                        "id": 410,
+                        "name": "Sundar Bazar Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 38,
+                "name": "Tanahu",
+                "nplp": [
+                    {
+                        "id": 411,
+                        "name": "Aanbukhaireni GP"
+                    },
+                    {
+                        "id": 412,
+                        "name": "Bandipur GP"
+                    },
+                    {
+                        "id": 413,
+                        "name": "Bhanu Municipality"
+                    },
+                    {
+                        "id": 414,
+                        "name": "Bhimad Municipality"
+                    },
+                    {
+                        "id": 415,
+                        "name": "Byas Municipality"
+                    },
+                    {
+                        "id": 416,
+                        "name": "Devghat GP"
+                    },
+                    {
+                        "id": 417,
+                        "name": "Ghiring GP"
+                    },
+                    {
+                        "id": 418,
+                        "name": "Myagde GP"
+                    },
+                    {
+                        "id": 419,
+                        "name": "Rhishing GP"
+                    },
+                    {
+                        "id": 420,
+                        "name": "Shuklagandaki Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 39,
+                "name": "Syangja",
+                "nplp": [
+                    {
+                        "id": 421,
+                        "name": "Aadhikhola GP"
+                    },
+                    {
+                        "id": 422,
+                        "name": "Arjunchaupari GP"
+                    },
+                    {
+                        "id": 423,
+                        "name": "Bhirkot Municipality"
+                    },
+                    {
+                        "id": 424,
+                        "name": "Biruwa GP"
+                    },
+                    {
+                        "id": 425,
+                        "name": "Chapakot Municipality"
+                    },
+                    {
+                        "id": 426,
+                        "name": "Fedikhola GP"
+                    },
+                    {
+                        "id": 427,
+                        "name": "Galyang Municipality"
+                    },
+                    {
+                        "id": 428,
+                        "name": "Harinas GP"
+                    },
+                    {
+                        "id": 429,
+                        "name": "Kaligandaki GP"
+                    },
+                    {
+                        "id": 430,
+                        "name": "Putalibazar Municipality"
+                    },
+                    {
+                        "id": 431,
+                        "name": "Waling Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 40,
+                "name": "Kaski",
+                "nplp": [
+                    {
+                        "id": 432,
+                        "name": "Annapurna GP"
+                    },
+                    {
+                        "id": 433,
+                        "name": "Machhapuchhre GP"
+                    },
+                    {
+                        "id": 434,
+                        "name": "Madi GP"
+                    },
+                    {
+                        "id": 435,
+                        "name": "Pokhara Lekhanath Metropolitican City"
+                    },
+                    {
+                        "id": 436,
+                        "name": "Rupa GP"
+                    }
+                ]
+            },
+            {
+                "id": 41,
+                "name": "Manang",
+                "nplp": [
+                    {
+                        "id": 437,
+                        "name": "Chame GP"
+                    },
+                    {
+                        "id": 438,
+                        "name": "Naraphu GP"
+                    },
+                    {
+                        "id": 439,
+                        "name": "Nashon GP"
+                    },
+                    {
+                        "id": 440,
+                        "name": "Neshyang GP"
+                    }
+                ]
+            },
+            {
+                "id": 42,
+                "name": "Mustang",
+                "nplp": [
+                    {
+                        "id": 441,
+                        "name": "Barhagaun Muktichhetra GP"
+                    },
+                    {
+                        "id": 442,
+                        "name": "Dalome GP"
+                    },
+                    {
+                        "id": 443,
+                        "name": "Gharpajhong GP"
+                    },
+                    {
+                        "id": 444,
+                        "name": "Lomanthang GP"
+                    },
+                    {
+                        "id": 445,
+                        "name": "Thasang GP"
+                    }
+                ]
+            },
+            {
+                "id": 43,
+                "name": "Myagdi",
+                "nplp": [
+                    {
+                        "id": 446,
+                        "name": "Annapurna GP"
+                    },
+                    {
+                        "id": 447,
+                        "name": "Beni Municipality"
+                    },
+                    {
+                        "id": 448,
+                        "name": "Dhaulagiri GP"
+                    },
+                    {
+                        "id": 449,
+                        "name": "Malika GP"
+                    },
+                    {
+                        "id": 450,
+                        "name": "Mangala GP"
+                    },
+                    {
+                        "id": 451,
+                        "name": "Raghuganga GP"
+                    }
+                ]
+            },
+            {
+                "id": 44,
+                "name": "Parbat",
+                "nplp": [
+                    {
+                        "id": 452,
+                        "name": "Bihadi GP"
+                    },
+                    {
+                        "id": 453,
+                        "name": "Jaljala GP"
+                    },
+                    {
+                        "id": 454,
+                        "name": "Kushma Municipality"
+                    },
+                    {
+                        "id": 455,
+                        "name": "Mahashila GP"
+                    },
+                    {
+                        "id": 456,
+                        "name": "Modi GP"
+                    },
+                    {
+                        "id": 457,
+                        "name": "paiyu GP"
+                    },
+                    {
+                        "id": 458,
+                        "name": "Phalewas Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 45,
+                "name": "Baglung",
+                "nplp": [
+                    {
+                        "id": 459,
+                        "name": "Badigad GP"
+                    },
+                    {
+                        "id": 460,
+                        "name": "Baglung Municipality"
+                    },
+                    {
+                        "id": 461,
+                        "name": "Dhorpatan Municipality"
+                    },
+                    {
+                        "id": 462,
+                        "name": "Galkot Municipality"
+                    },
+                    {
+                        "id": 463,
+                        "name": "Jaimini Municipality"
+                    },
+                    {
+                        "id": 464,
+                        "name": "Kathekhola GP"
+                    },
+                    {
+                        "id": 465,
+                        "name": "Nisikhola GP"
+                    },
+                    {
+                        "id": 466,
+                        "name": "Tamankhola GP"
+                    },
+                    {
+                        "id": 467,
+                        "name": "Tarakhola GP"
+                    },
+                    {
+                        "id": 468,
+                        "name": "Wareng GP"
+                    }
+                ]
+            },
+            {
+                "id": 46,
+                "name": "Nawalpur",
+                "nplp": [
+                    {
+                        "id": 469,
+                        "name": "Binayi Triveni GP"
+                    },
+                    {
+                        "id": 470,
+                        "name": "Bulingtar GP"
+                    },
+                    {
+                        "id": 471,
+                        "name": "Bungdikali GP"
+                    },
+                    {
+                        "id": 472,
+                        "name": "Devchuli Municipality"
+                    },
+                    {
+                        "id": 473,
+                        "name": "Gaindakot Municipality"
+                    },
+                    {
+                        "id": 474,
+                        "name": "Hupsekot GP"
+                    },
+                    {
+                        "id": 475,
+                        "name": "Kawasoti Municipality"
+                    },
+                    {
+                        "id": 476,
+                        "name": "Madhyabindu Municipality"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Lumbini",
+        "district": [
+            {
+                "id": 47,
+                "name": "Gulmi",
+                "nplp": [
+                    {
+                        "id": 477,
+                        "name": "Chandrakot GP"
+                    },
+                    {
+                        "id": 478,
+                        "name": "Chhatrakot GP"
+                    },
+                    {
+                        "id": 479,
+                        "name": "Dhurkot GP"
+                    },
+                    {
+                        "id": 480,
+                        "name": "Gulmidarbar GP"
+                    },
+                    {
+                        "id": 481,
+                        "name": "Ishma GP"
+                    },
+                    {
+                        "id": 482,
+                        "name": "Kaligandaki GP"
+                    },
+                    {
+                        "id": 483,
+                        "name": "Madane GP"
+                    },
+                    {
+                        "id": 484,
+                        "name": "Malika GP"
+                    },
+                    {
+                        "id": 485,
+                        "name": "Musikot Municipality"
+                    },
+                    {
+                        "id": 486,
+                        "name": "Resunga Municipality"
+                    },
+                    {
+                        "id": 487,
+                        "name": "Ruru GP"
+                    },
+                    {
+                        "id": 488,
+                        "name": "Satyawoti GP"
+                    }
+                ]
+            },
+            {
+                "id": 48,
+                "name": "Palpa",
+                "nplp": [
+                    {
+                        "id": 489,
+                        "name": "Baganaskali GP"
+                    },
+                    {
+                        "id": 490,
+                        "name": "Mathagadhi GP"
+                    },
+                    {
+                        "id": 491,
+                        "name": "Nisdi GP"
+                    },
+                    {
+                        "id": 492,
+                        "name": "Purbakhola GP"
+                    },
+                    {
+                        "id": 493,
+                        "name": "Rainadevi Chhahara GP"
+                    },
+                    {
+                        "id": 494,
+                        "name": "Rambha GP"
+                    },
+                    {
+                        "id": 495,
+                        "name": "Rampur Municipality"
+                    },
+                    {
+                        "id": 496,
+                        "name": "Ribdikot GP"
+                    },
+                    {
+                        "id": 497,
+                        "name": "Tansen Municipality"
+                    },
+                    {
+                        "id": 498,
+                        "name": "Tinau GP"
+                    }
+                ]
+            },
+            {
+                "id": 49,
+                "name": "Nawalparasi",
+                "nplp": [
+                    {
+                        "id": 499,
+                        "name": "Bardaghat Municipality"
+                    },
+                    {
+                        "id": 500,
+                        "name": "Palhinandan GP"
+                    },
+                    {
+                        "id": 501,
+                        "name": "Pratappur GP"
+                    },
+                    {
+                        "id": 502,
+                        "name": "Ramgram Municipality"
+                    },
+                    {
+                        "id": 503,
+                        "name": "Sarawal GP"
+                    },
+                    {
+                        "id": 504,
+                        "name": "Sunwal Municipality"
+                    },
+                    {
+                        "id": 505,
+                        "name": "Susta GP"
+                    }
+                ]
+            },
+            {
+                "id": 50,
+                "name": "Rupandehi",
+                "nplp": [
+                    {
+                        "id": 506,
+                        "name": "Butwal Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 507,
+                        "name": "Devdaha Municipality"
+                    },
+                    {
+                        "id": 508,
+                        "name": "Gaidahawa GP"
+                    },
+                    {
+                        "id": 509,
+                        "name": "Kanchan GP"
+                    },
+                    {
+                        "id": 510,
+                        "name": "Kotahimai GP"
+                    },
+                    {
+                        "id": 511,
+                        "name": "Lumbini Saskritik Municipality"
+                    },
+                    {
+                        "id": 512,
+                        "name": "Marchawari GP"
+                    },
+                    {
+                        "id": 513,
+                        "name": "Mayadevi GP"
+                    },
+                    {
+                        "id": 514,
+                        "name": "Omsatiya GP"
+                    },
+                    {
+                        "id": 515,
+                        "name": "Rohindi GP"
+                    },
+                    {
+                        "id": 516,
+                        "name": "Sainamaina Municipality"
+                    },
+                    {
+                        "id": 517,
+                        "name": "Sammarimai GP"
+                    },
+                    {
+                        "id": 518,
+                        "name": "Sidharthanager Municipality"
+                    },
+                    {
+                        "id": 519,
+                        "name": "Siyari GP"
+                    },
+                    {
+                        "id": 520,
+                        "name": "Suddodhan GP"
+                    },
+                    {
+                        "id": 521,
+                        "name": "Tilottama Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 51,
+                "name": "Kapilbastu",
+                "nplp": [
+                    {
+                        "id": 522,
+                        "name": "Banganga Municipality"
+                    },
+                    {
+                        "id": 523,
+                        "name": "Bijayanagar GP"
+                    },
+                    {
+                        "id": 524,
+                        "name": "Buddhabhumi Municipality"
+                    },
+                    {
+                        "id": 525,
+                        "name": "Kapilvastu Municipality"
+                    },
+                    {
+                        "id": 526,
+                        "name": "Krishnanagar Municipality"
+                    },
+                    {
+                        "id": 527,
+                        "name": "Maharajgang Municipality"
+                    },
+                    {
+                        "id": 528,
+                        "name": "Mayadevi GP"
+                    },
+                    {
+                        "id": 529,
+                        "name": "Shivaraj Municipality"
+                    },
+                    {
+                        "id": 530,
+                        "name": "Suddhodhan GP"
+                    },
+                    {
+                        "id": 531,
+                        "name": "Yesodhara GP"
+                    }
+                ]
+            },
+            {
+                "id": 52,
+                "name": "Argkhakhanchi",
+                "nplp": [
+                    {
+                        "id": 532,
+                        "name": "Bhumikasthan Municipality"
+                    },
+                    {
+                        "id": 533,
+                        "name": "Chhatradev GP"
+                    },
+                    {
+                        "id": 534,
+                        "name": "Malarani GP"
+                    },
+                    {
+                        "id": 535,
+                        "name": "Pandini GP"
+                    },
+                    {
+                        "id": 536,
+                        "name": "Sandhikharka Municipality"
+                    },
+                    {
+                        "id": 537,
+                        "name": "Shitganga Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 53,
+                "name": "Pyuthan",
+                "nplp": [
+                    {
+                        "id": 538,
+                        "name": "Airawoti GP"
+                    },
+                    {
+                        "id": 539,
+                        "name": "Gaumukhi GP"
+                    },
+                    {
+                        "id": 540,
+                        "name": "Jhimruk GP"
+                    },
+                    {
+                        "id": 541,
+                        "name": "Mallarani GP"
+                    },
+                    {
+                        "id": 542,
+                        "name": "Mandabi GP"
+                    },
+                    {
+                        "id": 543,
+                        "name": "Naubahini GP"
+                    },
+                    {
+                        "id": 544,
+                        "name": "Pyuthan Municipality"
+                    },
+                    {
+                        "id": 545,
+                        "name": "Sarumarani GP"
+                    },
+                    {
+                        "id": 546,
+                        "name": "Sworgadwari Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 54,
+                "name": "Rolpa",
+                "nplp": [
+                    {
+                        "id": 547,
+                        "name": "Duikholi GP"
+                    },
+                    {
+                        "id": 548,
+                        "name": "Lungri GP"
+                    },
+                    {
+                        "id": 549,
+                        "name": "Madi GP"
+                    },
+                    {
+                        "id": 550,
+                        "name": "Rolpa Municipality"
+                    },
+                    {
+                        "id": 551,
+                        "name": "Runtigadhi GP"
+                    },
+                    {
+                        "id": 552,
+                        "name": "Subarnawoti GP"
+                    },
+                    {
+                        "id": 553,
+                        "name": "Sukidaha GP"
+                    },
+                    {
+                        "id": 554,
+                        "name": "Sunchhahari GP"
+                    },
+                    {
+                        "id": 555,
+                        "name": "Thabang GP"
+                    },
+                    {
+                        "id": 556,
+                        "name": "Tribeni GP"
+                    }
+                ]
+            },
+            {
+                "id": 55,
+                "name": "Rukum",
+                "nplp": [
+                    {
+                        "id": 557,
+                        "name": "Bhume GP"
+                    },
+                    {
+                        "id": 558,
+                        "name": "Putha Uttarganga GP"
+                    },
+                    {
+                        "id": 559,
+                        "name": "Sisne GP"
+                    }
+                ]
+            },
+            {
+                "id": 56,
+                "name": "Dang",
+                "nplp": [
+                    {
+                        "id": 560,
+                        "name": "Babai GP"
+                    },
+                    {
+                        "id": 561,
+                        "name": "Bangalichuli GP"
+                    },
+                    {
+                        "id": 562,
+                        "name": "Dangisaran GP"
+                    },
+                    {
+                        "id": 563,
+                        "name": "Gadhawa GP"
+                    },
+                    {
+                        "id": 564,
+                        "name": "Ghorahi Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 565,
+                        "name": "Lamahi Municipality"
+                    },
+                    {
+                        "id": 566,
+                        "name": "Rajpur GP"
+                    },
+                    {
+                        "id": 567,
+                        "name": "Rapti GP"
+                    },
+                    {
+                        "id": 568,
+                        "name": "Shantinagar GP"
+                    },
+                    {
+                        "id": 569,
+                        "name": "Tulsipur Sub-Metropolitan City"
+                    }
+                ]
+            },
+            {
+                "id": 57,
+                "name": "Banke",
+                "nplp": [
+                    {
+                        "id": 570,
+                        "name": "Baijanath GP"
+                    },
+                    {
+                        "id": 571,
+                        "name": "Duduwa GP"
+                    },
+                    {
+                        "id": 572,
+                        "name": "Janaki GP"
+                    },
+                    {
+                        "id": 573,
+                        "name": "Khajura GP"
+                    },
+                    {
+                        "id": 574,
+                        "name": "Kohalpur Municipality"
+                    },
+                    {
+                        "id": 575,
+                        "name": "Narainapur GP"
+                    },
+                    {
+                        "id": 576,
+                        "name": "Nepalgunj Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 577,
+                        "name": "Raptisonari GP"
+                    }
+                ]
+            },
+            {
+                "id": 58,
+                "name": "Bardiya",
+                "nplp": [
+                    {
+                        "id": 578,
+                        "name": "Badhaiyatal GP"
+                    },
+                    {
+                        "id": 579,
+                        "name": "Bansagadhi Municipality"
+                    },
+                    {
+                        "id": 580,
+                        "name": "Barbardiya Municipality"
+                    },
+                    {
+                        "id": 581,
+                        "name": "Geruwa GP"
+                    },
+                    {
+                        "id": 582,
+                        "name": "Gulariya Municipality"
+                    },
+                    {
+                        "id": 583,
+                        "name": "Madhuban Municipality"
+                    },
+                    {
+                        "id": 584,
+                        "name": "Rajapur Municipality"
+                    },
+                    {
+                        "id": 585,
+                        "name": "Thakurbaba Municipality"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "Karnali",
+        "district": [
+            {
+                "id": 59,
+                "name": "Rukum West",
+                "nplp": [
+                    {
+                        "id": 586,
+                        "name": "Aathabiskot Municipality"
+                    },
+                    {
+                        "id": 587,
+                        "name": "Baphikot GP"
+                    },
+                    {
+                        "id": 588,
+                        "name": "Chaurjahari Municipality"
+                    },
+                    {
+                        "id": 589,
+                        "name": "Musikot Municipality"
+                    },
+                    {
+                        "id": 590,
+                        "name": "Sanibheri GP"
+                    },
+                    {
+                        "id": 591,
+                        "name": "Tribeni GP"
+                    }
+                ]
+            },
+            {
+                "id": 60,
+                "name": "Salyan",
+                "nplp": [
+                    {
+                        "id": 592,
+                        "name": "Bagchaur Municipality"
+                    },
+                    {
+                        "id": 593,
+                        "name": "Banagad Kupinde Municipality"
+                    },
+                    {
+                        "id": 594,
+                        "name": "Chhatreswori GP"
+                    },
+                    {
+                        "id": 595,
+                        "name": "Darma GP"
+                    },
+                    {
+                        "id": 596,
+                        "name": "Dhorchaur GP"
+                    },
+                    {
+                        "id": 597,
+                        "name": "Kalimati GP"
+                    },
+                    {
+                        "id": 598,
+                        "name": "Kapurkot GP"
+                    },
+                    {
+                        "id": 599,
+                        "name": "Kumakhamalika GP"
+                    },
+                    {
+                        "id": 600,
+                        "name": "Sharada Municipality"
+                    },
+                    {
+                        "id": 601,
+                        "name": "Tribeni GP"
+                    }
+                ]
+            },
+            {
+                "id": 61,
+                "name": "Surkhet",
+                "nplp": [
+                    {
+                        "id": 602,
+                        "name": "Barahatal GP"
+                    },
+                    {
+                        "id": 603,
+                        "name": "Bheriganga Municipality"
+                    },
+                    {
+                        "id": 604,
+                        "name": "Birendranagar Municipality"
+                    },
+                    {
+                        "id": 605,
+                        "name": "Chaukune GP"
+                    },
+                    {
+                        "id": 606,
+                        "name": "Chingad GP"
+                    },
+                    {
+                        "id": 607,
+                        "name": "Gurbhakot Municipality"
+                    },
+                    {
+                        "id": 608,
+                        "name": "Lekbesi Municipality"
+                    },
+                    {
+                        "id": 609,
+                        "name": "Panchapuri Municipality"
+                    },
+                    {
+                        "id": 610,
+                        "name": "Simta GP"
+                    }
+                ]
+            },
+            {
+                "id": 62,
+                "name": "Dailekh",
+                "nplp": [
+                    {
+                        "id": 611,
+                        "name": "Aathabis Municipality"
+                    },
+                    {
+                        "id": 612,
+                        "name": "Bhagawatimai GP"
+                    },
+                    {
+                        "id": 613,
+                        "name": "Bhairabi GP"
+                    },
+                    {
+                        "id": 614,
+                        "name": "Chamunda Bindrasaini Municipality"
+                    },
+                    {
+                        "id": 615,
+                        "name": "Dullu Municipality"
+                    },
+                    {
+                        "id": 616,
+                        "name": "Dungeshwar GP"
+                    },
+                    {
+                        "id": 617,
+                        "name": "Gurash GP"
+                    },
+                    {
+                        "id": 618,
+                        "name": "Mahabu GP"
+                    },
+                    {
+                        "id": 619,
+                        "name": "Narayan Municipality"
+                    },
+                    {
+                        "id": 620,
+                        "name": "Naumule GP"
+                    },
+                    {
+                        "id": 621,
+                        "name": "Thatikadh GP"
+                    }
+                ]
+            },
+            {
+                "id": 63,
+                "name": "Jajarkot",
+                "nplp": [
+                    {
+                        "id": 622,
+                        "name": "Barekot GP"
+                    },
+                    {
+                        "id": 623,
+                        "name": "Bheri Municipality"
+                    },
+                    {
+                        "id": 624,
+                        "name": "Chhedagad Municipality"
+                    },
+                    {
+                        "id": 625,
+                        "name": "Junichande GP"
+                    },
+                    {
+                        "id": 626,
+                        "name": "Kuse GP"
+                    },
+                    {
+                        "id": 627,
+                        "name": "Shivalaya GP"
+                    },
+                    {
+                        "id": 628,
+                        "name": "Tribeni Nalgad Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 64,
+                "name": "Dolpa",
+                "nplp": [
+                    {
+                        "id": 629,
+                        "name": "Chharka Tangsong GP"
+                    },
+                    {
+                        "id": 630,
+                        "name": "Dolpo Buddha GP"
+                    },
+                    {
+                        "id": 631,
+                        "name": "Jagdulla GP"
+                    },
+                    {
+                        "id": 632,
+                        "name": "Kaike GP"
+                    },
+                    {
+                        "id": 633,
+                        "name": "Mudkechula GP"
+                    },
+                    {
+                        "id": 634,
+                        "name": "She Phoksundo GP"
+                    },
+                    {
+                        "id": 635,
+                        "name": "Thuli Bheri Municipality"
+                    },
+                    {
+                        "id": 636,
+                        "name": "Tripurasundari Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 65,
+                "name": "Jumla",
+                "nplp": [
+                    {
+                        "id": 637,
+                        "name": "Chandannath Municipality"
+                    },
+                    {
+                        "id": 638,
+                        "name": "Guthichaur GP"
+                    },
+                    {
+                        "id": 639,
+                        "name": "Hima GP"
+                    },
+                    {
+                        "id": 640,
+                        "name": "Kankasundari GP"
+                    },
+                    {
+                        "id": 641,
+                        "name": "Patarasi GP"
+                    },
+                    {
+                        "id": 642,
+                        "name": "Sinja GP"
+                    },
+                    {
+                        "id": 643,
+                        "name": "Tatopani GP"
+                    },
+                    {
+                        "id": 644,
+                        "name": "Tila GP"
+                    }
+                ]
+            },
+            {
+                "id": 66,
+                "name": "Kalikot",
+                "nplp": [
+                    {
+                        "id": 645,
+                        "name": "Kalika GP"
+                    },
+                    {
+                        "id": 646,
+                        "name": "Khadachakra Municipality"
+                    },
+                    {
+                        "id": 647,
+                        "name": "Mahabai GP"
+                    },
+                    {
+                        "id": 648,
+                        "name": "Naraharinath GP"
+                    },
+                    {
+                        "id": 649,
+                        "name": "Pachaljharana GP"
+                    },
+                    {
+                        "id": 650,
+                        "name": "Palata GP"
+                    },
+                    {
+                        "id": 651,
+                        "name": "Raskot Municipality"
+                    },
+                    {
+                        "id": 652,
+                        "name": "Sanni Tribeni GP"
+                    },
+                    {
+                        "id": 653,
+                        "name": "Tilagupha Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 67,
+                "name": "Mugu",
+                "nplp": [
+                    {
+                        "id": 654,
+                        "name": "Chhayanath Rara Municipality"
+                    },
+                    {
+                        "id": 655,
+                        "name": "Khatyad GP"
+                    },
+                    {
+                        "id": 656,
+                        "name": "Mugumkarmarog GP"
+                    },
+                    {
+                        "id": 657,
+                        "name": "Soru GP"
+                    }
+                ]
+            },
+            {
+                "id": 68,
+                "name": "Humla",
+                "nplp": [
+                    {
+                        "id": 658,
+                        "name": "Adanchuli GP"
+                    },
+                    {
+                        "id": 659,
+                        "name": "Chankheli GP"
+                    },
+                    {
+                        "id": 660,
+                        "name": "Kharpunath GP"
+                    },
+                    {
+                        "id": 661,
+                        "name": "Namkha GP"
+                    },
+                    {
+                        "id": 662,
+                        "name": "Sarkegad GP"
+                    },
+                    {
+                        "id": 663,
+                        "name": "Simkot GP"
+                    },
+                    {
+                        "id": 664,
+                        "name": "Tanjakot GP"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Sudurpashchim",
+        "district": [
+            {
+                "id": 69,
+                "name": "Bajura",
+                "nplp": [
+                    {
+                        "id": 665,
+                        "name": "Badimalika Municipality"
+                    },
+                    {
+                        "id": 666,
+                        "name": "Budhiganga Municipality"
+                    },
+                    {
+                        "id": 667,
+                        "name": "Budhinanda Municipality"
+                    },
+                    {
+                        "id": 668,
+                        "name": "Chhededaha GP"
+                    },
+                    {
+                        "id": 669,
+                        "name": "Gaumul GP"
+                    },
+                    {
+                        "id": 670,
+                        "name": "Himali GP"
+                    },
+                    {
+                        "id": 671,
+                        "name": "Pandav Gupha GP"
+                    },
+                    {
+                        "id": 672,
+                        "name": "Swamikartik GP"
+                    },
+                    {
+                        "id": 673,
+                        "name": "Tribeni Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 70,
+                "name": "Bajhang",
+                "nplp": [
+                    {
+                        "id": 674,
+                        "name": "Bitthadchir GP"
+                    },
+                    {
+                        "id": 675,
+                        "name": "Bungal Municipality"
+                    },
+                    {
+                        "id": 676,
+                        "name": "Chhabispathibhera GP"
+                    },
+                    {
+                        "id": 677,
+                        "name": "Durgathali GP"
+                    },
+                    {
+                        "id": 678,
+                        "name": "Jayaprithivi Municipality"
+                    },
+                    {
+                        "id": 679,
+                        "name": "Kanda GP"
+                    },
+                    {
+                        "id": 680,
+                        "name": "Kedarsyun GP"
+                    },
+                    {
+                        "id": 681,
+                        "name": "Khaptadchhanna GP"
+                    },
+                    {
+                        "id": 682,
+                        "name": "Masta GP"
+                    },
+                    {
+                        "id": 683,
+                        "name": "Surma GP"
+                    },
+                    {
+                        "id": 684,
+                        "name": "Talkot GP"
+                    },
+                    {
+                        "id": 685,
+                        "name": "Thalara GP"
+                    }
+                ]
+            },
+            {
+                "id": 71,
+                "name": "Achham",
+                "nplp": [
+                    {
+                        "id": 686,
+                        "name": "Bannigadhi Jayagadh GP"
+                    },
+                    {
+                        "id": 687,
+                        "name": "Chaurpati GP"
+                    },
+                    {
+                        "id": 688,
+                        "name": "Dhakari GP"
+                    },
+                    {
+                        "id": 689,
+                        "name": "Kamalbazar Municipality"
+                    },
+                    {
+                        "id": 690,
+                        "name": "Mangalsen Municipality"
+                    },
+                    {
+                        "id": 691,
+                        "name": "Mellekha GP"
+                    },
+                    {
+                        "id": 692,
+                        "name": "Panchadewal Binayak Municipality"
+                    },
+                    {
+                        "id": 693,
+                        "name": "Ramaroshan GP"
+                    },
+                    {
+                        "id": 694,
+                        "name": "Sanphebagar Municipality"
+                    },
+                    {
+                        "id": 695,
+                        "name": "Turmakhand GP"
+                    }
+                ]
+            },
+            {
+                "id": 72,
+                "name": "Doti",
+                "nplp": [
+                    {
+                        "id": 696,
+                        "name": "Aadarsha GP"
+                    },
+                    {
+                        "id": 697,
+                        "name": "Badikedar GP"
+                    },
+                    {
+                        "id": 698,
+                        "name": "Bogatan GP"
+                    },
+                    {
+                        "id": 699,
+                        "name": "Dipayal Silgadhi Municipality"
+                    },
+                    {
+                        "id": 700,
+                        "name": "Jorayal GP"
+                    },
+                    {
+                        "id": 701,
+                        "name": "K.I.S GP"
+                    },
+                    {
+                        "id": 702,
+                        "name": "Purbichauki GP"
+                    },
+                    {
+                        "id": 703,
+                        "name": "Sayal GP"
+                    },
+                    {
+                        "id": 704,
+                        "name": "Shikhar Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 73,
+                "name": "Kailali",
+                "nplp": [
+                    {
+                        "id": 705,
+                        "name": "Bardagoriya GP"
+                    },
+                    {
+                        "id": 706,
+                        "name": "Bhajani Municipality"
+                    },
+                    {
+                        "id": 707,
+                        "name": "Chure GP"
+                    },
+                    {
+                        "id": 708,
+                        "name": "Dhangadhi Sub-Metropolitan City"
+                    },
+                    {
+                        "id": 709,
+                        "name": "Gauriganga Municipality"
+                    },
+                    {
+                        "id": 710,
+                        "name": "Ghodaghodi Municipality"
+                    },
+                    {
+                        "id": 711,
+                        "name": "Godawari Municipality"
+                    },
+                    {
+                        "id": 712,
+                        "name": "Janaki GP"
+                    },
+                    {
+                        "id": 713,
+                        "name": "Joshipur GP"
+                    },
+                    {
+                        "id": 714,
+                        "name": "Kailari GP"
+                    },
+                    {
+                        "id": 715,
+                        "name": "Lamkichuha Municipality"
+                    },
+                    {
+                        "id": 716,
+                        "name": "Mohanyal GP"
+                    },
+                    {
+                        "id": 717,
+                        "name": "Tikapur Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 74,
+                "name": "Kanchanpur",
+                "nplp": [
+                    {
+                        "id": 718,
+                        "name": "Bedkot Municipality"
+                    },
+                    {
+                        "id": 719,
+                        "name": "Belauri Municipality"
+                    },
+                    {
+                        "id": 720,
+                        "name": "Beldandi GP"
+                    },
+                    {
+                        "id": 721,
+                        "name": "Bhimdatta Municipality"
+                    },
+                    {
+                        "id": 722,
+                        "name": "Krishnapur Municipality"
+                    },
+                    {
+                        "id": 723,
+                        "name": "Laljhadi GP"
+                    },
+                    {
+                        "id": 724,
+                        "name": "Mahakali Municipality"
+                    },
+                    {
+                        "id": 725,
+                        "name": "Punarbas Municipality"
+                    },
+                    {
+                        "id": 726,
+                        "name": "Shuklaphata Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 75,
+                "name": "Dadeldhura",
+                "nplp": [
+                    {
+                        "id": 727,
+                        "name": "Aalital GP"
+                    },
+                    {
+                        "id": 728,
+                        "name": "Ajayameru GP"
+                    },
+                    {
+                        "id": 729,
+                        "name": "Amargadhi Municipality"
+                    },
+                    {
+                        "id": 730,
+                        "name": "Bhageshwor GP"
+                    },
+                    {
+                        "id": 731,
+                        "name": "Ganyapdhura GP"
+                    },
+                    {
+                        "id": 732,
+                        "name": "Navadurga GP"
+                    },
+                    {
+                        "id": 733,
+                        "name": "Parasuram Municipality"
+                    }
+                ]
+            },
+            {
+                "id": 76,
+                "name": "Baitadi",
+                "nplp": [
+                    {
+                        "id": 734,
+                        "name": "Dashrathachanda Municipality"
+                    },
+                    {
+                        "id": 735,
+                        "name": "Dilasaini GP"
+                    },
+                    {
+                        "id": 736,
+                        "name": "Dogdakedar GP"
+                    },
+                    {
+                        "id": 737,
+                        "name": "Melauli Municipality"
+                    },
+                    {
+                        "id": 738,
+                        "name": "Pancheshwor GP"
+                    },
+                    {
+                        "id": 739,
+                        "name": "Patan Municipality"
+                    },
+                    {
+                        "id": 740,
+                        "name": "Purchaudi Municipality"
+                    },
+                    {
+                        "id": 741,
+                        "name": "Shivanath GP"
+                    },
+                    {
+                        "id": 742,
+                        "name": "Sigas GP"
+                    },
+                    {
+                        "id": 743,
+                        "name": "Surnaya GP"
+                    }
+                ]
+            },
+            {
+                "id": 77,
+                "name": "Darchula",
+                "nplp": [
+                    {
+                        "id": 744,
+                        "name": "Apihimal GP"
+                    },
+                    {
+                        "id": 745,
+                        "name": "Byas GP"
+                    },
+                    {
+                        "id": 746,
+                        "name": "Dunhu GP"
+                    },
+                    {
+                        "id": 747,
+                        "name": "Lekam GP"
+                    },
+                    {
+                        "id": 748,
+                        "name": "Mahakali Municipality"
+                    },
+                    {
+                        "id": 749,
+                        "name": "Malikarjun GP"
+                    },
+                    {
+                        "id": 750,
+                        "name": "Marma GP"
+                    },
+                    {
+                        "id": 751,
+                        "name": "Naugad GP"
+                    },
+                    {
+                        "id": 752,
+                        "name": "Shailyashikar Municipality"
+                    }
+                ]
+            }
+        ]
+    }
+]

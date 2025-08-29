@@ -6,9 +6,18 @@
     .searchBar {
         display: flex;
         justify-content: space-between;
+
+        .tableHeading {
+            flex-grow: 1;
+        }
+        .searchInput {
+            flex-shrink: 0;
+            align-self: flex-end;
+            max-width: 20rem;
+        }
     }
 
     .table {
         min-width: fit-content;
-    }         
+    }
 }

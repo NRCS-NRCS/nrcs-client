@@ -1,3 +1,4 @@
+import { isDefined } from '@togglecorp/fujs';
 import { notFound } from 'next/navigation';
 
 import ArticleBody from '#components/ArticleBody';
@@ -75,11 +76,13 @@ export default async function ProcurementDetailPage(
                 <ArticleBody
                     content={result.data?.procurement?.description}
                 />
-                <DownloadTemplate
-                    title={result.data?.procurement.title}
-                    file={result.data?.procurement.file.url}
-                    fileSize={result.data?.procurement.file.size}
-                />
+                {isDefined(result.data?.procurement.file) && (
+                    <DownloadTemplate
+                        title={result.data?.procurement.title}
+                        file={result.data?.procurement.file.url}
+                        fileSize={result.data?.procurement.file.size}
+                    />
+                )}
             </Section>
         </Page>
     );

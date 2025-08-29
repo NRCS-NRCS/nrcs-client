@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+import TextInput from '#components/TextInput';
+
 import Heading from '../Heading';
 import Table, { type Column } from '../Table';
 
@@ -50,11 +52,16 @@ export default function SearchableTable<T>(props: Props<T>) {
     return (
         <div className={styles.searchTable}>
             <div className={styles.searchBar}>
-                <Heading size="small">{title}</Heading>
+                <Heading
+                    className={styles.tableHeading}
+                    size="small"
+                >
+                    {title}
+                </Heading>
                 {searchField && (
-                    <input
+                    <TextInput
                         name={String(searchField)}
-                        className={styles.textInput}
+                        className={styles.searchInput}
                         type="text"
                         value={search}
                         onChange={handleSearchChange}

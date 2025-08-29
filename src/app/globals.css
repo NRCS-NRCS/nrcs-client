@@ -87,6 +87,8 @@
     --spacing-enormous: calc(var(--spacing-gigantic) * var(--multiplier));
     --spacing-galactic: calc(var(--spacing-gigantic) * var(--multiplier) * var(--multiplier));
     --spacing-universal: calc(var(--spacing-gigantic) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+
+    --box-shadow: 0 1pt 4pt rgb(0 0 0 / 0.2);
 }
 
 html,

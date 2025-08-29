@@ -1,3 +1,4 @@
+import { isDefined } from '@togglecorp/fujs';
 import { notFound } from 'next/navigation';
 
 import ArticleBody from '#components/ArticleBody';
@@ -80,11 +81,13 @@ export default async function VacancyDetailPage({ params }: PageProps) {
                 <ArticleBody
                     content={result.data.jobVacancy?.description}
                 />
-                <DownloadTemplate
-                    title={result.data.jobVacancy.title}
-                    file={result.data.jobVacancy.file.url}
-                    fileSize={result.data.jobVacancy.file.size}
-                />
+                {isDefined(result.data.jobVacancy.file) && (
+                    <DownloadTemplate
+                        title={result.data.jobVacancy.file.name}
+                        file={result.data.jobVacancy.file.url}
+                        fileSize={result.data.jobVacancy.file.size}
+                    />
+                )}
             </Section>
         </Page>
     );

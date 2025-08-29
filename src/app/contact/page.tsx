@@ -193,7 +193,7 @@ export default async function Contact() {
                     <Heading
                         className={styles.heading}
                     >
-                        Get in touch with us
+                        {getInTouchHeading}
                     </Heading>
                     {getInTouchText}
                 </div>

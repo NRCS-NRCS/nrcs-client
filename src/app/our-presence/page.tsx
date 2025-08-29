@@ -44,14 +44,14 @@ const chapterColumns: { key: keyof ChapterRow; label: string }[] = [
     { key: 'name', label: 'Name' },
     { key: 'province', label: 'Province' },
     { key: 'district', label: 'District' },
-    { key: 'localLevel', label: 'Local Level' },
-    { key: 'wardNo', label: 'Ward No.' },
-    { key: 'otherAddress', label: 'Other Address' },
+    { key: 'localLevel', label: 'Address' },
+    // { key: 'wardNo', label: 'Ward No.' },
+    // { key: 'otherAddress', label: 'Other Address' },
     { key: 'phone', label: 'Phone' },
     { key: 'email', label: 'Email' },
 ];
 
-export default function DistrictChapters() {
+export default function OurPresence() {
     const provinceChapters = mapData(provinceData);
     const districtChapters = mapData(districtData);
     const eyeHospital = mapData(eyeHospitalData);
@@ -79,7 +79,7 @@ export default function DistrictChapters() {
                     data={districtChapters}
                     columns={chapterColumns}
                     keySelector={keySelector}
-                    searchField="province"
+                    searchField="district"
                 />
             </Section>
             <Section
@@ -90,7 +90,6 @@ export default function DistrictChapters() {
                     data={eyeHospital}
                     columns={chapterColumns}
                     keySelector={keySelector}
-                    searchField="province"
                 />
             </Section>
         </Page>
