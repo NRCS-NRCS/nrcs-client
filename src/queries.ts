@@ -285,3 +285,24 @@ export const NEWS_ITEM = gql`
         }
     }
 `;
+
+export const HIGHLIGHTS = gql`
+    query Highlights {
+        highlights {
+            description
+            expiryDate
+            heading
+            id
+            image {
+                name
+                size
+                url
+            }
+            actionLinks {
+                label
+                url
+            }
+        }
+    }
+`;
+

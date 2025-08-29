@@ -68,6 +68,21 @@
         }
     }
 
+    &.buttonReverse {
+        transition: 0.2s all ease-in-out;
+        border: var(--width-separator-thin) solid var(--color-primary);
+        background-color: #ffffff;
+        padding: var(--spacing-super-small) var(--spacing-medium);
+        color: var(--color-primary);
+        font-size: var(--font-size-medium);
+
+        &:hover {
+            border-color: var(--color-accent);
+            text-decoration: unset;
+            color: var(--color-accent);
+        }
+    }
+
     &.underline {
         transition: 0.2s all ease-in-out;
         color: var(--color-link);

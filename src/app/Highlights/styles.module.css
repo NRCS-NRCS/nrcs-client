@@ -1,0 +1,108 @@
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    .slidesContainer {
+        display: flex;
+        transition: transform 0.4s ease-in-out;
+
+        .slide {
+            position: relative;
+            min-width: 100%;
+            display: none;
+            flex-shrink: 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            height: 80vh;
+
+            &.active {
+                display: flex;
+            }
+
+            .image {
+                height: 100%;
+                width: 100%;
+                z-index: 1;
+                filter: brightness(40%);
+
+                .imageInner {
+                    object-fit: cover;
+                }
+            }
+
+            .content {
+                position: absolute;
+                bottom: 50%;
+                transform: translateY(50%);
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                background-color: var(--color-primary-darker);
+                padding: var(--spacing-super-large);
+                gap: var(--spacing-medium);
+                min-height: 18rem;
+                max-width: 30rem;
+                width: 30rem;
+                color: var(--color-text-on-primary);
+                z-index: 2;
+
+                .heading {
+                    color: var(--color-text-on-primary);
+                    flex-shrink: 0;
+                }
+
+                .description {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3; /* limit to 3 lines */
+                    -webkit-box-orient: vertical;
+                    text-align: left;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    flex-grow: 1;
+                }
+
+                .actions {
+                    display: flex;
+                    flex-shrink: 0;
+                    gap: var(--spacing-small);
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .content {
+                    bottom: 0;
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+
+    .dotsContainer {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            padding: 0;
+            cursor: pointer;
+
+            &.activeDot {
+                background-color: var(--color-primary);
+            }
+        }
+    }
+}
+

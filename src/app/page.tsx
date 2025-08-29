@@ -6,25 +6,33 @@ import Page from '#components/Page';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
+import {
+    type HighlightsQuery,
+    type HighlightsQueryVariables,
+} from '#generated/types/graphql';
+import { urqlClient } from '#lib/urqlClient';
 import homeBanner from '#public/banner.png';
 import cardImage from '#public/card.png';
 import logo from '#public/logo.png';
 
+import Highlights from './Highlights';
+
 import styles from './page.module.css';
+
+// eslint-disable-next-line import/order
+import { HIGHLIGHTS } from '@/queries';
 
 const introText = 'The Nepal Red Cross Society is the largest humanitarian organization in Nepal, providing life-saving aid, health services, disaster response, and community support through a vast network of volunteers and local branches as part of the global Red Cross and Red Crescent Movement.';
 
-export default function Home() {
+export default async function Home() {
+    const result = await urqlClient.query<
+        HighlightsQuery,
+        HighlightsQueryVariables
+    >(HIGHLIGHTS, {}).toPromise();
+
     return (
         <Page contentClassName={styles.page}>
-            <div className={styles.homeBanner}>
-                <ImageWrapper
-                    className={styles.bannerImage}
-                    imageClassName={styles.image}
-                    src={homeBanner}
-                    alt="Banner Image"
-                />
-            </div>
+            <Highlights highlights={result.data?.highlights ?? []} />
             <Section
                 className={styles.introduction}
                 contentClassName={styles.introductionContent}

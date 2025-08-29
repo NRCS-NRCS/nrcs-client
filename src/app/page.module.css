@@ -5,20 +5,6 @@
     padding-top: unset !important;
     flex-direction: column;
 
-    .homeBanner {
-        height: 80vh;
-
-        .bannerImage {
-            height: 80vh;
-            width: 100%;
-            filter: brightness(60%);
-
-            .image {
-                object-fit: cover;
-            }
-        }
-    }
-
     .introduction {
         .introductionContent {
             .infoCards {

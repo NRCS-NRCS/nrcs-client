@@ -5,7 +5,7 @@ import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
 
 import styles from './styles.module.css';
 
-type Variant = 'navigation' | 'transparent' | 'button' | 'buttonTransparent' | 'icon' | 'underline' | 'reverse' | 'div';
+type Variant = 'navigation' | 'transparent' | 'button' | 'buttonTransparent' | 'icon' | 'underline' | 'reverse' | 'div' | 'buttonReverse';
 const variantToStyleMap: {
     [key in Variant]: string | undefined;
 } = {
@@ -14,6 +14,7 @@ const variantToStyleMap: {
     button: styles.button,
     underline: styles.underline,
     buttonTransparent: styles.buttonTransparent,
+    buttonReverse: styles.buttonReverse,
     reverse: styles.reverse,
     icon: styles.icon,
     div: styles.div,
