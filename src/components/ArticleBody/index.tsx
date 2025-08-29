@@ -1,3 +1,9 @@
+'use client';
+
+import {
+    useEffect,
+    useState,
+} from 'react';
 import { _cs } from '@togglecorp/fujs';
 import { remark } from 'remark';
 import remarkGfm from 'remark-gfm';
@@ -10,17 +16,33 @@ interface Props {
     content?: string;
 }
 
-export default async function ArticleBody(props: Props) {
+export default function ArticleBody(props: Props) {
     const {
         className,
         content = '',
     } = props;
+    const [contentHtml, setContentHtml] = useState('');
 
-    const processedContent = await remark()
-        .use(html, { sanitize: false })
-        .use(remarkGfm)
-        .process(content);
-    const contentHtml = processedContent.toString();
+    useEffect(() => {
+        let cancelled = false;
+
+        async function processContent() {
+            const processed = await remark()
+                .use(remarkGfm)
+                .use(html, { sanitize: false })
+                .process(content);
+
+            if (!cancelled) {
+                setContentHtml(processed.toString());
+            }
+        }
+
+        processContent();
+
+        return () => {
+            cancelled = true;
+        };
+    }, [content]);
 
     return (
         <div
