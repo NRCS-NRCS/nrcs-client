@@ -9,11 +9,11 @@ import Button from '#components/Button';
 import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
-import type { HighlightsQuery } from '#generated/types/graphql';
+import type { HomePageQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<HighlightsQuery['highlights']>[number];
+type Highlight = NonNullable<HomePageQuery['highlights']>[number];
 
 interface Props {
     highlights: Highlight[];

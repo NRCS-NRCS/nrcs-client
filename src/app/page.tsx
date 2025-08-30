@@ -2,18 +2,16 @@ import React from 'react';
 
 import CallToAction from '#components/CallToAction';
 import ImageSlider from '#components/ImageSlider';
-import ImageWrapper from '#components/ImageWrapper';
 import KeyFigureCard from '#components/KeyFigureCard';
 import Page from '#components/Page';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
 import {
-    type HighlightsQuery,
-    type HighlightsQueryVariables,
+    type HomePageQuery,
+    type HomePageQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
-import homeBanner from '#public/banner.png';
 import callIcon from '#public/call.png';
 import cardImage from '#public/card.png';
 import donateIcon from '#public/donate.png';
@@ -25,16 +23,20 @@ import Highlights from './Highlights';
 import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
-import { HIGHLIGHTS } from '@/queries';
+import { HOME_PAGE_DETAILS } from '@/queries';
 
 const introText = 'The Nepal Red Cross Society is the largest humanitarian organization in Nepal, providing life-saving aid, health services, disaster response, and community support through a vast network of volunteers and local branches as part of the global Red Cross and Red Crescent Movement.';
 const nrcsPlanDescription = 'The 8th Development Plan 2021–2025 is the road map of Nepal Red Cross Society (NRCS) until 2025. Its key purpose is to reduce uncertainty about our future and develop a shared understanding about our engagement approach with the future. Planning means change, therefore, this plan has been guided by strategies related to innovation to bring changes as well. This plan has tried to respond to these basic questions: who it serves and where? Where are we now? Where do we want to go? How will we get there? What does it do? and How well did we do (monitoring and review) it?';
 
 export default async function Home() {
     const result = await urqlClient.query<
-        HighlightsQuery,
-        HighlightsQueryVariables
-    >(HIGHLIGHTS, {}).toPromise();
+        HomePageQuery,
+        HomePageQueryVariables
+    >(HOME_PAGE_DETAILS, {}).toPromise();
+
+    const works = [...result.data?.works ?? []].slice(0, 3);
+    const reports = [...result.data?.resources ?? []].slice(0, 3);
+    const news = [...result.data?.news ?? []].slice(0, 10);
 
     return (
         <Page contentClassName={styles.page}>
@@ -80,53 +82,41 @@ export default async function Home() {
                     />
                 </div>
             </Section>
-            <Section
-                heading="Recent News and Events"
-                childrenContainerClassName={styles.recentNewsChildrenContainer}
-                headingWithBackground
-            >
-                <RecentNewsCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    description="The full scale of the devastation caused by the natural disaster is yet to be fully assessed. Tragically, over 250 lives have already been confirmed lost, with rescue operations continuing in an effort to locate the 100 individuals who remain unaccounted for. The impact of this catastrophe is immense, affecting countless families and communities who now face overwhelming challenges in the aftermath."
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-            </Section>
-            {/*
-            <Section
-                heading="Our Presence"
-                headingWithBackground
-            >
-                Here
-            </Section>
-            */}
-            <Section
-                heading="Our Works"
-                className={styles.ourWorks}
-                contentClassName={styles.worksContent}
-                childrenContainerClassName={styles.worksChildren}
-                headingWithBackground
-            >
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-            </Section>
+            {news.length > 0 && (
+                <Section
+                    heading="Recent News and Events"
+                    childrenContainerClassName={styles.recentNewsChildrenContainer}
+                    headingWithBackground
+                >
+                    {news.map((item) => (
+                        <RecentNewsCard
+                            title={item.title}
+                            description={item.content}
+                            date={item.publishedDate}
+                            image={item.coverImage?.url}
+                            link={`/resources/news-and-events/${item.slug}/`}
+                        />
+                    ))}
+                </Section>
+            )}
+            {works.length > 0 && (
+                <Section
+                    heading="Our Works"
+                    className={styles.ourWorks}
+                    contentClassName={styles.worksContent}
+                    childrenContainerClassName={styles.worksChildren}
+                    headingWithBackground
+                >
+                    {works.map((item) => (
+                        <WorkCard
+                            title={item.title}
+                            date={item.startDate ?? undefined}
+                            image={item.coverImage?.url}
+                            link={`/resources/works/${item.id}/`}
+                        />
+                    ))}
+                </Section>
+            )}
             <Section
                 className={styles.callToActions}
                 contentClassName={styles.callToActionsContent}
@@ -201,32 +191,24 @@ export default async function Home() {
                 />
             </Section>
             <ImageSlider />
-            <Section
-                heading="Published Reports"
-                className={styles.ourWorks}
-                contentClassName={styles.worksContent}
-                childrenContainerClassName={styles.worksChildren}
-                headingWithBackground
-            >
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-                <WorkCard
-                    title="7.5 magnitude hits Tibet, other parts of Asia affected as well"
-                    date="2022-01-01"
-                    image={cardImage}
-                    link="/news-and-events/"
-                />
-            </Section>
+            {reports.length > 0 && (
+                <Section
+                    heading="Published Reports"
+                    className={styles.ourWorks}
+                    contentClassName={styles.worksContent}
+                    childrenContainerClassName={styles.worksChildren}
+                    headingWithBackground
+                >
+                    {reports.map((item) => (
+                        <WorkCard
+                            title={item.title}
+                            date={item.publishedDate}
+                            image={item.coverImage?.url}
+                            link={`/resources/reports/${item.id}/`}
+                        />
+                    ))}
+                </Section>
+            )}
         </Page>
     );
 }

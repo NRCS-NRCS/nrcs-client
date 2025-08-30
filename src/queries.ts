@@ -286,8 +286,8 @@ export const NEWS_ITEM = gql`
     }
 `;
 
-export const HIGHLIGHTS = gql`
-    query Highlights {
+export const HOME_PAGE_DETAILS = gql`
+    query HomePage {
         highlights {
             description
             expiryDate
@@ -303,6 +303,38 @@ export const HIGHLIGHTS = gql`
                 url
             }
         }
+        news(order: { publishedDate: ASC }) {
+            content
+            id
+            publishedDate
+            slug
+            title
+            coverImage {
+                name
+                size
+                url
+            }
+        }
+        works {
+            title
+            startDate
+            id
+            endDate
+            description
+            coverImage {
+                url
+            }
+        }
+        resources {
+            id
+            content
+            publishedDate
+            title
+            coverImage {
+                url
+                name
+                size
+            }
+        }
     }
 `;
-
