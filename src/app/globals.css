@@ -18,6 +18,7 @@
     --color-primary: #ed1b2e;
     --color-primary-light: #fff6f7;
     --color-primary-dark: #cd1f29;
+    --color-primary-darker: #d0011c;
     --color-text-link: var(--color-primary);
 
     --color-background-blue: #C4DFF6;

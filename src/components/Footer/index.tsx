@@ -23,7 +23,7 @@ import logo from '#public/wide-logo.jpg';
 import styles from './styles.module.css';
 
 const currentYear = new Date().getFullYear();
-const nrcsDescription = 'The Nepal Red Cross Society is the largest humanitarian organization in Nepal, providing life-saving aid, health services, disaster response, and community support through a vast network of volunteers and local branches as part of the global Red Cross and Red Crescent Movement.';
+const nrcsDescription = 'The Nepal Red Cross Society (NRCS), founded in 1963, is the largest humanitarian organization in Nepal and a member of the International Red Cross and Red Crescent Movement. It is guided by the seven Fundamental Principles: humanity, impartiality, neutrality, independence, voluntary service, unity, and universality. NRCS works across the country to provide disaster response, health services, blood transfusion, and community development, with the mission to prevent suffering, protect life, and uphold human dignity.';
 
 interface Props {
     className?: string;
@@ -51,36 +51,19 @@ export default function Footer(props: Props) {
                     </div>
                     <div className={styles.icons}>
                         <Link
-                            // TODO: Fix this link
-                            href="https://www.instagram.com/nrcsnepal2020"
-                            className={styles.icon}
-                        >
-                            <IoLogoInstagram />
-                        </Link>
-                        <Link
-                            // TODO: Fix this link
-                            href="https://www.facebook.com/nrcsnepal2020"
+                            href="https://www.facebook.com/nepalredcross"
                             className={styles.icon}
                         >
                             <IoLogoFacebook />
                         </Link>
                         <Link
-                            // TODO: Fix this link
-                            href="https://www.youtube.com/@nrcs.nepal"
+                            href="https://www.youtube.com/channel/UCwA1CYDYvIH7KaRBpYy50ow"
                             className={styles.icon}
                         >
                             <IoLogoYoutube />
                         </Link>
                         <Link
-                            // TODO: Fix this link
-                            href="https://www.linkedin.com/company/citizenship-affected-people-s-network-nepal"
-                            className={styles.icon}
-                        >
-                            <IoLogoLinkedin />
-                        </Link>
-                        <Link
-                            // TODO: Fix this link
-                            href="https://twitter.com"
+                            href="https://x.com/NepalRedCross"
                             className={styles.icon}
                         >
                             <RiTwitterXFill />
@@ -149,22 +132,25 @@ export default function Footer(props: Props) {
                             >
                                 +977-1-537 2761
                             </Link>
-                            <Link
-                                className={styles.link}
-                                href="tel:+977-1-537 2761"
-                            >
-                                +977-1-537 2761
-                            </Link>
                         </div>
-                        <Link
-                            href="mailto:info@nrcs.org"
-                            className={styles.link}
-                        >
+                        <div className={styles.link}>
                             <IoMail />
-                            <span>
-                                info@nrcs.org
-                            </span>
-                        </Link>
+                            <div className={styles.inline}>
+                                <Link
+                                    href="mailto:info@nrcs.org"
+                                    className={styles.link}
+                                >
+                                    info@nrcs.org
+                                </Link>
+                                ,
+                                <Link
+                                    className={styles.link}
+                                    href="mailto:nrcs@nrcs.org"
+                                >
+                                    nrcs@nrcs.org
+                                </Link>
+                            </div>
+                        </div>
                         <div
                             className={styles.link}
                         >
@@ -186,7 +172,7 @@ export default function Footer(props: Props) {
                         >
                             <PiMailboxFill />
                             <span>
-                                Fax: +977-4271915
+                                Fax: +977-4271915, 4273285
                             </span>
                         </div>
                     </div>

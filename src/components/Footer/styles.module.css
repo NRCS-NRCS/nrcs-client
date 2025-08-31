@@ -81,6 +81,11 @@
                     gap: var(--spacing-small);
                 }
             }
+
+            .inline {
+                display: inline-flex;
+                gap: var(--spacing-super-small);
+            }
         }
 
         @media (max-width: 768px) {

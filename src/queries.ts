@@ -285,3 +285,56 @@ export const NEWS_ITEM = gql`
         }
     }
 `;
+
+export const HOME_PAGE_DETAILS = gql`
+    query HomePage {
+        highlights {
+            description
+            expiryDate
+            heading
+            id
+            image {
+                name
+                size
+                url
+            }
+            actionLinks {
+                label
+                url
+            }
+        }
+        news(order: { publishedDate: ASC }) {
+            content
+            id
+            publishedDate
+            slug
+            title
+            coverImage {
+                name
+                size
+                url
+            }
+        }
+        works {
+            title
+            startDate
+            id
+            endDate
+            description
+            coverImage {
+                url
+            }
+        }
+        resources {
+            id
+            content
+            publishedDate
+            title
+            coverImage {
+                url
+                name
+                size
+            }
+        }
+    }
+`;
