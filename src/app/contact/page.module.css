@@ -15,6 +15,13 @@
             }
         }
     }
+    .feedback {
+        .feedbackContent {
+            .feedbackChildren {
+                gap: var(--spacing-extra-large);
+            }
+        }
+    }
     .concern {
         .concernContent {
             .concernChildren {

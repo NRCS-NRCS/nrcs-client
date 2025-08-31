@@ -1,7 +1,6 @@
-.inputContainer {
+.inputContent {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     gap: var(--spacing-ultra-small);
     justify-content: space-between;
 
@@ -13,5 +12,4 @@
         font-size: var(--font-size-small);
         color: var(--color-text-neutral);
     }
-
 }

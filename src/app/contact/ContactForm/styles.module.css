@@ -14,9 +14,8 @@
         gap: var(--spacing-ultra-small);
         justify-content: space-between;
         width: 100%;
-
-        {
-            padding: var(--spacing-ultra-small);
-        }
+    }
+    .submitButton {
+        align-self: flex-start;
     }
 }

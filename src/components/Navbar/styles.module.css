@@ -39,18 +39,20 @@
                 .expandedButton {
                     display: flex;
                     flex-direction: column;
+                    justify-content: center;
                     padding: var(--spacing-medium);
                     border-left: var(--width-separator-thin) solid var(--color-separator);
                     gap: var(--spacing-ultra-small);
+
+                }
+
+                .hotlineContainer {
+                    align-items: flex-end;
 
                     .linkDescription {
                         display: block;
                         font-size: var(--font-size-small);
                     }
-                }
-
-                .hotlineContainer {
-                    align-items: flex-end;
 
                     .hotline {
                         display: flex;

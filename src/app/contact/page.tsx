@@ -21,6 +21,7 @@ import { urqlClient } from '#lib/urqlClient';
 import bannerImg from '#public/banner.png';
 
 import ContactForm from './ContactForm';
+import FeedbackForm from './FeedbackForm';
 
 import styles from './page.module.css';
 
@@ -29,6 +30,8 @@ import { FAQS } from '@/queries';
 
 const contactUsHeading = 'We’d love to hear from you.';
 const contactUsText = 'Have questions, need support or possible partnership? We\'re here to help. Reach out to us through the form below or use the contact details provided — we\'ll get back to you as soon as possible.';
+const feedbackHeading = 'Leave your feedback';
+const feedbackText = 'Your feedback is valuable to us. Kindly share your thoughts to help us serve you better.';
 const reportConcernHeading = 'You can report a concern';
 const reportConcernText = 'If you’ve witnessed or experienced something that concerns you, we encourage you to report it. Your feedback helps us ensure accountability, transparency, and a safer environment for all.';
 const getInTouchHeading = 'Get in touch with us';
@@ -68,13 +71,22 @@ export default async function Contact() {
                 </div>
             </Section>
             <Section
+                className={styles.feedback}
+                contentClassName={styles.feedbackContent}
+                childrenContainerClassName={styles.feedbackChildren}
+                heading={feedbackHeading}
+                headingSize="medium"
+            >
+                {feedbackText}
+                <FeedbackForm />
+            </Section>
+            <Section
                 className={styles.concern}
                 contentClassName={styles.concernContent}
                 childrenContainerClassName={styles.concernChildren}
+                heading={reportConcernHeading}
+                headingSize="medium"
             >
-                <Heading>
-                    {reportConcernHeading}
-                </Heading>
                 {reportConcernText}
                 <div className={styles.contactTypes}>
                     <div className={styles.contactItem}>
