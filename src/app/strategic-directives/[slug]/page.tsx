@@ -12,12 +12,12 @@ import WorkCard from '#components/WorkCard';
 import {
     type GetStrategicDirectivesSlugsQuery,
     type GetStrategicDirectivesSlugsQueryVariables,
+    type ResourcesForStrategicDirectiveQuery,
+    type ResourcesForStrategicDirectiveQueryVariables,
     type StrategicDirectivesQuery,
     type StrategicDirectivesQueryVariables,
     type WorksForStrategicDirectiveQuery,
     type WorksForStrategicDirectiveQueryVariables,
-    type ResourcesForStrategicDirectiveQuery,
-    type ResourcesForStrategicDirectiveQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 

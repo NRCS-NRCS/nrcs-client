@@ -3,8 +3,6 @@ import { FaPhone } from 'react-icons/fa';
 import {
     IoLocationSharp,
     IoLogoFacebook,
-    IoLogoInstagram,
-    IoLogoLinkedin,
     IoLogoYoutube,
     IoMail,
 } from 'react-icons/io5';
