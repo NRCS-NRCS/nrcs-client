@@ -3,7 +3,9 @@
 import { useState } from 'react';
 
 import Accordion from '#components/Accordion';
+import ArticleBody from '#components/ArticleBody';
 import Heading from '#components/Heading';
+import Table, { type Column } from '#components/Table';
 import {
     Tab,
     TabList,
@@ -11,12 +13,41 @@ import {
     Tabs,
 } from '#components/Tabs';
 
-import whereToDonate from './data';
+import whereToDonate, {
+    canIDonate,
+    donateBloodOrganization,
+    type OutsideValleyTable,
+    outsideValleyTable,
+} from './data';
 
 import styles from './styles.module.css';
 
 export default function TabSection() {
     const [value, setValue] = useState<string | undefined>('where');
+
+    const column: Column<OutsideValleyTable>[] = [
+        {
+            id: 'bloodCenter',
+            title: 'Blood Center',
+            cellRenderer: (item) => item.bloodCenter,
+        },
+        {
+            id: 'focalPerson',
+            title: 'Focal Person',
+            cellRenderer: (item) => item.focalPerson,
+        },
+        {
+            id: 'contactNo',
+            title: 'Contact',
+            cellRenderer: (item) => item.contactNo,
+        },
+        {
+            id: 'district',
+            title: 'District',
+            cellRenderer: (item) => item.district,
+        },
+    ];
+
     return (
         <Tabs
             value={value}
@@ -58,49 +89,22 @@ export default function TabSection() {
                         Centres in Biratnagar, Pokhara, Nepalgunj,
                         and Chitwan, or the nearest District Blood Bank or Hospital unit.
                     </p>
+                    <Table
+                        data={outsideValleyTable}
+                        columns={column}
+                        keySelector={(item) => item.id}
+                    />
                 </div>
             </TabPanel>
             <TabPanel className={styles.tabPanel} name="can">
-                <Heading>
-                    Donating person has to apply:
-                </Heading>
-                <p>
-                    - be 18 to 60 years old
-                    - weight above 45 kg
-                    - have hemoglobin above 12 gm/dl
-                    - have blood pressure 110-160 / 70-96 mmHg
-                    - not to be pregnant, breastfeeding, and have at least
-                    8 days since the start of the recent menstruation
-                    - not having recent use of drugs or strong medicines
-                    (people who take strong medicine for a short period will
-                    not able to donate blood from one week up to 2 years)
-                    - not to had a medical surgery for 2 years
-                    If you have had one of these conditions, you are
-                    unfortunately restricted to donating blood but
-                    recommended to encourage your family members, friends and loved ones to donate:
-                    - cancer, heart diseases, HIV/AIDS, hepatitis B or C,
-                    hemophilia and thalassemia, diabetes, liver diseases,
-                    Polycythemia Vera, asthma, an endocrine disorder or a hormonal disorder
-                </p>
+                <ArticleBody
+                    content={canIDonate}
+                />
             </TabPanel>
             <TabPanel className={styles.tabPanel} name="organisation">
-                <Heading>
-                    Donation event for an organization or company
-                </Heading>
-                <p>
-                    - We are visiting daily in companies and organizations to collect blood.
-                    It is a great activity for team building and recreational days,
-                    and social responsibility events.
-                    - Arrange a regular or one-time blood donation at your company or
-                    organization by contacting Mr. Ram Bahadur Shrestha via email,
-                    ram.shrestha@nrcs.org, or phone, 9841398605.
-                    - The earlier we set the date, the easier we can plan the
-                    efficient blood supply management. But if needed, we can
-                    deploy our blood collection team with even short notice!
-                    Never think it is too late or too early – today is just
-                    the perfect time to start planning the blood donation event in
-                    your community or company!
-                </p>
+                <ArticleBody
+                    content={donateBloodOrganization}
+                />
             </TabPanel>
         </Tabs>
     );

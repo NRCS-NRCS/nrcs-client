@@ -7,12 +7,14 @@ import {
 
 import Button from '#components/Button';
 
+import ArticleBody from '../ArticleBody';
+
 import styles from './styles.module.css';
 
 interface AccordionItem {
     id: string;
-    title: React.ReactNode;
-    description: React.ReactNode;
+    title: string;
+    description: string;
 }
 interface Props {
     items: AccordionItem[];
@@ -67,7 +69,9 @@ function Accordion(props: Props) {
                             <div
                                 className={styles.accordionContent}
                             >
-                                {item.description}
+                                <ArticleBody
+                                    content={item.description}
+                                />
                             </div>
                         )}
                     </div>

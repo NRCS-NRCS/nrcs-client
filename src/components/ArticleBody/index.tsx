@@ -10,16 +10,16 @@ interface Props {
     content?: string;
 }
 
-export default async function ArticleBody(props: Props) {
+export default function ArticleBody(props: Props) {
     const {
         className,
         content = '',
     } = props;
 
-    const processedContent = await remark()
+    const processedContent = remark()
         .use(html, { sanitize: false })
         .use(remarkGfm)
-        .process(content);
+        .processSync(content);
     const contentHtml = processedContent.toString();
 
     return (
