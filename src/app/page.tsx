@@ -34,7 +34,6 @@ export default async function Home() {
         HomePageQueryVariables
     >(HOME_PAGE_DETAILS, {}).toPromise();
 
-    const works = [...result.data?.works ?? []].slice(0, 3);
     const reports = [...result.data?.resources ?? []].slice(0, 3);
     const news = [...result.data?.news ?? []].slice(0, 10);
 
@@ -95,24 +94,6 @@ export default async function Home() {
                             date={item.publishedDate}
                             image={item.coverImage?.url}
                             link={`/resources/news-and-events/${item.slug}/`}
-                        />
-                    ))}
-                </Section>
-            )}
-            {works.length > 0 && (
-                <Section
-                    heading="Our Works"
-                    className={styles.ourWorks}
-                    contentClassName={styles.worksContent}
-                    childrenContainerClassName={styles.worksChildren}
-                    headingWithBackground
-                >
-                    {works.map((item) => (
-                        <WorkCard
-                            title={item.title}
-                            date={item.startDate ?? undefined}
-                            image={item.coverImage?.url}
-                            link={`/resources/works/${item.id}/`}
                         />
                     ))}
                 </Section>

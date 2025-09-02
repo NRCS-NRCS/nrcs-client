@@ -1,7 +1,7 @@
 import { gql } from 'urql';
 
-export const STRATEGIC_DIRECTIVES = gql`
-    query StrategicDirectives {
+export const WORKS = gql`
+    query Works {
         strategicDirectives {
             contactPersonEmail
             contactPersonName
@@ -31,42 +31,18 @@ export const STRATEGIC_DIRECTIVES = gql`
             }
             title
         }
-        works {
-            startDate
+        news {
+            content
             id
-            endDate
-            description
-            title
-            strategicDirective {
-                id
-            }
-            coverImage {
-                name
-                url
-            }
-        }
-    }
-`;
-
-export const GET_STRATEGIC_DIRECTIVES_SLUGS = gql`
-    query GetStrategicDirectivesSlugs {
-        strategicDirectives {
-            id
+            publishedDate
             slug
             title
-        }
-    }
-`;
-
-export const WORKS_FOR_STRATEGIC_DIRECTIVE = gql`
-    query WorksForStrategicDirective($strategicDirectiveId: ID!){
-        works(filters: {strategicDirective: $strategicDirectiveId}) {
-            description
-            endDate
-            id
-            startDate
-            title
             coverImage {
+                name
+                size
+                url
+            }
+            file {
                 name
                 size
                 url
@@ -75,9 +51,41 @@ export const WORKS_FOR_STRATEGIC_DIRECTIVE = gql`
     }
 `;
 
-export const RESOURCES_FOR_STRATEGIC_DIRECTIVE = gql`
-    query ResourcesForStrategicDirective($strategicDirectiveId: ID!) {
-        resources(filters: {directive: $strategicDirectiveId}) {
+export const GET_WORK_SLUGS = gql`
+    query GetWorkSlugs {
+        strategicDirectives {
+            id
+            slug
+            title
+        }
+    }
+`;
+
+export const NEWS_FOR_WORK = gql`
+    query NewsForWork($workId: ID!){
+        news(filters: {directive: $workId}) {
+            content
+            id
+            publishedDate
+            slug
+            title
+            coverImage {
+                name
+                size
+                url
+            }
+            file {
+                name
+                size
+                url
+            }
+        }
+    }
+`;
+
+export const RESOURCES_FOR_WORK = gql`
+    query ResourcesForWork($workId: ID!) {
+        resources(filters: {directive: $workId}) {
             coverImage {
                 name
                 size
@@ -88,45 +96,6 @@ export const RESOURCES_FOR_STRATEGIC_DIRECTIVE = gql`
             slug
             title
             content
-        }
-    }
-`;
-
-export const GET_WORKS = gql`
-    query GetWorks {
-        works {
-            title
-            startDate
-            id
-            endDate
-            description
-            coverImage {
-                url
-            }
-            strategicDirective {
-                id
-                slug
-                title
-            }
-        }
-    }
-`;
-
-export const GET_WORK_DETAILS = gql`
-    query GetWorkDetails($workId: ID!) {
-        work(id: $workId) {
-            id
-            title
-            startDate
-            endDate
-            description
-            coverImage {
-                url
-            }
-            strategicDirective {
-                id
-                title
-            }
         }
     }
 `;
@@ -349,13 +318,18 @@ export const HOME_PAGE_DETAILS = gql`
                 url
             }
         }
-        works {
-            title
-            startDate
+        blogs {
+            author
+            content
             id
-            endDate
-            description
+            featured
+            publishedDate
+            slug
+            status
+            title
             coverImage {
+                name
+                size
                 url
             }
         }

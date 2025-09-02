@@ -87,10 +87,6 @@ const links = [
                 link: '/news-and-events/',
             },
             {
-                label: 'Our Works',
-                link: '/works/',
-            },
-            {
                 label: 'Blogs',
                 link: '/blogs/',
             },
@@ -114,27 +110,27 @@ const links = [
 
 interface Props {
     className?: string;
-    strategicDirectives: {label: string; link: string;}[];
+    works: {label: string; link: string;}[];
 }
 
 export default function Navbar(props: Props) {
     const {
         className,
-        strategicDirectives,
+        works,
     } = props;
 
     const finalPaths = useMemo(() => {
         const newVal = [
             ...links,
             {
-                label: 'Strategic Directives',
-                link: '/strategic-directives',
+                label: 'Our Works',
+                link: '/works',
                 order: 2,
-                children: strategicDirectives,
+                children: works,
             },
         ];
         return newVal.sort((a, b) => a.order - b.order);
-    }, [strategicDirectives]);
+    }, [works]);
 
     const pathname = usePathname();
 
