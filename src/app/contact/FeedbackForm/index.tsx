@@ -70,7 +70,7 @@ export default function ContactForm() {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
-    const subject = encodeURIComponent(`Contact message from ${formValues.firstName} ${formValues.lastName} (${formValues.email})`);
+    const subject = encodeURIComponent(`Feedback message from ${formValues.district} ${formValues.province} (${formValues.gender})`);
     const body = encodeURIComponent(`
         Date: ${formValues.date}
         Province: ${formValues.province}
