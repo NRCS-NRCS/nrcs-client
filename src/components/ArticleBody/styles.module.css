@@ -80,4 +80,9 @@
     code {
         text-wrap: wrap;
     }
+
+    table tr {
+        font-size: var(--font-size-medium);
+        line-height: 2;
+    }
 }

@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { _cs } from '@togglecorp/fujs';
 
-import Button from '#components/Button';
 import DateInput from '#components/DateInput';
 import Heading from '#components/Heading';
 import Link from '#components/Link';
@@ -115,6 +115,8 @@ export default function VolunteerForm() {
         (district) => district.id === Number(formValues.temporaryDistrict),
     )?.nplp || [] : [];
 
+    const emailToSubmitVolunteerForm = 'test-nrcs@mailinator.com';
+
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
     ) => {
@@ -137,15 +139,25 @@ export default function VolunteerForm() {
         }
     };
 
-    const handleClick = (
-        name: string | undefined,
-        e: React.MouseEvent<HTMLButtonElement>,
-    ) => {
-        e.preventDefault();
-        // TODO: Add forward to email logic!!
-        // eslint-disable-next-line no-console
-        console.log('Clicked:', name, formValues);
-    };
+    const subject = encodeURIComponent(`Volunteer entry from ${formValues.firstName} ${formValues.lastName} (${formValues.email})`);
+
+    const body = encodeURIComponent(`
+        First Name: ${formValues.firstName}
+        Last Name: ${formValues.lastName}
+        Email: ${formValues.email}
+        Phone Number: ${formValues.phoneNumber}
+        Nationality: ${formValues.nationality}
+        Date of Birth: ${formValues.dateOfBirth}
+        Gender: ${formValues.gender}
+        Permanent Address: ${formValues.permanentProvince}, ${formValues.permanentDistrict}, ${formValues.permanentMunicipality}, ${formValues.permanentWard}
+        Temporary Address: ${formValues.temporaryProvince}, ${formValues.temporaryDistrict}, ${formValues.temporaryMunicipality}, ${formValues.temporaryWard}
+        Expertise: ${formValues.expertise}
+        Trainings: ${formValues.trainings}
+        Sectors: ${formValues.sectors}
+        Other Sectors: ${formValues.otherSector}
+    `);
+
+    const hrefForSubmit = `mailto:${emailToSubmitVolunteerForm}?subject=${subject}&body=${body}`;
 
     return (
         <form
@@ -380,14 +392,12 @@ export default function VolunteerForm() {
                 />
                 &nbsp; I certify I have read the NRCS Code of Conduct.
             </label>
-            <Button
-                name={undefined}
-                className={styles.submitButton}
-                onClick={handleClick}
-                variant="border"
+            <Link
+                className={_cs(!formValues.termsAccepted && styles.disabled, styles.submitButton)}
+                href={hrefForSubmit}
             >
-                Continue
-            </Button>
+                Submit
+            </Link>
         </form>
     );
 }

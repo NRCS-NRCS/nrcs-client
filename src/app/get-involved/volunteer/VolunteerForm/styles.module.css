@@ -87,6 +87,13 @@
 
     .submitButton {
         border: var(--width-separator-thin) solid var(--color-primary);
+        padding: var(--spacing-small) var(--spacing-medium);
         align-self: flex-start;
+
+        &.disabled {
+            opacity: 75%;
+            border-color: var(--color-text-neutral);
+            pointer-events: none;
+        }
     }
 }

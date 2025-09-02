@@ -171,7 +171,7 @@ export default function Navbar(props: Props) {
                     <div className={styles.rightContainer}>
                         <Link
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
-                            href="/volunteer/"
+                            href="/get-involved/volunteer/"
                         >
                             Volunteer
                         </Link>
