@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import Button from '#components/Button';
+import Link from '#components/Link';
 import TextArea from '#components/TextArea';
 import TextInput from '#components/TextInput';
 
@@ -14,6 +14,9 @@ interface FormValues {
     email: string;
     message: string;
 }
+
+const emailToSubmitContactForm = 'test-nrcs@mailinator.com';
+
 export default function ContactForm() {
     const [formValues, setFormValues] = useState<FormValues>({
         firstName: '',
@@ -27,14 +30,20 @@ export default function ContactForm() {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = () => {
-        // eslint-disable-next-line no-console
-        console.log('Submitted data:', formValues);
-    };
+    const subject = encodeURIComponent(`Contact message from ${formValues.firstName} ${formValues.lastName} (${formValues.email})`);
+    const body = encodeURIComponent(`
+        First Name: ${formValues.firstName}
+        Last Name: ${formValues.lastName}
+        Email: ${formValues.email}
+        Message:
+            ${formValues.message}
+    `);
+
+    const hrefForSubmit = `mailto:${emailToSubmitContactForm}?subject=${subject}&body=${body}`;
+
     return (
         <form
             className={styles.form}
-            onSubmit={handleSubmit}
         >
             <div className={styles.inline}>
                 <TextInput
@@ -67,13 +76,13 @@ export default function ContactForm() {
                 placeholder="Type message here"
                 onChange={handleChange}
             />
-            <Button
-                name="submit"
-                onClick={handleSubmit}
-                variant="primary"
+            <Link
+                href={hrefForSubmit}
+                variant="button"
+                className={styles.submitButton}
             >
                 Submit
-            </Button>
+            </Link>
         </form>
     );
 }

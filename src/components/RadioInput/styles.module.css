@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+
+    .content {
+        display: flex;
+        gap: var(--spacing-extra-large);
+        flex-wrap: wrap;
+
+        .radioButton {
+            display: flex;
+            gap: var(--spacing-ultra-small);
+        }
+    }
+}

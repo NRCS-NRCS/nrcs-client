@@ -14,6 +14,10 @@ import {
     type GetStrategicDirectivesSlugsQueryVariables,
     type StrategicDirectivesQuery,
     type StrategicDirectivesQueryVariables,
+    type WorksForStrategicDirectiveQuery,
+    type WorksForStrategicDirectiveQueryVariables,
+    type ResourcesForStrategicDirectiveQuery,
+    type ResourcesForStrategicDirectiveQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 
@@ -22,7 +26,9 @@ import styles from './page.module.css';
 // eslint-disable-next-line import/order
 import {
     GET_STRATEGIC_DIRECTIVES_SLUGS,
+    RESOURCES_FOR_STRATEGIC_DIRECTIVE,
     STRATEGIC_DIRECTIVES,
+    WORKS_FOR_STRATEGIC_DIRECTIVE,
 } from '@/queries';
 
 export async function generateStaticParams() {
@@ -62,13 +68,25 @@ export default async function DirectiveDetailPage(
     const directivesFromQuery = result.data?.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
 
+    const works = await urqlClient.query<
+        WorksForStrategicDirectiveQuery,
+        WorksForStrategicDirectiveQueryVariables
+    >(WORKS_FOR_STRATEGIC_DIRECTIVE, { strategicDirectiveId: directive?.id ?? '' }).toPromise();
+
+    const resources = await urqlClient.query<
+        ResourcesForStrategicDirectiveQuery,
+        ResourcesForStrategicDirectiveQueryVariables
+    >(
+        RESOURCES_FOR_STRATEGIC_DIRECTIVE,
+        { strategicDirectiveId: directive?.id ?? '' },
+    ).toPromise();
+
     const departmentsForDirective = result.data?.departments?.filter(
         (dept) => dept.strategicDirective.id === directive?.id,
     );
 
-    const worksForDirective = result.data?.works?.filter(
-        (work) => work.strategicDirective?.id === directive?.id,
-    );
+    const worksForDirective = works.data?.works;
+    const resourcesForDirective = resources.data?.resources;
 
     if (!directive) return notFound();
 
@@ -122,7 +140,7 @@ export default async function DirectiveDetailPage(
                     />
                 </Section>
             )}
-            {worksForDirective?.length > 0 && (
+            {(worksForDirective?.length ?? 0) > 0 && (
                 <Section
                     heading="Our Works"
                     className={styles.ourWorks}
@@ -135,14 +153,12 @@ export default async function DirectiveDetailPage(
                                 title={work.title}
                                 date={work.startDate ?? ''}
                                 image={work.coverImage?.url}
-                                // FIXME: Fix this link
-                                link="/news-and-events/"
+                                link={`resources/works/${work.id}`}
                             />
                         ))}
                     </div>
                     <Link
-                        // FIXME: Fix this link
-                        href="/news-and-events/"
+                        href="/resources/works/"
                         variant="button"
                         className={styles.viewMoreButton}
                     >
@@ -151,20 +167,19 @@ export default async function DirectiveDetailPage(
                 </Section>
             )}
             { /* FIXME: Fix this to include resources */ }
-            {worksForDirective?.length > 0 && (
+            {(resourcesForDirective?.length ?? 0) > 0 && (
                 <Section
                     heading="Important Resources"
                     className={styles.resources}
                     contentClassName={styles.resourcesContent}
                     childrenContainerClassName={styles.resourcesChildren}
                 >
-                    {worksForDirective?.map((work) => (
+                    {resourcesForDirective?.map((resource) => (
                         <WorkCard
-                            title={work.title}
-                            date={work.startDate ?? ''}
-                            image={work.coverImage?.url}
-                            // FIXME: Fix this link
-                            link="/news-and-events/"
+                            title={resource.title}
+                            date={resource.publishedDate ?? ''}
+                            image={resource.coverImage?.url}
+                            link={`resources/reports/${resource.id}/`}
                         />
                     ))}
                 </Section>

@@ -1,0 +1,17 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    padding: var(--spacing-large);
+    gap: var(--spacing-large);
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--spacing-extra-large);
+    }
+    .submitButton {
+        align-self: flex-start;
+    }
+}

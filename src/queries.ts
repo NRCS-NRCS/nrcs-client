@@ -58,6 +58,40 @@ export const GET_STRATEGIC_DIRECTIVES_SLUGS = gql`
     }
 `;
 
+export const WORKS_FOR_STRATEGIC_DIRECTIVE = gql`
+    query WorksForStrategicDirective($strategicDirectiveId: ID!){
+        works(filters: {strategicDirective: $strategicDirectiveId}) {
+            description
+            endDate
+            id
+            startDate
+            title
+            coverImage {
+                name
+                size
+                url
+            }
+        }
+    }
+`;
+
+export const RESOURCES_FOR_STRATEGIC_DIRECTIVE = gql`
+    query ResourcesForStrategicDirective($strategicDirectiveId: ID!) {
+        resources(filters: {directive: $strategicDirectiveId}) {
+            coverImage {
+                name
+                size
+                url
+            }
+            id
+            publishedDate
+            slug
+            title
+            content
+        }
+    }
+`;
+
 export const GET_WORKS = gql`
     query GetWorks {
         works {

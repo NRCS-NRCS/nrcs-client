@@ -3,8 +3,10 @@
 import { useState } from 'react';
 
 import Button from '#components/Button';
+import DateInput from '#components/DateInput';
 import Heading from '#components/Heading';
 import Link from '#components/Link';
+import RadioInput from '#components/RadioInput';
 import SelectInput from '#components/SelectInput';
 import TextArea from '#components/TextArea';
 import TextInput from '#components/TextInput';
@@ -201,47 +203,20 @@ export default function VolunteerForm() {
                     onChange={handleChange}
                     placeholder="Nationality"
                 />
-                <div className={styles.inputContent}>
-                    <Heading
-                        size="extraSmall"
-                        font="normal"
-                    >
-                        Date of Birth
-                    </Heading>
-                    <input
-                        className={styles.input}
-                        name="dateOfBirth"
-                        type="date"
-                        value={formValues.dateOfBirth}
-                        onChange={handleChange}
-                    />
-                </div>
+                <DateInput
+                    label="Date of Birth"
+                    name="dateOfBirth"
+                    value={formValues.dateOfBirth}
+                    onChange={handleChange}
+                />
             </div>
-            <Heading
-                size="extraSmall"
-                font="normal"
-            >
-                Gender
-            </Heading>
-            <div className={styles.content}>
-                {genders?.map((gender) => (
-                    <label
-                        htmlFor={gender}
-                        key={gender}
-                        className={styles.radioButton}
-                    >
-                        <input
-                            id={gender}
-                            type="radio"
-                            name="gender"
-                            value={gender}
-                            checked={formValues.gender === gender}
-                            onChange={handleChange}
-                        />
-                        {gender}
-                    </label>
-                ))}
-            </div>
+            <RadioInput
+                name="gender"
+                label="Gender"
+                options={genders}
+                value={formValues.gender}
+                onChange={handleChange}
+            />
             <div className={styles.separator} />
             <p className={styles.subSection}>
                 Permanent Address
