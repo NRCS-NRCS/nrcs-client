@@ -84,4 +84,49 @@
             }
         }
     }
+    .nrcsOfficer {
+        .nrcsOfficerContent {
+            .nrcsOfficerChildren {
+                flex-direction: row;
+                .officerCard {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    background-color: var(--color-background-gray);
+                    padding: var(--spacing-medium);
+                    gap: var(--spacing-medium);
+
+                    .profileImage {
+                        align-self: center;
+                        height: 140px;
+                        width: 140px;
+                        border-radius: 100%;
+                        overflow: hidden;
+                    }
+
+                    .description {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: var(--spacing-extra-small);
+
+                        .title {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            color: var(--color-primary-darker);
+                        }
+                        .contactLink {
+                            text-transform: unset;
+                            padding: var(--spacing-ultra-tiny);
+                        }
+                    }
+                }
+                .radioProgram {
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
 }

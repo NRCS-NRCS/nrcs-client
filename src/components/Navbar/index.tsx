@@ -71,10 +71,6 @@ const links = [
                 label: 'Financial Donations',
                 link: '/financial-donations/',
             },
-            {
-                label: 'Policies and Guidelines',
-                link: '/policies-guidelines/',
-            },
         ],
     },
     {
@@ -93,6 +89,10 @@ const links = [
             {
                 label: 'Reports and Publications',
                 link: '/reports/',
+            },
+            {
+                label: 'Policies and Guidelines',
+                link: '/policies-and-guidelines/',
             },
         ],
     },
@@ -174,7 +174,8 @@ export default function Navbar(props: Props) {
                         <Link
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
                             variant="button"
-                            href="/donate/"
+                            href="https://donation.nrcs.org/"
+                            target="_blank"
                         >
                             Donate
                         </Link>

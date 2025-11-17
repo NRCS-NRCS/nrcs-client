@@ -10,10 +10,10 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import {
+    type GetPoliciesAndGuidelinesQuery,
+    type GetPoliciesAndGuidelinesQueryVariables,
     type GetResourceDetailsQuery,
     type GetResourceDetailsQueryVariables,
-    type GetReportsQuery,
-    type GetReportsQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 import cardImage from '#public/card.png';
@@ -22,23 +22,23 @@ import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
 import {
+    GET_POLICIES_AND_GUIDELINES,
     GET_RESOURCE_DETAILS,
-    GET_REPORTS,
 } from '@/queries';
 
 export async function generateStaticParams() {
     const result = await urqlClient.query<
-        GetReportsQuery,
-        GetReportsQueryVariables
+        GetPoliciesAndGuidelinesQuery,
+        GetPoliciesAndGuidelinesQueryVariables
     >(
-        GET_REPORTS,
+        GET_POLICIES_AND_GUIDELINES,
         {},
     ).toPromise();
 
     const data = result?.data?.resources;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
-        console.warn('No reports found in GraphQL response');
+        console.warn('No policies found in GraphQL response');
         return [{ slug: 'dummy' }];
     }
 
@@ -53,7 +53,7 @@ type PageProps = {
     }>;
 };
 
-export default async function reportDetailsPage({ params }: PageProps) {
+export default async function policyAndGuidelineDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
@@ -68,7 +68,7 @@ export default async function reportDetailsPage({ params }: PageProps) {
 
     if (!result.data?.resource) {
         // eslint-disable-next-line no-console
-        console.warn('No reports found in GraphQL response');
+        console.warn('No policies found in GraphQL response');
     }
 
     const resourceDetails = result?.data?.resource;

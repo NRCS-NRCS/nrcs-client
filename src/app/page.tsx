@@ -1,8 +1,11 @@
 import React from 'react';
 
 import CallToAction from '#components/CallToAction';
+import Heading from '#components/Heading';
 import ImageSlider from '#components/ImageSlider';
+import ImageWrapper from '#components/ImageWrapper';
 import KeyFigureCard from '#components/KeyFigureCard';
+import Link from '#components/Link';
 import Page from '#components/Page';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
@@ -10,6 +13,8 @@ import WorkCard from '#components/WorkCard';
 import {
     type HomePageQuery,
     type HomePageQueryVariables,
+    type RadioProgramsQuery,
+    type RadioProgramsQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 import callIcon from '#public/call.png';
@@ -19,20 +24,36 @@ import handsIcon from '#public/hands.png';
 import logo from '#public/logo.png';
 
 import Highlights from './Highlights';
+import RadioPrograms from './RadioPrograms';
 
 import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
-import { HOME_PAGE_DETAILS } from '@/queries';
+import {
+    HOME_PAGE_DETAILS,
+    RADIO_PROGRAMS,
+} from '@/queries';
 
 const introText = 'The Nepal Red Cross Society is the largest humanitarian organization in Nepal, providing life-saving aid, health services, disaster response, and community support through a vast network of volunteers and local branches as part of the global Red Cross and Red Crescent Movement.';
 const nrcsPlanDescription = 'The 8th Development Plan 2021–2025 is the road map of Nepal Red Cross Society (NRCS) until 2025. Its key purpose is to reduce uncertainty about our future and develop a shared understanding about our engagement approach with the future. Planning means change, therefore, this plan has been guided by strategies related to innovation to bring changes as well. This plan has tried to respond to these basic questions: who it serves and where? Where are we now? Where do we want to go? How will we get there? What does it do? and How well did we do (monitoring and review) it?';
+const nrcsOfficerName = 'Mr. Bipul Neupane';
+const nrcsOfficerTitleOne = 'Director, HV and Communication';
+const nrcsOfficerTitleTwo = 'Information Officer';
+const nrcsOfficerContactNumber = '+977 9741695097';
+const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 
 export default async function Home() {
     const result = await urqlClient.query<
         HomePageQuery,
         HomePageQueryVariables
     >(HOME_PAGE_DETAILS, {}).toPromise();
+
+    const radioProgramList = await urqlClient.query<
+        RadioProgramsQuery,
+        RadioProgramsQueryVariables
+    >(RADIO_PROGRAMS, {}).toPromise();
+
+    const radioPrograms = radioProgramList.data?.radioProgram;
 
     const reports = [...result.data?.resources ?? []].slice(0, 3);
     const news = [...result.data?.news ?? []].slice(0, 10);
@@ -190,6 +211,49 @@ export default async function Home() {
                     ))}
                 </Section>
             )}
+            <Section
+                className={styles.nrcsOfficer}
+                contentClassName={styles.nrcsOfficerContent}
+                childrenContainerClassName={styles.nrcsOfficerChildren}
+            >
+                <div className={styles.officerCard}>
+                    <ImageWrapper
+                        className={styles.profileImage}
+                        src={cardImage}
+                        alt="NRCS IM Officer"
+                    />
+                    <div className={styles.description}>
+                        <Heading size="small">
+                            {nrcsOfficerName}
+                        </Heading>
+                        <div className={styles.title}>
+                            <span>{nrcsOfficerTitleOne}</span>
+                            <span>{nrcsOfficerTitleTwo}</span>
+                        </div>
+                        <Link
+                            className={styles.contactLink}
+                            href={`tel:${nrcsOfficerContactNumber}`}
+                        >
+                            {nrcsOfficerContactNumber}
+                        </Link>
+                        <Link
+                            className={styles.contactLink}
+                            href={`mailto:${nrcsOfficerEmail}`}
+                            target="_blank"
+                        >
+                            {nrcsOfficerEmail}
+                        </Link>
+                    </div>
+                </div>
+                <div className={styles.radioProgram}>
+                    <Heading size="small">
+                        Radio Programs
+                    </Heading>
+                    <RadioPrograms
+                        radioPrograms={radioPrograms ?? []}
+                    />
+                </div>
+            </Section>
         </Page>
     );
 }

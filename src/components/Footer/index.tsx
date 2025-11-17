@@ -69,8 +69,9 @@ export default function Footer(props: Props) {
                     </div>
                     <Link
                         className={styles.donateButton}
-                        href="/donate"
+                        href="https://donation.nrcs.org/"
                         variant="button"
+                        target="_blank"
                     >
                         Donate
                     </Link>
@@ -84,19 +85,19 @@ export default function Footer(props: Props) {
                     <div className={styles.links}>
                         <Link
                             className={styles.link}
-                            href="/works"
+                            href="/resources/news-and-events/"
                         >
-                            Our Works
+                            News and Events
                         </Link>
                         <Link
                             className={styles.link}
-                            href="/about"
+                            href="/about/who-we-are/"
                         >
                             About Us
                         </Link>
                         <Link
                             className={styles.link}
-                            href="/resources"
+                            href="/resources/reports/"
                         >
                             Resources
                         </Link>

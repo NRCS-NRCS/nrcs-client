@@ -207,9 +207,25 @@ export const GET_BLOG_DETAILS = gql`
     }
 `;
 
-export const GET_RESOURCES = gql`
-    query GetResources {
-        resources {
+export const GET_REPORTS = gql`
+    query GetReports {
+        resources(filters: { type: REPORT }) {
+            id
+            content
+            publishedDate
+            title
+            file {
+                url
+                name
+                size
+            }
+        }
+    }
+`;
+
+export const GET_POLICIES_AND_GUIDELINES = gql`
+    query GetPoliciesAndGuidelines {
+        resources(filters: { type: POLICY_AND_GUIDELINES }) {
             id
             content
             publishedDate
@@ -224,7 +240,7 @@ export const GET_RESOURCES = gql`
 `;
 
 export const GET_RESOURCE_DETAILS = gql`
-    query GetResourceDetails($resourceId: ID!) {
+    query GetResourceDetails ($resourceId: ID!) {
         resource(id: $resourceId) {
             id
             content
@@ -333,7 +349,7 @@ export const HOME_PAGE_DETAILS = gql`
                 url
             }
         }
-        resources {
+        resources(filters: {type: REPORT}) {
             id
             content
             publishedDate
@@ -342,6 +358,21 @@ export const HOME_PAGE_DETAILS = gql`
                 url
                 name
                 size
+            }
+        }
+    }
+`;
+
+export const RADIO_PROGRAMS = gql`
+    query RadioPrograms {
+        radioProgram(order: {publishedDate: ASC}) {
+            id
+            publishedDate
+            title
+            audioFile {
+                name
+                size
+                url
             }
         }
     }
