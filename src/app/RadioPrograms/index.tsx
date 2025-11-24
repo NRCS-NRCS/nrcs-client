@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import {
+    Fragment,
+    useState,
+} from 'react';
 import { isDefined } from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
-import Heading from '#components/Heading';
 import {
     Tab,
     TabList,
@@ -52,21 +54,24 @@ export default function RadioPrograms(props: Props) {
                 name="tuesday-programs"
             >
                 <div className={styles.content}>
-                    <Heading>
-                        Tuesday
-                    </Heading>
+                    {radioPrograms.filter((item) => item.title?.toLowerCase().includes('red cross radio')).map((item) => (
+                        <Fragment key={item.id}>
+                            {isDefined(item.audioFile)
+                            && <AudioPlayer radioProgram={item} showDate={false} />}
+                        </Fragment>
+                    ))}
                 </div>
             </TabPanel>
             <TabPanel
                 className={styles.tabPanel}
                 name="together-for-humanity"
             >
-                <Heading>
-                    Donating person has to apply:
-                </Heading>
-                {isDefined(radioPrograms) && (
-                    <AudioPlayer radioProgram={radioPrograms[0]} />
-                )}
+                {radioPrograms.filter((item) => item.title?.toLowerCase().includes('together for humanity')).map((item) => (
+                    <Fragment key={item.id}>
+                        {isDefined(item.audioFile)
+                         && <AudioPlayer radioProgram={item} showDate={false} />}
+                    </Fragment>
+                ))}
             </TabPanel>
         </Tabs>
     );

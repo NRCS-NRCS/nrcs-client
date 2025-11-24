@@ -43,20 +43,21 @@ const nrcsOfficerContactNumber = '+977 9741695097';
 const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 
 export default async function Home() {
-    const result = await urqlClient.query<
-        HomePageQuery,
-        HomePageQueryVariables
-    >(HOME_PAGE_DETAILS, {}).toPromise();
+    const result = await urqlClient
+        .query<HomePageQuery, HomePageQueryVariables>(HOME_PAGE_DETAILS, {})
+        .toPromise();
 
-    const radioProgramList = await urqlClient.query<
-        RadioProgramsQuery,
-        RadioProgramsQueryVariables
-    >(RADIO_PROGRAMS, {}).toPromise();
+    const radioProgramList = await urqlClient
+        .query<RadioProgramsQuery, RadioProgramsQueryVariables>(
+            RADIO_PROGRAMS,
+            {},
+        )
+        .toPromise();
 
     const radioPrograms = radioProgramList.data?.radioProgram;
 
-    const reports = [...result.data?.resources ?? []].slice(0, 3);
-    const news = [...result.data?.news ?? []].slice(0, 10);
+    const reports = [...(result.data?.resources ?? [])].slice(0, 3);
+    const news = [...(result.data?.news ?? [])].slice(0, 10);
 
     return (
         <Page contentClassName={styles.page}>
@@ -83,9 +84,7 @@ export default async function Home() {
                     />
                 </div>
                 <div className={styles.bottomContent}>
-                    <div className={styles.introText}>
-                        {introText}
-                    </div>
+                    <div className={styles.introText}>{introText}</div>
                     <KeyFigureCard
                         className={styles.keyFigureOne}
                         title="20,000+"
@@ -105,7 +104,9 @@ export default async function Home() {
             {news.length > 0 && (
                 <Section
                     heading="Recent News and Events"
-                    childrenContainerClassName={styles.recentNewsChildrenContainer}
+                    childrenContainerClassName={
+                        styles.recentNewsChildrenContainer
+                    }
                     headingWithBackground
                 >
                     {news.map((item) => (
@@ -128,11 +129,9 @@ export default async function Home() {
                 <CallToAction
                     title={(
                         <p>
-                            Become an
-                            &nbsp;
+                            Become an &nbsp;
                             <b>NRCS Member</b>
-                            &nbsp;
-                            and make an impact
+                            &nbsp; and make an impact
                         </p>
                     )}
                     icon={donateIcon}
@@ -142,11 +141,9 @@ export default async function Home() {
                 <CallToAction
                     title={(
                         <p>
-                            With over
-                            &nbsp;
+                            With over &nbsp;
                             <b>1,000+</b>
-                            &nbsp;
-                            volunteers enrolled
+                            &nbsp; volunteers enrolled
                         </p>
                     )}
                     icon={handsIcon}
@@ -156,8 +153,7 @@ export default async function Home() {
                 <CallToAction
                     title={(
                         <p>
-                            Donations received for
-                            &nbsp;
+                            Donations received for &nbsp;
                             <b>100+ projects</b>
                         </p>
                     )}
@@ -170,8 +166,7 @@ export default async function Home() {
                     title={(
                         <p>
                             <b>More than 100</b>
-                            &nbsp;
-                            organizations reached out
+                            &nbsp; organizations reached out
                         </p>
                     )}
                     icon={callIcon}
@@ -223,9 +218,7 @@ export default async function Home() {
                         alt="NRCS IM Officer"
                     />
                     <div className={styles.description}>
-                        <Heading size="small">
-                            {nrcsOfficerName}
-                        </Heading>
+                        <Heading size="small">{nrcsOfficerName}</Heading>
                         <div className={styles.title}>
                             <span>{nrcsOfficerTitleOne}</span>
                             <span>{nrcsOfficerTitleTwo}</span>
@@ -246,12 +239,8 @@ export default async function Home() {
                     </div>
                 </div>
                 <div className={styles.radioProgram}>
-                    <Heading size="small">
-                        Radio Programs
-                    </Heading>
-                    <RadioPrograms
-                        radioPrograms={radioPrograms ?? []}
-                    />
+                    <Heading size="large">Radio Programs</Heading>
+                    <RadioPrograms radioPrograms={radioPrograms ?? []} />
                 </div>
             </Section>
         </Page>

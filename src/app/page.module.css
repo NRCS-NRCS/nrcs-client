@@ -124,6 +124,9 @@
                     }
                 }
                 .radioProgram {
+                    display: flex;
+                    flex-direction: column;
+                    gap: var(--spacing-medium);
                     flex-grow: 1;
                 }
             }
