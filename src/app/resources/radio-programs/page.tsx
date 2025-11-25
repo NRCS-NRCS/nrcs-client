@@ -36,11 +36,7 @@ export default async function RadioPrograms() {
 
     const radioProgramData: RadioProgramsQuery['radioProgram'] = result?.data?.radioProgram ?? [];
 
-    const radioProgramDescriptions = `
-        Weekly radio programs run by NRCS speak on current events in an interesting and easy-to-understand way. You will hear the latest on the daily risks, good practices, household skills, Red Cross news and experiences from different communities all around Nepal.
-
-        Radio episodes reach thousands of people throughout the country.
-        `;
+    const radioProgramDescriptions = 'Weekly radio programs run by NRCS speak on current events in an interesting and easy-to-understand way. You will hear the latest on the daily risks, good practices, household skills, Red Cross news and experiences from different communities all around Nepal.\n \n Radio episodes reach thousands of people throughout the country.';
 
     return (
         <Page>

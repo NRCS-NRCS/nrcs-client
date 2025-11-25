@@ -62,13 +62,19 @@ export default function AudioPlayer(props: Props) {
         withBackground && styles.withBackground,
     );
 
+    const publishedDate = new Date(radioProgram.publishedDate).toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+    });
+
     return (
         <div className={className}>
             {/* eslint-disable jsx-a11y/media-has-caption */}
             {showDate
             && (
-                <Heading size="extraSmall" font="normal">
-                    {radioProgram.publishedDate}
+                <Heading size="extraSmall" font="normal" className={styles.publishedDate}>
+                    {publishedDate}
                 </Heading>
             )}
             <Heading size="small">{radioProgram.title}</Heading>
