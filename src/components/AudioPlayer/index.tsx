@@ -68,6 +68,9 @@ export default function AudioPlayer(props: Props) {
         year: 'numeric',
     });
 
+    const isExternal = String(radioProgram.audioFile.url)?.startsWith('http');
+    const safeSrc = isExternal ? String(radioProgram.audioFile.url).replace(/^http:\/\/web:8000/, 'http://localhost:8000') : radioProgram.audioFile.url;
+
     return (
         <div className={className}>
             {/* eslint-disable jsx-a11y/media-has-caption */}
@@ -78,7 +81,8 @@ export default function AudioPlayer(props: Props) {
                 </Heading>
             )}
             <Heading size="small">{radioProgram.title}</Heading>
-            <audio ref={audioRef} src={radioProgram.audioFile.url} controls />
+            <audio ref={audioRef} src={safeSrc} controls />
+
         </div>
     );
 }

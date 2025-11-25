@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react';
 import { isDefined } from '@togglecorp/fujs';
 
-import ArticleCard from '#components/ArticleCard';
 import AudioPlayer from '#components/AudioPlayer';
 import Heading from '#components/Heading';
-import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import {
-    type NewsListQuery,
-    type NewsListQueryVariables,
     type RadioProgramsQuery,
     type RadioProgramsQueryVariables,
 } from '#generated/types/graphql';
@@ -18,21 +14,12 @@ import {
 import styles from './page.module.css';
 
 import { urqlClient } from '@/lib/urqlClient';
-import {
-    NEWS_LIST,
-    RADIO_PROGRAMS,
-} from '@/queries';
+import { RADIO_PROGRAMS } from '@/queries';
 
 export default async function RadioPrograms() {
     const result = await urqlClient
         .query<RadioProgramsQuery, RadioProgramsQueryVariables>(RADIO_PROGRAMS, {})
         .toPromise();
-
-    const newsAndEvents = await urqlClient
-        .query<NewsListQuery, NewsListQueryVariables>(NEWS_LIST, {})
-        .toPromise();
-
-    const newsList = newsAndEvents?.data?.news ?? [];
 
     const radioProgramData: RadioProgramsQuery['radioProgram'] = result?.data?.radioProgram ?? [];
 
@@ -55,29 +42,6 @@ export default async function RadioPrograms() {
                             </Fragment>
                         ))}
                     </div>
-                </div>
-                <div className={styles.latestPostsSection}>
-                    <div className={styles.latestPostsHeader}>
-                        <Heading size="medium">
-                            Latest posts
-                        </Heading>
-                        <Link href="/resources/news-and-events" variant="button">
-                            See All
-                        </Link>
-                    </div>
-                    {newsList.map((news) => (
-                        <ArticleCard
-                            key={news.id}
-                            imageSrc={news.coverImage?.url ?? ''}
-                            imageAlt={news.title}
-                            heading={news.title}
-                            author={news.title}
-                            description={news.content}
-                            date={news.publishedDate}
-                            isSmall
-                            link={`/resources/news-and-events/${news.id}`}
-                        />
-                    ))}
                 </div>
             </Section>
         </Page>
