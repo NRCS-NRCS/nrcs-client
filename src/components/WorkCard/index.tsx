@@ -20,6 +20,7 @@ interface Props {
     link: string;
     isExternalLink?: boolean;
     headingSize?: SizeTypes;
+    imageClassName?: string;
 }
 
 export default function Card(props: Props) {
@@ -31,6 +32,7 @@ export default function Card(props: Props) {
         link,
         headingSize = 'extraSmall',
         isExternalLink = false,
+        imageClassName,
     } = props;
 
     const dateStrings = useMemo((): { date: string, month: string, year: string } | undefined => {
@@ -59,7 +61,7 @@ export default function Card(props: Props) {
         >
             {image && (
                 <ImageWrapper
-                    className={styles.imageWrapper}
+                    className={_cs(styles.imageWrapper, imageClassName)}
                     imageClassName={styles.image}
                     src={image}
                     alt={title ?? 'card-image'}

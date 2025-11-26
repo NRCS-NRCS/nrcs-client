@@ -18,12 +18,20 @@
     }
 
     .ourWorks {
+        padding: 0;
         .worksContent {
+            gap: var(--spacing-extra-small);
+            .workSectionHeading{
+                padding: 0;
+            }
             .worksChildren {
                 .workCards {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
                     gap: var(--spacing-mega-large);
+                    .workSectionImage {
+                        height: 10rem;
+                    }
                 }
                 .viewMoreButton {
                     align-self: center;

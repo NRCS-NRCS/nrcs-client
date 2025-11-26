@@ -25,6 +25,9 @@
 
         .accordionContent {
             padding: var(--spacing-large);
+            .accordionProjects{
+                margin-top: var(--spacing-extra-small);
+            }
         }
     }
 

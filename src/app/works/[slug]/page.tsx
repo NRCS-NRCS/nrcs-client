@@ -68,7 +68,7 @@ export default async function WorkDetailPage(
     const directivesFromQuery = result.data?.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
 
-    const news = await urqlClient.query<
+    const departmentWorks = await urqlClient.query<
         NewsForWorkQuery,
         NewsForWorkQueryVariables
     >(NEWS_FOR_WORK, { workId: directive?.id ?? '' }).toPromise();
@@ -81,11 +81,37 @@ export default async function WorkDetailPage(
         { workId: directive?.id ?? '' },
     ).toPromise();
 
-    const departmentsForDirective = result.data?.departments?.filter(
-        (dept) => dept.strategicDirective.id === directive?.id,
-    );
+    const departmentWorksData = departmentWorks.data?.projects;
 
-    const newsForDirective = news.data?.projects;
+    const departmentsForDirective = result.data?.departments
+        ?.filter((dept) => dept.strategicDirective.id === directive?.id)
+        ?.map((dept) => ({
+            ...dept,
+            projects: (departmentWorksData?.length ?? 0) > 0 ? (
+                <Section
+                    heading="Our Works"
+                    className={styles.ourWorks}
+                    contentClassName={styles.worksContent}
+                    childrenContainerClassName={styles.worksChildren}
+                    headingClassName={styles.workSectionHeading}
+                    headingSize="small"
+                >
+                    <div className={styles.workCards}>
+                        { /* FIXME: Need to filter according to department */ }
+                        {departmentWorksData?.map((newsItem) => (
+                            <WorkCard
+                                key={newsItem.id}
+                                title={newsItem.title}
+                                image={newsItem.coverImage?.url}
+                                link={`/projects/${newsItem.id}`}
+                                imageClassName={styles.workSectionImage}
+                            />
+                        ))}
+                    </div>
+                </Section>
+            ) : null,
+        }));
+
     const resourcesForDirective = resources.data?.resources;
 
     if (!directive) return notFound();
@@ -138,31 +164,6 @@ export default async function WorkDetailPage(
                         items={departmentsForDirective}
                         allowMultipleExpansion
                     />
-                </Section>
-            )}
-            {(newsForDirective?.length ?? 0) > 0 && (
-                <Section
-                    heading="Our Works"
-                    className={styles.ourWorks}
-                    contentClassName={styles.worksContent}
-                    childrenContainerClassName={styles.worksChildren}
-                >
-                    <div className={styles.workCards}>
-                        {newsForDirective?.map((newsItem) => (
-                            <WorkCard
-                                title={newsItem.title}
-                                image={newsItem.coverImage?.url}
-                                link={`/projects/${newsItem.id}`}
-                            />
-                        ))}
-                    </div>
-                    <Link
-                        href="/resources/works/"
-                        variant="button"
-                        className={styles.viewMoreButton}
-                    >
-                        View More
-                    </Link>
                 </Section>
             )}
             { /* FIXME: Fix this to include resources */ }
