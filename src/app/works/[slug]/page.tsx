@@ -85,7 +85,7 @@ export default async function WorkDetailPage(
         (dept) => dept.strategicDirective.id === directive?.id,
     );
 
-    const newsForDirective = news.data?.news;
+    const newsForDirective = news.data?.projects;
     const resourcesForDirective = resources.data?.resources;
 
     if (!directive) return notFound();
@@ -151,9 +151,8 @@ export default async function WorkDetailPage(
                         {newsForDirective?.map((newsItem) => (
                             <WorkCard
                                 title={newsItem.title}
-                                date={newsItem.publishedDate ?? ''}
                                 image={newsItem.coverImage?.url}
-                                link={`resources/news-and-events/${newsItem.id}`}
+                                link={`/projects/${newsItem.id}`}
                             />
                         ))}
                     </div>
