@@ -1,6 +1,8 @@
 import React from 'react';
+import { isDefined } from '@togglecorp/fujs';
 import { notFound } from 'next/navigation';
 
+import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
@@ -38,7 +40,11 @@ export default async function Procurements() {
             >
                 National and international tender announcements for NRCS.
                 <div className={styles.procurementCard}>
-                    {procurements?.map((procurement) => (
+                    {(isDefined(procurements) && procurements.length <= 0) ? (
+                        <EmptyMessage
+                            message="No procurements available"
+                        />
+                    ) : procurements?.map((procurement) => (
                         <Card
                             key={procurement.id}
                             title={procurement.title}

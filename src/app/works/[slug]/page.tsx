@@ -12,8 +12,8 @@ import WorkCard from '#components/WorkCard';
 import {
     type GetWorkSlugsQuery,
     type GetWorkSlugsQueryVariables,
-    type NewsForWorkQuery,
-    type NewsForWorkQueryVariables,
+    type ProjectsForWorkQuery,
+    type ProjectsForWorkQueryVariables,
     type ResourcesForWorkQuery,
     type ResourcesForWorkQueryVariables,
     type WorksQuery,
@@ -26,11 +26,13 @@ import styles from './page.module.css';
 // eslint-disable-next-line import/order
 import {
     GET_WORK_SLUGS,
-    NEWS_FOR_WORK,
+    PROJECTS_FOR_WORK,
     RESOURCES_FOR_WORK,
     WORKS,
 } from '@/queries';
 
+type DepartmentType = NonNullable<NonNullable<WorksQuery['departments']>[number]>;
+// eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
     const result = await urqlClient.query<
         GetWorkSlugsQuery,
@@ -69,9 +71,9 @@ export default async function WorkDetailPage(
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
 
     const departmentWorks = await urqlClient.query<
-        NewsForWorkQuery,
-        NewsForWorkQueryVariables
-    >(NEWS_FOR_WORK, { workId: directive?.id ?? '' }).toPromise();
+        ProjectsForWorkQuery,
+        ProjectsForWorkQueryVariables
+    >(PROJECTS_FOR_WORK, { workId: directive?.id ?? '' }).toPromise();
 
     const resources = await urqlClient.query<
         ResourcesForWorkQuery,
@@ -81,35 +83,37 @@ export default async function WorkDetailPage(
         { workId: directive?.id ?? '' },
     ).toPromise();
 
-    const departmentWorksData = departmentWorks.data?.projects;
+    const departmentProjectsData = departmentWorks.data?.projects;
+
+    const projectsForDepartmentRenderer = (dept: DepartmentType) => {
+        if (!departmentProjectsData || !dept) {
+            return undefined;
+        }
+
+        const projects = departmentProjectsData.filter(
+            (item) => item.department?.id === dept.id,
+        );
+
+        return (
+            <div className={styles.projectCards}>
+                {projects.map((projectItem) => (
+                    <WorkCard
+                        key={projectItem.id}
+                        title={projectItem.title}
+                        image={projectItem.coverImage?.url}
+                        link={`/projects/${projectItem.id}`}
+                        imageClassName={styles.projectImage}
+                    />
+                ))}
+            </div>
+        );
+    };
 
     const departmentsForDirective = result.data?.departments
         ?.filter((dept) => dept.strategicDirective.id === directive?.id)
         ?.map((dept) => ({
             ...dept,
-            projects: (departmentWorksData?.length ?? 0) > 0 ? (
-                <Section
-                    heading="Our Works"
-                    className={styles.ourWorks}
-                    contentClassName={styles.worksContent}
-                    childrenContainerClassName={styles.worksChildren}
-                    headingClassName={styles.workSectionHeading}
-                    headingSize="small"
-                >
-                    <div className={styles.workCards}>
-                        { /* FIXME: Need to filter according to department */ }
-                        {departmentWorksData?.map((newsItem) => (
-                            <WorkCard
-                                key={newsItem.id}
-                                title={newsItem.title}
-                                image={newsItem.coverImage?.url}
-                                link={`/projects/${newsItem.id}`}
-                                imageClassName={styles.workSectionImage}
-                            />
-                        ))}
-                    </div>
-                </Section>
-            ) : null,
+            projects: projectsForDepartmentRenderer(dept),
         }));
 
     const resourcesForDirective = resources.data?.resources;

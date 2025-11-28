@@ -1,0 +1,11 @@
+.projectPage {
+    gap: var(--spacing-small);
+
+    .section {
+        .content {
+            .projectChildren {
+                gap: var(--spacing-medium)
+            }
+        }
+    }
+}

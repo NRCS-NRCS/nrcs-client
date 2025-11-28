@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ArticleCard from '#components/ArticleCard';
+import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import {
@@ -20,7 +21,11 @@ export default async function NewsAndEvents() {
     return (
         <Page>
             <Section heading="News and Events" headingWithBackground>
-                {newsList.map((news) => (
+                {newsList.length <= 0 ? (
+                    <EmptyMessage
+                        message="No news or events available"
+                    />
+                ) : newsList.map((news) => (
                     <ArticleCard
                         key={news.id}
                         imageSrc={news.coverImage?.url ?? ''}

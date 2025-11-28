@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { isDefined } from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
+import EmptyMessage from '#components/EmptyMessage';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
@@ -33,12 +34,27 @@ export default async function RadioPrograms() {
                 childrenContainerClassName={styles.pageContent}
             >
                 <div className={styles.radioProgramsSection}>
-                    <Heading size="extraSmall" font="normal" className={styles.radioProgramDescriptions}>{radioProgramDescriptions}</Heading>
+                    <Heading
+                        size="extraSmall"
+                        font="normal"
+                        className={styles.radioProgramDescriptions}
+                    >
+                        {radioProgramDescriptions}
+                    </Heading>
                     <div className={styles.radioProgramsList}>
-                        {radioProgramData.map((item) => (
+                        {radioProgramData.length <= 0 ? (
+                            <EmptyMessage
+                                message="No radio programs available"
+                            />
+                        ) : radioProgramData.map((item) => (
                             <Fragment key={item.id}>
-                                {isDefined(item.audioFile)
-                                 && <AudioPlayer radioProgram={item} showDate withBackground />}
+                                {isDefined(item.audioFile) && (
+                                    <AudioPlayer
+                                        radioProgram={item}
+                                        showDate
+                                        withBackground
+                                    />
+                                )}
                             </Fragment>
                         ))}
                     </div>

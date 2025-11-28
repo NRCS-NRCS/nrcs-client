@@ -10,10 +10,10 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import {
-    type GetResourceDetailsQuery,
-    type GetResourceDetailsQueryVariables,
     type GetReportsQuery,
     type GetReportsQueryVariables,
+    type GetResourceDetailsQuery,
+    type GetResourceDetailsQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 import cardImage from '#public/card.png';
@@ -22,8 +22,8 @@ import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
 import {
-    GET_RESOURCE_DETAILS,
     GET_REPORTS,
+    GET_RESOURCE_DETAILS,
 } from '@/queries';
 
 export async function generateStaticParams() {

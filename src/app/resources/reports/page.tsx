@@ -1,6 +1,8 @@
 import React from 'react';
+import { isDefined } from '@togglecorp/fujs';
 
 import ArticleCard from '#components/ArticleCard';
+import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import {
@@ -29,7 +31,11 @@ export default async function Reports() {
                 heading="Published Reports"
                 headingWithBackground
             >
-                {data?.map((report) => (
+                {(isDefined(data) && data.length <= 0) ? (
+                    <EmptyMessage
+                        message="No reports available"
+                    />
+                ) : data?.map((report) => (
                     <ArticleCard
                         key={report.id}
                         // FIXME: Update this to resource cover image after its

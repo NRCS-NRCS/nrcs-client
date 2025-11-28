@@ -7,6 +7,7 @@ import {
 import { isDefined } from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
+import EmptyMessage from '#components/EmptyMessage';
 import {
     Tab,
     TabList,
@@ -29,6 +30,8 @@ export default function RadioPrograms(props: Props) {
     } = props;
 
     const [value, setValue] = useState<string | undefined>('tuesday-programs');
+    const tuesdayProgramsList = radioPrograms.filter((item) => item.type === 'TUESDAY_PROGRAM').slice(0, 2);
+    const togetherForHumanityList = radioPrograms.filter((item) => item.type === 'TOGETHER_FOR_HUMANITY').slice(0, 2);
     return (
         <Tabs
             value={value}
@@ -54,7 +57,11 @@ export default function RadioPrograms(props: Props) {
                 name="tuesday-programs"
             >
                 <div className={styles.content}>
-                    {radioPrograms.filter((item) => item.title?.toLowerCase().includes('red cross radio')).map((item) => (
+                    {tuesdayProgramsList.length <= 0 ? (
+                        <EmptyMessage
+                            message="No radio programs available"
+                        />
+                    ) : tuesdayProgramsList.map((item) => (
                         <Fragment key={item.id}>
                             {isDefined(item.audioFile)
                             && <AudioPlayer radioProgram={item} showDate={false} />}
@@ -66,7 +73,11 @@ export default function RadioPrograms(props: Props) {
                 className={styles.tabPanel}
                 name="together-for-humanity"
             >
-                {radioPrograms.filter((item) => item.title?.toLowerCase().includes('together for humanity')).map((item) => (
+                {togetherForHumanityList.length <= 0 ? (
+                    <EmptyMessage
+                        message="No radio programs available"
+                    />
+                ) : togetherForHumanityList.map((item) => (
                     <Fragment key={item.id}>
                         {isDefined(item.audioFile)
                          && <AudioPlayer radioProgram={item} showDate={false} />}

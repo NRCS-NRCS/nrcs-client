@@ -80,8 +80,14 @@ export default function AudioPlayer(props: Props) {
                     {publishedDate}
                 </Heading>
             )}
-            <Heading size="small">{radioProgram.title}</Heading>
-            <audio ref={audioRef} src={safeSrc} controls />
+            <Heading size="small">
+                {radioProgram.title}
+            </Heading>
+            <audio
+                ref={audioRef}
+                src={safeSrc}
+                controls
+            />
 
         </div>
     );

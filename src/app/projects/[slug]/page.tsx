@@ -4,7 +4,6 @@ import {
 } from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
-import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
@@ -82,7 +81,7 @@ export default async function ProjectsDetailsPage({ params }: PageProps) {
     }
 
     return (
-        <Page contentClassName={styles.resourcesPage}>
+        <Page contentClassName={styles.projectPage}>
             <Section>
                 {isDefined(projectDetails.coverImage) && (
                     <ResourcesBanner
@@ -95,13 +94,8 @@ export default async function ProjectsDetailsPage({ params }: PageProps) {
             <Section
                 className={styles.section}
                 contentClassName={styles.content}
-                childrenContainerClassName={styles.resourcesChildren}
+                childrenContainerClassName={styles.projectChildren}
             >
-                <AuthorSection
-                    author={projectDetails.title}
-                    date={projectDetails.startDate}
-                    articleLength={projectDetails.description.length}
-                />
                 <ArticleBody
                     content={projectDetails.description}
                 />
