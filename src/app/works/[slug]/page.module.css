@@ -17,16 +17,21 @@
         }
     }
 
-    .ourWorks {
-        .worksContent {
-            .worksChildren {
-                .workCards {
+    .departments {
+        .departmentsContent {
+            .departmentsChildren{
+                display: grid !important;
+                grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+                gap: var(--spacing-extra-large);
+
+                .projectCards {
                     display: grid;
                     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
                     gap: var(--spacing-mega-large);
-                }
-                .viewMoreButton {
-                    align-self: center;
+
+                    .projectImage{
+                        height: 10rem;
+                    }
                 }
             }
         }

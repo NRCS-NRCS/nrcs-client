@@ -1,15 +1,17 @@
-import { isNotDefined } from '@togglecorp/fujs';
+import {
+    isDefined,
+    isNotDefined,
+} from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
-import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import {
-    type GetWorkDetailsQuery,
-    type GetWorkDetailsQueryVariables,
-    type GetWorksQuery,
-    type GetWorksQueryVariables,
+    type GetProjectDetailsQuery,
+    type GetProjectDetailsQueryVariables,
+    type GetProjectsQuery,
+    type GetProjectsQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 
@@ -17,24 +19,25 @@ import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
 import {
-    GET_WORK_DETAILS,
-    GET_WORKS,
+    GET_PROJECT_DETAILS,
+    GET_PROJECTS,
 } from '@/queries';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
     const result = await urqlClient.query<
-        GetWorksQuery,
-        GetWorksQueryVariables
+        GetProjectsQuery,
+        GetProjectsQueryVariables
     >(
-        GET_WORKS,
+        GET_PROJECTS,
         {},
     ).toPromise();
 
-    const data = result?.data?.works;
+    const data = result?.data?.projects;
+
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
-        console.warn('No works found in GraphQL response');
+        console.warn('No news found in GraphQL response');
         return [{ slug: 'dummy' }];
     }
 
@@ -49,27 +52,27 @@ type PageProps = {
     }>;
 };
 
-export default async function WorkDetailsPage({ params }: PageProps) {
+export default async function ProjectsDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
 
     const result = await urqlClient.query<
-        GetWorkDetailsQuery,
-        GetWorkDetailsQueryVariables
+        GetProjectDetailsQuery,
+        GetProjectDetailsQueryVariables
     >(
-        GET_WORK_DETAILS,
-        { workId: slug },
+        GET_PROJECT_DETAILS,
+        { projectId: slug },
     ).toPromise();
 
-    if (!result.data?.work) {
+    if (!result.data?.project) {
         // eslint-disable-next-line no-console
-        console.warn('No work found in GraphQL response');
+        console.warn('No project found in GraphQL response');
     }
 
-    const workDetails = result?.data?.work;
+    const projectDetails = result?.data?.project;
 
-    if (isNotDefined(workDetails)) {
+    if (isNotDefined(projectDetails)) {
         return (
             <Page>
                 Nothing to show
@@ -78,26 +81,23 @@ export default async function WorkDetailsPage({ params }: PageProps) {
     }
 
     return (
-        <Page contentClassName={styles.resourcesPage}>
+        <Page contentClassName={styles.projectPage}>
             <Section>
-                <ResourcesBanner
-                    imageSrc={workDetails.coverImage.url}
-                    imageAlt={workDetails.title}
-                    heading={workDetails.title}
-                />
+                {isDefined(projectDetails.coverImage) && (
+                    <ResourcesBanner
+                        imageSrc={projectDetails.coverImage?.url}
+                        imageAlt={projectDetails.coverImage?.name}
+                        heading={projectDetails.title}
+                    />
+                )}
             </Section>
             <Section
                 className={styles.section}
                 contentClassName={styles.content}
-                childrenContainerClassName={styles.resourcesChildren}
+                childrenContainerClassName={styles.projectChildren}
             >
-                <AuthorSection
-                    author={workDetails.title}
-                    date={workDetails.startDate}
-                    articleLength={workDetails.description.length}
-                />
                 <ArticleBody
-                    content={workDetails?.description}
+                    content={projectDetails.description}
                 />
             </Section>
         </Page>

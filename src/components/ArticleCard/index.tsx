@@ -21,11 +21,13 @@ interface Props {
     description: string;
     author: string;
     date?: string | null;
+    isSmall?: boolean;
 }
 
 export default function ArticleCard(props: Props) {
     const {
         className,
+        isSmall,
         isHorizontal,
         imageSrc,
         imageAlt,
@@ -46,7 +48,7 @@ export default function ArticleCard(props: Props) {
             <div className={styles.articleCardDescription}>
                 <Heading
                     className={styles.heading}
-                    size="small"
+                    size={isSmall ? 'extraSmall' : 'small'}
                 >
                     {heading}
                 </Heading>
@@ -56,9 +58,12 @@ export default function ArticleCard(props: Props) {
                     date={date}
                     articleLength={description.length}
                 />
-                <p className={styles.description}>
-                    {stripMarkdown(description)}
-                </p>
+                {!isSmall && (
+                    <p className={styles.description}>
+                        {stripMarkdown(description)}
+                    </p>
+                )}
+
             </div>
         </>
     );
@@ -70,6 +75,7 @@ export default function ArticleCard(props: Props) {
                 variant="div"
                 className={_cs(
                     className,
+                    isSmall && styles.latestArticle,
                     isHorizontal && styles.workArticleContent,
                     styles.otherArticleContent,
                 )}
@@ -83,6 +89,7 @@ export default function ArticleCard(props: Props) {
         <div
             className={_cs(
                 className,
+                isSmall && styles.latestArticle,
                 isHorizontal && styles.workArticleContent,
                 styles.otherArticleContent,
             )}

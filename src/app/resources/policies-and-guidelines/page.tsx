@@ -6,20 +6,20 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import {
-    type GetReportsQuery,
-    type GetReportsQueryVariables,
+    type GetPoliciesAndGuidelinesQuery,
+    type GetPoliciesAndGuidelinesQueryVariables,
 } from '#generated/types/graphql';
 import cardImage from '#public/card.png';
 
 import { urqlClient } from '@/lib/urqlClient';
-import { GET_REPORTS } from '@/queries';
+import { GET_POLICIES_AND_GUIDELINES } from '@/queries';
 
-export default async function Reports() {
+export default async function PoliciesandGuidelines() {
     const result = await urqlClient.query<
-        GetReportsQuery,
-        GetReportsQueryVariables
+        GetPoliciesAndGuidelinesQuery,
+        GetPoliciesAndGuidelinesQueryVariables
     >(
-        GET_REPORTS,
+        GET_POLICIES_AND_GUIDELINES,
         {},
     ).toPromise();
 
@@ -28,25 +28,25 @@ export default async function Reports() {
     return (
         <Page>
             <Section
-                heading="Published Reports"
+                heading="Policies and Guidelines"
                 headingWithBackground
             >
                 {(isDefined(data) && data.length <= 0) ? (
                     <EmptyMessage
-                        message="No reports available"
+                        message="No resources found"
                     />
-                ) : data?.map((report) => (
+                ) : data?.map((policy) => (
                     <ArticleCard
-                        key={report.id}
+                        key={policy.id}
                         // FIXME: Update this to resource cover image after its
                         // implemented in server
                         imageSrc={cardImage}
-                        imageAlt={report.title}
-                        heading={report.title}
-                        author={report.title}
-                        description={report.content}
-                        date={report.publishedDate}
-                        link={`/resources/reports/${report.id}`}
+                        imageAlt={policy.title}
+                        heading={policy.title}
+                        author={policy.title}
+                        description={policy.content}
+                        date={policy.publishedDate}
+                        link={`/resources/policies-and-guidelines/${policy.id}`}
                     />
                 ))}
             </Section>

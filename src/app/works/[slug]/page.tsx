@@ -10,14 +10,14 @@ import Page from '#components/Page';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
 import {
-    type GetStrategicDirectivesSlugsQuery,
-    type GetStrategicDirectivesSlugsQueryVariables,
-    type ResourcesForStrategicDirectiveQuery,
-    type ResourcesForStrategicDirectiveQueryVariables,
-    type StrategicDirectivesQuery,
-    type StrategicDirectivesQueryVariables,
-    type WorksForStrategicDirectiveQuery,
-    type WorksForStrategicDirectiveQueryVariables,
+    type GetWorkSlugsQuery,
+    type GetWorkSlugsQueryVariables,
+    type ProjectsForWorkQuery,
+    type ProjectsForWorkQueryVariables,
+    type ResourcesForWorkQuery,
+    type ResourcesForWorkQueryVariables,
+    type WorksQuery,
+    type WorksQueryVariables,
 } from '#generated/types/graphql';
 import { urqlClient } from '#lib/urqlClient';
 
@@ -25,25 +25,27 @@ import styles from './page.module.css';
 
 // eslint-disable-next-line import/order
 import {
-    GET_STRATEGIC_DIRECTIVES_SLUGS,
-    RESOURCES_FOR_STRATEGIC_DIRECTIVE,
-    STRATEGIC_DIRECTIVES,
-    WORKS_FOR_STRATEGIC_DIRECTIVE,
+    GET_WORK_SLUGS,
+    PROJECTS_FOR_WORK,
+    RESOURCES_FOR_WORK,
+    WORKS,
 } from '@/queries';
 
+type DepartmentType = NonNullable<NonNullable<WorksQuery['departments']>[number]>;
+// eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
     const result = await urqlClient.query<
-        GetStrategicDirectivesSlugsQuery,
-        GetStrategicDirectivesSlugsQueryVariables
+        GetWorkSlugsQuery,
+        GetWorkSlugsQueryVariables
     >(
-        GET_STRATEGIC_DIRECTIVES_SLUGS,
+        GET_WORK_SLUGS,
         {},
     ).toPromise();
     const data = result?.data?.strategicDirectives;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No works found in GraphQL response');
         return [{ slug: 'dummy' }];
     }
 
@@ -52,40 +54,68 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function DirectiveDetailPage(
+export default async function WorkDetailPage(
     { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
     const result = await urqlClient.query<
-        StrategicDirectivesQuery,
-        StrategicDirectivesQueryVariables
-    >(STRATEGIC_DIRECTIVES, {}).toPromise();
+        WorksQuery,
+        WorksQueryVariables
+    >(WORKS, {}).toPromise();
     if (!result.data?.strategicDirectives) {
         // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No works found in GraphQL response');
         return notFound();
     }
     const directivesFromQuery = result.data?.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
 
-    const works = await urqlClient.query<
-        WorksForStrategicDirectiveQuery,
-        WorksForStrategicDirectiveQueryVariables
-    >(WORKS_FOR_STRATEGIC_DIRECTIVE, { strategicDirectiveId: directive?.id ?? '' }).toPromise();
+    const departmentWorks = await urqlClient.query<
+        ProjectsForWorkQuery,
+        ProjectsForWorkQueryVariables
+    >(PROJECTS_FOR_WORK, { workId: directive?.id ?? '' }).toPromise();
 
     const resources = await urqlClient.query<
-        ResourcesForStrategicDirectiveQuery,
-        ResourcesForStrategicDirectiveQueryVariables
+        ResourcesForWorkQuery,
+        ResourcesForWorkQueryVariables
     >(
-        RESOURCES_FOR_STRATEGIC_DIRECTIVE,
-        { strategicDirectiveId: directive?.id ?? '' },
+        RESOURCES_FOR_WORK,
+        { workId: directive?.id ?? '' },
     ).toPromise();
 
-    const departmentsForDirective = result.data?.departments?.filter(
-        (dept) => dept.strategicDirective.id === directive?.id,
-    );
+    const departmentProjectsData = departmentWorks.data?.projects;
 
-    const worksForDirective = works.data?.works;
+    const projectsForDepartmentRenderer = (dept: DepartmentType) => {
+        if (!departmentProjectsData || !dept) {
+            return undefined;
+        }
+
+        const projects = departmentProjectsData.filter(
+            (item) => item.department?.id === dept.id,
+        );
+
+        return (
+            <div className={styles.projectCards}>
+                {projects.map((projectItem) => (
+                    <WorkCard
+                        key={projectItem.id}
+                        title={projectItem.title}
+                        image={projectItem.coverImage?.url}
+                        link={`/projects/${projectItem.id}`}
+                        imageClassName={styles.projectImage}
+                    />
+                ))}
+            </div>
+        );
+    };
+
+    const departmentsForDirective = result.data?.departments
+        ?.filter((dept) => dept.strategicDirective.id === directive?.id)
+        ?.map((dept) => ({
+            ...dept,
+            projects: projectsForDepartmentRenderer(dept),
+        }));
+
     const resourcesForDirective = resources.data?.resources;
 
     if (!directive) return notFound();
@@ -138,32 +168,6 @@ export default async function DirectiveDetailPage(
                         items={departmentsForDirective}
                         allowMultipleExpansion
                     />
-                </Section>
-            )}
-            {(worksForDirective?.length ?? 0) > 0 && (
-                <Section
-                    heading="Our Works"
-                    className={styles.ourWorks}
-                    contentClassName={styles.worksContent}
-                    childrenContainerClassName={styles.worksChildren}
-                >
-                    <div className={styles.workCards}>
-                        {worksForDirective?.map((work) => (
-                            <WorkCard
-                                title={work.title}
-                                date={work.startDate ?? ''}
-                                image={work.coverImage?.url}
-                                link={`resources/works/${work.id}`}
-                            />
-                        ))}
-                    </div>
-                    <Link
-                        href="/resources/works/"
-                        variant="button"
-                        className={styles.viewMoreButton}
-                    >
-                        View More
-                    </Link>
                 </Section>
             )}
             { /* FIXME: Fix this to include resources */ }

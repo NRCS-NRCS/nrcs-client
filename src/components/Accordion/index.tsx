@@ -13,6 +13,7 @@ interface AccordionItem {
     id: string;
     title: React.ReactNode;
     description: React.ReactNode;
+    projects?: React.ReactNode;
 }
 interface Props {
     items: AccordionItem[];
@@ -68,6 +69,11 @@ function Accordion(props: Props) {
                                 className={styles.accordionContent}
                             >
                                 {item.description}
+                                {item.projects && (
+                                    <div className={styles.accordionProjects}>
+                                        {item.projects}
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

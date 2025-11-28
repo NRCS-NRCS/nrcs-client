@@ -1,54 +1,66 @@
 .otherArticleContent {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: var(--spacing-small);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-small);
+
+  .articleCardImage {
+    grid-column: span 6;
+    height: 16rem;
+  }
+
+  .articleCardDescription {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: var(--spacing-super-small);
+    overflow: auto;
+
+    .description {
+      color: var(--color-text-neutral);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &.workArticleContent {
+    grid-template-columns: 1fr;
 
     .articleCardImage {
-        grid-column: span 6;
-        height: 16rem;
+      height: 16rem;
+      grid-column: 1 / -1;
     }
 
     .articleCardDescription {
-        grid-column: span 6;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: var(--spacing-super-small);
-        overflow: auto;
+      grid-column: 1 / -1;
+      gap: var(--spacing-small);
+    }
+  }
 
-        .description {
-            color: var(--color-text-neutral);
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+  &.latestArticle {
+    .articleCardImage {
+      height: 10rem;
+      grid-column: span 6;
+    }
+    .articleCardDescription {
+      .description {
+        font-size: var(--font-size-small); ;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    .articleCardImage {
+      height: 16rem;
+      grid-column: 1 / -1;
     }
 
-    &.workArticleContent {
-        grid-template-columns: 1fr;
-
-        .articleCardImage {
-            height: 16rem;
-            grid-column: 1 / -1;
-        }
-
-        .articleCardDescription {
-            grid-column: 1 / -1;
-            gap: var(--spacing-small);
-        }
+    .articleCardDescription {
+      grid-column: 1 / -1;
+      gap: var(--spacing-small);
     }
-
-    @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-
-        .articleCardImage {
-            height: 16rem;
-            grid-column: 1 / -1;
-        }
-
-        .articleCardDescription {
-            grid-column: 1 / -1;
-            gap: var(--spacing-small);
-        }
-    }
+  }
 }

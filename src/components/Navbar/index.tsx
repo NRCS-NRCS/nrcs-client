@@ -71,10 +71,6 @@ const links = [
                 label: 'Financial Donations',
                 link: '/financial-donations/',
             },
-            {
-                label: 'Policies and Guidelines',
-                link: '/policies-guidelines/',
-            },
         ],
     },
     {
@@ -87,16 +83,20 @@ const links = [
                 link: '/news-and-events/',
             },
             {
-                label: 'Our Works',
-                link: '/works/',
-            },
-            {
                 label: 'Blogs',
                 link: '/blogs/',
             },
             {
                 label: 'Reports and Publications',
                 link: '/reports/',
+            },
+            {
+                label: 'Policies and Guidelines',
+                link: '/policies-and-guidelines/',
+            },
+            {
+                label: 'Radio Programs',
+                link: '/radio-programs/',
             },
         ],
     },
@@ -114,27 +114,27 @@ const links = [
 
 interface Props {
     className?: string;
-    strategicDirectives: {label: string; link: string;}[];
+    works: {label: string; link: string;}[];
 }
 
 export default function Navbar(props: Props) {
     const {
         className,
-        strategicDirectives,
+        works,
     } = props;
 
     const finalPaths = useMemo(() => {
         const newVal = [
             ...links,
             {
-                label: 'Strategic Directives',
-                link: '/strategic-directives',
+                label: 'Our Works',
+                link: '/works',
                 order: 2,
-                children: strategicDirectives,
+                children: works,
             },
         ];
         return newVal.sort((a, b) => a.order - b.order);
-    }, [strategicDirectives]);
+    }, [works]);
 
     const pathname = usePathname();
 
@@ -178,7 +178,8 @@ export default function Navbar(props: Props) {
                         <Link
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
                             variant="button"
-                            href="/donate/"
+                            href="https://donation.nrcs.org/"
+                            target="_blank"
                         >
                             Donate
                         </Link>

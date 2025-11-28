@@ -9,6 +9,7 @@ import { type StaticImageData } from 'next/image';
 import Heading, { type SizeTypes } from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
+import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
@@ -49,12 +50,19 @@ export default function RecentNewsCard(props: Props) {
         };
     }, [fullDate]);
 
+    const strippedDescription = useMemo(() => (
+        stripMarkdown(description ?? '')
+    ), [description]);
+
     const trimmedDescription = useMemo(() => {
-        if ((description?.length ?? 0) > trimDescription) {
-            return `${description?.substring(0, trimDescription)}...`;
+        if ((strippedDescription?.length ?? 0) > trimDescription) {
+            return `${strippedDescription?.substring(0, trimDescription)}...`;
         }
-        return description;
-    }, [description, trimDescription]);
+        return strippedDescription;
+    }, [
+        strippedDescription,
+        trimDescription,
+    ]);
 
     return (
         <div

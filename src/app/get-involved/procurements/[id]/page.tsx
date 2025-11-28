@@ -22,6 +22,7 @@ import {
     PROCUREMENTS,
 } from '@/queries';
 
+// eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
     const result = await urqlClient.query<
         ProcurementsQuery,

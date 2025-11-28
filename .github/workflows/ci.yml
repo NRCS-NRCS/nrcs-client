@@ -8,7 +8,7 @@ on:
 
 env:
   NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: './backend/schema.graphql'
-  NEXT_PUBLIC_GRAPHQL_ENDPOINT: 'http://web:8000/graphql/'
+  NEXT_PUBLIC_GRAPHQL_DOMAIN: 'http://web:8000/graphql/'
   GITHUB_WORKFLOW: true
 
 jobs:

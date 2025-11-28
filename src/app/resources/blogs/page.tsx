@@ -1,6 +1,8 @@
 import React from 'react';
+import { isDefined } from '@togglecorp/fujs';
 
 import ArticleCard from '#components/ArticleCard';
+import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import {
@@ -28,7 +30,11 @@ export default async function Blogs() {
                 heading="Blogs"
                 headingWithBackground
             >
-                {data?.map((blog) => (
+                {(isDefined(data) && data.length <= 0) ? (
+                    <EmptyMessage
+                        message="No blogs available"
+                    />
+                ) : data?.map((blog) => (
                     <ArticleCard
                         key={blog.id}
                         imageSrc={blog.coverImage?.url ?? ''}
