@@ -128,12 +128,28 @@ export default async function Contact() {
                         >
                             +977-1-537 0650
                         </Link>
+                    </div>
+                    <div className={styles.contactItem}>
+                        <Heading
+                            size="small"
+                        >
+                            Fax
+                        </Heading>
+
                         <Link
-                            href="tel:+977-1-537 2761"
+                            href="fax:+977-4271915"
+                            className={styles.link}
+
+                        >
+                            +977-4271915
+                        </Link>
+                        <Link
+                            href="fax:+977-4273285"
                             className={styles.link}
                         >
-                            +977-1-537 2761
+                            +977-4273285
                         </Link>
+
                     </div>
                     <div className={styles.contactItem}>
                         <Heading

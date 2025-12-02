@@ -222,6 +222,11 @@ export const GET_REPORTS = gql`
                 name
                 size
             }
+            coverImage {
+                url
+                name
+                size
+            }
         }
     }
 `;
@@ -250,6 +255,11 @@ export const GET_RESOURCE_DETAILS = gql`
             publishedDate
             title
             file {
+                url
+                name
+                size
+            }
+            coverImage {
                 url
                 name
                 size

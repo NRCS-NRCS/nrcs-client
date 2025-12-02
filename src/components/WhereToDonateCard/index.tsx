@@ -6,6 +6,7 @@ import Link from '#components//Link';
 import styles from './styles.module.css';
 
 type WhereToDonateAddress = {
+    id:string
     title: string;
     time: string;
     organizer: string;
@@ -21,10 +22,13 @@ export default function WhereToDonateCard({ whereToDonateItems }: Props) {
         <div className={styles.whereToDonateDescription}>
             {whereToDonateItems?.map((item, index) => {
                 const {
-                    title, time, organizer, location,
+                    title,
+                    time,
+                    organizer,
+                    location,
                 } = item;
                 return (
-                    <div key={`${title}-${time}`} className={styles.whereToDonateItems}>
+                    <div key={item.id} className={styles.whereToDonateItems}>
                         <Heading
                             font="normal"
                             size="extraSmall"
@@ -37,6 +41,7 @@ export default function WhereToDonateCard({ whereToDonateItems }: Props) {
                         <ul>
                             <li>
                                 Time:
+                                {' '}
                                 {time}
                             </li>
                             <li>

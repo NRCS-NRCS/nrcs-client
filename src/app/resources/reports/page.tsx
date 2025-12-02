@@ -33,14 +33,12 @@ export default async function Reports() {
             >
                 {(isDefined(data) && data.length <= 0) ? (
                     <EmptyMessage
-                        message="No reports available"
+                        message="No published reports available"
                     />
                 ) : data?.map((report) => (
                     <ArticleCard
                         key={report.id}
-                        // FIXME: Update this to resource cover image after its
-                        // implemented in server
-                        imageSrc={cardImage}
+                        imageSrc={report.coverImage?.url ?? cardImage}
                         imageAlt={report.title}
                         heading={report.title}
                         author={report.title}

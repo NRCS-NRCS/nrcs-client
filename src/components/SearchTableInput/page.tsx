@@ -18,7 +18,7 @@ export interface Props<T> {
     title: string;
     data: T[];
     columns: ColumnDef<T>[];
-    keySelector: (item: T, index: number, data: T[]) => string;
+    keySelectorName: keyof T;
     searchField?: keyof T;
 }
 
@@ -27,11 +27,14 @@ export default function SearchableTable<T>(props: Props<T>) {
         title,
         data,
         columns,
-        keySelector,
+        keySelectorName,
         searchField,
     } = props;
 
     const [search, setSearch] = useState('');
+
+    const keySelector: (item: T, index: number, data: T[]) =>
+        string = (item) => String(item[keySelectorName]);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value ?? '');

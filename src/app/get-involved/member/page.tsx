@@ -3,6 +3,7 @@ import { IoDownload } from 'react-icons/io5';
 
 import ArticleBody from '#components/ArticleBody';
 import Heading from '#components/Heading';
+import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
 
@@ -67,18 +68,30 @@ export default function Volunteer() {
                 childrenContainerClassName={styles.memberChildren}
             >
                 <ArticleBody content={memberText} />
-                <a
-                    className={styles.downloadButton}
-                    href="/life-member-application-nepali.pdf"
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    // TODO: Make this button download the membership form
-                >
-                    Fill out the form
-                    &nbsp;
-                    <IoDownload />
-                </a>
+                <div className={styles.downloadButtonsWrapper}>
+                    <Link
+                        className={styles.downloadButton}
+                        href="/life-member-application-nepali.pdf"
+                        target="_blank"
+                        download
+                        rel="noopener noreferrer"
+                    >
+                        Fill out the form in Nepali
+                        &nbsp;
+                        <IoDownload />
+                    </Link>
+                    <Link
+                        className={styles.downloadButton}
+                        href="/life-member-application-english.pdf"
+                        target="_blank"
+                        download
+                        rel="noopener noreferrer"
+                    >
+                        Fill out the form in English
+                        &nbsp;
+                        <IoDownload />
+                    </Link>
+                </div>
             </Section>
             <Section
                 className={styles.membershipTypes}

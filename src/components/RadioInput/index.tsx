@@ -38,7 +38,7 @@ export default function RadioInput(props: Props) {
                             id={option}
                             type="radio"
                             name={name}
-                            value={value}
+                            value={option}
                             checked={option === value}
                             onChange={onChange}
                         />

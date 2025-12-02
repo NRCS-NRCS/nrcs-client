@@ -1,54 +1,58 @@
 .page {
-    gap: var(--spacing-super-large);
-
-    .member {
-        .memberContent {
-            .memberChildren {
-                gap: var(--spacing-medium);
-            }
-        }
+  gap: var(--spacing-super-large);
+  .member {
+    .memberContent {
+      .memberChildren {
+        gap: var(--spacing-medium);
+      }
     }
+  }
+  .downloadButtonsWrapper {
+    display: flex;
+    gap: var(--spacing-large);
     .downloadButton {
-        align-self: flex-start;
-        outline: none;
-        border: 0;
-        transition: 0.2s all ease-in-out;
-        border-radius: var(--border-radius-extra-small);
-        background-color: var(--color-primary);
-        padding: var(--spacing-small) var(--spacing-extra-large);
-        color: var(--color-text-on-primary);
-        text-transform: uppercase;
-        font-size: var(--font-size-medium);
+      align-self: flex-start;
+      outline: none;
+      border: 0;
+      transition: 0.2s all ease-in-out;
+      border-radius: var(--border-radius-extra-small);
+      background-color: var(--color-primary);
+      padding: var(--spacing-small) var(--spacing-extra-large);
+      color: var(--color-text-on-primary);
+      font-size: var(--font-size-medium);
+      text-transform: unset;
 
-        &:hover {
-            background-color: var(--color-primary-dark);
-        }
+      &:hover {
+        background-color: var(--color-primary-dark);
+      }
     }
-    .membershipTypes {
-        .membershipTypesContent {
-            .membershipTypesChildren {
-                padding: 0 var(--spacing-extra-large);
-                gap: var(--spacing-small);
-                .item {
-                    display: grid;
-                    grid-template-columns: 20% 70%;
-                    padding: var(--spacing-large);
-                    gap: var(--spacing-mega-large);
+  }
+  .membershipTypes {
+    .membershipTypesContent {
+      .membershipTypesChildren {
+        padding: 0 var(--spacing-extra-large);
+        gap: var(--spacing-small);
+        .item {
+          display: grid;
+          grid-template-columns: 20% 70%;
+          padding: var(--spacing-large);
+          gap: var(--spacing-mega-large);
 
-                    &:not(:last-child){
-                        border-bottom: var(--width-separator-thin) solid var(--color-separator);
-                    }
+          &:not(:last-child) {
+            border-bottom: var(--width-separator-thin) solid
+              var(--color-separator);
+          }
 
-                    .title {
-                        flex-basis: 25%;
-                    }
-                    .description {
-                        display: flex;
-                        flex-direction: column;
-                        gap: var(--spacing-medium);
-                    }
-                }
-            }
+          .title {
+            flex-basis: 25%;
+          }
+          .description {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-medium);
+          }
         }
+      }
     }
+  }
 }
