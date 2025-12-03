@@ -43,6 +43,9 @@
                             display: flex;
                             gap: var(--spacing-small);
                         }
+                        .link{
+                            text-transform: unset;
+                        }
                     }
                 }
             }

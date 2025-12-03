@@ -84,8 +84,7 @@ export default async function reportDetailsPage({ params }: PageProps) {
         <Page contentClassName={styles.resourcesPage}>
             <Section>
                 <ResourcesBanner
-                    // FIXME: Update this after its implemented in server
-                    imageSrc={cardImage}
+                    imageSrc={resourceDetails?.coverImage?.url ?? cardImage}
                     imageAlt={resourceDetails.title}
                     heading={resourceDetails.title}
                 />

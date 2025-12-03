@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import Page from '#components/Page';
@@ -22,8 +20,6 @@ interface ChapterRow {
     phone?: string;
     email?: string;
 }
-
-const keySelector = (item: ChapterRow) => item.sN;
 
 function mapData(data: Record<string, string>[]): ChapterRow[] {
     return data.map((item) => ({
@@ -67,7 +63,7 @@ export default function OurPresence() {
                     title="Province Chapters"
                     data={provinceChapters}
                     columns={chapterColumns}
-                    keySelector={keySelector}
+                    keySelectorName="sN"
                     searchField="province"
                 />
             </Section>
@@ -78,7 +74,7 @@ export default function OurPresence() {
                     title="District Chapters"
                     data={districtChapters}
                     columns={chapterColumns}
-                    keySelector={keySelector}
+                    keySelectorName="sN"
                     searchField="district"
                 />
             </Section>
@@ -89,7 +85,7 @@ export default function OurPresence() {
                     title="Eye Hospital"
                     data={eyeHospital}
                     columns={chapterColumns}
-                    keySelector={keySelector}
+                    keySelectorName="sN"
                 />
             </Section>
         </Page>

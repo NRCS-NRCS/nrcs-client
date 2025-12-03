@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { isDefined } from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
@@ -47,15 +47,14 @@ export default async function RadioPrograms() {
                                 message="No radio programs available"
                             />
                         ) : radioProgramData.map((item) => (
-                            <Fragment key={item.id}>
-                                {isDefined(item.audioFile) && (
-                                    <AudioPlayer
-                                        radioProgram={item}
-                                        showDate
-                                        withBackground
-                                    />
-                                )}
-                            </Fragment>
+                            isDefined(item.audioFile) && (
+                                <AudioPlayer
+                                    radioProgram={item}
+                                    showDate
+                                    withBackground
+                                />
+                            )
+
                         ))}
                     </div>
                 </div>

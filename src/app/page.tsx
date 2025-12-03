@@ -198,11 +198,13 @@ export default async function Home() {
                 >
                     {reports.map((item) => (
                         <WorkCard
+                            key={item.id}
                             title={item.title}
                             date={item.publishedDate}
                             image={item.coverImage?.url}
                             link={`/resources/reports/${item.id}/`}
                         />
+
                     ))}
                 </Section>
             )}

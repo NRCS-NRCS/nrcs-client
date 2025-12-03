@@ -5,8 +5,4 @@
     flex-grow: 1;
     min-height: 18rem;
 
-    .content {
-        display: flex;
-        flex-direction: column;
-    }
 }

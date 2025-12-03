@@ -30,6 +30,7 @@ interface Props extends Omit<NextLinkProps, 'locale'> {
     title?: React.ReactNode;
     showIcon?: boolean;
     active?: boolean;
+    download?: boolean;
 }
 
 // NOTE: this does not support relative links

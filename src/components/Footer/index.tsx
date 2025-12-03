@@ -125,6 +125,7 @@ export default function Footer(props: Props) {
                             >
                                 +977-1-5370650
                             </Link>
+                            ,
                             <Link
                                 className={styles.link}
                                 href="tel:+977-1-537 2761"

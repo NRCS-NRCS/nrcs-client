@@ -1,9 +1,6 @@
 'use client';
 
-import {
-    Fragment,
-    useState,
-} from 'react';
+import { useState } from 'react';
 import { isDefined } from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
@@ -51,23 +48,19 @@ export default function RadioPrograms(props: Props) {
                     Together For Humanity
                 </Tab>
             </TabList>
-
             <TabPanel
                 className={styles.tabPanel}
                 name="tuesday-programs"
             >
-                <div className={styles.content}>
-                    {tuesdayProgramsList.length <= 0 ? (
-                        <EmptyMessage
-                            message="No radio programs available"
-                        />
-                    ) : tuesdayProgramsList.map((item) => (
-                        <Fragment key={item.id}>
-                            {isDefined(item.audioFile)
-                            && <AudioPlayer radioProgram={item} showDate={false} />}
-                        </Fragment>
-                    ))}
-                </div>
+                {tuesdayProgramsList.length <= 0 ? (
+                    <EmptyMessage
+                        message="No radio programs available"
+                    />
+                ) : tuesdayProgramsList.map((item) => (
+                    isDefined(item.audioFile)
+                            && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
+                ))}
+
             </TabPanel>
             <TabPanel
                 className={styles.tabPanel}
@@ -78,10 +71,8 @@ export default function RadioPrograms(props: Props) {
                         message="No radio programs available"
                     />
                 ) : togetherForHumanityList.map((item) => (
-                    <Fragment key={item.id}>
-                        {isDefined(item.audioFile)
-                         && <AudioPlayer radioProgram={item} showDate={false} />}
-                    </Fragment>
+                    isDefined(item.audioFile)
+                         && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
                 ))}
             </TabPanel>
         </Tabs>
