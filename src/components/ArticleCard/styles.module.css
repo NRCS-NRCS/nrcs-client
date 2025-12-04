@@ -23,6 +23,21 @@
       white-space: nowrap;
     }
   }
+  &.linkArticle {
+    &:hover {
+      .articleCardImage {
+        transition: all 0.3s ease-in-out;
+        filter: brightness(60%);
+      }
+      .heading {
+        transition: all 0.3s ease-in-out;
+        color: var(--color-text-link);
+      }
+    }
+    .articleCardImage ,.heading {
+      transition: all 0.3s ease-in-out;
+    }
+  }
 
   &.workArticleContent {
     grid-template-columns: 1fr;
@@ -45,7 +60,7 @@
     }
     .articleCardDescription {
       .description {
-        font-size: var(--font-size-small); ;
+        font-size: var(--font-size-small);
       }
     }
   }

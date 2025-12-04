@@ -60,6 +60,7 @@ export default function SelectInput(props: Props) {
                     <option
                         key={option.id}
                         value={option.id}
+                        className={styles.optionCustom}
                     >
                         {option.name}
                     </option>

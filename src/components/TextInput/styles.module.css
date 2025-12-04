@@ -7,8 +7,13 @@
 
     .input {
         padding: var(--spacing-extra-small);
+        background-color: var(--color-background-gray);
         font-family: var(--font-text);
         border: var(--width-separator-thin) solid var(--color-separator);
         font-size: var(--font-size-small);
+         &:focus-visible{
+            outline: none;
+             box-shadow: 0 1px 0 var(--color-primary);
+        }
     }
 }

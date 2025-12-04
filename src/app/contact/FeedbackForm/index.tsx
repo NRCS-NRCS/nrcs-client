@@ -128,7 +128,7 @@ export default function ContactForm() {
                 onChange={handleChange}
             />
             <TextArea
-                name="message"
+                name="feedback"
                 label="Message"
                 value={formValues.feedback ?? ''}
                 placeholder="Type message here"

@@ -111,6 +111,7 @@ export default async function Home() {
                 >
                     {news.map((item) => (
                         <RecentNewsCard
+                            key={item.id}
                             title={item.title}
                             description={item.content}
                             date={item.publishedDate}

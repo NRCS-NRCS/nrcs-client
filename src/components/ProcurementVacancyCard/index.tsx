@@ -1,5 +1,8 @@
 import React from 'react';
-import { _cs } from '@togglecorp/fujs';
+import {
+    _cs,
+    formatDateToString,
+} from '@togglecorp/fujs';
 
 import Heading from '#components/Heading';
 import Link from '#components/Link';
@@ -44,7 +47,7 @@ export default function ProcurementVacancyCard(props: Props) {
             </Heading>
             <div className={styles.date}>
                 Expiry Date: &nbsp;
-                {date}
+                {formatDateToString(new Date(date), 'MMM dd, yyyy')}
             </div>
         </Link>
     );

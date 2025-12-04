@@ -1,5 +1,6 @@
 import {
     _cs,
+    formatDateToString,
     isDefined,
 } from '@togglecorp/fujs';
 
@@ -21,6 +22,9 @@ export default function AuthorSection(props: Props) {
     } = props;
 
     const minuteRead = Math.max(1, Math.ceil(articleLength / 5 / 200));
+    const formattedDate = isDefined(date)
+        ? formatDateToString(new Date(date), 'MMM dd, yyyy')
+        : '-';
 
     return (
         <div className={_cs(className, styles.authorSection)}>
@@ -29,7 +33,7 @@ export default function AuthorSection(props: Props) {
             </p>
             <div className={styles.rightContainer}>
                 <p className={styles.date}>
-                    {isDefined(date) ? date : '-'}
+                    {formattedDate}
                 </p>
                 <p>•</p>
                 <p className={styles.date}>

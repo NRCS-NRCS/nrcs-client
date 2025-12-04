@@ -41,6 +41,7 @@ export default function RadioInput(props: Props) {
                             value={option}
                             checked={option === value}
                             onChange={onChange}
+                            className={styles.input}
                         />
                         {option}
                     </label>
