@@ -5,8 +5,27 @@ import path from "path";
 const datadir = path.join(__dirname, "../data");
 const GRAPHQL_ENDPOINT =
   process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || "http://localhost:8000/graphql/";
+  const pipelineType = process.env.PIPELINE_TYPE;
+
 
 const client = new GraphQLClient(GRAPHQL_ENDPOINT);
+
+
+const dummyData = {
+    strategicDirectives:[] ,
+    departments:[] ,
+    news:[] ,
+    jobVacancies:[] ,
+    highlights:[] ,
+    blogs:[] ,
+    majorResponsibilities:[] ,
+    partners:[] ,
+    procurements:[] ,
+    resources:[] ,
+    projects:[] ,
+    faqs:[] ,
+    radioProgram:[] ,
+};
 
 const query = gql`
   query AllQuery {
@@ -186,8 +205,16 @@ const query = gql`
 
 async function fetchAndWriteData() {
   console.log("Fetching data from GraphQL endpoint from ", GRAPHQL_ENDPOINT);
+
   let data = {};
+  if (pipelineType === 'ci') {
+      data = dummyData;
+  } else if (pipelineType === 'cd') {
+      data = await client.request(query);
+  } else {
+      // fallback to local dev behavior
   data = await client.request(query);
+  }
 
   // ensure the `data` directory exists
   if (!fs.existsSync(datadir)) {

@@ -1,60 +1,60 @@
 .workCard {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  gap: var(--spacing-small);
-  &:hover {
-    .imageWrapper {
-      transition: all 0.3s ease-in-out;
-      filter: brightness(60%); /* Darkens image to 80% brightness */
-    }
-    .title {
-      color: var(--color-text-link);
-      transition: all 0.3s ease-in-out;
-    }
-  }
-
-  .imageWrapper {
-    width: 100%;
-    height: 16rem;
-    z-index: 0;
-    filter: brightness(90%);
-    transition: all 0.3s ease-in-out;
-    .image {
-      object-fit: cover;
-    }
-  }
-
-  .dateContainer {
     display: flex;
-    gap: var(--spacing-tiny);
-    flex-shrink: 0;
-    z-index: 10;
-  }
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: var(--spacing-small);
+    &:hover {
+        .imageWrapper {
+            transition: all 0.3s ease-in-out;
+            filter: brightness(60%); /* Darkens image to 80% brightness */
+        }
+        .title {
+            color: var(--color-text-link);
+            transition: all 0.3s ease-in-out;
+        }
+    }
 
-  .title {
-    position: relative;
-    flex-shrink: 0;
-    z-index: 10;
-    transition: all 0.3s ease-in-out;
-  }
+    .imageWrapper {
+        width: 100%;
+        height: 16rem;
+        z-index: 0;
+        filter: brightness(90%);
+        transition: all 0.3s ease-in-out;
+        .image {
+            object-fit: cover;
+        }
+    }
 
-  .emptyDiv {
-    flex-grow: 1;
-  }
-
-  .description {
-    position: relative;
-    flex-shrink: 0;
-    z-index: 10;
-    font-size: var(--font-size-small);
-  }
-
-  &.noImage {
-    color: var(--color-text);
+    .dateContainer {
+        display: flex;
+        gap: var(--spacing-tiny);
+        flex-shrink: 0;
+        z-index: 10;
+    }
 
     .title {
-      color: var(--color-heading);
+        position: relative;
+        flex-shrink: 0;
+        z-index: 10;
+        transition: all 0.3s ease-in-out;
     }
-  }
+
+    .emptyDiv {
+        flex-grow: 1;
+    }
+
+    .description {
+        position: relative;
+        flex-shrink: 0;
+        z-index: 10;
+        font-size: var(--font-size-small);
+    }
+
+    &.noImage {
+        color: var(--color-text);
+
+        .title {
+            color: var(--color-heading);
+        }
+    }
 }

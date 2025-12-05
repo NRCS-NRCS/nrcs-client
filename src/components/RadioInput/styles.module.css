@@ -1,19 +1,19 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-small);
-
-  .content {
     display: flex;
-    gap: var(--spacing-extra-large);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--spacing-small);
 
-    .radioButton {
-      display: flex;
-      gap: var(--spacing-ultra-small);
+    .content {
+        display: flex;
+        gap: var(--spacing-extra-large);
+        flex-wrap: wrap;
+
+        .radioButton {
+            display: flex;
+            gap: var(--spacing-ultra-small);
+        }
+        .input {
+            accent-color: var(--color-primary);
+        }
     }
-    .input {
-      accent-color: var(--color-primary);
-    }
-  }
 }
