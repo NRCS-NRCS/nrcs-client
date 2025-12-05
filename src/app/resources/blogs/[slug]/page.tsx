@@ -5,33 +5,16 @@ import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import {
-    type GetBlogDetailsQuery,
-    type GetBlogDetailsQueryVariables,
-    type GetBlogsQuery,
-    type GetBlogsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import {
-    GET_BLOG_DETAILS,
-    GET_BLOGS,
-} from '@/queries';
+type BlogsType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const result = await urqlClient.query<
-        GetBlogsQuery,
-        GetBlogsQueryVariables
-    >(
-        GET_BLOGS,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.blogs;
+    const data: BlogsType = AllData.blogs;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -55,20 +38,10 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const result = await urqlClient.query<
-        GetBlogDetailsQuery,
-        GetBlogDetailsQueryVariables
-    >(
-        GET_BLOG_DETAILS,
-        { blogId: slug },
-    ).toPromise();
-
-    if (!result.data?.blog) {
-        // eslint-disable-next-line no-console
-        console.warn('No blog found in GraphQL response');
-    }
-
-    const blogDetails = result?.data?.blog;
+    const allBlogs: BlogsType = AllData.blogs;
+    const blogDetails = allBlogs.find(
+        (data) => data?.id === slug,
+    ) as unknown as BlogsType[number];
 
     if (isNotDefined(blogDetails)) {
         return (

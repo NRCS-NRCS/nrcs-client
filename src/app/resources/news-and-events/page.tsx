@@ -4,20 +4,13 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type NewsListQuery,
-    type NewsListQueryVariables,
-} from '#generated/types/graphql';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
-import { urqlClient } from '@/lib/urqlClient';
-import { NEWS_LIST } from '@/queries';
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
 export default async function NewsAndEvents() {
-    const result = await urqlClient
-        .query<NewsListQuery, NewsListQueryVariables>(NEWS_LIST, {})
-        .toPromise();
-
-    const newsList = result?.data?.news ?? [];
+    const newsList: NewsType = AllData.news;
     return (
         <Page>
             <Section heading="News and Events" headingWithBackground>

@@ -3,16 +3,10 @@ import { _cs } from '@togglecorp/fujs';
 
 import Footer from '#components/Footer';
 import Navbar from '#components/Navbar';
-import {
-    type GetWorkSlugsQuery,
-    type GetWorkSlugsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
-
-// eslint-disable-next-line import/order
-import { GET_WORK_SLUGS } from '@/queries';
 
 interface Props {
     elementId?: string;
@@ -22,13 +16,12 @@ interface Props {
     hideNavbar?: boolean;
 }
 
-export default async function Page(props: Props) {
-    const result = await urqlClient.query<
-        GetWorkSlugsQuery,
-        GetWorkSlugsQueryVariables
-    >(GET_WORK_SLUGS, {}).toPromise();
+type StrategicDirectives =NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
 
-    const pathsForWorks = result.data?.strategicDirectives?.map(
+export default async function Page(props: Props) {
+    const strategicDirectivesData = AllData.strategicDirectives as unknown as StrategicDirectives;
+
+    const pathsForWorks = strategicDirectivesData?.map(
         (dir) => ({
             label: dir.title,
             link: `/${dir.slug}/`,

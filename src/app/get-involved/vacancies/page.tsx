@@ -4,28 +4,15 @@ import { notFound } from 'next/navigation';
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
-import {
-    type VacanciesQuery,
-    type VacanciesQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import { VACANCIES } from '@/queries';
+type vacancies = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>>;
 
 export default async function Vacancies() {
-    const result = await urqlClient.query<
-        VacanciesQuery,
-        VacanciesQueryVariables
-    >(VACANCIES, {}).toPromise();
-    if (!result.data?.jobVacancies) {
-        // eslint-disable-next-line no-console
-        console.warn('No vacancies found in GraphQL response');
-        return [];
-    }
-    const vacancies = result.data?.jobVacancies;
+    const vacancies = AllData.jobVacancies as unknown as vacancies;
 
     if (!vacancies) {
         return notFound();

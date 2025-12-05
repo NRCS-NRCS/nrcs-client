@@ -5,25 +5,14 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type GetReportsQuery,
-    type GetReportsQueryVariables,
-} from '#generated/types/graphql';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 import cardImage from '#public/card.png';
 
-import { urqlClient } from '@/lib/urqlClient';
-import { GET_REPORTS } from '@/queries';
+type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 export default async function Reports() {
-    const result = await urqlClient.query<
-        GetReportsQuery,
-        GetReportsQueryVariables
-    >(
-        GET_REPORTS,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.resources;
+    const data = AllData.resources.filter((res) => res.type === 'REPORT') as unknown as ReportType;
 
     return (
         <Page>

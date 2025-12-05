@@ -5,24 +5,13 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type GetBlogsQuery,
-    type GetBlogsQueryVariables,
-} from '#generated/types/graphql';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
-import { urqlClient } from '@/lib/urqlClient';
-import { GET_BLOGS } from '@/queries';
+type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 
 export default async function Blogs() {
-    const result = await urqlClient.query<
-        GetBlogsQuery,
-        GetBlogsQueryVariables
-    >(
-        GET_BLOGS,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.blogs;
+    const data :BlogType = AllData.blogs;
 
     return (
         <Page>

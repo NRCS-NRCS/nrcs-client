@@ -9,33 +9,16 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import {
-    type GetPoliciesAndGuidelinesQuery,
-    type GetPoliciesAndGuidelinesQueryVariables,
-    type GetResourceDetailsQuery,
-    type GetResourceDetailsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 import cardImage from '#public/card.png';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import {
-    GET_POLICIES_AND_GUIDELINES,
-    GET_RESOURCE_DETAILS,
-} from '@/queries';
+type ResourcesType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 export async function generateStaticParams() {
-    const result = await urqlClient.query<
-        GetPoliciesAndGuidelinesQuery,
-        GetPoliciesAndGuidelinesQueryVariables
-    >(
-        GET_POLICIES_AND_GUIDELINES,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.resources;
+    const data = AllData.resources as unknown as ResourcesType;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No policies found in GraphQL response');
@@ -58,22 +41,13 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
         slug,
     } = await params;
 
-    const result = await urqlClient.query<
-        GetResourceDetailsQuery,
-        GetResourceDetailsQueryVariables
-    >(
-        GET_RESOURCE_DETAILS,
-        { resourceId: slug },
-    ).toPromise();
+    const AllResources = AllData.resources as unknown as ResourcesType;
 
-    if (!result.data?.resource) {
-        // eslint-disable-next-line no-console
-        console.warn('No policies found in GraphQL response');
-    }
+    const policyDetails = AllResources.find(
+        (data) => data.id === slug && data.type === 'POLICY_AND_GUIDELINES',
+    ) as unknown as ResourcesType[number];
 
-    const resourceDetails = result?.data?.resource;
-
-    if (isNotDefined(resourceDetails)) {
+    if (isNotDefined(policyDetails)) {
         return (
             <Page>
                 Nothing to show
@@ -86,8 +60,8 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
                 <ResourcesBanner
                     // FIXME: Update this after its implemented in server
                     imageSrc={cardImage}
-                    imageAlt={resourceDetails.title}
-                    heading={resourceDetails.title}
+                    imageAlt={policyDetails.title}
+                    heading={policyDetails.title}
                 />
             </Section>
             <Section
@@ -96,18 +70,18 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
                 childrenContainerClassName={styles.resourcesChildren}
             >
                 <AuthorSection
-                    author={resourceDetails.title}
-                    date={resourceDetails.publishedDate}
-                    articleLength={resourceDetails.content.length}
+                    author={policyDetails.title}
+                    date={policyDetails.publishedDate}
+                    articleLength={policyDetails.content.length}
                 />
                 <ArticleBody
-                    content={resourceDetails.content}
+                    content={policyDetails.content}
                 />
-                {isDefined(resourceDetails.file) && (
+                {isDefined(policyDetails.file) && (
                     <DownloadTemplate
-                        title={resourceDetails.file.name}
-                        file={resourceDetails.file.url}
-                        fileSize={resourceDetails.file.size}
+                        title={policyDetails.file.name}
+                        file={policyDetails.file.url}
+                        fileSize={policyDetails.file.size}
                     />
                 )}
             </Section>

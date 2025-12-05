@@ -8,33 +8,16 @@ import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import {
-    type NewsItemQuery,
-    type NewsItemQueryVariables,
-    type NewsListQuery,
-    type NewsListQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import AllData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import {
-    NEWS_ITEM,
-    NEWS_LIST,
-} from '@/queries';
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const result = await urqlClient.query<
-        NewsListQuery,
-        NewsListQueryVariables
-    >(
-        NEWS_LIST,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.news;
+    const data: NewsType = AllData.news;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -57,21 +40,10 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
-
-    const result = await urqlClient.query<
-        NewsItemQuery,
-        NewsItemQueryVariables
-    >(
-        NEWS_ITEM,
-        { newsId: slug },
-    ).toPromise();
-
-    if (!result.data?.newsItem) {
-        // eslint-disable-next-line no-console
-        console.warn('No news found in GraphQL response');
-    }
-
-    const newsDetails = result?.data?.newsItem;
+    const allNews : NewsType = AllData.news;
+    const newsDetails = allNews.find(
+        (data) => data.id === slug,
+    ) as unknown as NewsType[number];
 
     if (isNotDefined(newsDetails)) {
         return (
