@@ -5,13 +5,13 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 
 export default async function Blogs() {
-    const data :BlogType = AllData.blogs;
+    const data = allData.blogs as unknown as BlogType;
 
     return (
         <Page>

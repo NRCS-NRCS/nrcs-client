@@ -9,7 +9,7 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import cardImage from '#public/card.png';
 
@@ -18,7 +18,7 @@ import styles from './page.module.css';
 type ResourcesType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 export async function generateStaticParams() {
-    const data = AllData.resources as unknown as ResourcesType;
+    const data = allData.resources as unknown as ResourcesType;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No policies found in GraphQL response');
@@ -41,9 +41,9 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
         slug,
     } = await params;
 
-    const AllResources = AllData.resources as unknown as ResourcesType;
+    const allResources = allData.resources as unknown as ResourcesType;
 
-    const policyDetails = AllResources.find(
+    const policyDetails = allResources.find(
         (data) => data.id === slug && data.type === 'POLICY_AND_GUIDELINES',
     ) as unknown as ResourcesType[number];
 

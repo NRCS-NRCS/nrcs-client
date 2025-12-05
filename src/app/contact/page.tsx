@@ -13,7 +13,7 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import bannerImg from '#public/banner.png';
 
@@ -34,7 +34,7 @@ const getInTouchHeading = 'Get in touch with us';
 const getInTouchText = 'You can also get involved with us in meaningful ways—through donations, volunteering, or becoming a member. Every action you take helps us make a greater impact together.';
 
 export default async function Contact() {
-    const allFaqs = AllData.faqs as unknown as FaqsType;
+    const allFaqs = allData.faqs as unknown as FaqsType;
 
     const faqs = allFaqs?.sort((a, b) => a.orderIndex - b.orderIndex).map(
         (faq) => ({

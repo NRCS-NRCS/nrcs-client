@@ -9,7 +9,7 @@ import MajorResponsibilityCard from '#components/MajorResponsibilityCard';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
@@ -21,7 +21,7 @@ type StrategicDirectivesType =NonNullable<NonNullable<AllQueryQuery['strategicDi
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const data: StrategicDirectivesType = AllData.strategicDirectives;
+    const data: StrategicDirectivesType = allData.strategicDirectives;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No works found in GraphQL response');
@@ -37,16 +37,18 @@ export default async function WorkDetailPage(
     { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
-    const directivesFromQuery:StrategicDirectivesType = AllData.strategicDirectives;
+    const directivesFromQuery:StrategicDirectivesType = allData.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
-
-    const departmentProjectsData: ProjectType = AllData.projects.filter(
-        (data) => data.department.strategicDirective.id === directive?.id,
+    const projectsData = allData.projects as unknown as ProjectType;
+    const resourcesData = allData.resources as unknown as ResourceType;
+    const departmentData = allData.departments as unknown as DepartmentType;
+    const departmentProjectsData = projectsData.filter(
+        (data) => data?.department?.strategicDirective.id === directive?.id,
     );
 
-    const resourcesForDirective = AllData.resources.filter(
-        (data) => data.directive.pk === directive?.id,
-    ) as unknown as ResourceType;
+    const resourcesForDirective = resourcesData.filter(
+        (data) => data?.directive?.pk === directive?.id,
+    );
 
     const projectsForDepartmentRenderer = (dept: DepartmentType[number]) => {
         if (!departmentProjectsData || !dept) {
@@ -72,7 +74,7 @@ export default async function WorkDetailPage(
         );
     };
 
-    const departmentsForDirective : DepartmentType = AllData.departments
+    const departmentsForDirective : DepartmentType = departmentData
         ?.filter((dept) => dept.strategicDirective.id === directive?.id)
         ?.map((dept) => ({
             ...dept,
@@ -144,7 +146,7 @@ export default async function WorkDetailPage(
                             title={resource.title}
                             date={resource.publishedDate ?? ''}
                             image={resource.coverImage?.url}
-                            link={`resources/reports/${resource.id}/`}
+                            link={`/resources/${resource.type === 'REPORT' ? 'reports' : 'policies-and-guidelines'}/${resource.id}/`}
                         />
                     ))}
                 </Section>

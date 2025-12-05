@@ -7,7 +7,7 @@ import ArticleBody from '#components/ArticleBody';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
@@ -16,8 +16,7 @@ type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data: ProjectType = AllData.projects;
-
+    const data: ProjectType = allData.projects;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No news found in GraphQL response');
@@ -40,9 +39,9 @@ export default async function ProjectsDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const allProjects: ProjectType = AllData.projects;
+    const allProjects: ProjectType = allData.projects;
 
-    const projectDetails = allProjects.filter(
+    const projectDetails = allProjects.find(
         (data) => data.id === slug,
     ) as unknown as ProjectType[number];
 

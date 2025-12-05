@@ -10,7 +10,7 @@ import Page from '#components/Page';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import callIcon from '#public/call.png';
 import cardImage from '#public/card.png';
@@ -34,13 +34,17 @@ const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 type HighlightsType = NonNullable<NonNullable<AllQueryQuery['highlights']>>;
 type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-type RadioType =NonNullable<NonNullable<AllQueryQuery['radioProgram']>>;
+type RadioType = NonNullable<NonNullable<AllQueryQuery['radioProgram']>>;
 
 export default async function Home() {
-    const radioPrograms = AllData.radioProgram as unknown as RadioType;
-    const reports = [...(AllData?.resources.filter((data) => data.type === 'REPORT') ?? [])].slice(0, 3) as unknown as ResourceType;
-    const news = [...(AllData?.news ?? [])].slice(0, 10) as unknown as NewsType;
-    const highlights = AllData?.highlights as unknown as HighlightsType;
+    const radioPrograms = allData.radioProgram as unknown as RadioType;
+
+    const allResources = allData?.resources as unknown as ResourceType;
+    const reports = [
+        ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
+    ].slice(0, 3) as unknown as ResourceType;
+    const news = [...(allData?.news ?? [])].slice(0, 10) as unknown as NewsType;
+    const highlights = allData?.highlights as unknown as HighlightsType;
 
     return (
         <Page contentClassName={styles.page}>
@@ -188,7 +192,6 @@ export default async function Home() {
                             image={item.coverImage?.url}
                             link={`/resources/reports/${item.id}/`}
                         />
-
                     ))}
                 </Section>
             )}

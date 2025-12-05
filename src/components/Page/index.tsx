@@ -3,7 +3,7 @@ import { _cs } from '@togglecorp/fujs';
 
 import Footer from '#components/Footer';
 import Navbar from '#components/Navbar';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
@@ -19,7 +19,7 @@ interface Props {
 type StrategicDirectives =NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
 
 export default async function Page(props: Props) {
-    const strategicDirectivesData = AllData.strategicDirectives as unknown as StrategicDirectives;
+    const strategicDirectivesData = allData.strategicDirectives as unknown as StrategicDirectives;
 
     const pathsForWorks = strategicDirectivesData?.map(
         (dir) => ({

@@ -8,7 +8,7 @@ import AuthorSection from '#components/AuthorSection';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
@@ -17,7 +17,7 @@ type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data: NewsType = AllData.news;
+    const data: NewsType = allData.news;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -40,7 +40,7 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
-    const allNews : NewsType = AllData.news;
+    const allNews : NewsType = allData.news;
     const newsDetails = allNews.find(
         (data) => data.id === slug,
     ) as unknown as NewsType[number];

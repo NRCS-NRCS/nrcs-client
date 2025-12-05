@@ -6,7 +6,7 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
@@ -15,7 +15,7 @@ type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const data = AllData.resources as unknown as ProcurementsType;
+    const data = allData.resources as unknown as ProcurementsType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -34,9 +34,9 @@ export default async function ProcurementDetailPage(
     const {
         id,
     } = await params;
-    const AllProcurements = AllData.resources as unknown as ProcurementsType;
+    const allProcurements = allData.resources as unknown as ProcurementsType;
 
-    const procurementDetails = AllProcurements.find(
+    const procurementDetails = allProcurements.find(
         (data) => data.id === id,
     ) as unknown as ProcurementsType[number];
 

@@ -4,13 +4,13 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
 export default async function NewsAndEvents() {
-    const newsList: NewsType = AllData.news;
+    const newsList: NewsType = allData.news;
     return (
         <Page>
             <Section heading="News and Events" headingWithBackground>

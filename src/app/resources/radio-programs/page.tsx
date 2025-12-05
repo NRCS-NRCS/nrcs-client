@@ -6,7 +6,7 @@ import EmptyMessage from '#components/EmptyMessage';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import AllData from '#data/staticData.json';
+import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
@@ -14,7 +14,7 @@ import styles from './page.module.css';
 type RadioType = NonNullable<AllQueryQuery['radioProgram']>
 
 export default async function RadioPrograms() {
-    const radioProgramData = AllData.radioProgram as unknown as RadioType;
+    const radioProgramData = allData.radioProgram as unknown as RadioType;
     const radioProgramDescriptions = 'Weekly radio programs run by NRCS speak on current events in an interesting and easy-to-understand way. You will hear the latest on the daily risks, good practices, household skills, Red Cross news and experiences from different communities all around Nepal.\n \n Radio episodes reach thousands of people throughout the country.';
 
     return (
