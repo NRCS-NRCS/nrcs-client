@@ -11,7 +11,8 @@
             justify-content: space-between;
             align-items: center;
             background-color: var(--color-primary-light);
-            border-bottom: var(--width-separator-thin) solid var(--color-background-gradient-primary);
+            border-bottom: var(--width-separator-thin) solid
+                var(--color-background-gradient-primary);
             width: 100%;
             border-radius: 0;
             font-weight: var(--font-weight-bold);
@@ -25,12 +26,10 @@
 
         .accordionContent {
             padding: var(--spacing-large);
-
-            .accordionProjects{
+            line-height: 1.5;
+            .accordionProjects {
                 margin-top: var(--spacing-extra-small);
             }
         }
     }
-
 }
-

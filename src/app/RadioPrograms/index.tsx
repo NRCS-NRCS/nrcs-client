@@ -1,7 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { isDefined } from '@togglecorp/fujs';
+import {
+    compareDate,
+    isDefined,
+} from '@togglecorp/fujs';
 
 import AudioPlayer from '#components/AudioPlayer';
 import EmptyMessage from '#components/EmptyMessage';
@@ -26,9 +29,18 @@ export default function RadioPrograms(props: Props) {
         radioPrograms,
     } = props;
 
-    const [value, setValue] = useState<string | undefined>('tuesday-programs');
-    const tuesdayProgramsList = radioPrograms.filter((item) => item.type === 'TUESDAY_PROGRAM').slice(0, 2);
-    const togetherForHumanityList = radioPrograms.filter((item) => item.type === 'TOGETHER_FOR_HUMANITY').slice(0, 2);
+    const [value, setValue] = useState<string | undefined>('radio-red-cross');
+    const radioRedCrossList = radioPrograms
+        .filter((item) => item.type === 'TUESDAY_PROGRAM')
+        .sort(
+            (a, b) => compareDate(b.publishedDate, a.publishedDate),
+        )
+        .slice(0, 2);
+    const togetherForHumanityList = radioPrograms
+        .filter((item) => item.type === 'TOGETHER_FOR_HUMANITY')
+        .sort(
+            (a, b) => compareDate(b.publishedDate, a.publishedDate),
+        ).slice(0, 2);
     return (
         <Tabs
             value={value}
@@ -37,9 +49,9 @@ export default function RadioPrograms(props: Props) {
             <TabList>
                 <Tab
                     className={styles.tab}
-                    name="tuesday-programs"
+                    name="radio-red-cross"
                 >
-                    Tuesday Programs
+                    Radio Red Cross
                 </Tab>
                 <Tab
                     className={styles.tab}
@@ -50,15 +62,15 @@ export default function RadioPrograms(props: Props) {
             </TabList>
             <TabPanel
                 className={styles.tabPanel}
-                name="tuesday-programs"
+                name="radio-red-cross"
             >
-                {tuesdayProgramsList.length <= 0 ? (
+                {radioRedCrossList.length <= 0 ? (
                     <EmptyMessage
                         message="No radio programs available"
                     />
-                ) : tuesdayProgramsList.map((item) => (
+                ) : radioRedCrossList.map((item) => (
                     isDefined(item.audioFile)
-                            && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
+                    && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
                 ))}
 
             </TabPanel>
@@ -72,7 +84,7 @@ export default function RadioPrograms(props: Props) {
                     />
                 ) : togetherForHumanityList.map((item) => (
                     isDefined(item.audioFile)
-                         && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
+                    && <AudioPlayer key={item.id} radioProgram={item} showDate={false} />
                 ))}
             </TabPanel>
         </Tabs>
