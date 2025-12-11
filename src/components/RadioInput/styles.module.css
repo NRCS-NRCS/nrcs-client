@@ -12,5 +12,8 @@
             display: flex;
             gap: var(--spacing-ultra-small);
         }
+        .input {
+            accent-color: var(--color-primary);
+        }
     }
 }

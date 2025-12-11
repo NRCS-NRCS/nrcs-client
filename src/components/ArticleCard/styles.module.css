@@ -1,66 +1,82 @@
 .otherArticleContent {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: var(--spacing-small);
-
-  .articleCardImage {
-    grid-column: span 6;
-    height: 16rem;
-  }
-
-  .articleCardDescription {
-    grid-column: span 6;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: var(--spacing-super-small);
-    overflow: auto;
-
-    .description {
-      color: var(--color-text-neutral);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
-  &.workArticleContent {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--spacing-small);
 
     .articleCardImage {
-      height: 16rem;
-      grid-column: 1 / -1;
+        grid-column: span 6;
+        height: 16rem;
     }
 
     .articleCardDescription {
-      grid-column: 1 / -1;
-      gap: var(--spacing-small);
-    }
-  }
+        grid-column: span 6;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: var(--spacing-super-small);
+        overflow: auto;
 
-  &.latestArticle {
-    .articleCardImage {
-      height: 10rem;
-      grid-column: span 6;
+        .description {
+            color: var(--color-text-neutral);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     }
-    .articleCardDescription {
-      .description {
-        font-size: var(--font-size-small); ;
-      }
+    &.linkArticle {
+        &:hover {
+            .articleCardImage {
+                transition: all 0.3s ease-in-out;
+                filter: brightness(60%);
+            }
+            .heading {
+                transition: all 0.3s ease-in-out;
+                color: var(--color-text-link);
+            }
+        }
+        .articleCardImage,
+        .heading {
+            transition: all 0.3s ease-in-out;
+        }
     }
-  }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
+    &.workArticleContent {
+        grid-template-columns: 1fr;
 
-    .articleCardImage {
-      height: 16rem;
-      grid-column: 1 / -1;
+        .articleCardImage {
+            height: 16rem;
+            grid-column: 1 / -1;
+        }
+
+        .articleCardDescription {
+            grid-column: 1 / -1;
+            gap: var(--spacing-small);
+        }
     }
 
-    .articleCardDescription {
-      grid-column: 1 / -1;
-      gap: var(--spacing-small);
+    &.latestArticle {
+        .articleCardImage {
+            height: 10rem;
+            grid-column: span 6;
+        }
+        .articleCardDescription {
+            .description {
+                font-size: var(--font-size-small);
+            }
+        }
     }
-  }
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+
+        .articleCardImage {
+            height: 16rem;
+            grid-column: 1 / -1;
+        }
+
+        .articleCardDescription {
+            grid-column: 1 / -1;
+            gap: var(--spacing-small);
+        }
+    }
 }

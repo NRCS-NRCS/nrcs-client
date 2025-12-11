@@ -75,6 +75,7 @@ export default function ArticleCard(props: Props) {
                 variant="div"
                 className={_cs(
                     className,
+                    styles.linkArticle,
                     isSmall && styles.latestArticle,
                     isHorizontal && styles.workArticleContent,
                     styles.otherArticleContent,

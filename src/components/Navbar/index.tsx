@@ -26,7 +26,20 @@ import PopupButton from '../PopupButton';
 
 import styles from './styles.module.css';
 
-const links = [
+interface children {
+    label:string
+    link?:string
+    externalLink?:string
+}
+
+interface ILink {
+    label: string
+    link: string
+    order : number
+    children?: children[]
+}
+
+const links : ILink[] = [
     {
         label: 'About Us',
         link: '/about',
@@ -69,7 +82,7 @@ const links = [
             },
             {
                 label: 'Financial Donations',
-                link: '/financial-donations/',
+                externalLink: 'https://donation.nrcs.org/',
             },
         ],
     },
@@ -123,7 +136,7 @@ export default function Navbar(props: Props) {
         works,
     } = props;
 
-    const finalPaths = useMemo(() => {
+    const finalPaths : ILink[] = useMemo(() => {
         const newVal = [
             ...links,
             {
@@ -171,7 +184,7 @@ export default function Navbar(props: Props) {
                     <div className={styles.rightContainer}>
                         <Link
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
-                            href="/volunteer/"
+                            href="/get-involved/volunteer/"
                         >
                             Volunteer
                         </Link>
@@ -220,17 +233,24 @@ export default function Navbar(props: Props) {
                             persistent={false}
                             label={item.label}
                         >
-                            {item.children.map((child) => (
-                                <Link
-                                    key={child.link}
-                                    className={styles.popupLink}
-                                    href={`${item.link}${child.link}`}
-                                    variant="navigation"
-                                    active={pathname === `${item.link}${child.link}`}
-                                >
-                                    {child.label}
-                                </Link>
-                            ))}
+                            {item.children.map((child) => {
+                                const isExternal = !!child.externalLink;
+                                const href = isExternal ? child.externalLink! : `${item.link}${child.link}`;
+                                const active = !isExternal && pathname === `${item.link}${child.link}`;
+                                return (
+                                    <Link
+                                        key={isExternal ? child.externalLink : child.link}
+                                        className={styles.popupLink}
+                                        variant="navigation"
+                                        href={href}
+                                        target={isExternal ? '_blank' : undefined}
+                                        rel={isExternal ? 'noopener noreferrer' : undefined}
+                                        active={active}
+                                    >
+                                        {child.label}
+                                    </Link>
+                                );
+                            })}
                         </PopupButton>
                     ) : (
                         <Link

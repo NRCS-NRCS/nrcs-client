@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "prebuild": "pnpm generate:type",
+        "prebuild": "pnpm generate:type && ts-node -P tsconfig.scripts.json scripts/fetchData.ts",
         "_predev": "pnpm generate:type",
         "generate-and-watch:type": "graphql-codegen --require dotenv/config --config codegen.ts --watch",
         "generate:type": "graphql-codegen --require dotenv/config --config codegen.ts",
@@ -13,7 +13,7 @@
         "_prestart": "pnpm generate:type",
         "start": "next start",
         "typecheck": "tsc",
-        "prelint": "pnpm generate:type",
+        "prelint": "pnpm prebuild",
         "lint": "next lint"
     },
     "engines": {

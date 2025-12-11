@@ -5,25 +5,15 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type GetPoliciesAndGuidelinesQuery,
-    type GetPoliciesAndGuidelinesQueryVariables,
-} from '#generated/types/graphql';
+import allData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 import cardImage from '#public/card.png';
 
-import { urqlClient } from '@/lib/urqlClient';
-import { GET_POLICIES_AND_GUIDELINES } from '@/queries';
+type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 export default async function PoliciesandGuidelines() {
-    const result = await urqlClient.query<
-        GetPoliciesAndGuidelinesQuery,
-        GetPoliciesAndGuidelinesQueryVariables
-    >(
-        GET_POLICIES_AND_GUIDELINES,
-        {},
-    ).toPromise();
-
-    const data = result?.data?.resources;
+    const allResources = allData.resources as unknown as ReportType;
+    const data = allResources.filter((res) => res.type === 'POLICY_AND_GUIDELINES');
 
     return (
         <Page>

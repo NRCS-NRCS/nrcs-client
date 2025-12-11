@@ -9,40 +9,19 @@ import MajorResponsibilityCard from '#components/MajorResponsibilityCard';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
-import {
-    type GetWorkSlugsQuery,
-    type GetWorkSlugsQueryVariables,
-    type ProjectsForWorkQuery,
-    type ProjectsForWorkQueryVariables,
-    type ResourcesForWorkQuery,
-    type ResourcesForWorkQueryVariables,
-    type WorksQuery,
-    type WorksQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import allData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import {
-    GET_WORK_SLUGS,
-    PROJECTS_FOR_WORK,
-    RESOURCES_FOR_WORK,
-    WORKS,
-} from '@/queries';
+type DepartmentType = NonNullable<NonNullable<AllQueryQuery['departments']>>;
+type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>>;
+type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
+type StrategicDirectivesType =NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
 
-type DepartmentType = NonNullable<NonNullable<WorksQuery['departments']>[number]>;
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const result = await urqlClient.query<
-        GetWorkSlugsQuery,
-        GetWorkSlugsQueryVariables
-    >(
-        GET_WORK_SLUGS,
-        {},
-    ).toPromise();
-    const data = result?.data?.strategicDirectives;
-
+    const data: StrategicDirectivesType = allData.strategicDirectives;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No works found in GraphQL response');
@@ -58,34 +37,20 @@ export default async function WorkDetailPage(
     { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
-    const result = await urqlClient.query<
-        WorksQuery,
-        WorksQueryVariables
-    >(WORKS, {}).toPromise();
-    if (!result.data?.strategicDirectives) {
-        // eslint-disable-next-line no-console
-        console.warn('No works found in GraphQL response');
-        return notFound();
-    }
-    const directivesFromQuery = result.data?.strategicDirectives;
+    const directivesFromQuery:StrategicDirectivesType = allData.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
+    const projectsData = allData.projects as unknown as ProjectType;
+    const resourcesData = allData.resources as unknown as ResourceType;
+    const departmentData = allData.departments as unknown as DepartmentType;
+    const departmentProjectsData = projectsData.filter(
+        (data) => data?.department?.strategicDirective.id === directive?.id,
+    );
 
-    const departmentWorks = await urqlClient.query<
-        ProjectsForWorkQuery,
-        ProjectsForWorkQueryVariables
-    >(PROJECTS_FOR_WORK, { workId: directive?.id ?? '' }).toPromise();
+    const resourcesForDirective = resourcesData.filter(
+        (data) => data?.directive?.pk === directive?.id,
+    );
 
-    const resources = await urqlClient.query<
-        ResourcesForWorkQuery,
-        ResourcesForWorkQueryVariables
-    >(
-        RESOURCES_FOR_WORK,
-        { workId: directive?.id ?? '' },
-    ).toPromise();
-
-    const departmentProjectsData = departmentWorks.data?.projects;
-
-    const projectsForDepartmentRenderer = (dept: DepartmentType) => {
+    const projectsForDepartmentRenderer = (dept: DepartmentType[number]) => {
         if (!departmentProjectsData || !dept) {
             return undefined;
         }
@@ -109,14 +74,12 @@ export default async function WorkDetailPage(
         );
     };
 
-    const departmentsForDirective = result.data?.departments
+    const departmentsForDirective : DepartmentType = departmentData
         ?.filter((dept) => dept.strategicDirective.id === directive?.id)
         ?.map((dept) => ({
             ...dept,
             projects: projectsForDepartmentRenderer(dept),
         }));
-
-    const resourcesForDirective = resources.data?.resources;
 
     if (!directive) return notFound();
 
@@ -183,7 +146,7 @@ export default async function WorkDetailPage(
                             title={resource.title}
                             date={resource.publishedDate ?? ''}
                             image={resource.coverImage?.url}
-                            link={`resources/reports/${resource.id}/`}
+                            link={`/resources/${resource.type === 'REPORT' ? 'reports' : 'policies-and-guidelines'}/${resource.id}/`}
                         />
                     ))}
                 </Section>

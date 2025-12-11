@@ -13,11 +13,8 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type FaqsQuery,
-    type FaqsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import allData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 import bannerImg from '#public/banner.png';
 
 import ContactForm from './ContactForm';
@@ -25,8 +22,7 @@ import FeedbackForm from './FeedbackForm';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import { FAQS } from '@/queries';
+type FaqsType = NonNullable<NonNullable<AllQueryQuery['faqs']>>;
 
 const contactUsHeading = 'We’d love to hear from you.';
 const contactUsText = 'Have questions, need support or possible partnership? We\'re here to help. Reach out to us through the form below or use the contact details provided — we\'ll get back to you as soon as possible.';
@@ -38,12 +34,9 @@ const getInTouchHeading = 'Get in touch with us';
 const getInTouchText = 'You can also get involved with us in meaningful ways—through donations, volunteering, or becoming a member. Every action you take helps us make a greater impact together.';
 
 export default async function Contact() {
-    const result = await urqlClient.query<
-        FaqsQuery,
-        FaqsQueryVariables
-    >(FAQS, {}).toPromise();
+    const allFaqs = allData.faqs as unknown as FaqsType;
 
-    const faqs = result.data?.faqs?.sort((a, b) => a.orderIndex - b.orderIndex).map(
+    const faqs = allFaqs?.sort((a, b) => a.orderIndex - b.orderIndex).map(
         (faq) => ({
             id: faq.id,
             title: faq.question,

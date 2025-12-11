@@ -6,30 +6,16 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
-import {
-    type ProcurementsQuery,
-    type ProcurementsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import allData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import { PROCUREMENTS } from '@/queries';
+type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
 
 export default async function Procurements() {
-    const result = await urqlClient.query<
-        ProcurementsQuery,
-        ProcurementsQueryVariables
-    >(PROCUREMENTS, {}).toPromise();
-    if (!result.data?.procurements) {
-    // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
-        return [];
-    }
-    const procurements = result.data?.procurements;
-
-    if (!procurements) {
+    const procurementsData: ProcurementsType = allData.procurements;
+    if (!procurementsData) {
         return notFound();
     }
     return (
@@ -40,11 +26,11 @@ export default async function Procurements() {
             >
                 National and international tender announcements for NRCS.
                 <div className={styles.procurementCard}>
-                    {(isDefined(procurements) && procurements.length <= 0) ? (
+                    {(isDefined(procurementsData) && procurementsData.length <= 0) ? (
                         <EmptyMessage
                             message="No procurements available"
                         />
-                    ) : procurements?.map((procurement) => (
+                    ) : procurementsData?.map((procurement) => (
                         <Card
                             key={procurement.id}
                             title={procurement.title}

@@ -6,14 +6,14 @@ import {
 } from 'react';
 import { _cs } from '@togglecorp/fujs';
 
-import { type RadioProgramsQuery } from '#generated/types/graphql';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import Heading from '../Heading';
 
 import styles from './styles.module.css';
 
 type RadioProgram = NonNullable<
-    NonNullable<RadioProgramsQuery['radioProgram']>[number]
+    NonNullable<AllQueryQuery['radioProgram']>[number]
 >;
 
 interface Props {

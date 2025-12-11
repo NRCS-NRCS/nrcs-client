@@ -6,30 +6,16 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import {
-    type ProcurementQuery,
-    type ProcurementQueryVariables,
-    type ProcurementsQuery,
-    type ProcurementsQueryVariables,
-} from '#generated/types/graphql';
-import { urqlClient } from '#lib/urqlClient';
+import allData from '#data/staticData.json';
+import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-// eslint-disable-next-line import/order
-import {
-    PROCUREMENT,
-    PROCUREMENTS,
-} from '@/queries';
+type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const result = await urqlClient.query<
-        ProcurementsQuery,
-        ProcurementsQueryVariables
-    >(PROCUREMENTS, {}).toPromise();
-
-    const data = result?.data?.procurements;
+    const data = allData.resources as unknown as ProcurementsType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -48,21 +34,22 @@ export default async function ProcurementDetailPage(
     const {
         id,
     } = await params;
-    const result = await urqlClient.query<
-        ProcurementQuery,
-        ProcurementQueryVariables
-    >(PROCUREMENT, { id }).toPromise();
+    const allProcurements = allData.resources as unknown as ProcurementsType;
 
-    if (!result.data?.procurement) {
+    const procurementDetails = allProcurements.find(
+        (data) => data.id === id,
+    ) as unknown as ProcurementsType[number];
+
+    if (!procurementDetails) {
     // eslint-disable-next-line no-console
-        console.warn('No directives found in GraphQL response');
+        console.warn('No procurement found in GraphQL response');
         return notFound();
     }
 
     return (
         <Page contentClassName={styles.procurementDetails}>
             <Section
-                heading={result.data?.procurement?.title}
+                heading={procurementDetails?.title}
             >
                 <Heading
                     className={styles.heading}
@@ -70,18 +57,18 @@ export default async function ProcurementDetailPage(
                     font="normal"
                 >
                     Published on &nbsp;
-                    {result.data?.procurement?.publishedDate}
+                    {procurementDetails?.publishedDate}
                 </Heading>
             </Section>
             <Section>
                 <ArticleBody
-                    content={result.data?.procurement?.description}
+                    content={procurementDetails?.description}
                 />
-                {isDefined(result.data?.procurement.file) && (
+                {isDefined(procurementDetails.file) && (
                     <DownloadTemplate
-                        title={result.data?.procurement.title}
-                        file={result.data?.procurement.file.url}
-                        fileSize={result.data?.procurement.file.size}
+                        title={procurementDetails.title}
+                        file={procurementDetails.file.url}
+                        fileSize={procurementDetails.file.size}
                     />
                 )}
             </Section>
