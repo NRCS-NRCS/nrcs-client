@@ -9,6 +9,7 @@ import {
 import { PiMailboxFill } from 'react-icons/pi';
 import {
     RiPrinterFill,
+    RiTiktokFill,
     RiTwitterXFill,
 } from 'react-icons/ri';
 import { _cs } from '@togglecorp/fujs';
@@ -51,20 +52,30 @@ export default function Footer(props: Props) {
                         <Link
                             href="https://www.facebook.com/nepalredcross"
                             className={styles.icon}
+                            target="_blank"
                         >
                             <IoLogoFacebook />
                         </Link>
                         <Link
                             href="https://www.youtube.com/channel/UCwA1CYDYvIH7KaRBpYy50ow"
                             className={styles.icon}
+                            target="_blank"
                         >
                             <IoLogoYoutube />
                         </Link>
                         <Link
                             href="https://x.com/NepalRedCross"
                             className={styles.icon}
+                            target="_blank"
                         >
                             <RiTwitterXFill />
+                        </Link>
+                        <Link
+                            href="https://www.tiktok.com/@nepalredcross1130"
+                            className={styles.icon}
+                            target="_blank"
+                        >
+                            <RiTiktokFill />
                         </Link>
                     </div>
                     <Link

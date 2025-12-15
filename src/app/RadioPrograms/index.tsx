@@ -31,7 +31,7 @@ export default function RadioPrograms(props: Props) {
 
     const [value, setValue] = useState<string | undefined>('radio-red-cross');
     const radioRedCrossList = radioPrograms
-        .filter((item) => item.type === 'TUESDAY_PROGRAM')
+        .filter((item) => item.type === 'RADIO_RED_CROSS')
         .sort(
             (a, b) => compareDate(b.publishedDate, a.publishedDate),
         )

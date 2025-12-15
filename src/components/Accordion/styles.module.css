@@ -27,7 +27,7 @@
         .accordionContent {
             padding: var(--spacing-large);
             line-height: 1.5;
-            .accordionProjects {
+            .accordionChildren {
                 margin-top: var(--spacing-extra-small);
             }
         }
