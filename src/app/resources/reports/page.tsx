@@ -45,10 +45,9 @@ function ReportsPage() {
                         imageSrc={report.coverImage?.url ?? cardImage}
                         imageAlt={report.title}
                         heading={report.title}
-                        author={report.title}
                         description={report.content}
                         date={report.publishedDate}
-                        link={`/resources/reports/${report.id}`}
+                        link={report.slug}
                     />
                 ))}
                 <Pager

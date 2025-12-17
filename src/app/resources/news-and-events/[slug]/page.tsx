@@ -25,8 +25,8 @@ export async function generateStaticParams() {
         return [{ slug: 'dummy' }];
     }
 
-    return data?.map((d: { id: string }) => ({
-        slug: d.id,
+    return data?.map((d: { slug: string }) => ({
+        slug: d.slug,
     }));
 }
 
@@ -40,9 +40,9 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
-    const allNews : NewsType = allData.news;
+    const allNews: NewsType = allData.news;
     const newsDetails = allNews.find(
-        (data) => data.id === slug,
+        (data) => data.slug === slug,
     ) as unknown as NewsType[number];
 
     if (isNotDefined(newsDetails)) {

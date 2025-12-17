@@ -1,16 +1,15 @@
 .authorSection {
-    font-size: var(--font-size-small);
-
+    font-size: var(--font-size-medium);
+    color: var(--color-text-alternative);
     .author {
-        color: var(--color-text-black);
+        font-weight: var(--font-weight-medium);
+        font-size: var(--font-size-large);
+        margin-bottom: var(--spacing-super-small);
     }
 
     .rightContainer {
         display: flex;
         gap: var(--spacing-super-small);
-
-        .date {
-            color: var(--color-text-neutral);
-        }
+        font-size: var(--font-size-small);
     }
 }

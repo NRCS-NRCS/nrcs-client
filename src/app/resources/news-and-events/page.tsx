@@ -38,10 +38,9 @@ function NewsAndEventsPage() {
                         imageSrc={news.coverImage?.url ?? ''}
                         imageAlt={news.title}
                         heading={news.title}
-                        author={news.title}
                         description={news.content}
                         date={news.publishedDate}
-                        link={news.id}
+                        link={news.slug}
                     />
                 ))}
                 <Pager

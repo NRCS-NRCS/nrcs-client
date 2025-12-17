@@ -42,15 +42,12 @@ function PoliciesAndGuidelinesPage() {
                 ) : paginateData?.map((policy) => (
                     <ArticleCard
                         key={policy.id}
-                        // FIXME: Update this to resource cover image after its
-                        // implemented in server
                         imageSrc={cardImage}
                         imageAlt={policy.title}
                         heading={policy.title}
-                        author={policy.title}
                         description={policy.content}
                         date={policy.publishedDate}
-                        link={`/resources/policies-and-guidelines/${policy.id}`}
+                        link={policy.slug}
                     />
                 ))}
                 <Pager

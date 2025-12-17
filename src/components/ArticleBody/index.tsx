@@ -1,5 +1,6 @@
 import { _cs } from '@togglecorp/fujs';
 import { remark } from 'remark';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 
@@ -19,6 +20,7 @@ export default async function ArticleBody(props: Props) {
     const processedContent = await remark()
         .use(html, { sanitize: false })
         .use(remarkGfm)
+        .use(remarkBreaks)
         .process(content);
     const contentHtml = processedContent.toString();
 

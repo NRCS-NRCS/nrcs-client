@@ -45,8 +45,7 @@ function BlogPage() {
                         author={blog.author}
                         description={blog.content}
                         date={blog.publishedDate}
-                        // FIXME: Update to slug after its implemented in server
-                        link={blog.id}
+                        link={blog.slug}
                     />
                 ))}
                 <Pager

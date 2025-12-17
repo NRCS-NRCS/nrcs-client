@@ -19,7 +19,7 @@ interface Props {
     heading: string;
     link?: string;
     description: string;
-    author: string;
+    author?: string;
     date?: string | null;
     isSmall?: boolean;
 }
@@ -48,12 +48,12 @@ export default function ArticleCard(props: Props) {
             <div className={styles.articleCardDescription}>
                 <Heading
                     className={styles.heading}
-                    size={isSmall ? 'extraSmall' : 'small'}
+                    size={isSmall ? 'extraSmall' : 'medium'}
                 >
                     {heading}
                 </Heading>
                 <AuthorSection
-                    className={styles.authorSection}
+                    authorClassName={styles.author}
                     author={author}
                     date={date}
                     articleLength={description.length}
@@ -63,7 +63,6 @@ export default function ArticleCard(props: Props) {
                         {stripMarkdown(description)}
                     </p>
                 )}
-
             </div>
         </>
     );

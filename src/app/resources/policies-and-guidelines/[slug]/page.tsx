@@ -25,8 +25,8 @@ export async function generateStaticParams() {
         return [{ slug: 'dummy' }];
     }
 
-    return data?.map((d: { id: string }) => ({
-        slug: d.id,
+    return data?.map((d: { slug: string }) => ({
+        slug: d.slug,
     }));
 }
 
@@ -44,7 +44,7 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
     const allResources = allData.resources as unknown as ResourcesType;
 
     const policyDetails = allResources.find(
-        (data) => data.id === slug && data.type === 'POLICY_AND_GUIDELINES',
+        (data) => data.slug === slug && data.type === 'POLICY_AND_GUIDELINES',
     ) as unknown as ResourcesType[number];
 
     if (isNotDefined(policyDetails)) {
@@ -58,7 +58,6 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
         <Page contentClassName={styles.resourcesPage}>
             <Section>
                 <ResourcesBanner
-                    // FIXME: Update this after its implemented in server
                     imageSrc={cardImage}
                     imageAlt={policyDetails.title}
                     heading={policyDetails.title}
