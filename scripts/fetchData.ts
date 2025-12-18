@@ -32,8 +32,6 @@ const query = gql`
             slug
             id
             description
-            contactPersonName
-            contactPersonEmail
             coverImage {
                 name
                 url
@@ -88,7 +86,7 @@ const query = gql`
         }
         highlights {
             description
-            expiryDate
+            isActive
             heading
             id
             image {

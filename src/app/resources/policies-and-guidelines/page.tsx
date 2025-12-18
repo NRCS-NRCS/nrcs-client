@@ -1,45 +1,68 @@
-import React from 'react';
+'use client';
+
+import React, { Suspense } from 'react';
 import { isDefined } from '@togglecorp/fujs';
+import { useSearchParams } from 'next/navigation';
 
 import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
+import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import paginate from '#lib/paginate';
 import cardImage from '#public/card.png';
 
 type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
-export default async function PoliciesandGuidelines() {
+function PoliciesAndGuidelinesPage() {
+    const searchParams = useSearchParams();
+    const page = searchParams?.get('page');
+    const currentPage = page ?? 1;
+    const pageSize = 5;
     const allResources = allData.resources as unknown as ReportType;
-    const data = allResources.filter((res) => res.type === 'POLICY_AND_GUIDELINES');
+    const policyData = allResources.filter((res) => res.type === 'POLICY_AND_GUIDELINES');
 
+    const paginateData = paginate(
+        policyData,
+        Number(currentPage),
+        pageSize,
+    );
     return (
         <Page>
             <Section
                 heading="Policies and Guidelines"
                 headingWithBackground
             >
-                {(isDefined(data) && data.length <= 0) ? (
+                {(isDefined(policyData) && policyData.length <= 0) ? (
                     <EmptyMessage
                         message="No resources found"
                     />
-                ) : data?.map((policy) => (
+                ) : paginateData?.map((policy) => (
                     <ArticleCard
                         key={policy.id}
-                        // FIXME: Update this to resource cover image after its
-                        // implemented in server
                         imageSrc={cardImage}
                         imageAlt={policy.title}
                         heading={policy.title}
-                        author={policy.title}
                         description={policy.content}
                         date={policy.publishedDate}
-                        link={`/resources/policies-and-guidelines/${policy.id}`}
+                        link={policy.slug}
                     />
                 ))}
+                <Pager
+                    maxItemsPerPage={pageSize}
+                    itemsCount={policyData.length}
+                />
             </Section>
         </Page>
+    );
+}
+
+export default function PoliciesAndGuidelines() {
+    return (
+        <Suspense>
+            <PoliciesAndGuidelinesPage />
+        </Suspense>
     );
 }

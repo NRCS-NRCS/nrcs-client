@@ -22,8 +22,8 @@ export async function generateStaticParams() {
         return [{ slug: 'dummy' }];
     }
 
-    return data?.map((d: { id: string }) => ({
-        slug: d.id,
+    return data?.map((d: { slug: string }) => ({
+        slug: d.slug,
     }));
 }
 
@@ -40,7 +40,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
 
     const allBlogs = allData.blogs as unknown as BlogsType;
     const blogDetails = allBlogs.find(
-        (data) => data?.id === slug,
+        (data) => data?.slug === slug,
     ) as unknown as BlogsType[number];
 
     if (isNotDefined(blogDetails)) {

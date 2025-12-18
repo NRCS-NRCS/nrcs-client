@@ -1,0 +1,17 @@
+.resourcesPage {
+    gap: var(--spacing-medium);
+    padding-bottom: var(--spacing-galactic);
+
+    .section {
+        .content {
+            padding-left: var(--spacing-galactic);
+            padding-right: var(--spacing-galactic);
+            @media (max-width: 768px) {
+                padding: 0;
+            }
+            .resourcesChildren {
+                gap: var(--spacing-medium);
+            }
+        }
+    }
+}

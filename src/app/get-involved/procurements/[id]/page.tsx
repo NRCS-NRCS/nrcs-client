@@ -41,7 +41,7 @@ export default async function ProcurementDetailPage(
     ) as unknown as ProcurementsType[number];
 
     if (!procurementDetails) {
-    // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.warn('No procurement found in GraphQL response');
         return notFound();
     }
