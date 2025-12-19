@@ -33,7 +33,7 @@ function RecentNews() {
         const calculateWindowSize = () => {
             if (!tabsRef.current) return;
             const containerWidth = tabsRef.current.offsetWidth;
-            const tabWidth = 150;
+            const tabWidth = 250;
             const maxItems = Math.floor(containerWidth / tabWidth);
             setWindowSize(Math.max(1, maxItems));
         };

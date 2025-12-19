@@ -129,5 +129,18 @@
 
 .seeMoreButton {
     display: flex;
-    justify-content: center;
+    justify-content: start;
+}
+
+.reports {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--spacing-mega-large);
+    margin-bottom: var(--spacing-small);
+    .projectCard {
+        max-width: 274px;
+    }
+    .projectImage {
+        height: 10rem;
+    }
 }

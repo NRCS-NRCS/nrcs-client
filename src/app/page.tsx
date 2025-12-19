@@ -7,6 +7,7 @@ import ImageWrapper from '#components/ImageWrapper';
 import KeyFigureCard from '#components/KeyFigureCard';
 import Link from '#components/Link';
 import Page from '#components/Page';
+import Partners from '#components/Partners';
 import RecentNews from '#components/RecentNews';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
@@ -45,7 +46,7 @@ export default async function Home() {
 
     const reports = [
         ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
-    ].slice(0, 3) as unknown as ResourceType;
+    ].slice(0, 4) as unknown as ResourceType;
 
     const highlights = allHighlights.filter(
         (data) => data?.isActive,
@@ -171,18 +172,21 @@ export default async function Home() {
                     childrenContainerClassName={styles.worksChildren}
                     headingWithBackground
                 >
-                    {reports.map((item) => (
-                        <WorkCard
-                            key={item.id}
-                            title={item.title}
-                            date={item.publishedDate}
-                            image={item.coverImage?.url}
-                            link={`/resources/reports/${item.slug}/`}
-                        />
-                    ))}
-                    <div className={styles.seeMoreButton}>
-                        <Link href="/resources/reports/" variant='button' >See All</Link>
+                    <div className={styles.reports}>
+                        {reports.map((item) => (
+                            <WorkCard
+                                key={item.id}
+                                title={item.title}
+                                date={item.publishedDate}
+                                image={item.coverImage?.url}
+                                link={`/resources/reports/${item.slug}/`}
+                            />
+                        ))}
+                        <div className={styles.seeMoreButton}>
+                            <Link href="/resources/reports/" variant="button">See All</Link>
+                        </div>
                     </div>
+
                 </Section>
             )}
             <Section
@@ -222,6 +226,7 @@ export default async function Home() {
                     <RadioPrograms radioPrograms={radioPrograms ?? []} />
                 </div>
             </Section>
+            <Partners />
         </Page>
     );
 }

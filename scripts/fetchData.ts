@@ -198,6 +198,15 @@ const query = gql`
                 url
             }
         }
+        partners {
+            id
+            image {
+                name
+                url
+            }
+            scope
+            title
+        }    
     }
 `;
 

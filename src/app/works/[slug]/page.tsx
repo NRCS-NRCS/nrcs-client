@@ -170,7 +170,7 @@ export default async function WorkDetailPage(
                             title={resource.title}
                             date={resource.publishedDate ?? ''}
                             image={resource.coverImage?.url}
-                            link={`/resources/${resource.type === 'REPORT' ? 'reports' : 'policies-and-guidelines'}/${resource.id}/`}
+                            link={`/resources/${resource.type === 'REPORT' ? 'reports' : 'policies-and-guidelines'}/${resource.slug}/`}
                         />
                     ))}
                 </Section>
