@@ -17,7 +17,7 @@ import styles from './page.module.css';
 type DepartmentType = NonNullable<NonNullable<AllQueryQuery['departments']>>;
 type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>>;
 type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-type StrategicDirectivesType =NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
+type StrategicDirectivesType = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
@@ -37,7 +37,7 @@ export default async function WorkDetailPage(
     { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
-    const directivesFromQuery:StrategicDirectivesType = allData.strategicDirectives;
+    const directivesFromQuery: StrategicDirectivesType = allData.strategicDirectives;
     const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
     const projectsData = allData.projects as unknown as ProjectType;
     const resourcesData = allData.resources as unknown as ResourceType;
@@ -51,34 +51,57 @@ export default async function WorkDetailPage(
     );
 
     const projectsForDepartmentRenderer = (dept: DepartmentType[number]) => {
-        if (!departmentProjectsData || !dept) {
+        if (!dept) {
             return undefined;
         }
-
         const projects = departmentProjectsData.filter(
             (item) => item.department?.id === dept.id,
         );
-
         return (
-            <div className={styles.projectCards}>
-                {projects.map((projectItem) => (
-                    <WorkCard
-                        key={projectItem.id}
-                        title={projectItem.title}
-                        image={projectItem.coverImage?.url}
-                        link={`/projects/${projectItem.id}`}
-                        imageClassName={styles.projectImage}
-                    />
-                ))}
-            </div>
+            <>
+                {projects.length > 0
+                    && (
+                        <div className={styles.projectCards}>
+                            {projects.map((projectItem) => (
+                                <WorkCard
+                                    key={projectItem.id}
+                                    title={projectItem.title}
+                                    image={projectItem.coverImage?.url}
+                                    link={`/projects/${projectItem.id}`}
+                                    imageClassName={styles.projectImage}
+                                />
+                            ))}
+                        </div>
+                    )}
+                <Section
+                    className={styles.contact}
+                    contentClassName={styles.contactContent}
+                    childrenContainerClassName={styles.contactChildren}
+                >
+                    For more information, please contact
+                    &nbsp;
+                    {dept.contactPersonName}
+                    &nbsp;
+                    at
+                    &nbsp;
+                    <Link
+                        variant="navigation"
+                        className={styles.contactButton}
+                        href={`mailto:${dept.contactPersonEmail}`}
+                    >
+                        {dept.contactPersonEmail}
+                    </Link>
+
+                </Section>
+            </>
         );
     };
 
-    const departmentsForDirective : DepartmentType = departmentData
+    const departmentsForDirective: DepartmentType = departmentData
         ?.filter((dept) => dept.strategicDirective.id === directive?.id)
         ?.map((dept) => ({
             ...dept,
-            projects: projectsForDepartmentRenderer(dept),
+            children: projectsForDepartmentRenderer(dept),
         }));
 
     if (!directive) return notFound();
@@ -133,7 +156,7 @@ export default async function WorkDetailPage(
                     />
                 </Section>
             )}
-            { /* FIXME: Fix this to include resources */ }
+            { /* FIXME: Fix this to include resources */}
             {(resourcesForDirective?.length ?? 0) > 0 && (
                 <Section
                     heading="Important Resources"
@@ -151,26 +174,6 @@ export default async function WorkDetailPage(
                     ))}
                 </Section>
             )}
-            <Section
-                className={styles.contact}
-                contentClassName={styles.contactContent}
-                childrenContainerClassName={styles.contactChildren}
-            >
-                <span>
-                    For more information, please contact
-                    &nbsp;
-                    {directive.contactPersonName}
-                    &nbsp;
-                    at
-                </span>
-                <Link
-                    variant="navigation"
-                    className={styles.contactButton}
-                    href={`mailto:${directive.contactPersonEmail}`}
-                >
-                    {directive.contactPersonEmail}
-                </Link>
-            </Section>
         </Page>
     );
 }

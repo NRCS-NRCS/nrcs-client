@@ -1,16 +1,30 @@
-import React from 'react';
+'use client';
+
+import React, { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
+import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import paginate from '#lib/paginate';
 
 type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
-export default async function NewsAndEvents() {
+function NewsAndEventsPage() {
+    const searchParams = useSearchParams();
+    const page = searchParams?.get('page');
+    const currentPage = page ?? 1;
+    const pageSize = 5;
     const newsList: NewsType = allData.news;
+    const paginateData = paginate(
+        newsList,
+        Number(currentPage),
+        pageSize,
+    );
     return (
         <Page>
             <Section heading="News and Events" headingWithBackground>
@@ -18,19 +32,30 @@ export default async function NewsAndEvents() {
                     <EmptyMessage
                         message="No news or events available"
                     />
-                ) : newsList.map((news) => (
+                ) : paginateData.map((news) => (
                     <ArticleCard
                         key={news.id}
                         imageSrc={news.coverImage?.url ?? ''}
                         imageAlt={news.title}
                         heading={news.title}
-                        author={news.title}
                         description={news.content}
                         date={news.publishedDate}
-                        link={news.id}
+                        link={news.slug}
                     />
                 ))}
+                <Pager
+                    maxItemsPerPage={pageSize}
+                    itemsCount={newsList.length}
+                />
             </Section>
         </Page>
+    );
+}
+
+export default function NewsAndEvents() {
+    return (
+        <Suspense>
+            <NewsAndEventsPage />
+        </Suspense>
     );
 }

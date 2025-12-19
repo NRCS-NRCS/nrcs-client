@@ -40,11 +40,15 @@ export default async function Home() {
     const radioPrograms = allData.radioProgram as unknown as RadioType;
 
     const allResources = allData?.resources as unknown as ResourceType;
+    const allHighlights = allData?.highlights as unknown as HighlightsType;
+
     const reports = [
         ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
     ].slice(0, 3) as unknown as ResourceType;
     const news = [...(allData?.news ?? [])].slice(0, 10) as unknown as NewsType;
-    const highlights = allData?.highlights as unknown as HighlightsType;
+    const highlights = allHighlights.filter(
+        (data) => data?.isActive,
+    );
 
     return (
         <Page contentClassName={styles.page}>

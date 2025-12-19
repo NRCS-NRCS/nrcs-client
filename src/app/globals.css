@@ -20,6 +20,7 @@
     --color-primary-dark: #cd1f29;
     --color-primary-darker: #d0011c;
     --color-text-link: var(--color-primary);
+    --color-link:#337ab7;
 
     --color-background-blue: #C4DFF6;
     --color-background-yellow: #ECB731;

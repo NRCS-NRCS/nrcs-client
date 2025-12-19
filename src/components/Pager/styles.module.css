@@ -1,0 +1,16 @@
+.pager {
+    display: flex;
+    gap: var(--spacing-medium);
+    align-items: center;
+    justify-content: center;
+    .pagerBtn {
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        line-height: 1;
+        padding: 0;
+    }
+}
