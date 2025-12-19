@@ -3,6 +3,7 @@ import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import aboutUsImage from '#public/aboutUs.jpeg';
 import bannerImage from '#public/banner.png';
 
 import styles from './page.module.css';
@@ -46,13 +47,14 @@ export default function AboutUs() {
                     alt="Banner Image"
                 />
                 <div className={styles.description}>
+
                     <Heading
                         className={styles.heading}
                         withBackground
                     >
                         {missionHeading}
                     </Heading>
-                    {missionDescription}
+                    <ArticleBody content={missionDescription} />
                 </div>
             </Section>
             <Section
@@ -67,12 +69,12 @@ export default function AboutUs() {
                     >
                         {visionHeading}
                     </Heading>
-                    {visionDescription}
+                    <ArticleBody content={visionDescription} />
                 </div>
                 <ImageWrapper
-                    className={styles.bannerImage}
-                    imageClassName={styles.image}
-                    src={bannerImage}
+                    className={styles.aboutImageContainer}
+                    imageClassName={styles.aboutImage}
+                    src={aboutUsImage}
                     alt="Banner Image"
                 />
             </Section>

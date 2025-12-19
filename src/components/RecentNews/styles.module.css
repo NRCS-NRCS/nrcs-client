@@ -1,0 +1,36 @@
+.recentNewsChildrenContainer {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-super-large) var(--spacing-mega-large);
+    background-color: var(--color-background-dark);
+    color: var(--color-text-on-dark);
+    .navigation {
+        display: flex;
+        flex-direction: row;
+        color: white;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .activeTab {
+        color: var(--color-text-on-dark);
+    }
+    .tab {
+        color: var(--color-text-neutral);
+    }
+    .tabs {
+        flex: 1;
+        display: flex;
+        gap: var(--spacing-super-large);
+        margin-left: var(--spacing-large);
+        margin-right: var(--spacing-large);
+    }
+    .tabButton {
+        font-size: var(--font-size-large);
+    }
+    .chevron {
+        color: var(--color-text-on-dark);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

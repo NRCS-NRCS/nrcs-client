@@ -1,10 +1,12 @@
-import { GraphQLClient, gql } from 'graphql-request';
 import fs from 'fs';
+import {
+    gql,
+    GraphQLClient,
+} from 'graphql-request';
 import path from 'path';
 
 const datadir = path.join(__dirname, '../data');
-const GRAPHQL_ENDPOINT =
-    process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
 const pipelineType = process.env.PIPELINE_TYPE;
 
 const client = new GraphQLClient(GRAPHQL_ENDPOINT);
@@ -54,7 +56,7 @@ const query = gql`
             }
             title
         }
-        news {
+        news(filters: { status: PUBLISHED }) {
             content
             id
             publishedDate
@@ -99,7 +101,7 @@ const query = gql`
                 url
             }
         }
-        blogs {
+        blogs(filters: { status: PUBLISHED }) {
             title
             status
             slug

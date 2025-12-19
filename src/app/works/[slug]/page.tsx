@@ -64,6 +64,7 @@ export default async function WorkDetailPage(
                         <div className={styles.projectCards}>
                             {projects.map((projectItem) => (
                                 <WorkCard
+                                    className={projects.length === 1 ? styles.projectCard : ''}
                                     key={projectItem.id}
                                     title={projectItem.title}
                                     image={projectItem.coverImage?.url}
@@ -145,7 +146,7 @@ export default async function WorkDetailPage(
             )}
             {departmentsForDirective?.length > 0 && (
                 <Section
-                    heading="Departments supporting the cause"
+                    heading="Departments, Division and Service Areas"
                     className={styles.departments}
                     contentClassName={styles.departmentsContent}
                     childrenContainerClassName={styles.departmentsChildren}
