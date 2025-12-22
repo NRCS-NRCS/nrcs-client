@@ -54,6 +54,7 @@
                 .heading {
                     color: var(--color-text-on-primary);
                     flex-shrink: 0;
+                    text-align: left;
                 }
 
                 .description {
@@ -105,4 +106,3 @@
         }
     }
 }
-

@@ -1,0 +1,39 @@
+.partners {
+    display: flex;
+    flex-direction: row;
+    padding: var(--spacing-large) var(--spacing-super-large);
+    gap: var(--spacing-gigantic);
+    margin: 0 auto;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+    &:hover {
+        animation-play-state: paused;
+    }
+    .item {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-enormous);
+        .imageWrapper {
+            position: relative;
+            width: 8rem;
+            height: 8rem;
+        }
+        .image {
+            object-fit: contain;
+        }
+    }
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+.child {
+    overflow: hidden;
+    width: 100%;
+}

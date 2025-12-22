@@ -7,6 +7,8 @@ import ImageWrapper from '#components/ImageWrapper';
 import KeyFigureCard from '#components/KeyFigureCard';
 import Link from '#components/Link';
 import Page from '#components/Page';
+import Partners from '#components/Partners';
+import RecentNews from '#components/RecentNews';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
@@ -17,6 +19,7 @@ import cardImage from '#public/card.png';
 import donateIcon from '#public/donate.png';
 import handsIcon from '#public/hands.png';
 import logo from '#public/logo.png';
+import profileImage from '#public/Mr.bipulneupane.jpg';
 
 import Highlights from './Highlights';
 import RadioPrograms from './RadioPrograms';
@@ -32,7 +35,6 @@ const nrcsOfficerContactNumber = '+977 9741695097';
 const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 
 type HighlightsType = NonNullable<NonNullable<AllQueryQuery['highlights']>>;
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 type RadioType = NonNullable<NonNullable<AllQueryQuery['radioProgram']>>;
 
@@ -44,8 +46,8 @@ export default async function Home() {
 
     const reports = [
         ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
-    ].slice(0, 3) as unknown as ResourceType;
-    const news = [...(allData?.news ?? [])].slice(0, 10) as unknown as NewsType;
+    ].slice(0, 4) as unknown as ResourceType;
+
     const highlights = allHighlights.filter(
         (data) => data?.isActive,
     );
@@ -57,6 +59,7 @@ export default async function Home() {
                 className={styles.introduction}
                 contentClassName={styles.introductionContent}
             >
+                <div className={styles.introText}>{introText}</div>
                 <div className={styles.infoCards}>
                     <KeyFigureCard
                         title="20,000+"
@@ -74,7 +77,7 @@ export default async function Home() {
                         icon={logo}
                     />
                 </div>
-                <div className={styles.bottomContent}>
+                {/* <div className={styles.bottomContent}>
                     <div className={styles.introText}>{introText}</div>
                     <KeyFigureCard
                         className={styles.keyFigureOne}
@@ -90,28 +93,9 @@ export default async function Home() {
                         icon={logo}
                         transparent
                     />
-                </div>
+                </div> */}
             </Section>
-            {news.length > 0 && (
-                <Section
-                    heading="Recent News and Events"
-                    childrenContainerClassName={
-                        styles.recentNewsChildrenContainer
-                    }
-                    headingWithBackground
-                >
-                    {news.map((item) => (
-                        <RecentNewsCard
-                            key={item.id}
-                            title={item.title}
-                            description={item.content}
-                            date={item.publishedDate}
-                            image={item.coverImage?.url}
-                            link={`/resources/news-and-events/${item.slug}/`}
-                        />
-                    ))}
-                </Section>
-            )}
+            <RecentNews />
             <Section
                 className={styles.callToActions}
                 contentClassName={styles.callToActionsContent}
@@ -188,15 +172,21 @@ export default async function Home() {
                     childrenContainerClassName={styles.worksChildren}
                     headingWithBackground
                 >
-                    {reports.map((item) => (
-                        <WorkCard
-                            key={item.id}
-                            title={item.title}
-                            date={item.publishedDate}
-                            image={item.coverImage?.url}
-                            link={`/resources/reports/${item.id}/`}
-                        />
-                    ))}
+                    <div className={styles.reports}>
+                        {reports.map((item) => (
+                            <WorkCard
+                                key={item.id}
+                                title={item.title}
+                                date={item.publishedDate}
+                                image={item.coverImage?.url}
+                                link={`/resources/reports/${item.slug}/`}
+                            />
+                        ))}
+                        <div className={styles.seeMoreButton}>
+                            <Link href="/resources/reports/" variant="button">See All</Link>
+                        </div>
+                    </div>
+
                 </Section>
             )}
             <Section
@@ -207,7 +197,7 @@ export default async function Home() {
                 <div className={styles.officerCard}>
                     <ImageWrapper
                         className={styles.profileImage}
-                        src={cardImage}
+                        src={profileImage}
                         alt="NRCS IM Officer"
                     />
                     <div className={styles.description}>
@@ -236,6 +226,7 @@ export default async function Home() {
                     <RadioPrograms radioPrograms={radioPrograms ?? []} />
                 </div>
             </Section>
+            <Partners />
         </Page>
     );
 }

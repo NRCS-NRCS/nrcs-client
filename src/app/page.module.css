@@ -12,21 +12,22 @@
                 grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
                 gap: var(--spacing-large);
             }
+            .introText {
+                font-size: var(--font-size-large);
+                line-height: 1.8;
+            }
 
             .bottomContent {
+                .introText {
+                    grid-row: 1 / span 2; /* take both rows */
+                    grid-column: 1;
+                    max-width: 50rem;
+                }
                 display: grid;
                 grid-template-columns: 1.5fr 1fr;
                 grid-template-rows: auto auto;
                 gap: var(--spacing-large);
                 align-items: flex-start;
-
-                .introText {
-                    font-size: var(--font-size-large);
-                    grid-row: 1 / span 2; /* take both rows */
-                    grid-column: 1;
-                    max-width: 50rem;
-                    line-height: 1.8;
-                }
 
                 .keyFigureOne {
                     grid-column: 2;
@@ -54,14 +55,6 @@
                 }
             }
         }
-    }
-
-    .recentNewsChildrenContainer {
-        display: flex;
-        flex-direction: column;
-        padding: var(--spacing-super-large) var(--spacing-mega-large);
-        background-color: var(--color-background-dark);
-        color: var(--color-text-on-dark);
     }
 
     .nrcsPlanChildrenContainer {
@@ -131,5 +124,23 @@
                 }
             }
         }
+    }
+}
+
+.seeMoreButton {
+    display: flex;
+    justify-content: start;
+}
+
+.reports {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--spacing-mega-large);
+    margin-bottom: var(--spacing-small);
+    .projectCard {
+        max-width: 274px;
+    }
+    .projectImage {
+        height: 10rem;
     }
 }
