@@ -84,6 +84,7 @@ export default async function reportDetailsPage({ params }: PageProps) {
                         title={reportDetails.file.name}
                         file={reportDetails.file.url}
                         fileSize={reportDetails.file.size}
+                        isExternalLink
                     />
                 )}
             </Section>

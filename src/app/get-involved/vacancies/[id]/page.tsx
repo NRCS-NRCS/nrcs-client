@@ -44,7 +44,7 @@ export default async function VacancyDetailPage({ params }: PageProps) {
     ) as unknown as VacanciesType[number];
 
     if (!vacancyDetails) {
-    // eslint-disable-next-line no-console
+        // eslint-disable-next-line no-console
         console.warn('No vacancies found in GraphQL response');
         return notFound();
     }
@@ -72,6 +72,7 @@ export default async function VacancyDetailPage({ params }: PageProps) {
                         title={vacancyDetails.file.name}
                         file={vacancyDetails.file.url}
                         fileSize={vacancyDetails.file.size}
+                        isExternalLink
                     />
                 )}
             </Section>

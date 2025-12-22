@@ -86,10 +86,17 @@
 
     .subSection {
         color: var(--color-text);
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-small);
+    }
+    .sameAsPermanent {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-extra-small);
     }
 
     .submitButton {
-        border: var(--width-separator-thin) solid var(--color-primary);
         align-self: flex-start;
     }
 }

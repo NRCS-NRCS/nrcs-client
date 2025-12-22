@@ -14,6 +14,7 @@ interface Props {
     title: React.ReactNode;
     link: string;
     linkDescription: string;
+    isExternalLink?: boolean;
 }
 
 export default function CallToAction(props: Props) {
@@ -23,6 +24,7 @@ export default function CallToAction(props: Props) {
         icon,
         link,
         linkDescription,
+        isExternalLink,
     } = props;
 
     return (
@@ -49,6 +51,8 @@ export default function CallToAction(props: Props) {
             <Link
                 href={link}
                 variant="buttonTransparent"
+                target={isExternalLink ? '_blank' : ''}
+
             >
                 {linkDescription}
             </Link>

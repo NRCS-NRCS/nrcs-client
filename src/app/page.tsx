@@ -134,8 +134,9 @@ export default async function Home() {
                         </p>
                     )}
                     icon={donateIcon}
-                    link="/get-involved/donate/"
+                    link="https://donation.nrcs.org/"
                     linkDescription="Donate"
+                    isExternalLink
                 />
                 {/* FIXME: Update link */}
                 <CallToAction
@@ -146,7 +147,7 @@ export default async function Home() {
                         </p>
                     )}
                     icon={callIcon}
-                    link="/get-involved/donate/"
+                    link="/contact/"
                     linkDescription="Partner with us"
                 />
             </Section>
@@ -182,11 +183,10 @@ export default async function Home() {
                                 link={`/resources/reports/${item.slug}/`}
                             />
                         ))}
-                        <div className={styles.seeMoreButton}>
-                            <Link href="/resources/reports/" variant="button">See All</Link>
-                        </div>
+                        {reports.length > 3 && (
+                            <Link href="/resources/reports/" variant="buttonTransparent">See All</Link>
+                        )}
                     </div>
-
                 </Section>
             )}
             <Section

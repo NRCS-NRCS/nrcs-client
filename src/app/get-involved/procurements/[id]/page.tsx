@@ -69,6 +69,7 @@ export default async function ProcurementDetailPage(
                         title={procurementDetails.title}
                         file={procurementDetails.file.url}
                         fileSize={procurementDetails.file.size}
+                        isExternalLink
                     />
                 )}
             </Section>

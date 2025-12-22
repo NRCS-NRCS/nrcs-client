@@ -42,7 +42,7 @@ function PoliciesAndGuidelinesPage() {
                 ) : paginateData?.map((policy) => (
                     <ArticleCard
                         key={policy.id}
-                        imageSrc={cardImage}
+                        imageSrc={policy.coverImage?.url ?? cardImage}
                         imageAlt={policy.title}
                         heading={policy.title}
                         description={policy.content}

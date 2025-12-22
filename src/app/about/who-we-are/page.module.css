@@ -1,8 +1,5 @@
 .page {
     gap: var(--spacing-extra-large);
-    .aboutContent {
-    }
-
     .mission {
         .missionContent {
             .missionChildren {
@@ -24,12 +21,3 @@
         }
     }
 }
-
-/* .aboutImageContainer {
-    width: 100% !important;
-    height: 60% !important;
-    object-fit: contain;
-    .aboutImage {
-        object-fit: contain !important;
-    }
-} */

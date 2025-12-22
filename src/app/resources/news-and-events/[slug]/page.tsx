@@ -5,6 +5,7 @@ import {
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
+import DownloadTemplate from '#components/DownloadTemplate';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
@@ -77,6 +78,14 @@ export default async function NewsDetailsPage({ params }: PageProps) {
                 <ArticleBody
                     content={newsDetails.content}
                 />
+                {isDefined(newsDetails.file) && (
+                    <DownloadTemplate
+                        title={newsDetails.file.name}
+                        file={newsDetails.file.url}
+                        fileSize={newsDetails.file.size}
+                        isExternalLink
+                    />
+                )}
             </Section>
         </Page>
     );

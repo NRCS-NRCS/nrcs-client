@@ -58,7 +58,7 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
         <Page contentClassName={styles.resourcesPage}>
             <Section>
                 <ResourcesBanner
-                    imageSrc={cardImage}
+                    imageSrc={policyDetails.coverImage?.url ?? cardImage}
                     imageAlt={policyDetails.title}
                     heading={policyDetails.title}
                 />
@@ -81,6 +81,7 @@ export default async function policyAndGuidelineDetailsPage({ params }: PageProp
                         title={policyDetails.file.name}
                         file={policyDetails.file.url}
                         fileSize={policyDetails.file.size}
+                        isExternalLink
                     />
                 )}
             </Section>
