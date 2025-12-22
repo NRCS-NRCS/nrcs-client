@@ -16,6 +16,7 @@ import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import callIcon from '#public/call.png';
 import cardImage from '#public/card.png';
+import defaultImage from '#public/defaultImage.png';
 import donateIcon from '#public/donate.png';
 import handsIcon from '#public/hands.png';
 import logo from '#public/logo.png';
@@ -179,7 +180,7 @@ export default async function Home() {
                                 key={item.id}
                                 title={item.title}
                                 date={item.publishedDate}
-                                image={item.coverImage?.url}
+                                image={item.coverImage?.url ?? defaultImage}
                                 link={`/resources/reports/${item.slug}/`}
                             />
                         ))}

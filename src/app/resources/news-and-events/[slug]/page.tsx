@@ -11,6 +11,7 @@ import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
@@ -57,13 +58,11 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     return (
         <Page contentClassName={styles.resourcesPage}>
             <Section>
-                {isDefined(newsDetails.coverImage) && (
-                    <ResourcesBanner
-                        imageSrc={newsDetails.coverImage?.url}
-                        imageAlt={newsDetails.coverImage?.name}
-                        heading={newsDetails.title}
-                    />
-                )}
+                <ResourcesBanner
+                    imageSrc={newsDetails.coverImage?.url ?? defaultImage}
+                    imageAlt={newsDetails.coverImage?.name ?? ''}
+                    heading={newsDetails.title}
+                />
             </Section>
             <Section
                 className={styles.section}

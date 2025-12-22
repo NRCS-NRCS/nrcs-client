@@ -12,7 +12,7 @@ import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
-import cardImage from '#public/card.png';
+import defaultImage from '#public/defaultImage.png';
 
 type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
@@ -42,7 +42,7 @@ function PoliciesAndGuidelinesPage() {
                 ) : paginateData?.map((policy) => (
                     <ArticleCard
                         key={policy.id}
-                        imageSrc={policy.coverImage?.url ?? cardImage}
+                        imageSrc={policy.coverImage?.url ?? defaultImage}
                         imageAlt={policy.title}
                         heading={policy.title}
                         description={policy.content}

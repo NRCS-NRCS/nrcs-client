@@ -12,7 +12,7 @@ import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
-import defaultImage from '#public/logo.png';
+import defaultImage from '#public/defaultImage.png';
 
 type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 

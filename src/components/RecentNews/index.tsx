@@ -13,7 +13,7 @@ import { _cs } from '@togglecorp/fujs';
 
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
-import DefaultImage from '#public/logoWithName.jpg';
+import defaultImage from '#public/defaultImage.png';
 
 import Button from '../Button';
 import RecentNewsCard from '../RecentNewsCard';
@@ -113,7 +113,7 @@ function RecentNews() {
                 title={news[activeIndex].title}
                 description={news[activeIndex].content}
                 date={news[activeIndex].publishedDate}
-                image={news[activeIndex].coverImage?.url ?? DefaultImage}
+                image={news[activeIndex].coverImage?.url ?? defaultImage}
                 trimDescription={300}
                 link={`/resources/news-and-events/${news[activeIndex].slug}/`}
             />
