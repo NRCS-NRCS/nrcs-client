@@ -463,7 +463,7 @@ export default function VolunteerForm() {
                 variant="primary"
                 disabled={!formValues.termsAccepted}
             >
-                Continue
+                Submit
             </Button>
         </form>
     );

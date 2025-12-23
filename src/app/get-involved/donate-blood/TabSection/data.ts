@@ -1,5 +1,5 @@
 type AddressDescription = {
-    id:string ;
+    id: string;
     title: string;
     time: string;
     organizer: string;
@@ -11,6 +11,171 @@ interface WhereToDonate {
     description?: AddressDescription[];
 
 }
+
+export interface OutsideValleyTable {
+    id: number;
+    bloodCenter: string;
+    focalPerson: string;
+    contactNo: string;
+    district: string;
+}
+
+export const outsideValleyTable: OutsideValleyTable[] = [
+    {
+        id: 1,
+        bloodCenter: 'Baglung',
+        focalPerson: 'Gurudatta Sharma',
+        contactNo: '068-520273',
+        district: 'Baglung',
+    },
+    {
+        id: 2,
+        bloodCenter: 'Banepa',
+        focalPerson: 'Radha Thapa',
+        contactNo: '011-661431',
+        district: 'Kavre',
+    },
+    {
+        id: 3,
+        bloodCenter: 'Bhadrapur',
+        focalPerson: 'Torna Bikram Karki',
+        contactNo: '023-520814',
+        district: 'Jhapa',
+    },
+    {
+        id: 4,
+        bloodCenter: 'Bhaktapur',
+        focalPerson: 'Uttam Kusma',
+        contactNo: '01-6612266',
+        district: 'Bhaktapur',
+    },
+    {
+        id: 5,
+        bloodCenter: 'Bharatpur',
+        focalPerson: 'Ramesh Kanta Poudel',
+        contactNo: '065-520880',
+        district: 'Chitwan',
+    },
+    {
+        id: 6,
+        bloodCenter: 'Birgunj',
+        focalPerson: 'Saurab',
+        contactNo: '051-522504',
+        district: 'Parsa',
+    },
+    {
+        id: 7,
+        bloodCenter: 'Butawal',
+        focalPerson: 'Jogbahadur Gurung',
+        contactNo: '071-541004',
+        district: 'Butawal',
+    },
+    {
+        id: 8,
+        bloodCenter: 'Damak',
+        focalPerson: 'Sidhartha Dahal',
+        contactNo: '023-582101',
+        district: 'Jhapa',
+    },
+    {
+        id: 9,
+        bloodCenter: 'Dhangadi',
+        focalPerson: 'Dharani Prasad Pant',
+        contactNo: '091-521600',
+        district: 'Kailali',
+    },
+    {
+        id: 10,
+        bloodCenter: 'Dhankuta',
+        focalPerson: 'Niranjan Aale',
+        contactNo: '026-520135',
+        district: 'Dhankuta',
+    },
+    {
+        id: 11,
+        bloodCenter: 'Dharan',
+        focalPerson: 'Subash Chandra Singh',
+        contactNo: '025-520968',
+        district: 'Dharan',
+    },
+    {
+        id: 12,
+        bloodCenter: 'Ghorahi',
+        focalPerson: 'Dilip Kumar Neupane',
+        contactNo: '082-61460',
+        district: 'Dang',
+    },
+    {
+        id: 13,
+        bloodCenter: 'Hetauda',
+        focalPerson: 'Tanka Prasad Dahal',
+        contactNo: '057-522977',
+        district: 'Makawanpur',
+    },
+    {
+        id: 14,
+        bloodCenter: 'Janakpur',
+        focalPerson: 'Narayan Neupane',
+        contactNo: '41520870',
+        district: 'Dhanusha',
+    },
+    {
+        id: 15,
+        bloodCenter: 'Mahendranagar',
+        focalPerson: 'Labdev Joshi',
+        contactNo: '091-523983',
+        district: 'Kanchanpur',
+    },
+    {
+        id: 16,
+        bloodCenter: 'Myanglung',
+        focalPerson: 'Pradip Hanglimbu',
+        contactNo: '026-460101',
+        district: 'Terhathum',
+    },
+    {
+        id: 17,
+        bloodCenter: 'Nepalgunj',
+        focalPerson: 'Upendra Regmi',
+        contactNo: '071-520174',
+        district: 'Banke',
+    },
+    {
+        id: 18,
+        bloodCenter: 'Pokhara',
+        focalPerson: 'DhurbaMani Lamichhane',
+        contactNo: '061-521091',
+        district: 'Kaski',
+    },
+    {
+        id: 19,
+        bloodCenter: 'Rajbiraj',
+        focalPerson: 'Nabin Kumar Jha',
+        contactNo: '031-521121',
+        district: 'Saptari',
+    },
+    {
+        id: 20,
+        bloodCenter: 'Siraha',
+        focalPerson: 'Pradip Kumar Yadav',
+        contactNo: '033-560975',
+        district: 'Lahan',
+    },
+    {
+        id: 21,
+        bloodCenter: 'Surkhet',
+        focalPerson: 'Prakash Shrestha',
+        contactNo: '083-520310',
+        district: 'Surkhet',
+    },
+    {
+        id: 22,
+        bloodCenter: 'NRCS Kawasoti SubChapter, Nawalparasi',
+        focalPerson: 'Saraswoti Bhusal',
+        contactNo: '078-540418',
+        district: 'Nawalpur, Bardaghat Susta east',
+    },
+];
 
 const whereToDonate: WhereToDonate[] = [
     {

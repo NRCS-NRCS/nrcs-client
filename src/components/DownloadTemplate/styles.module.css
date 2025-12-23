@@ -1,7 +1,7 @@
 .downloadTemplate {
     display: flex;
     padding: var(--spacing-medium) var(--spacing-large);
-    background-color: var(--color-text-alternative);
+    background-color: var(--color-banner);
     gap: var(--spacing-extra-large);
     color: var(--color-text-on-dark);
     max-width: 30rem;

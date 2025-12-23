@@ -3,7 +3,7 @@
 }
 .description {
     white-space: pre-line;
-    color: var(--color-text-alternative);
+    color: var(--color-text);
 }
 .cecList {
     display: flex;
@@ -14,7 +14,7 @@
     .leaderEmail,
     .memberName,
     .title {
-        color: var(--color-text-alternative);
+        color: var(--color-text);
     }
     .leadership {
         flex-grow: 1;
