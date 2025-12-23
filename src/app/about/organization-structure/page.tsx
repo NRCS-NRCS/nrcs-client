@@ -33,21 +33,21 @@ export default function AboutUs() {
                 childrenContainerClassName={styles.adminStructure}
                 headingWithBackground
             >
-                <Heading size="small" font="normal" className={styles.description}>
+                <Heading size="extraSmall" font="normal" className={styles.description}>
                     {cecDescriptions}
                 </Heading>
                 <div className={styles.cecList}>
                     <div className={styles.leadership}>
                         {cecLeader.map((leader) => (
                             <div key={leader.title}>
-                                <Heading size="medium" className={styles.title}>
+                                <Heading size="small" className={styles.title}>
                                     {leader.title}
                                 </Heading>
-                                <Heading font="normal" size="small" className={styles.leaderName}>
+                                <Heading font="normal" size="extraSmall" className={styles.leaderName}>
                                     {leader.name}
                                 </Heading>
                                 {leader.email && (
-                                    <Heading font="normal" size="small" className={styles.leaderEmail}>
+                                    <Heading font="normal" size="extraSmall" className={styles.leaderEmail}>
                                         {leader.email}
                                     </Heading>
                                 )}
@@ -55,12 +55,12 @@ export default function AboutUs() {
                         ))}
                     </div>
                     <div className={styles.members}>
-                        <Heading size="medium" className={styles.title}>
+                        <Heading size="small" className={styles.title}>
                             Member
                         </Heading>
                         <div className={styles.memberList}>
                             {cecMember.map((member) => (
-                                <Heading key={member} font="normal" size="small" className={styles.memberName}>
+                                <Heading key={member} font="normal" size="extraSmall" className={styles.memberName}>
                                     {member}
                                 </Heading>
                             ))}

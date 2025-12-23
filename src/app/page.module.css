@@ -143,4 +143,7 @@
     .projectImage {
         height: 10rem;
     }
+    .seeAllLink {
+        width: max-content;
+    }
 }

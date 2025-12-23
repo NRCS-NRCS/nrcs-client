@@ -44,10 +44,11 @@ export default async function Home() {
 
     const allResources = allData?.resources as unknown as ResourceType;
     const allHighlights = allData?.highlights as unknown as HighlightsType;
-
-    const reports = [
+    const allReports = [
         ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
-    ].slice(0, 4) as unknown as ResourceType;
+    ] as unknown as ResourceType;
+
+    const reports = allReports.slice(0, 4) || [];
 
     const highlights = allHighlights.filter(
         (data) => data?.isActive,
@@ -184,8 +185,8 @@ export default async function Home() {
                                 link={`/resources/reports/${item.slug}/`}
                             />
                         ))}
-                        {reports.length > 3 && (
-                            <Link href="/resources/reports/" variant="buttonTransparent">See All</Link>
+                        {allReports.length > 4 && (
+                            <Link href="/resources/reports/" variant="buttonTransparent" className={styles.seeAllLink}>See All</Link>
                         )}
                     </div>
                 </Section>

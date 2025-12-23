@@ -13,7 +13,7 @@
 
     --color-text-black: #000000;
     --color-text-neutral: #6b7280;
-    --color-heading: #111827;
+    --color-heading: #193351;
     --color-text-on-dark: #ffffff;
     --color-primary: #ed1b2e;
     --color-primary-light: #fff6f7;
@@ -37,8 +37,8 @@
 
     --color-separator: #e5e7eb;
 
-    --color-text: #3f3f3f;
-    --color-text-alternative: #193351;
+    --color-text: #193351;
+    --color-text-alternative: #3f3f3f;
     --color-text-accent: #05445e;
     --color-text-on-secondary: #ffffff;
     --color-text-on-primary: #ffffff;
