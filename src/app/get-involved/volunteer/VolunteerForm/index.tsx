@@ -73,6 +73,7 @@ interface FormValues {
     otherSector: string;
     termsAccepted: boolean;
 }
+const emailToSubmitVolunteerForm = 'nrcs@nrcs.org';
 
 export default function VolunteerForm() {
     const [isSameAsPermanent, setIsSameAsPermanent] = useState(false);
@@ -123,7 +124,6 @@ export default function VolunteerForm() {
         if (type === 'checkbox') {
             const input = e.target as HTMLInputElement;
             const { checked } = input;
-
             setFormValues((prev) => {
                 if (name === 'sectors') {
                     const current = prev.sectors;
@@ -161,13 +161,37 @@ export default function VolunteerForm() {
             }));
         }
     };
+
+    const subject = encodeURIComponent(`Volunteer Form from ${formValues.firstName} ${formValues.lastName} (${formValues.email})`);
+    const body = encodeURIComponent(`
+        First Name: ${formValues.firstName}
+        Last Name: ${formValues.lastName}
+        Email: ${formValues.email}
+        Phone Number: ${formValues.phoneNumber}
+        Nationality: ${formValues.nationality}
+        Date of Birth: ${formValues.dateOfBirth}
+        Gender: ${formValues.gender}
+        Permanent Address:
+            Province: ${provinces.find((province) => province.id === Number(formValues.permanentProvince))?.name || ''}
+            District: ${permanentDistricts.find((district) => district.id === Number(formValues.permanentDistrict))?.name || ''}
+            Municipality: ${permanentMunicipalities.find((municipality) => municipality.id === Number(formValues.permanentMunicipality))?.name || ''}
+            Ward Number: ${formValues.permanentWard}
+        Temporary Address:
+            Province: ${provinces.find((province) => province.id === Number(formValues.temporaryProvince))?.name || ''}
+            District: ${tempDistricts.find((district) => district.id === Number(formValues.temporaryDistrict))?.name || ''}
+            Municipality: ${tempMunicipalities.find((municipality) => municipality.id === Number(formValues.temporaryMunicipality))?.name || ''}
+            Ward Number: ${formValues.temporaryWard}
+        Area of expertise, special skills: ${formValues.expertise}
+        Skills and/or trainings I would like to get: ${formValues.trainings}
+        Sectors to volunteer in: ${formValues.sectors.join(', ')}
+        Other Sector: ${formValues.otherSector}
+        Terms Accepted: ${formValues.termsAccepted ? 'Yes' : 'No'}
+    `);
     const handleSubmit = (
         e: React.FormEvent<HTMLFormElement>,
     ) => {
         e.preventDefault();
-        // TODO: Add forward to email logic!!
-        // eslint-disable-next-line no-console
-        console.log('Clicked:', formValues);
+        window.location.href = `mailto:${emailToSubmitVolunteerForm}?subject=${subject}&body=${body}`;
     };
 
     return (
