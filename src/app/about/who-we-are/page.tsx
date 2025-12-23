@@ -47,10 +47,10 @@ export default function AboutUs() {
                     alt="Banner Image"
                 />
                 <div className={styles.description}>
-
                     <Heading
                         className={styles.heading}
                         withBackground
+                        size="extraLarge"
                     >
                         {missionHeading}
                     </Heading>
@@ -66,6 +66,7 @@ export default function AboutUs() {
                     <Heading
                         className={styles.heading}
                         withBackground
+                        size="extraLarge"
                     >
                         {visionHeading}
                     </Heading>

@@ -5,6 +5,8 @@ import { isDefined } from '@togglecorp/fujs';
 
 import Accordion from '#components/Accordion';
 import Heading from '#components/Heading';
+import Link from '#components/Link';
+import Table, { type Column } from '#components/Table';
 import {
     Tab,
     TabList,
@@ -13,12 +15,38 @@ import {
 } from '#components/Tabs';
 import WhereToDonateCard from '#components/WhereToDonateCard';
 
-import whereToDonate from './data';
+import whereToDonate, {
+    type OutsideValleyTable,
+    outsideValleyTable,
+} from './data';
 
 import styles from './styles.module.css';
 
 export default function TabSection() {
     const [value, setValue] = useState<string | undefined>('where-to-donate');
+
+    const column: Column<OutsideValleyTable>[] = [
+        {
+            id: 'bloodCenter',
+            title: 'Blood Center',
+            cellRenderer: (item) => item.bloodCenter,
+        },
+        {
+            id: 'focalPerson',
+            title: 'Focal Person',
+            cellRenderer: (item) => item.focalPerson,
+        },
+        {
+            id: 'contactNo',
+            title: 'Contact',
+            cellRenderer: (item) => item.contactNo,
+        },
+        {
+            id: 'district',
+            title: 'District',
+            cellRenderer: (item) => item.district,
+        },
+    ];
     return (
         <Tabs
             value={value}
@@ -67,6 +95,11 @@ export default function TabSection() {
                         Centres in Biratnagar, Pokhara, Nepalgunj,
                         and Chitwan, or the nearest District Blood Bank or Hospital unit.
                     </p>
+                    <Table
+                        data={outsideValleyTable}
+                        columns={column}
+                        keySelector={(item) => item.id}
+                    />
                 </div>
             </TabPanel>
             <TabPanel className={styles.tabPanel} name="can-i-donate">
@@ -112,8 +145,19 @@ export default function TabSection() {
                     </li>
                     <li>
                         Arrange a regular or one-time blood donation at your company or
-                        organization by contacting Mr. Ram Bahadur Shrestha via email,
-                        ram.shrestha@nrcs.org, or phone, 9841398605.
+                        organization by contacting
+                        &nbsp;
+                        <strong>
+                            Mr. Ram Bahadur Shrestha
+                        </strong>
+                        &nbsp;
+                        via email,
+                        &nbsp;
+                        <Link href="mailto:sandesh.thapa@nrcs.org" variant="navigation" className={styles.link}>
+                            ram.shrestha@nrcs.org
+                        </Link>
+                        &nbsp;
+                        or phone, 9841398605.
                     </li>
 
                     <li>

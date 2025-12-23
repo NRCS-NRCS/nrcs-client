@@ -15,6 +15,7 @@
 
                     .heading {
                         align-self: flex-start;
+                        padding: 0 var(--spacing-super-small);
                     }
                 }
             }

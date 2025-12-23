@@ -41,9 +41,9 @@
                     flex-direction: column;
                     justify-content: center;
                     padding: var(--spacing-medium);
-                    border-left: var(--width-separator-thin) solid var(--color-separator);
+                    border-left: var(--width-separator-thin) solid
+                        var(--color-separator);
                     gap: var(--spacing-ultra-small);
-
                 }
 
                 .hotlineContainer {
@@ -85,7 +85,7 @@
             justify-content: space-between;
             text-align: center;
             padding: var(--spacing-super-small) 0;
-            color: var(--color-text-black);
+            color: var(--color-text);
             gap: var(--spacing-small);
         }
 
@@ -150,7 +150,8 @@
             transition: 200ms all ease-in-out;
             z-index: -1;
             background-color: var(--color-background);
-            border-bottom: var(--width-separator-thin) solid var(--color-separator);
+            border-bottom: var(--width-separator-thin) solid
+                var(--color-separator);
             padding: var(--spacing-large);
             width: 100%;
             gap: var(--spacing-medium);
@@ -185,6 +186,6 @@
 }
 
 .popupLink {
-    padding: var(--spacing-super-small) var(--spacing-medium)!important;
-    text-transform: capitalize!important;
+    padding: var(--spacing-super-small) var(--spacing-medium) !important;
+    text-transform: capitalize !important;
 }
