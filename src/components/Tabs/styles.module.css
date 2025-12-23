@@ -1,5 +1,4 @@
 .active {
-    padding: var(--spacing-extra-small) var(--spacing-small);
     color: var(--color-text-on-dark);
     background-color: var(--color-primary);
 }
@@ -8,5 +7,9 @@
     display: flex;
     background-color: var(--color-background-gray);
     justify-content: space-between;
+}
+.tab {
+    flex-grow: 1;
+    transition: 0.3s all ease-in-out;
     padding: var(--spacing-extra-small) var(--spacing-small);
 }

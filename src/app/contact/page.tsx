@@ -15,7 +15,7 @@ import Page from '#components/Page';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
-import bannerImg from '#public/banner.png';
+import bannerImg from '#public/nrcs_building.jpg';
 
 import ContactForm from './ContactForm';
 import FeedbackForm from './FeedbackForm';

@@ -7,6 +7,7 @@ interface Props {
     label: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     value: string;
+    required?: boolean;
 }
 
 export default function RadioInput(props: Props) {
@@ -15,6 +16,7 @@ export default function RadioInput(props: Props) {
         label,
         onChange,
         value,
+        required,
     } = props;
 
     return (
@@ -30,6 +32,7 @@ export default function RadioInput(props: Props) {
                 name={name}
                 type="date"
                 value={value}
+                required={required}
                 onChange={onChange}
             />
         </div>

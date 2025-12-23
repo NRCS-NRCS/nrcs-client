@@ -11,6 +11,7 @@ import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
+import defaultImage from '#public/defaultImage.png';
 
 type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
@@ -35,7 +36,7 @@ function NewsAndEventsPage() {
                 ) : paginateData.map((news) => (
                     <ArticleCard
                         key={news.id}
-                        imageSrc={news.coverImage?.url ?? ''}
+                        imageSrc={news.coverImage?.url ?? defaultImage}
                         imageAlt={news.title}
                         heading={news.title}
                         description={news.content}

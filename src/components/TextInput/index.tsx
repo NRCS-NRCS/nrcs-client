@@ -13,6 +13,7 @@ type Props = {
     placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     type?: React.HTMLInputTypeAttribute;
+    required?: boolean;
 };
 
 export default function TextInput(props: Props) {
@@ -24,6 +25,7 @@ export default function TextInput(props: Props) {
         onChange,
         placeholder,
         type = 'text',
+        required = false,
     } = props;
 
     return (
@@ -44,6 +46,7 @@ export default function TextInput(props: Props) {
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
+                required={required}
             />
         </div>
     );

@@ -75,6 +75,7 @@ interface FormValues {
 }
 
 export default function VolunteerForm() {
+    const [isSameAsPermanent, setIsSameAsPermanent] = useState(false);
     const [formValues, setFormValues] = useState<FormValues>({
         firstName: '',
         lastName: '',
@@ -137,20 +138,42 @@ export default function VolunteerForm() {
         }
     };
 
-    const handleClick = (
-        name: string | undefined,
-        e: React.MouseEvent<HTMLButtonElement>,
+    const handleSameAsPermanentChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+    ) => {
+        const { checked } = e.target;
+        setIsSameAsPermanent(checked);
+        if (checked) {
+            setFormValues((prev) => ({
+                ...prev,
+                temporaryProvince: prev.permanentProvince,
+                temporaryDistrict: prev.permanentDistrict,
+                temporaryMunicipality: prev.permanentMunicipality,
+                temporaryWard: prev.permanentWard,
+            }));
+        } else {
+            setFormValues((prev) => ({
+                ...prev,
+                temporaryProvince: '',
+                temporaryDistrict: '',
+                temporaryMunicipality: '',
+                temporaryWard: '',
+            }));
+        }
+    };
+    const handleSubmit = (
+        e: React.FormEvent<HTMLFormElement>,
     ) => {
         e.preventDefault();
         // TODO: Add forward to email logic!!
         // eslint-disable-next-line no-console
-        console.log('Clicked:', name, formValues);
+        console.log('Clicked:', formValues);
     };
 
     return (
         <form
             className={styles.form}
-            onSubmit={undefined}
+            onSubmit={handleSubmit}
         >
             <div className={styles.formHeader}>
                 <Heading
@@ -170,6 +193,7 @@ export default function VolunteerForm() {
                     value={formValues.firstName}
                     onChange={handleChange}
                     placeholder="First Name"
+                    required
                 />
                 <TextInput
                     name="lastName"
@@ -177,6 +201,7 @@ export default function VolunteerForm() {
                     value={formValues.lastName}
                     onChange={handleChange}
                     placeholder="Last Name"
+                    required
                 />
             </div>
             <div className={styles.content}>
@@ -186,6 +211,7 @@ export default function VolunteerForm() {
                     value={formValues.email}
                     onChange={handleChange}
                     placeholder="Email Address"
+                    required
                 />
                 <TextInput
                     name="phoneNumber"
@@ -193,6 +219,7 @@ export default function VolunteerForm() {
                     value={formValues.phoneNumber}
                     onChange={handleChange}
                     placeholder="Phone Number"
+                    required
                 />
             </div>
             <div className={styles.content}>
@@ -202,12 +229,14 @@ export default function VolunteerForm() {
                     value={formValues.nationality}
                     onChange={handleChange}
                     placeholder="Nationality"
+                    required
                 />
                 <DateInput
                     label="Date of Birth"
                     name="dateOfBirth"
                     value={formValues.dateOfBirth}
                     onChange={handleChange}
+                    required
                 />
             </div>
             <RadioInput
@@ -216,6 +245,7 @@ export default function VolunteerForm() {
                 options={genders}
                 value={formValues.gender}
                 onChange={handleChange}
+                required
             />
             <div className={styles.separator} />
             <p className={styles.subSection}>
@@ -229,6 +259,7 @@ export default function VolunteerForm() {
                     value={formValues.permanentProvince}
                     options={provinces}
                     onChange={handleChange}
+                    required
                 />
                 <SelectInput
                     name="permanentDistrict"
@@ -238,6 +269,7 @@ export default function VolunteerForm() {
                     options={permanentDistricts}
                     onChange={handleChange}
                     disabled={formValues.permanentProvince === ''}
+                    required
                 />
             </div>
             <div className={styles.content}>
@@ -249,6 +281,7 @@ export default function VolunteerForm() {
                     options={permanentMunicipalities}
                     onChange={handleChange}
                     disabled={formValues.permanentDistrict === ''}
+                    required
                 />
                 <TextInput
                     name="permanentWard"
@@ -256,11 +289,25 @@ export default function VolunteerForm() {
                     value={formValues.permanentWard}
                     onChange={handleChange}
                     placeholder="Ward Number"
+                    required
                 />
             </div>
-            <p className={styles.subSection}>
-                Temporary Address
-            </p>
+            <div className={styles.subSection}>
+                <p>
+                    Temporary Address
+                </p>
+                <label htmlFor="sameAsPermanent" className={styles.sameAsPermanent}>
+                    <input
+                        id="sameAsPermanent"
+                        name="sameAsPermanent"
+                        type="checkbox"
+                        value={isSameAsPermanent ? 'yes' : 'no'}
+                        checked={isSameAsPermanent}
+                        onChange={handleSameAsPermanentChange}
+                    />
+                    Same as Permanent Address
+                </label>
+            </div>
             <div className={styles.content}>
                 <SelectInput
                     name="temporaryProvince"
@@ -289,6 +336,7 @@ export default function VolunteerForm() {
                     options={tempMunicipalities}
                     onChange={handleChange}
                     disabled={formValues.temporaryDistrict === ''}
+                    required
                 />
                 <TextInput
                     name="temporaryWard"
@@ -296,6 +344,7 @@ export default function VolunteerForm() {
                     value={formValues.temporaryWard}
                     onChange={handleChange}
                     placeholder="Ward Number"
+                    required
                 />
             </div>
             <div className={styles.separator} />
@@ -305,12 +354,14 @@ export default function VolunteerForm() {
                     name="expertise"
                     value={formValues?.expertise}
                     onChange={handleChange}
+                    required
                 />
                 <TextArea
                     label="Skills and/or trainings I would like to get"
                     name="trainings"
                     value={formValues?.trainings}
                     onChange={handleChange}
+                    required
                 />
             </div>
             <Heading
@@ -377,14 +428,16 @@ export default function VolunteerForm() {
                     type="checkbox"
                     checked={formValues.termsAccepted}
                     onChange={handleChange}
+                    required
                 />
                 &nbsp; I certify I have read the NRCS Code of Conduct.
             </label>
             <Button
-                name={undefined}
+                name="submit"
+                type="submit"
                 className={styles.submitButton}
-                onClick={handleClick}
-                variant="border"
+                variant="primary"
+                disabled={!formValues.termsAccepted}
             >
                 Continue
             </Button>

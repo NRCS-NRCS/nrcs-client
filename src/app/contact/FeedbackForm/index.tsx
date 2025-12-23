@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
+import Button from '#components/Button';
 import DateInput from '#components/DateInput';
-import Link from '#components/Link';
 import RadioInput from '#components/RadioInput';
 import SelectInput from '#components/SelectInput';
 import TextArea from '#components/TextArea';
@@ -46,7 +46,7 @@ interface Province {
     district: District[];
 }
 
-const emailToSubmitFeedbackForm = 'test-nrcs@mailinator.com';
+const emailToSubmitFeedbackForm = 'info@nrcs.org';
 
 export default function ContactForm() {
     const [formValues, setFormValues] = useState<FormValues>({
@@ -81,17 +81,23 @@ export default function ContactForm() {
             ${formValues.feedback}
     `);
 
-    const hrefForSubmit = `mailto:${emailToSubmitFeedbackForm}?subject=${subject}&body=${body}`;
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        window.location.href = `mailto:${emailToSubmitFeedbackForm}?subject=${subject}&body=${body}`;
+    };
 
     return (
         <form
             className={styles.form}
+            onSubmit={handleSubmit}
         >
             <DateInput
                 label="Date"
                 name="date"
                 value={formValues.date}
                 onChange={handleChange}
+                required
+
             />
             <div className={styles.content}>
                 <SelectInput
@@ -101,6 +107,7 @@ export default function ContactForm() {
                     value={formValues.province}
                     options={provinces}
                     onChange={handleChange}
+                    required
                 />
                 <SelectInput
                     name="district"
@@ -110,6 +117,7 @@ export default function ContactForm() {
                     options={districts}
                     onChange={handleChange}
                     disabled={formValues.province === ''}
+                    required
                 />
             </div>
             <RadioInput
@@ -118,14 +126,16 @@ export default function ContactForm() {
                 options={genders}
                 value={formValues.gender}
                 onChange={handleChange}
+                required
             />
             <SelectInput
-                name="age-group"
+                name="ageGroup"
                 label="Age group"
                 placeholder="Select Age group"
                 value={formValues.ageGroup ?? ageGroups[-1]?.id}
                 options={ageGroups}
                 onChange={handleChange}
+                required
             />
             <TextArea
                 name="feedback"
@@ -133,14 +143,15 @@ export default function ContactForm() {
                 value={formValues.feedback ?? ''}
                 placeholder="Type message here"
                 onChange={handleChange}
+                required
             />
-            <Link
-                href={hrefForSubmit}
-                variant="button"
+            <Button
+                name="submit"
+                type="submit"
                 className={styles.submitButton}
             >
                 Submit
-            </Link>
+            </Button>
         </form>
     );
 }
