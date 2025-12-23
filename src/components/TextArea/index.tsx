@@ -12,6 +12,7 @@ type Props = {
     value: string;
     placeholder?: string;
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    required?: boolean;
 };
 
 export default function TextArea(props: Props) {
@@ -22,6 +23,7 @@ export default function TextArea(props: Props) {
         value,
         onChange,
         placeholder,
+        required = false,
     } = props;
 
     return (
@@ -39,6 +41,7 @@ export default function TextArea(props: Props) {
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
+                required={required}
             />
         </div>
     );

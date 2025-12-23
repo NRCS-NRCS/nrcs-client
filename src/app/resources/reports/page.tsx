@@ -10,7 +10,7 @@ import Page from '#components/Page';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
-import cardImage from '#public/card.png';
+import defaultImage from '#public/defaultImage.png';
 
 import Pager from '@/components/Pager';
 import paginate from '@/lib/paginate';
@@ -42,7 +42,7 @@ function ReportsPage() {
                 ) : paginateData?.map((report) => (
                     <ArticleCard
                         key={report.id}
-                        imageSrc={report.coverImage?.url ?? cardImage}
+                        imageSrc={report.coverImage?.url ?? defaultImage}
                         imageAlt={report.title}
                         heading={report.title}
                         description={report.content}

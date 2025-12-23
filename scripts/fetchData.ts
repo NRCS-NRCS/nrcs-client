@@ -65,6 +65,7 @@ const query = gql`
             file {
                 name
                 url
+                size
             }
             coverImage {
                 url

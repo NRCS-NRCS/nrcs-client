@@ -1,6 +1,4 @@
-.tab {
-    flex-grow: 1;
-}
+
 .tabPanel {
     flex-grow: 1;
     min-height: 18rem;

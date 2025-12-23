@@ -18,6 +18,7 @@ interface Props {
     onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     options: Option[];
     disabled?: boolean;
+    required?: boolean;
 }
 
 export default function SelectInput(props: Props) {
@@ -30,6 +31,7 @@ export default function SelectInput(props: Props) {
         onChange,
         options,
         disabled,
+        required,
     } = props;
 
     return (
@@ -52,6 +54,7 @@ export default function SelectInput(props: Props) {
                 value={value}
                 onChange={onChange}
                 disabled={disabled}
+                required={required}
             >
                 <option value="">
                     {placeholder}

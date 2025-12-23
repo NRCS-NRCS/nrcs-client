@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import Link from '#components/Link';
+import Button from '#components/Button';
 import TextArea from '#components/TextArea';
 import TextInput from '#components/TextInput';
 
@@ -15,7 +15,7 @@ interface FormValues {
     message: string;
 }
 
-const emailToSubmitContactForm = 'test-nrcs@mailinator.com';
+const emailToSubmitContactForm = 'nrcs@nrcs.org';
 
 export default function ContactForm() {
     const [formValues, setFormValues] = useState<FormValues>({
@@ -39,11 +39,15 @@ export default function ContactForm() {
             ${formValues.message}
     `);
 
-    const hrefForSubmit = `mailto:${emailToSubmitContactForm}?subject=${subject}&body=${body}`;
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        window.location.href = `mailto:${emailToSubmitContactForm}?subject=${subject}&body=${body}`;
+    };
 
     return (
         <form
             className={styles.form}
+            onSubmit={handleSubmit}
         >
             <div className={styles.inline}>
                 <TextInput
@@ -52,6 +56,7 @@ export default function ContactForm() {
                     value={formValues.firstName}
                     placeholder="eg: Kamala"
                     onChange={handleChange}
+                    required
                 />
                 <TextInput
                     name="lastName"
@@ -68,6 +73,7 @@ export default function ContactForm() {
                 value={formValues.email}
                 placeholder="eg: kamala@gmail.com"
                 onChange={handleChange}
+                required
             />
             <TextArea
                 name="message"
@@ -75,14 +81,15 @@ export default function ContactForm() {
                 value={formValues.message}
                 placeholder="Type message here"
                 onChange={handleChange}
+                required
             />
-            <Link
-                href={hrefForSubmit}
-                variant="button"
+            <Button
+                name="submit"
+                type="submit"
                 className={styles.submitButton}
             >
                 Submit
-            </Link>
+            </Button>
         </form>
     );
 }

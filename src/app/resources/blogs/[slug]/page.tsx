@@ -7,6 +7,7 @@ import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
@@ -55,7 +56,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         <Page contentClassName={styles.resourcesPage}>
             <Section>
                 <ResourcesBanner
-                    imageSrc={blogDetails.coverImage?.url ?? ''}
+                    imageSrc={blogDetails.coverImage?.url ?? defaultImage}
                     imageAlt={blogDetails.title}
                     heading={blogDetails.title}
                 />

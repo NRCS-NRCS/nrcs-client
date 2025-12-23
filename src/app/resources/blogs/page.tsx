@@ -12,6 +12,7 @@ import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
+import defaultImage from '#public/defaultImage.png';
 
 type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 
@@ -39,7 +40,7 @@ function BlogPage() {
                 ) : paginateData?.map((blog) => (
                     <ArticleCard
                         key={blog.id}
-                        imageSrc={blog.coverImage?.url ?? ''}
+                        imageSrc={blog.coverImage?.url ?? defaultImage}
                         imageAlt={blog.title}
                         heading={blog.title}
                         author={blog.author}
