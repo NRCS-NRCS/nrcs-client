@@ -140,7 +140,6 @@ export default async function Home() {
                     linkDescription="Donate"
                     isExternalLink
                 />
-                {/* FIXME: Update link */}
                 <CallToAction
                     title={(
                         <p>

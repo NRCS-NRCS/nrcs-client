@@ -54,6 +54,7 @@ export default function Pager({
                     name="prev-button"
                     onClick={() => goToPage(currentPage - 1)}
                     disabled={currentPage <= 1}
+                    className={styles.pagerBtn}
                 >
                     <IoChevronBack size={18} />
                 </Button>

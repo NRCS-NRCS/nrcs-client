@@ -6,6 +6,9 @@
     .searchBar {
         display: flex;
         justify-content: space-between;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
 
         .tableHeading {
             flex-grow: 1;
@@ -14,9 +17,15 @@
             flex-shrink: 0;
             align-self: flex-end;
             max-width: 20rem;
+            @media (max-width: 768px) {
+                margin-top: var(--spacing-extra-small);
+                max-width: 100%;
+            }
         }
     }
-
+    .tableContent {
+        overflow-x: auto;
+    }
     .table {
         min-width: fit-content;
     }

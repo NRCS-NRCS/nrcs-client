@@ -18,23 +18,50 @@ type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights'][number]>>;
 interface Props {
     highlights: Highlight[];
 }
+const SWIPE_THRESHOLD = 60;
 
 export default function HighlightsCarousel({ highlights = [] }: Props) {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [startX, setStartX] = useState<number | null>(null);
+    const [isInteracting, setIsInteracting] = useState(false);
 
-    // Auto-slide every 2 seconds
+    // Auto-slide every 6 seconds
     useEffect(() => {
-        if (highlights.length <= 1) { return undefined; } // no need to slide
-        const interval = setInterval(() => {
+        if (highlights.length <= 1 || isInteracting) {
+            return undefined;
+        } const interval = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % highlights.length);
         }, 6000);
 
         return () => clearInterval(interval);
-    }, [highlights.length]);
+    }, [highlights.length, isInteracting]);
+
+    /* Pointer handlers */
+    const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+        setIsInteracting(true);
+        setStartX(e.clientX);
+    };
+
+    const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+        if (startX === null) {
+            setIsInteracting(false);
+            return;
+        }
+        const diff = startX - e.clientX;
+        if (Math.abs(diff) >= SWIPE_THRESHOLD) {
+            setActiveIndex((prev) => (prev + 1) % highlights.length);
+        }
+        setStartX(null);
+        setIsInteracting(false);
+    };
 
     return (
         <div className={styles.carousel}>
-            <div className={styles.slidesContainer}>
+            <div
+                className={styles.slidesContainer}
+                onPointerDown={handlePointerDown}
+                onPointerUp={handlePointerUp}
+            >
                 {highlights.map((highlight, index) => (
                     <div
                         key={highlight.id}

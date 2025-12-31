@@ -81,6 +81,9 @@
         .nrcsOfficerContent {
             .nrcsOfficerChildren {
                 flex-direction: row;
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                }
                 .officerCard {
                     display: flex;
                     flex-direction: column;

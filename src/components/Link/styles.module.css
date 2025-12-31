@@ -4,6 +4,7 @@
     text-transform: uppercase;
     font-weight: var(--font-weight-bold);
     padding: var(--spacing-super-small) 0;
+    color: var(--color-text);
 
     .icon {
         flex-shrink: 0;

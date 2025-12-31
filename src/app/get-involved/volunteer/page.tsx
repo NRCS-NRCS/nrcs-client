@@ -12,7 +12,7 @@ import styles from './page.module.css';
 export default function Volunteer() {
     return (
         <Page contentClassName={styles.page}>
-            <Section>
+            <Section className={styles.section}>
                 <div className={styles.homeBanner}>
                     <ImageWrapper
                         className={styles.bannerImage}

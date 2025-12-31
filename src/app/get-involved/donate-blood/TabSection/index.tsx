@@ -95,11 +95,14 @@ export default function TabSection() {
                         Centres in Biratnagar, Pokhara, Nepalgunj,
                         and Chitwan, or the nearest District Blood Bank or Hospital unit.
                     </p>
-                    <Table
-                        data={outsideValleyTable}
-                        columns={column}
-                        keySelector={(item) => item.id}
-                    />
+                    <div className={styles.table}>
+                        <Table
+                            data={outsideValleyTable}
+                            columns={column}
+                            keySelector={(item) => item.id}
+                        />
+                    </div>
+
                 </div>
             </TabPanel>
             <TabPanel className={styles.tabPanel} name="can-i-donate">
