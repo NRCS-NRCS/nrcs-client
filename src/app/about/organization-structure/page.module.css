@@ -5,32 +5,37 @@
     white-space: pre-line;
     color: var(--color-text);
 }
-.cecList {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    gap: var(--spacing-large);
-    .leaderName,
-    .leaderEmail,
-    .memberName,
-    .title {
-        color: var(--color-text);
-    }
-    .leadership {
-        flex-grow: 1;
+.adminStructure {
+    gap: var(--spacing-large) !important;
+    .cecList {
         display: flex;
-        flex-direction: column;
+        width: 100%;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
         gap: var(--spacing-large);
-    }
-    .members {
-        flex-grow: 1;
-        .memberList {
+        .leaderName,
+        .leaderEmail,
+        .memberName,
+        .title {
+            color: var(--color-text);
+        }
+        .leadership {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-small);
+            gap: var(--spacing-large);
         }
-    }
-    .title {
-        margin-bottom: var(--spacing-small);
+        .members {
+            flex-grow: 1;
+            .memberList {
+                display: flex;
+                flex-direction: column;
+                gap: var(--spacing-small);
+            }
+        }
+        .title {
+            margin-bottom: var(--spacing-small);
+        }
     }
 }

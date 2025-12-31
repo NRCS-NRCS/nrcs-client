@@ -72,16 +72,18 @@ export default function SearchableTable<T>(props: Props<T>) {
                     />
                 )}
             </div>
-            {filteredData.length > 0 ? (
-                <Table
-                    className={styles.table}
-                    keySelector={keySelector}
-                    columns={tableColumns}
-                    data={filteredData}
-                />
-            ) : (
-                <p>No results found</p>
-            )}
+            <div className={styles.tableContent}>
+                {filteredData.length > 0 ? (
+                    <Table
+                        className={styles.table}
+                        keySelector={keySelector}
+                        columns={tableColumns}
+                        data={filteredData}
+                    />
+                ) : (
+                    <p>No results found</p>
+                )}
+            </div>
         </div>
     );
 }
