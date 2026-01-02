@@ -8,6 +8,9 @@
     .content {
         display: flex;
         flex-direction: row;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
         justify-content: space-between;
         gap: var(--spacing-extra-large);
     }

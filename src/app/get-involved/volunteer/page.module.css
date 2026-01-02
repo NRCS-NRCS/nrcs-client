@@ -1,14 +1,17 @@
 .page {
     padding: var(--spacing-enormous) 0 var(--spacing-universal) 0;
-
+    @media (max-width: 768px) {
+        padding: 0 !important;
+        .section {
+            padding: 0;
+        }
+    }
     .homeBanner {
         height: 60vh;
-
         .bannerImage {
             height: 60vh;
             width: 100%;
             filter: brightness(60%);
-
             .image {
                 object-fit: cover;
             }

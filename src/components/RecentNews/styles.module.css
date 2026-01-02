@@ -26,6 +26,11 @@
     }
     .tabButton {
         font-size: var(--font-size-large);
+        padding: 0;
+        word-break: break-all;
+        @media (max-width: 768px) {
+            font-size: var(--font-size-medium);
+        }
     }
     .chevron {
         color: var(--color-text-on-dark);

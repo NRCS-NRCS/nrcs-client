@@ -17,7 +17,7 @@
         width: 100%;
 
         .heading {
-            text-align: center;
+            text-align: left;
             align-self: flex-start;
             padding: 0 var(--spacing-super-small);
         }

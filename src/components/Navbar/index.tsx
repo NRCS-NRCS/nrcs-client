@@ -17,7 +17,6 @@ import { _cs } from '@togglecorp/fujs';
 import { usePathname } from 'next/navigation';
 
 import Button from '#components/Button';
-import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import logo from '#public/wide-logo.jpg';
@@ -27,19 +26,19 @@ import PopupButton from '../PopupButton';
 import styles from './styles.module.css';
 
 interface children {
-    label:string
-    link?:string
-    externalLink?:string
+    label: string
+    link?: string
+    externalLink?: string
 }
 
 interface ILink {
     label: string
     link: string
-    order : number
+    order: number
     children?: children[]
 }
 
-const links : ILink[] = [
+const links: ILink[] = [
     {
         label: 'About Us',
         link: '/about',
@@ -127,7 +126,7 @@ const links : ILink[] = [
 
 interface Props {
     className?: string;
-    works: {label: string; link: string;}[];
+    works: { label: string; link: string; }[];
 }
 
 export default function Navbar(props: Props) {
@@ -136,7 +135,7 @@ export default function Navbar(props: Props) {
         works,
     } = props;
 
-    const finalPaths : ILink[] = useMemo(() => {
+    const finalPaths: ILink[] = useMemo(() => {
         const newVal = [
             ...links,
             {
@@ -175,7 +174,7 @@ export default function Navbar(props: Props) {
                             href="/"
                         >
                             <ImageWrapper
-                                className={styles.image}
+                                imageClassName={styles.image}
                                 src={logo}
                                 alt="logo"
                             />
@@ -267,19 +266,18 @@ export default function Navbar(props: Props) {
             </div>
             <div className={_cs(isNavShown && styles.navShown, styles.drawer)}>
                 {finalPaths?.map((item) => (item.children ? (
-                    <div key={item.link}>
+                    <div key={item.link} className={styles.drawerChild}>
                         <Button
                             className={styles.drawerLinkHeader}
                             name={item.link}
                             variant="transparent"
                             onClick={toggleItem}
                         >
-                            <Heading
+                            <span
                                 className={styles.drawerLinkHeaderLabel}
-                                size="small"
                             >
                                 {item.label}
-                            </Heading>
+                            </span>
                             {openItems.includes(item.link) ? (
                                 <IoChevronUpOutline className={styles.drawerLinkHeaderButton} />
                             ) : (

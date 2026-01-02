@@ -6,8 +6,10 @@
     .inline {
         display: flex;
         gap: var(--spacing-large);
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
-
     .textArea {
         display: flex;
         flex-direction: column;

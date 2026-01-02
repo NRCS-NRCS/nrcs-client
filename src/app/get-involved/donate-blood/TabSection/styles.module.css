@@ -20,3 +20,9 @@
         display: inline-block;
     }
 }
+
+.content {
+    .table {
+        overflow-x: auto;
+    }
+}
