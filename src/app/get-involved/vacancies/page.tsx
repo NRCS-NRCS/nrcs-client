@@ -9,10 +9,10 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type vacancies = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>>;
+type vacancies = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>['results']>;
 
 export default async function Vacancies() {
-    const vacancies = allData.jobVacancies as unknown as vacancies;
+    const vacancies = allData.jobVacancies.results as unknown as vacancies;
 
     if (!vacancies) {
         return notFound();

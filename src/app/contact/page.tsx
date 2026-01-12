@@ -22,7 +22,7 @@ import FeedbackForm from './FeedbackForm';
 
 import styles from './page.module.css';
 
-type FaqsType = NonNullable<NonNullable<AllQueryQuery['faqs']>>;
+type FaqsType = NonNullable<NonNullable<AllQueryQuery['faqs']>['results']>;
 
 const contactUsHeading = 'We’d love to hear from you.';
 const contactUsText = 'Have questions, need support or possible partnership? We\'re here to help. Reach out to us through the form below or use the contact details provided — we\'ll get back to you as soon as possible.';
@@ -34,7 +34,7 @@ const getInTouchHeading = 'Get in touch with us';
 const getInTouchText = 'You can also get involved with us in meaningful ways—through donations, volunteering, or becoming a member. Every action you take helps us make a greater impact together.';
 
 export default async function Contact() {
-    const allFaqs = allData.faqs as unknown as FaqsType;
+    const allFaqs = allData.faqs.results as unknown as FaqsType;
 
     const faqs = allFaqs?.sort((a, b) => a.orderIndex - b.orderIndex).map(
         (faq) => ({
