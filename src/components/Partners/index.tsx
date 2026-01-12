@@ -14,7 +14,7 @@ interface Props {
     className?: string;
 }
 function Partners({ className }: Props) {
-    const partnersData = allData.partners as unknown as AllQueryQuery['partners'];
+    const partnersData = allData.partners.results as unknown as AllQueryQuery['partners']['results'];
 
     return (
         <Section headingWithBackground heading="Partners" childrenContainerClassName={styles.child}>

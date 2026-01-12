@@ -18,7 +18,7 @@ import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
 
 function NewsAndEventsPage() {
     const [search, setSearch] = useState<string>('');
@@ -29,7 +29,7 @@ function NewsAndEventsPage() {
     const pageSize = 5;
 
     const newsList = useMemo(
-        () => (allData.news as unknown as NewsType)
+        () => (allData.news.results as unknown as NewsType)
             .filter((news) => news.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

@@ -19,7 +19,7 @@ import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
+type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
 
 function PoliciesAndGuidelinesPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +30,7 @@ function PoliciesAndGuidelinesPage() {
     const pageSize = 5;
 
     const allResources = useMemo(
-        () => (allData.resources as unknown as ReportType)
+        () => (allData.resources.results as unknown as ReportType)
             .filter((resource) => resource.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

@@ -19,7 +19,7 @@ import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
+type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>['results']>;
 
 function BlogPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +30,7 @@ function BlogPage() {
     const pageSize = 5;
 
     const blogData = useMemo(
-        () => (allData.blogs as unknown as BlogType)
+        () => (allData.blogs.results as unknown as BlogType)
             .filter((blog) => blog.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

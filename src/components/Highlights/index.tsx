@@ -13,7 +13,7 @@ import type { AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights'][number]>>;
+type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights']['results'][number]>>;
 
 interface Props {
     highlights: Highlight[];
@@ -96,7 +96,7 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                             </Link>
                             {highlight?.actionLinks?.length > 0 && (
                                 <div className={styles.actions}>
-                                    {highlight.actionLinks.map((link) => (
+                                    {(highlight?.actionLinks ?? []).map((link) => (
                                         <Link
                                             key={link?.url}
                                             href={link?.url}
