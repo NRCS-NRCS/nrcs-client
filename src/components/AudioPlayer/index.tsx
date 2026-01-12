@@ -13,7 +13,7 @@ import Heading from '../Heading';
 import styles from './styles.module.css';
 
 type RadioProgram = NonNullable<
-    NonNullable<AllQueryQuery['radioProgram']>[number]
+    NonNullable<AllQueryQuery['radioProgram']['results']>[number]
 >;
 
 interface Props {
@@ -75,11 +75,11 @@ export default function AudioPlayer(props: Props) {
         <div className={className}>
             {/* eslint-disable jsx-a11y/media-has-caption */}
             {showDate
-            && (
-                <Heading size="extraSmall" font="normal" className={styles.publishedDate}>
-                    {publishedDate}
-                </Heading>
-            )}
+                && (
+                    <Heading size="extraSmall" font="normal" className={styles.publishedDate}>
+                        {publishedDate}
+                    </Heading>
+                )}
             <Heading size="small">
                 {radioProgram.title}
             </Heading>

@@ -1,213 +1,237 @@
 import fs from 'fs';
-import {
-    gql,
-    GraphQLClient,
-} from 'graphql-request';
+import { gql, GraphQLClient } from 'graphql-request';
 import path from 'path';
 
 const datadir = path.join(__dirname, '../data');
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
+const GRAPHQL_ENDPOINT =
+    process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
 const pipelineType = process.env.PIPELINE_TYPE;
 
 const client = new GraphQLClient(GRAPHQL_ENDPOINT);
-
 const dummyData = {
-    strategicDirectives: [],
-    departments: [],
-    news: [],
-    jobVacancies: [],
-    highlights: [],
-    blogs: [],
-    majorResponsibilities: [],
-    partners: [],
-    procurements: [],
-    resources: [],
-    projects: [],
-    faqs: [],
-    radioProgram: [],
+    strategicDirectives: { results: [] },
+    departments: { results: [] },
+    news: { results: [] },
+    jobVacancies: { results: [] },
+    highlights: { results: [] },
+    blogs: { results: [] },
+    majorResponsibilities: { results: [] },
+    partners: { results: [] },
+    procurements: { results: [] },
+    resources: { results: [] },
+    projects: { results: [] },
+    faqs: { results: [] },
+    radioProgram: { results: [] },
 };
 
 const query = gql`
     query AllQuery {
-        strategicDirectives {
-            title
-            slug
-            id
-            description
-            coverImage {
-                name
-                url
-            }
-            majorResponsibilities {
-                description
-                slug
+        strategicDirectives(pagination: { limit: 1000 }) {
+            results {
                 title
+                slug
                 id
-            }
-        }
-        departments {
-            contactPersonEmail
-            contactPersonName
-            description
-            id
-            slug
-            strategicDirective {
-                id
-            }
-            title
-        }
-        news(filters: { status: PUBLISHED }) {
-            content
-            id
-            publishedDate
-            slug
-            title
-            file {
-                name
-                url
-                size
-            }
-            coverImage {
-                url
-                name
-            }
-        }
-        jobVacancies {
-            isArchived
-            id
-            expiryDate
-            description
-            file {
-                url
-                size
-                name
-            }
-            numberOfVacancies
-            position
-            title
-            publishedAt
-        }
-        highlights {
-            description
-            isActive
-            heading
-            id
-            image {
-                name
-                size
-                url
-            }
-            actionLinks {
-                label
-                url
-            }
-        }
-        blogs(filters: { status: PUBLISHED }) {
-            title
-            status
-            slug
-            publishedDate
-            id
-            featured
-            content
-            author
-            coverImage {
-                name
-                size
-                url
-            }
-        }
-        majorResponsibilities {
-            title
-            slug
-            id
-            description
-        }
-        partners {
-            title
-            scope
-            image {
-                url
-                size
-                name
-            }
-            id
-        }
-        procurements {
-            title
-            publishedDate
-            id
-            file {
-                url
-                size
-                name
-            }
-            expiryDate
-            description
-        }
-        resources(filters: {}) {
-            content
-            coverImage {
-                url
-                size
-                name
-            }
-            id
-            publishedDate
-            slug
-            title
-            type
-            file {
-                name
-                size
-                url
-            }
-            directive {
-                pk
-            }
-        }
-        projects {
-            title
-            id
-            description
-            department {
-                id
-                strategicDirective {
+                description
+                coverImage {
+                    name
+                    url
+                }
+                majorResponsibilities {
+                    description
+                    slug
+                    title
                     id
                 }
             }
-            coverImage {
-                url
-                size
-                name
+        }
+
+        departments(pagination: { limit: 1000 }) {
+            results {
+                contactPersonEmail
+                contactPersonName
+                description
+                id
+                slug
+                strategicDirective {
+                    id
+                }
+                title
             }
         }
-        faqs {
-            answer
-            id
-            orderIndex
-            question
-        }
-        radioProgram {
-            type
-            title
-            publishedDate
-            id
-            audioFile {
-                name
-                size
-                url
+
+        news(filters: { status: PUBLISHED }, pagination: { limit: 1000 }) {
+            results {
+                content
+                id
+                publishedDate
+                slug
+                title
+                file {
+                    name
+                    url
+                    size
+                }
+                coverImage {
+                    url
+                    name
+                }
             }
         }
-        partners {
-            id
-            image {
-                name
-                url
+
+        jobVacancies(pagination: { limit: 1000 }) {
+            results {
+                isArchived
+                id
+                expiryDate
+                description
+                file {
+                    url
+                    size
+                    name
+                }
+                numberOfVacancies
+                position
+                title
+                publishedAt
             }
-            scope
-            title
-        }    
+        }
+
+        highlights(pagination: { limit: 1000 }) {
+            results {
+                description
+                isActive
+                heading
+                id
+                image {
+                    name
+                    size
+                    url
+                }
+                actionLinks {
+                    label
+                    url
+                }
+            }
+        }
+
+        blogs(filters: { status: PUBLISHED }, pagination: { limit: 1000 }) {
+            results {
+                title
+                status
+                slug
+                publishedDate
+                id
+                featured
+                content
+                author
+                coverImage {
+                    name
+                    size
+                    url
+                }
+            }
+        }
+
+        majorResponsibilities(pagination: { limit: 1000 }) {
+            results {
+                title
+                slug
+                id
+                description
+            }
+        }
+
+        partners(pagination: { limit: 1000 }) {
+            results {
+                id
+                title
+                scope
+                image {
+                    name
+                    url
+                    size
+                }
+            }
+        }
+
+        procurements(pagination: { limit: 1000 }) {
+            results {
+                title
+                publishedDate
+                id
+                file {
+                    url
+                    size
+                    name
+                }
+                expiryDate
+                description
+            }
+        }
+
+        resources(filters: {}, pagination: { limit: 1000 }) {
+            results {
+                content
+                coverImage {
+                    url
+                    size
+                    name
+                }
+                id
+                publishedDate
+                slug
+                title
+                type
+                file {
+                    name
+                    size
+                    url
+                }
+                directiveId
+            }
+        }
+
+        projects(pagination: { limit: 1000 }) {
+            results {
+                title
+                id
+                description
+                department {
+                    id
+                    strategicDirective {
+                        id
+                    }
+                }
+                coverImage {
+                    url
+                    size
+                    name
+                }
+            }
+        }
+
+        faqs(pagination: { limit: 1000 }) {
+            results {
+                answer
+                id
+                orderIndex
+                question
+            }
+        }
+
+        radioProgram(pagination: { limit: 1000 }) {
+            results {
+                type
+                title
+                publishedDate
+                id
+                audioFile {
+                    name
+                    size
+                    url
+                }
+            }
+        }
     }
 `;
 

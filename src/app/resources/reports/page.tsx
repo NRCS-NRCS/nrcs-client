@@ -15,14 +15,14 @@ import defaultImage from '#public/defaultImage.png';
 import Pager from '@/components/Pager';
 import paginate from '@/lib/paginate';
 
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
+type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
 
 function ReportsPage() {
     const searchParams = useSearchParams();
     const page = searchParams?.get('page');
     const currentPage = page ?? 1;
     const pageSize = 5;
-    const allResources = allData.resources as unknown as ReportType;
+    const allResources = allData.resources.results as unknown as ReportType;
     const reportData = allResources.filter((res) => res.type === 'REPORT');
     const paginateData = paginate(
         reportData,

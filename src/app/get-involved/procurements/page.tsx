@@ -11,10 +11,10 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
+type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>['results']>;
 
 export default async function Procurements() {
-    const procurementsData: ProcurementsType = allData.procurements;
+    const procurementsData: ProcurementsType = allData.procurements.results;
     if (!procurementsData) {
         return notFound();
     }
