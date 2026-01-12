@@ -18,7 +18,7 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
-type RadioType = NonNullable<AllQueryQuery['radioProgram'][number]>
+type RadioType = NonNullable<AllQueryQuery['radioProgram']['results'][number]>
 
 interface Props {
     radioPrograms: RadioType[];

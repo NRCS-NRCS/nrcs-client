@@ -16,10 +16,11 @@ interface Props {
     hideNavbar?: boolean;
 }
 
-type StrategicDirectives = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
+type StrategicDirectives = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>['results']>;
 
 export default function Page(props: Props) {
-    const strategicDirectivesData = allData.strategicDirectives as unknown as StrategicDirectives;
+    const strategicDirectivesData = allData
+        .strategicDirectives.results as unknown as StrategicDirectives;
 
     const pathsForWorks = strategicDirectivesData?.map(
         (dir) => ({

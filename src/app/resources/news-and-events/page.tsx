@@ -13,14 +13,14 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
 
 function NewsAndEventsPage() {
     const searchParams = useSearchParams();
     const page = searchParams?.get('page');
     const currentPage = page ?? 1;
     const pageSize = 5;
-    const newsList: NewsType = allData.news;
+    const newsList: NewsType = allData.news.results;
     const paginateData = paginate(
         newsList,
         Number(currentPage),

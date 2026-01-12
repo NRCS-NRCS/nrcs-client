@@ -21,14 +21,14 @@ import Section from '../Section';
 
 import styles from './styles.module.css';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
 
 function RecentNews() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [windowSize, setWindowSize] = useState(5);
     const tabsRef = useRef<HTMLDivElement>(null);
 
-    const news = [...(allData?.news ?? [])].slice(0, 10) as unknown as NewsType;
+    const news = [...(allData?.news.results ?? [])].slice(0, 10) as unknown as NewsType;
     useEffect(() => {
         const calculateWindowSize = () => {
             if (!tabsRef.current) return;

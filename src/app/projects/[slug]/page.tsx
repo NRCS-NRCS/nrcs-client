@@ -12,11 +12,11 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>>;
+type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data: ProjectType = allData.projects;
+    const data: ProjectType = allData.projects.results;
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No news found in GraphQL response');
@@ -39,7 +39,7 @@ export default async function ProjectsDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const allProjects: ProjectType = allData.projects;
+    const allProjects: ProjectType = allData.projects.results;
 
     const projectDetails = allProjects.find(
         (data) => data.id === slug,
