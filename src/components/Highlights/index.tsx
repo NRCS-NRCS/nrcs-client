@@ -15,7 +15,7 @@ import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights'][number]>>;
+type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights']['results'][number]>>;
 
 interface Props {
     highlights: Highlight[];

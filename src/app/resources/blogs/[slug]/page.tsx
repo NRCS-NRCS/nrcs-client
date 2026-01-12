@@ -11,11 +11,11 @@ import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type BlogsType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
+type BlogsType = NonNullable<NonNullable<AllQueryQuery['blogs']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data = allData.blogs as unknown as BlogsType;
+    const data = allData.blogs.results as unknown as BlogsType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -39,7 +39,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const allBlogs = allData.blogs as unknown as BlogsType;
+    const allBlogs = allData.blogs.results as unknown as BlogsType;
     const blogDetails = allBlogs.find(
         (data) => data?.slug === slug,
     ) as unknown as BlogsType[number];

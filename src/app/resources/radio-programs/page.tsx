@@ -21,7 +21,7 @@ import paginate from '#lib/paginate';
 
 import styles from './page.module.css';
 
-type RadioType = NonNullable<AllQueryQuery['radioProgram']>
+type RadioType = NonNullable<AllQueryQuery['radioProgram']['results']>
 
 function RadioProgramsPage() {
     const [search, setSearch] = useState<string>('');
@@ -32,7 +32,7 @@ function RadioProgramsPage() {
     const pageSize = 5;
 
     const radioProgramData = useMemo(
-        () => (allData.radioProgram as RadioType)
+        () => (allData.radioProgram.results as RadioType)
             .filter((radio) => radio.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

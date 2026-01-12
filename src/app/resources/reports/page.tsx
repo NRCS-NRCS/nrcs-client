@@ -20,7 +20,7 @@ import Pager from '@/components/Pager';
 import useDebouncedValue from '@/hooks/useDebouncedValue';
 import paginate from '@/lib/paginate';
 
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
+type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
 
 function ReportsPage() {
     const [search, setSearch] = useState<string>('');
@@ -32,7 +32,7 @@ function ReportsPage() {
     const pageSize = 5;
 
     const allResources = useMemo(
-        () => (allData.resources as unknown as ReportType)
+        () => (allData.resources.results as unknown as ReportType)
             .filter((resource) => resource.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
