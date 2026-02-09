@@ -14,13 +14,16 @@ import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import becomeMemberIcon from '#public/become-member.png';
+import bloodDonateIcon from '#public/blood-donate.png';
 import callIcon from '#public/call.png';
-import cardImage from '#public/card.png';
 import defaultImage from '#public/defaultImage.png';
+import disasterAffectedIcon from '#public/disaster-affected.png';
 import donateIcon from '#public/donate.png';
 import handsIcon from '#public/hands.png';
-import logo from '#public/logo.png';
 import profileImage from '#public/Mr.bipulneupane.jpg';
+import developmentPlanImage from '#public/nrcs-development-plan-2025.png';
+import volunteerIcon from '#public/volunteer.png';
 
 import Highlights from './Highlights';
 import RadioPrograms from './RadioPrograms';
@@ -64,19 +67,19 @@ export default async function Home() {
                 <div className={styles.introText}>{introText}</div>
                 <div className={styles.infoCards}>
                     <KeyFigureCard
-                        title="20,000+"
+                        title="90,000+"
                         description="Volunteers serving communities across Nepal."
-                        icon={logo}
+                        icon={volunteerIcon}
                     />
                     <KeyFigureCard
                         title="50,000+"
                         description="Disaster-affected individuals supported annually"
-                        icon={logo}
+                        icon={disasterAffectedIcon}
                     />
                     <KeyFigureCard
                         title="100+"
                         description="Blood Donations centers across the country"
-                        icon={logo}
+                        icon={bloodDonateIcon}
                     />
                 </div>
                 {/* <div className={styles.bottomContent}>
@@ -112,7 +115,7 @@ export default async function Home() {
                             &nbsp; and make an impact
                         </p>
                     )}
-                    icon={donateIcon}
+                    icon={becomeMemberIcon}
                     link="/get-involved/member/"
                     linkDescription="Become a member"
                 />
@@ -120,7 +123,7 @@ export default async function Home() {
                     title={(
                         <p>
                             With over &nbsp;
-                            <b>1,000+</b>
+                            <b>90,000+</b>
                             &nbsp; volunteers enrolled
                         </p>
                     )}
@@ -160,7 +163,7 @@ export default async function Home() {
                 <RecentNewsCard
                     description={nrcsPlanDescription}
                     trimDescription={1000}
-                    image={cardImage}
+                    image={developmentPlanImage}
                     linkLabel="Download PDF"
                     link="https://drive.google.com/file/d/1XYPHwa5oMHtpCM0TatQJQcus5FNjG5wU/view"
                 />

@@ -25,11 +25,11 @@
         margin-right: var(--spacing-large);
     }
     .tabButton {
-        font-size: var(--font-size-large);
+        font-size: var(--font-size-medium);
         padding: 0;
         word-break: break-all;
         @media (max-width: 768px) {
-            font-size: var(--font-size-medium);
+            font-size: var(--font-size-extra-small);
         }
     }
     .chevron {
