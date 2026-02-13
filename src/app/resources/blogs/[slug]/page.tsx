@@ -6,12 +6,12 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type BlogsQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type BlogsType = NonNullable<NonNullable<AllQueryQuery['blogs']>['results']>;
+type BlogsType = NonNullable<NonNullable<BlogsQuery['blogs']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {

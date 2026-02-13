@@ -13,14 +13,14 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type ResourcesQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import Pager from '@/components/Pager';
 import useDebouncedValue from '@/hooks/useDebouncedValue';
 import paginate from '@/lib/paginate';
 
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
+type ReportType = NonNullable<NonNullable<ResourcesQuery['resources']>['results']>;
 
 function ReportsPage() {
     const [search, setSearch] = useState<string>('');

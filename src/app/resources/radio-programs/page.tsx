@@ -15,13 +15,13 @@ import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type RadioProgramQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 
 import styles from './page.module.css';
 
-type RadioType = NonNullable<AllQueryQuery['radioProgram']['results']>
+type RadioType = NonNullable<RadioProgramQuery['radioProgram']['results']>
 
 function RadioProgramsPage() {
     const [search, setSearch] = useState<string>('');
