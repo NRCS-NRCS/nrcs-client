@@ -10,12 +10,12 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type NewsQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
+type NewsType = NonNullable<NonNullable<NewsQuery['news']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {

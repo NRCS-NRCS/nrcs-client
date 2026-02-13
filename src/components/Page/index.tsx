@@ -4,7 +4,7 @@ import { _cs } from '@togglecorp/fujs';
 import Footer from '#components/Footer';
 import Navbar from '#components/Navbar';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type StrategicDirectiveQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
@@ -16,7 +16,7 @@ interface Props {
     hideNavbar?: boolean;
 }
 
-type StrategicDirectives = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>['results']>;
+type StrategicDirectives = NonNullable<NonNullable<StrategicDirectiveQuery['strategicDirectives']>['results']>;
 
 export default function Page(props: Props) {
     const strategicDirectivesData = allData

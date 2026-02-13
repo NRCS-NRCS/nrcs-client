@@ -7,11 +7,11 @@ import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type JobVacanciesQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type VacanciesType = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>['results']>;
+type VacanciesType = NonNullable<NonNullable<JobVacanciesQuery['jobVacancies']>['results']>;
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
     const data = allData.jobVacancies.results as unknown as VacanciesType;

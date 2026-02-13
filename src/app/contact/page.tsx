@@ -14,7 +14,7 @@ import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type FaqsQuery } from '#generated/types/graphql';
 import bannerImg from '#public/nrcs_building.jpg';
 
 import ContactForm from './ContactForm';
@@ -22,7 +22,7 @@ import FeedbackForm from './FeedbackForm';
 
 import styles from './page.module.css';
 
-type FaqsType = NonNullable<NonNullable<AllQueryQuery['faqs']>['results']>;
+type FaqsType = NonNullable<NonNullable<FaqsQuery['faqs']>['results']>;
 
 const contactUsHeading = 'We’d love to hear from you.';
 const contactUsText = 'Have questions, need support or possible partnership? We\'re here to help. Reach out to us through the form below or use the contact details provided — we\'ll get back to you as soon as possible.';
