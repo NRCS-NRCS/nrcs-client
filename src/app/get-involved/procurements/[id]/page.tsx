@@ -11,11 +11,11 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
+type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>['results']>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const data = allData.resources as unknown as ProcurementsType;
+    const data = allData.procurements.results as unknown as ProcurementsType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -34,7 +34,7 @@ export default async function ProcurementDetailPage(
     const {
         id,
     } = await params;
-    const allProcurements = allData.resources as unknown as ProcurementsType;
+    const allProcurements = allData.procurements.results as unknown as ProcurementsType;
 
     const procurementDetails = allProcurements.find(
         (data) => data.id === id,

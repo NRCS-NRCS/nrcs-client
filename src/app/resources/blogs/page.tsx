@@ -14,14 +14,14 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
+type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>['results']>;
 
 function BlogPage() {
     const searchParams = useSearchParams();
     const page = searchParams?.get('page');
     const currentPage = page ?? 1;
     const pageSize = 5;
-    const blogData = allData.blogs as unknown as BlogType;
+    const blogData = allData.blogs.results as unknown as BlogType;
     const paginateData = paginate(
         blogData,
         Number(currentPage),

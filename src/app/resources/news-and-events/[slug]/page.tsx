@@ -15,11 +15,11 @@ import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
+type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data: NewsType = allData.news;
+    const data: NewsType = allData.news.results;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -42,7 +42,7 @@ export default async function NewsDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
-    const allNews: NewsType = allData.news;
+    const allNews: NewsType = allData.news.results;
     const newsDetails = allNews.find(
         (data) => data.slug === slug,
     ) as unknown as NewsType[number];

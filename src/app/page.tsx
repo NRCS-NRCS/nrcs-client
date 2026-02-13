@@ -38,15 +38,16 @@ const nrcsOfficerTitleTwo = 'Information Officer';
 const nrcsOfficerContactNumber = '+977 9741695097';
 const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 
-type HighlightsType = NonNullable<NonNullable<AllQueryQuery['highlights']>>;
-type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-type RadioType = NonNullable<NonNullable<AllQueryQuery['radioProgram']>>;
+type HighlightsType = NonNullable<NonNullable<AllQueryQuery['highlights']>['results']>;
+type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
+type RadioType = NonNullable<NonNullable<AllQueryQuery['radioProgram']>['results']>;
 
 export default async function Home() {
-    const radioPrograms = allData.radioProgram as unknown as RadioType;
+    const radioPrograms = allData.radioProgram.results as unknown as RadioType;
 
-    const allResources = allData?.resources as unknown as ResourceType;
-    const allHighlights = allData?.highlights as unknown as HighlightsType;
+    const allResources = allData?.resources.results as unknown as ResourceType;
+    const allHighlights = allData?.highlights.results as unknown as HighlightsType;
+
     const allReports = [
         ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
     ] as unknown as ResourceType;

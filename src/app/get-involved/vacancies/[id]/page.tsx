@@ -11,10 +11,10 @@ import { type AllQueryQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type VacanciesType = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>>;
+type VacanciesType = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>['results']>;
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data = allData.jobVacancies as unknown as VacanciesType;
+    const data = allData.jobVacancies.results as unknown as VacanciesType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -37,7 +37,7 @@ export default async function VacancyDetailPage({ params }: PageProps) {
     const {
         id,
     } = await params;
-    const allVacancies = allData.jobVacancies as unknown as VacanciesType;
+    const allVacancies = allData.jobVacancies.results as unknown as VacanciesType;
 
     const vacancyDetails = allVacancies.find(
         (data) => data.id === id,
