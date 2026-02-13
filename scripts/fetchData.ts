@@ -8,6 +8,9 @@ const GRAPHQL_ENDPOINT =
 const pipelineType = process.env.PIPELINE_TYPE;
 
 const client = new GraphQLClient(GRAPHQL_ENDPOINT);
+
+const PAGE_SIZE = 1000;
+
 const dummyData = {
     strategicDirectives: { results: [] },
     departments: { results: [] },
@@ -24,9 +27,9 @@ const dummyData = {
     radioProgram: { results: [] },
 };
 
-const query = gql`
-    query AllQuery {
-        strategicDirectives(pagination: { limit: 1000 }) {
+const strategicDirectivesQuery = gql`
+    query StrategicDirective($pagination: OffsetPaginationInput) {
+        strategicDirectives(pagination: $pagination) {
             results {
                 title
                 slug
@@ -43,9 +46,14 @@ const query = gql`
                     id
                 }
             }
+            totalCount    
         }
+    }
+`;
 
-        departments(pagination: { limit: 1000 }) {
+const departmentsQuery = gql`
+    query Departments($pagination: OffsetPaginationInput) {
+        departments(pagination: $pagination) {
             results {
                 contactPersonEmail
                 contactPersonName
@@ -57,9 +65,14 @@ const query = gql`
                 }
                 title
             }
+            totalCount                
         }
+    }
+`;
 
-        news(filters: { status: PUBLISHED }, pagination: { limit: 1000 }) {
+const newsQuery = gql`
+    query News($pagination: OffsetPaginationInput) {
+        news(pagination: $pagination, filters: { status: PUBLISHED }) {
             results {
                 content
                 id
@@ -76,9 +89,15 @@ const query = gql`
                     name
                 }
             }
+            totalCount    
         }
+    }
+`;
 
-        jobVacancies(pagination: { limit: 1000 }) {
+
+const jobVacanciesQuery = gql`
+    query JobVacancies($pagination: OffsetPaginationInput) {
+        jobVacancies(pagination: $pagination) {
             results {
                 isArchived
                 id
@@ -94,9 +113,14 @@ const query = gql`
                 title
                 publishedAt
             }
+            totalCount
         }
+    }
+`;
 
-        highlights(pagination: { limit: 1000 }) {
+const highlightsQuery = gql`
+    query Highlights($pagination: OffsetPaginationInput) {
+        highlights(pagination: $pagination) {
             results {
                 description
                 isActive
@@ -112,9 +136,14 @@ const query = gql`
                     url
                 }
             }
+            totalCount
         }
+    }
+`;
 
-        blogs(filters: { status: PUBLISHED }, pagination: { limit: 1000 }) {
+const blogsQuery = gql`
+    query Blogs($pagination: OffsetPaginationInput) {
+        blogs(pagination: $pagination) {
             results {
                 title
                 status
@@ -130,18 +159,29 @@ const query = gql`
                     url
                 }
             }
+            totalCount
         }
+    }
+`;
 
-        majorResponsibilities(pagination: { limit: 1000 }) {
+const majorResponsibilitiesQuery = gql`
+    query MajorResponsibilities($pagination: OffsetPaginationInput) {
+        majorResponsibilities(pagination: $pagination) {
             results {
                 title
                 slug
                 id
                 description
             }
+            totalCount
         }
+    }
+`;
 
-        partners(pagination: { limit: 1000 }) {
+
+const partnersQuery = gql`
+    query Partners($pagination: OffsetPaginationInput) {
+        partners(pagination: $pagination) {
             results {
                 id
                 title
@@ -152,9 +192,14 @@ const query = gql`
                     size
                 }
             }
+            totalCount
         }
+    }
+`;
 
-        procurements(pagination: { limit: 1000 }) {
+const procurementsQuery = gql`
+    query Procurements($pagination: OffsetPaginationInput) {
+        procurements(pagination: $pagination) {
             results {
                 title
                 publishedDate
@@ -167,9 +212,14 @@ const query = gql`
                 expiryDate
                 description
             }
+            totalCount
         }
+    }
+`;
 
-        resources(filters: {}, pagination: { limit: 1000 }) {
+const resourcesQuery = gql`
+    query Resources($pagination: OffsetPaginationInput) {
+        resources(pagination: $pagination, filters: {}) {
             results {
                 content
                 coverImage {
@@ -189,9 +239,14 @@ const query = gql`
                 }
                 directiveId
             }
+            totalCount
         }
+    }
+`;
 
-        projects(pagination: { limit: 1000 }) {
+const projectsQuery = gql`
+    query Projects($pagination: OffsetPaginationInput) {
+        projects(pagination: $pagination) {
             results {
                 title
                 id
@@ -208,18 +263,28 @@ const query = gql`
                     name
                 }
             }
+            totalCount
         }
+    }
+`;
 
-        faqs(pagination: { limit: 1000 }) {
+const faqsQuery = gql`
+    query Faqs($pagination: OffsetPaginationInput) {
+        faqs(pagination: $pagination) {
             results {
                 answer
                 id
                 orderIndex
                 question
             }
+            totalCount
         }
+    }
+`;
 
-        radioProgram(pagination: { limit: 1000 }) {
+const radioProgramQuery = gql`
+    query RadioProgram($pagination: OffsetPaginationInput) {
+        radioProgram(pagination: $pagination) {
             results {
                 type
                 title
@@ -231,21 +296,88 @@ const query = gql`
                     url
                 }
             }
+            totalCount
         }
     }
 `;
 
+async function fetchAllPages(
+    query: string,
+    key: string,
+) {
+    let offset = 0;
+    let allResults: any[] = [];
+    let totalCount = 0;
+
+    while (true) {
+        const variables = {
+            pagination: {
+                limit: PAGE_SIZE,
+                offset,
+            },
+        };
+
+        const response = await client.request(query, variables);
+
+        const responseData =
+            (response as Record<string, any>)?.[key];
+
+        const results = responseData?.results ?? [];
+        totalCount = responseData?.totalCount ?? 0;
+
+        allResults = [...allResults, ...results];
+
+        console.log(
+            `${key}: fetched ${results.length} items (offset ${offset}, total ${totalCount})`,
+        );
+
+        offset += PAGE_SIZE;
+
+        if (offset >= totalCount) {
+            break;
+        }
+    }
+
+    return { results: allResults };
+}
+
+
 async function fetchAndWriteData() {
     console.log('Fetching data from GraphQL endpoint from ', GRAPHQL_ENDPOINT);
+    console.log('-----------------------------------------------------------');
 
-    let data = {};
-    if (pipelineType === 'ci') {
-        data = dummyData;
-    } else if (pipelineType === 'cd') {
-        data = await client.request(query);
-    } else {
-        // fallback to local dev behavior
-        data = await client.request(query);
+    const data: Record<string, any> = { ...dummyData };
+
+    if (pipelineType !== 'ci') {
+        // Define the queries mapping
+        const queriesMap: Record<string, string> = {
+            strategicDirectives: strategicDirectivesQuery,
+            departments: departmentsQuery,
+            news: newsQuery,
+            jobVacancies: jobVacanciesQuery,
+            highlights: highlightsQuery,
+            blogs: blogsQuery,
+            majorResponsibilities: majorResponsibilitiesQuery,
+            partners: partnersQuery,
+            procurements: procurementsQuery,
+            resources: resourcesQuery,
+            projects: projectsQuery,
+            faqs: faqsQuery,
+            radioProgram: radioProgramQuery,
+        };
+        // fetch each query in parallel
+        const promises = Object.entries(queriesMap).map(async ([key, query]) => {
+            const results = await fetchAllPages(query, key);
+            return [key, results] as const;
+        });
+
+        // Wait for all to finish
+        const entries = await Promise.all(promises);
+
+        // Merge results into data
+        for (const [key, results] of entries) {
+            data[key] = results;
+        }
     }
 
     // ensure the `data` directory exists
@@ -254,6 +386,8 @@ async function fetchAndWriteData() {
     }
     const outputPath = path.join(__dirname, '../data/staticData.json');
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
+
+    console.log('-----------------------------------------------------------');
     console.log(`Data written to ${outputPath}`);
     console.log(`Top-level keys: ${Object.keys(data ?? {}).join(', ')}`);
 }
