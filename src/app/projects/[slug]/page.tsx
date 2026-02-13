@@ -8,11 +8,11 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type ProjectsQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>['results']>;
+type ProjectType = NonNullable<NonNullable<ProjectsQuery['projects']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {

@@ -10,11 +10,11 @@ import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type ResourcesQuery } from '#generated/types/graphql';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
+type ReportType = NonNullable<NonNullable<ResourcesQuery['resources']>['results']>;
 
 function PoliciesAndGuidelinesPage() {
     const searchParams = useSearchParams();

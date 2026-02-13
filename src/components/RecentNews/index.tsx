@@ -12,7 +12,7 @@ import {
 import { _cs } from '@togglecorp/fujs';
 
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type NewsQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import Button from '../Button';
@@ -21,7 +21,7 @@ import Section from '../Section';
 
 import styles from './styles.module.css';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>['results']>;
+type NewsType = NonNullable<NonNullable<NewsQuery['news']>['results']>;
 
 function RecentNews() {
     const [activeIndex, setActiveIndex] = useState(0);

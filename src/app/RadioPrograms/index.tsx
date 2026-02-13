@@ -14,11 +14,11 @@ import {
     TabPanel,
     Tabs,
 } from '#components/Tabs';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type RadioProgramQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
-type RadioType = NonNullable<AllQueryQuery['radioProgram']['results'][number]>
+type RadioType = NonNullable<RadioProgramQuery['radioProgram']['results'][number]>
 
 interface Props {
     radioPrograms: RadioType[];

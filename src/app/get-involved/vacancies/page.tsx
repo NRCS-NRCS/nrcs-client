@@ -5,11 +5,11 @@ import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type JobVacanciesQuery } from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type vacancies = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>['results']>;
+type vacancies = NonNullable<NonNullable<JobVacanciesQuery['jobVacancies']>['results']>;
 
 export default async function Vacancies() {
     const vacancies = allData.jobVacancies.results as unknown as vacancies;

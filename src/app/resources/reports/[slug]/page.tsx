@@ -10,12 +10,12 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type ResourcesQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type ResourcesType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
+type ResourcesType = NonNullable<NonNullable<ResourcesQuery['resources']>['results']>;
 
 export async function generateStaticParams() {
     const data = allData.resources.results as unknown as ResourcesType;

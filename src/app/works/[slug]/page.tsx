@@ -10,14 +10,19 @@ import Page from '#components/Page';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import {
+    type DepartmentsQuery,
+    type ProjectsQuery,
+    type ResourcesQuery,
+    type StrategicDirectiveQuery,
+} from '#generated/types/graphql';
 
 import styles from './page.module.css';
 
-type DepartmentType = NonNullable<NonNullable<AllQueryQuery['departments']>['results']>;
-type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>['results']>;
-type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>['results']>;
-type StrategicDirectivesType = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>['results']>;
+type DepartmentType = NonNullable<NonNullable<DepartmentsQuery['departments']>['results']>;
+type ProjectType = NonNullable<NonNullable<ProjectsQuery['projects']>['results']>;
+type ResourceType = NonNullable<NonNullable<ResourcesQuery['resources']>['results']>;
+type StrategicDirectivesType = NonNullable<NonNullable<StrategicDirectiveQuery['strategicDirectives']>['results']>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {

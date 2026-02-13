@@ -4,7 +4,7 @@ import { _cs } from '@togglecorp/fujs';
 
 import ImageWrapper from '#components/ImageWrapper';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type PartnersQuery } from '#generated/types/graphql';
 
 import Section from '../Section';
 
@@ -14,7 +14,7 @@ interface Props {
     className?: string;
 }
 function Partners({ className }: Props) {
-    const partnersData = allData.partners.results as unknown as AllQueryQuery['partners']['results'];
+    const partnersData = allData.partners.results as unknown as PartnersQuery['partners']['results'];
 
     return (
         <Section headingWithBackground heading="Partners" childrenContainerClassName={styles.child}>
