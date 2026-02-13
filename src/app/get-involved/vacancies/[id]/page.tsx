@@ -6,15 +6,13 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
 
-type VacanciesType = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>['results']>;
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data = allData.jobVacancies.results as unknown as VacanciesType;
+    const data = allData.jobVacancies.results ?? [];
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -37,11 +35,11 @@ export default async function VacancyDetailPage({ params }: PageProps) {
     const {
         id,
     } = await params;
-    const allVacancies = allData.jobVacancies.results as unknown as VacanciesType;
+    const allVacancies = allData.jobVacancies.results ?? [];
 
     const vacancyDetails = allVacancies.find(
         (data) => data.id === id,
-    ) as unknown as VacanciesType[number];
+    );
 
     if (!vacancyDetails) {
         // eslint-disable-next-line no-console
