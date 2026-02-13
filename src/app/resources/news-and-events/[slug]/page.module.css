@@ -3,6 +3,9 @@
     padding-bottom: var(--spacing-galactic);
 
     .section {
+        .actions {
+            text-transform: none;
+        }
         .content {
             padding-left: var(--spacing-galactic);
             padding-right: var(--spacing-galactic);

@@ -6,15 +6,12 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
 
-type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>['results']>;
-
 export default async function Procurements() {
-    const procurementsData: ProcurementsType = allData.procurements.results;
+    const procurementsData = allData.procurements.results ?? [];
     if (!procurementsData) {
         return notFound();
     }

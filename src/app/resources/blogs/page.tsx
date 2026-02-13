@@ -13,13 +13,10 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
-
-type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>['results']>;
 
 function BlogPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +27,7 @@ function BlogPage() {
     const pageSize = 5;
 
     const blogData = useMemo(
-        () => (allData.blogs.results as unknown as BlogType)
+        () => (allData.blogs.results ?? [])
             .filter((blog) => blog.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
