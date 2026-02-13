@@ -344,11 +344,11 @@ async function fetchAllPages(
 
 async function fetchAndWriteData() {
     console.log('Fetching data from GraphQL endpoint from ', GRAPHQL_ENDPOINT);
-    console.log('-----------------------------------------------------------');
 
     const data: Record<string, any> = { ...dummyData };
 
     if (pipelineType !== 'ci') {
+        console.log('-----------------------------------------------------------');
         // Define the queries mapping
         const queriesMap: Record<string, string> = {
             strategicDirectives: strategicDirectivesQuery,
@@ -378,6 +378,7 @@ async function fetchAndWriteData() {
         for (const [key, results] of entries) {
             data[key] = results;
         }
+        console.log('-----------------------------------------------------------');
     }
 
     // ensure the `data` directory exists
@@ -387,7 +388,6 @@ async function fetchAndWriteData() {
     const outputPath = path.join(__dirname, '../data/staticData.json');
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 
-    console.log('-----------------------------------------------------------');
     console.log(`Data written to ${outputPath}`);
     console.log(`Top-level keys: ${Object.keys(data ?? {}).join(', ')}`);
 }
