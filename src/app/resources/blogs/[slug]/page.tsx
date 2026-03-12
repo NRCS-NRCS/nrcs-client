@@ -6,16 +6,16 @@ import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type BlogsQuery } from '#generated/types/graphql';
 import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type BlogsType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
+type BlogsType = NonNullable<NonNullable<BlogsQuery['blogs']>['results']>;
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
-    const data = allData.blogs as unknown as BlogsType;
+    const data = allData.blogs.results as unknown as BlogsType;
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -39,7 +39,7 @@ export default async function BlogDetailsPage({ params }: PageProps) {
         slug,
     } = await params;
 
-    const allBlogs = allData.blogs as unknown as BlogsType;
+    const allBlogs = allData.blogs.results as unknown as BlogsType;
     const blogDetails = allBlogs.find(
         (data) => data?.slug === slug,
     ) as unknown as BlogsType[number];
