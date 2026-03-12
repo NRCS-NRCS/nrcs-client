@@ -22,19 +22,19 @@ const memberships = [
     {
         id: 'life-member',
         title: 'Life Member',
-        fee: 'One-time, NPR 25 entry fee and NPR 1,000 membership fee',
+        fee: 'One-time, NPR 100 entry fee and NPR 2500 membership fee',
         description: 'Life Member membership does not need to be renewed.',
     },
     {
         id: 'ordinary-member',
         title: 'Ordinary Member',
-        fee: 'NPR 25 entry fee and NPR 250 membership fee for 5 years',
+        fee: 'NPR 100 entry fee and NPR 500 membership fee for 5 years',
         description: 'Ordinary Membership status needs to be renewed every five years.',
     },
     {
         id: 'distinguished-member',
         title: 'Distinguished Member',
-        fee: 'NPR 25,000 in Cash or Kind',
+        fee: 'NPR 50,000 in Cash or Kind',
         description: 'Provincial Executive Committee may grant the Distinguished Membership to any person donating a lump sum of a fixed amount in the form of cash, kind or in the form of any immovable property worth thereof to the Society.',
     },
     {
@@ -46,7 +46,7 @@ const memberships = [
     {
         id: 'institutional-membership',
         title: 'Institutional Membership',
-        fee: 'Yearly, NPR 25,000 membership fee',
+        fee: 'Yearly, NPR 50,000 membership fee',
         description: 'Institutional Membership may be granted to any Organisations donating annually a lump sum of a fixed amount to the Society. Such a body may participate in the meetings of the concerned Assembly through its representative.',
     },
     {
@@ -80,7 +80,8 @@ export default function Volunteer() {
                         &nbsp;
                         <IoDownload />
                     </Link>
-                    <Link
+                    {/* NOTE: Remove as requested, need to add once the new form is ready */}
+                    {/* <Link
                         className={styles.downloadButton}
                         href="/life-member-application-english.pdf"
                         target="_blank"
@@ -90,7 +91,7 @@ export default function Volunteer() {
                         Fill out the form in English
                         &nbsp;
                         <IoDownload />
-                    </Link>
+                    </Link> */}
                 </div>
             </Section>
             <Section
