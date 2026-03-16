@@ -25,8 +25,8 @@ import profileImage from '#public/Mr.bipulneupane.jpg';
 import developmentPlanImage from '#public/nrcs-development-plan-2025.png';
 import volunteerIcon from '#public/volunteer.png';
 
-import Highlights from './Highlights';
-import RadioPrograms from './RadioPrograms';
+import Highlights from '../components/Highlights';
+import RadioPrograms from '../components/RadioPrograms';
 
 import styles from './page.module.css';
 

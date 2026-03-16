@@ -1,5 +1,6 @@
 :root {
-    --multiplier: 1.2599; /* Major third scale */
+    --multiplier: 1.2599;
+    /* Major third scale */
 
     --font-size-base: 1rem;
     --spacing-base: 1.125rem;
@@ -10,6 +11,7 @@
     --color-background-secondary: #f5f5f5;
     --color-foreground: #171717;
     --color-banner: #193351;
+    --color-accent: #FFF0F0;
 
     --color-text-black: #000000;
     --color-text-neutral: #6b7280;
@@ -28,14 +30,17 @@
     --color-background-gradient-secondary: #fafde9;
     --color-background-gradient-primary: #f3f5e9;
 
-    --color-background-gradient: linear-gradient(
-        180deg,
-        var(--color-background-gradient-primary) 0%,
-        var(--color-secondary-light) 50%,
-        var(--color-background-gradient-secondary) 100%
-    );
+    --color-background-gradient: linear-gradient(180deg,
+            var(--color-background-gradient-primary) 0%,
+            var(--color-secondary-light) 50%,
+            var(--color-background-gradient-secondary) 100%);
 
     --color-separator: #e5e7eb;
+
+    --width-scrollbar: 4pt;
+    --color-scrollbar-foreground: rgba(0, 0, 0, .2);
+    --color-scrollbar-background: rgba(0, 0, 0, .01);
+    --radius-scrollbar-border: 2pt;
 
     --color-text: #193351;
     --color-text-alternative: #3f3f3f;
@@ -68,85 +73,32 @@
     --color-shadow: rgba(0, 0, 0, 0.5);
 
     /* Font size */
-    --font-size-super-small: calc(
-        var(--font-size-base) /
-            (var(--multiplier) * var(--multiplier) * var(--multiplier))
-    );
-    --font-size-extra-small: calc(
-        var(--font-size-base) / (var(--multiplier) * var(--multiplier))
-    );
+    --font-size-super-small: calc(var(--font-size-base) / (var(--multiplier) * var(--multiplier) * var(--multiplier)));
+    --font-size-extra-small: calc(var(--font-size-base) / (var(--multiplier) * var(--multiplier)));
     --font-size-small: calc(var(--font-size-base) / var(--multiplier));
     --font-size-medium: var(--font-size-base);
     --font-size-large: calc(var(--font-size-base) * var(--multiplier));
-    --font-size-extra-large: calc(
-        var(--font-size-base) * var(--multiplier) * var(--multiplier)
-    );
-    --font-size-super-large: calc(
-        var(--font-size-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier)
-    );
-    --font-size-mega-large: calc(
-        var(--font-size-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier)
-    );
-    --font-size-gigantic: calc(
-        var(--font-size-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier) * var(--multiplier)
-    );
-    --font-size-galactic: calc(
-        var(--font-size-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier)
-    );
+    --font-size-extra-large: calc(var(--font-size-base) * var(--multiplier) * var(--multiplier));
+    --font-size-super-large: calc(var(--font-size-base) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+    --font-size-mega-large: calc(var(--font-size-base) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+    --font-size-gigantic: calc(var(--font-size-base) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+    --font-size-galactic: calc(var(--font-size-base) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
 
     /* Spacing */
-    --spacing-tiny: calc(
-        var(--spacing-base) /
-            (
-                var(--multiplier) * var(--multiplier) * var(--multiplier) *
-                    var(--multiplier) * var(--multiplier) * var(--multiplier)
-            )
-    );
-    --spacing-ultra-small: calc(
-        var(--spacing-base) /
-            (
-                var(--multiplier) * var(--multiplier) * var(--multiplier) *
-                    var(--multiplier) * var(--multiplier)
-            )
-    );
-    --spacing-super-small: calc(
-        var(--spacing-base) /
-            (var(--multiplier) * var(--multiplier) * var(--multiplier))
-    );
-    --spacing-extra-small: calc(
-        var(--spacing-base) / (var(--multiplier) * var(--multiplier))
-    );
+    --spacing-tiny: calc(var(--spacing-base) / (var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier)));
+    --spacing-ultra-small: calc(var(--spacing-base) / (var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier)));
+    --spacing-super-small: calc(var(--spacing-base) / (var(--multiplier) * var(--multiplier) * var(--multiplier)));
+    --spacing-extra-small: calc(var(--spacing-base) / (var(--multiplier) * var(--multiplier)));
     --spacing-small: calc(var(--spacing-base) / var(--multiplier));
     --spacing-medium: var(--spacing-base);
     --spacing-large: calc(var(--spacing-base) * var(--multiplier));
-    --spacing-extra-large: calc(
-        var(--spacing-base) * var(--multiplier) * var(--multiplier)
-    );
-    --spacing-super-large: calc(
-        var(--spacing-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier)
-    );
-    --spacing-mega-large: calc(
-        var(--spacing-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier)
-    );
-    --spacing-gigantic: calc(
-        var(--spacing-base) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier) * var(--multiplier)
-    );
+    --spacing-extra-large: calc(var(--spacing-base) * var(--multiplier) * var(--multiplier));
+    --spacing-super-large: calc(var(--spacing-base) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+    --spacing-mega-large: calc(var(--spacing-base) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
+    --spacing-gigantic: calc(var(--spacing-base) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
     --spacing-enormous: calc(var(--spacing-gigantic) * var(--multiplier));
-    --spacing-galactic: calc(
-        var(--spacing-gigantic) * var(--multiplier) * var(--multiplier)
-    );
-    --spacing-universal: calc(
-        var(--spacing-gigantic) * var(--multiplier) * var(--multiplier) *
-            var(--multiplier) * var(--multiplier)
-    );
+    --spacing-galactic: calc(var(--spacing-gigantic) * var(--multiplier) * var(--multiplier));
+    --spacing-universal: calc(var(--spacing-gigantic) * var(--multiplier) * var(--multiplier) * var(--multiplier) * var(--multiplier));
 
     --box-shadow: 0 1pt 4pt rgb(0 0 0 / 0.2);
 }
@@ -202,3 +154,19 @@ a {
 /*         color-scheme: dark; */
 /*     } */
 /* } */
+
+::-webkit-scrollbar {
+    transform: translateX(100%);
+    background-color: var(--color-scrollbar-background);
+    width: var(--width-scrollbar);
+    height: var(--width-scrollbar);
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--color-scrollbar-background);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-scrollbar-border);
+    background-color: var(--color-scrollbar-foreground);
+}
