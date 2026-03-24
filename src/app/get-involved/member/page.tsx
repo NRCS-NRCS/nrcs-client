@@ -57,6 +57,8 @@ const memberships = [
     },
 ];
 
+const formLink = process.env.NEXT_PUBLIC_MEMBERSHIP_FORM_URL;
+
 export default function Volunteer() {
     return (
         <Page contentClassName={styles.page}>
@@ -71,12 +73,12 @@ export default function Volunteer() {
                 <div className={styles.downloadButtonsWrapper}>
                     <Link
                         className={styles.downloadButton}
-                        href="/life-member-application-nepali.pdf"
+                        href={formLink ?? ''}
                         target="_blank"
                         download
                         rel="noopener noreferrer"
                     >
-                        Fill out the form in Nepali
+                        Fill out the form
                         &nbsp;
                         <IoDownload />
                     </Link>

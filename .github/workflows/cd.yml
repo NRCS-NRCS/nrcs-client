@@ -14,6 +14,7 @@ on:
 env:
   NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT }}
   NEXT_PUBLIC_GRAPHQL_DOMAIN: ${{ vars.NEXT_PUBLIC_GRAPHQL_DOMAIN }}
+  NEXT_MEMBERSHIP_FORM_URL: ${{ vars.NEXT_MEMBERSHIP_FORM_URL }}
   GITHUB_WORKFLOW: true
 
 jobs:
@@ -53,7 +54,6 @@ jobs:
         env:
           NEXT_PUBLIC_GRAPHQL_DOMAIN: ${{ vars.NEXT_PUBLIC_GRAPHQL_DOMAIN }}
           NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT: ${{ vars.NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT }}
-
       - name: Build + Test
         run: pnpm run build
         timeout-minutes: 30
