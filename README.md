@@ -16,6 +16,7 @@ Set these environment variables:
 PORT=3055
 NEXT_PUBLIC_GRAPHQL_CODEGEN_ENDPOINT=./backend/schema.graphql
 NEXT_PUBLIC_GRAPHQL_DOMAIN=<api-endpoint>
+NEXT_PUBLIC_MEMBERSHIP_FORM_URL="any-external-membership-form"
 ```
 
 ### Running
