@@ -1,5 +1,5 @@
 import React from 'react';
-import { IoDownload } from 'react-icons/io5';
+import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 
 import ArticleBody from '#components/ArticleBody';
 import Heading from '#components/Heading';
@@ -13,9 +13,7 @@ const memberHeading = 'Become a Member';
 const memberText = `
 Become a Member of Nepal Red Cross Society (NRCS) to support the valuable work done by our volunteers and staff all around Nepal! NRCS Membership is open to all, so join the happy group of thousands of members we already have.
 NRCS membership is an easy way to support the work we do but also a great way to speak out for humane values and help the ones in need.\n
-To become a Member, follow these two very easy steps:\n
-1. Print and fill the application form, or ask the form from your Local Red Cross Branch.\n
-2. Return the form filled to your Local Red Cross Branch.
+To become a Member, Please click the link below to fill out the online application form.
 `;
 
 const memberships = [
@@ -57,6 +55,8 @@ const memberships = [
     },
 ];
 
+const formLink = process.env.NEXT_PUBLIC_MEMBERSHIP_FORM_URL;
+
 export default function Volunteer() {
     return (
         <Page contentClassName={styles.page}>
@@ -71,14 +71,14 @@ export default function Volunteer() {
                 <div className={styles.downloadButtonsWrapper}>
                     <Link
                         className={styles.downloadButton}
-                        href="/life-member-application-nepali.pdf"
+                        href={formLink ?? ''}
                         target="_blank"
                         download
                         rel="noopener noreferrer"
                     >
-                        Fill out the form in Nepali
+                        Fill out the form
                         &nbsp;
-                        <IoDownload />
+                        <HiOutlineArrowTopRightOnSquare />
                     </Link>
                     {/* NOTE: Remove as requested, need to add once the new form is ready */}
                     {/* <Link
