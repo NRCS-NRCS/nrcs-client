@@ -13,6 +13,7 @@ export default function AboutUs() {
         { title: 'Vice Chairman', name: 'Mr. Hari Baral' },
         { title: 'Secretary General', name: 'Mr. Min Bahadur Malla' },
         { title: 'Treasurer General', name: 'Mr. Lok Darshan Shrestha' },
+        { title: 'Officiating Executive Director', name: 'Mrs. Mona Aryal' },
         { title: 'Governance Secretariat', name: 'Mr. Sakun Kumar Joshi', email: 'sakun.joshi@nrcs.org' },
     ];
 

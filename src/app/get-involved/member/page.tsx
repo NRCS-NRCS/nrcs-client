@@ -1,5 +1,6 @@
 import React from 'react';
 import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
+import { IoDownload } from 'react-icons/io5';
 
 import ArticleBody from '#components/ArticleBody';
 import Heading from '#components/Heading';
@@ -11,9 +12,13 @@ import styles from './page.module.css';
 
 const memberHeading = 'Become a Member';
 const memberText = `
-Become a Member of Nepal Red Cross Society (NRCS) to support the valuable work done by our volunteers and staff all around Nepal! NRCS Membership is open to all, so join the happy group of thousands of members we already have.
+Become a Member of Nepal Red Cross Society (NRCS) to support the valuable work done by our volunteers and staff all around Nepal! NRCS Membership is open to all, so join the happy group of thousands of members we already have.\n
 NRCS membership is an easy way to support the work we do but also a great way to speak out for humane values and help the ones in need.\n
-To become a Member, Please click the link below to fill out the online application form.
+To become a Member, you have two options:\n
+1. **Online:** Click the link below to fill out the online application form.
+2. **Offline (Physical Form):** 
+   - Print and fill the application form, or ask for a copy from your local Red Cross Branch.
+   - Return the completed form to your local Red Cross Branch.
 `;
 
 const memberships = [
@@ -76,9 +81,20 @@ export default function Volunteer() {
                         download
                         rel="noopener noreferrer"
                     >
-                        Fill out the form
+                        Fill out the online form
                         &nbsp;
                         <HiOutlineArrowTopRightOnSquare />
+                    </Link>
+                    <Link
+                        className={styles.downloadButton}
+                        href="/life-member-application-nepali.pdf"
+                        target="_blank"
+                        download
+                        rel="noopener noreferrer"
+                    >
+                        Fill out the form in Nepali
+                        &nbsp;
+                        <IoDownload />
                     </Link>
                     {/* NOTE: Remove as requested, need to add once the new form is ready */}
                     {/* <Link
