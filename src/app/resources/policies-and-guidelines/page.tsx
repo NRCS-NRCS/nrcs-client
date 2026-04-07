@@ -1,6 +1,10 @@
 'use client';
 
-import React, { Suspense } from 'react';
+import React, {
+    Suspense,
+    useMemo,
+    useState,
+} from 'react';
 import { isDefined } from '@togglecorp/fujs';
 import { useSearchParams } from 'next/navigation';
 
@@ -11,17 +15,27 @@ import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 import defaultImage from '#public/defaultImage.png';
 
 type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 function PoliciesAndGuidelinesPage() {
+    const [search, setSearch] = useState<string>('');
     const searchParams = useSearchParams();
+    const debouncedSearchText = useDebouncedValue(search);
     const page = searchParams?.get('page');
     const currentPage = page ?? 1;
     const pageSize = 5;
-    const allResources = allData.resources as unknown as ReportType;
+
+    const allResources = useMemo(
+        () => (allData.resources as unknown as ReportType)
+            .filter((resource) => resource.title?.toLowerCase()
+                .includes(debouncedSearchText.toLowerCase())),
+        [debouncedSearchText],
+    );
+
     const policyData = allResources.filter((res) => res.type === 'POLICY_AND_GUIDELINES');
 
     const paginateData = paginate(
@@ -34,6 +48,9 @@ function PoliciesAndGuidelinesPage() {
             <Section
                 heading="Policies and Guidelines"
                 headingWithBackground
+                searchField="title"
+                searchValue={search}
+                handleSearchChange={setSearch}
             >
                 {(isDefined(policyData) && policyData.length <= 0) ? (
                     <EmptyMessage
@@ -53,6 +70,7 @@ function PoliciesAndGuidelinesPage() {
                 <Pager
                     maxItemsPerPage={pageSize}
                     itemsCount={policyData.length}
+                    search={debouncedSearchText}
                 />
             </Section>
         </Page>
