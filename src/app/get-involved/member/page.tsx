@@ -1,4 +1,5 @@
 import React from 'react';
+import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 import { IoDownload } from 'react-icons/io5';
 
 import ArticleBody from '#components/ArticleBody';
@@ -10,12 +11,17 @@ import Section from '#components/Section';
 import styles from './page.module.css';
 
 const memberHeading = 'Become a Member';
+
+const formLink = process.env.NEXT_PUBLIC_MEMBERSHIP_FORM_URL ?? '';
+
 const memberText = `
 Become a Member of Nepal Red Cross Society (NRCS) to support the valuable work done by our volunteers and staff all around Nepal! NRCS Membership is open to all, so join the happy group of thousands of members we already have.\n
 NRCS membership is an easy way to support the work we do but also a great way to speak out for humane values and help the ones in need.\n
-To become a Member:\n
-- Print and fill the application form, or ask for a copy from your local Red Cross Branch.
-- Return the completed form to your local Red Cross Branch.
+To become a Member, you have ${formLink ? 'two options' : 'the following option'}:\n
+${formLink ? `1. **Online:** Click the link below to fill out the online application form.
+2. **Offline (Physical Form):**` : ''}
+   - Print and fill the application form, or ask for a copy from your local Red Cross Branch.
+   - Return the completed form to your local Red Cross Branch.
 `;
 
 const memberships = [
@@ -69,6 +75,19 @@ export default function Volunteer() {
             >
                 <ArticleBody content={memberText} />
                 <div className={styles.downloadButtonsWrapper}>
+                    {formLink && (
+                        <Link
+                            className={styles.downloadButton}
+                            href={formLink ?? ''}
+                            target="_blank"
+                            download
+                            rel="noopener noreferrer"
+                        >
+                            Fill out the online form
+                            &nbsp;
+                            <HiOutlineArrowTopRightOnSquare />
+                        </Link>
+                    )}
                     <Link
                         className={styles.downloadButton}
                         href="/life-member-application-nepali.pdf"
