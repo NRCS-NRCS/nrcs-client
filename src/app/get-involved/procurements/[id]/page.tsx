@@ -34,7 +34,7 @@ export default async function ProcurementDetailPage(
     const {
         id,
     } = await params;
-    const allProcurements = allData.resources as unknown as ProcurementsType;
+    const allProcurements = allData.procurements as unknown as ProcurementsType;
 
     const procurementDetails = allProcurements.find(
         (data) => data.id === id,
