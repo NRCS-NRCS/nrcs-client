@@ -1,3 +1,4 @@
+import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Page from '#components/Page';
 import Section from '#components/Section';
@@ -9,18 +10,18 @@ import styles from './page.module.css';
 export default function AboutUs() {
     // TODO: CEC list hidden until new CEC onboarding flow is complete (client request)
 
-    // const cecLeader = [
-    //     { title: 'Chairman', name: 'Mr. Binod Kumar Sharma' },
-    //     { title: 'Vice Chairman', name: 'Mr. Hari Baral' },
-    //     { title: 'Secretary General', name: 'Mr. Min Bahadur Malla' },
-    //     { title: 'Treasurer General', name: 'Mr. Lok Darshan Shrestha' },
-    //     { title: 'Officiating Executive Director', name: 'Mrs. Mona Aryal' },
-    //     {
-    //         title: 'Governance Secretariat',
-    //         name: 'Mr. Sakun Kumar Joshi',
-    //         email: 'sakun.joshi@nrcs.org',
-    //     },
-    // ];
+    const cecLeader = [
+        // { title: 'Chairman', name: 'Mr. Binod Kumar Sharma' },
+        // { title: 'Vice Chairman', name: 'Mr. Hari Baral' },
+        // { title: 'Secretary General', name: 'Mr. Min Bahadur Malla' },
+        // { title: 'Treasurer General', name: 'Mr. Lok Darshan Shrestha' },
+        { title: 'Officiating Executive Director', name: 'Mrs. Mona Aryal' },
+        {
+            title: 'Governance Secretariat',
+            name: 'Mr. Sakun Kumar Joshi',
+            email: 'sakun.joshi@nrcs.org',
+        },
+    ];
 
     // const cecMember = [
     //     'Prof. Dr. Hari Darshan Shrestha',
@@ -38,14 +39,14 @@ export default function AboutUs() {
 
     return (
         <Page contentClassName={styles.page}>
-            {/* <Section
-                heading="Central Executive Committee"
+            <Section
+                // heading="Central Executive Committee"
                 childrenContainerClassName={styles.adminStructure}
-                headingWithBackground
+                // headingWithBackground
             >
-                <Heading size="extraSmall" font="normal" className={styles.description}>
+                {/* <Heading size="extraSmall" font="normal" className={styles.description}>
                     {cecDescriptions}
-                </Heading>
+                </Heading> */}
                 <div className={styles.cecList}>
                     <div className={styles.leadership}>
                         {cecLeader.map((leader) => (
@@ -75,7 +76,7 @@ export default function AboutUs() {
                             </div>
                         ))}
                     </div>
-                    <div className={styles.members}>
+                    {/* <div className={styles.members}>
                         <Heading size="small" className={styles.title}>
                             Member
                         </Heading>
@@ -91,9 +92,9 @@ export default function AboutUs() {
                                 </Heading>
                             ))}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
-            </Section> */}
+            </Section>
             <Section
                 heading="Administrative Structure"
                 childrenContainerClassName={styles.adminStructure}
