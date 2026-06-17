@@ -1,98 +1,121 @@
+import {
+    IoCallOutline,
+    IoLocationOutline,
+    IoMailOutline,
+} from 'react-icons/io5';
+import { _cs } from '@togglecorp/fujs';
+
 import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
+import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import adminStructure from '#public/administrative-structure.jpg';
 import organizationStructure from '#public/organizational-structure.jpg';
 
+import {
+    cecDescription,
+    cecLeader,
+    type CecMember,
+    cecMember,
+} from './cecData';
+
 import styles from './page.module.css';
 
+interface Props {
+    member: CecMember;
+}
+
+function CecMemberCard(props: Props) {
+    const { member } = props;
+    const {
+        name, email, address, contact, photoUrl,
+    } = member;
+
+    return (
+        <div className={styles.memberCard}>
+            <ImageWrapper
+                src={photoUrl ?? ''}
+                alt={name}
+                className={styles.image}
+                imageClassName={styles.imageInner}
+            />
+            <div className={styles.memberInfo}>
+                <Heading font="heading" size="small">
+                    {name}
+                </Heading>
+                <Link
+                    href={`mailto:${email}`}
+                    target="_blank"
+                    className={_cs(styles.memberName, styles.link)}
+                >
+                    <IoMailOutline />
+                    {' '}
+                    {email}
+                </Link>
+                <Heading font="normal" size="extraSmall" className={styles.memberName}>
+                    <IoLocationOutline />
+                    {address}
+                </Heading>
+                <Heading font="normal" size="extraSmall" className={styles.memberName}>
+                    <IoCallOutline />
+                    {contact}
+                </Heading>
+            </div>
+        </div>
+    );
+}
+
 export default function AboutUs() {
-    // TODO: CEC list hidden until new CEC onboarding flow is complete (client request)
-
-    const cecLeader = [
-        // { title: 'Chairman', name: 'Mr. Binod Kumar Sharma' },
-        // { title: 'Vice Chairman', name: 'Mr. Hari Baral' },
-        // { title: 'Secretary General', name: 'Mr. Min Bahadur Malla' },
-        // { title: 'Treasurer General', name: 'Mr. Lok Darshan Shrestha' },
-        { title: 'Officiating Executive Director', name: 'Mrs. Mona Aryal' },
-        {
-            title: 'Governance Secretariat',
-            name: 'Mr. Sakun Kumar Joshi',
-            email: 'sakun.joshi@nrcs.org',
-        },
-    ];
-
-    // const cecMember = [
-    //     'Prof. Dr. Hari Darshan Shrestha',
-    //     'Ms. Surya Kumari Shrestha',
-    //     'Ms. Kanti Rajbhandari',
-    //     'Dr. Gangadhar Adhikari',
-    //     'Mr. Hem Raj Ojha',
-    // ];
-
-    // const cecDescriptions = 'Nepal Red Cross Society (NRCS) is'
-    //     + 'led by a Central Executive Committee (CEC). \n \n '
-    //     + 'Government of Nepal has formed a 9-member'
-    //     + 'Ad hoc Central Executive Committee (CEC) dated 9 Shrawan 2082. '
-    //     + 'The name list of the committee with designation is as follows:';
-
     return (
         <Page contentClassName={styles.page}>
             <Section
-                // heading="Central Executive Committee"
+                heading="Central Executive Committee"
                 childrenContainerClassName={styles.adminStructure}
-                // headingWithBackground
+                headingWithBackground
             >
-                {/* <Heading size="extraSmall" font="normal" className={styles.description}>
-                    {cecDescriptions}
-                </Heading> */}
+                <Heading
+                    size="extraSmall"
+                    font="normal"
+                    className={styles.description}
+                >
+                    {cecDescription}
+                </Heading>
                 <div className={styles.cecList}>
                     <div className={styles.leadership}>
                         {cecLeader.map((leader) => (
                             <div key={leader.title}>
                                 <Heading
-                                    size="small"
+                                    size="medium"
                                     className={styles.title}
+                                    withBackground
                                 >
                                     {leader.title}
                                 </Heading>
-                                <Heading
-                                    font="normal"
-                                    size="extraSmall"
-                                    className={styles.leaderName}
-                                >
-                                    {leader.name}
-                                </Heading>
-                                {leader.email && (
-                                    <Heading
-                                        font="normal"
-                                        size="extraSmall"
-                                        className={styles.leaderEmail}
-                                    >
-                                        {leader.email}
-                                    </Heading>
-                                )}
+                                <CecMemberCard
+                                    member={leader}
+                                    key={leader.id}
+                                />
                             </div>
                         ))}
                     </div>
-                    {/* <div className={styles.members}>
-                        <Heading size="small" className={styles.title}>
-                            Member
+                    <div className={styles.members}>
+                        <Heading
+                            size="medium"
+                            className={styles.title}
+                            withBackground
+                        >
+                            Members
                         </Heading>
                         <div className={styles.memberList}>
                             {cecMember.map((member) => (
-                                <Heading
-                                    key={member}
-                                    font="normal"
-                                    size="extraSmall"
-                                    className={styles.memberName}
-                                >
-                                    {member}
-                                </Heading>
+                                <CecMemberCard
+                                    member={member}
+                                    key={member.id}
+                                />
                             ))}
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </Section>
             <Section
