@@ -25,7 +25,7 @@ export interface CecLeader extends CecMember {
 export const cecLeader : CecLeader[] = [
     {
         id: 'bishal-kumar-bhandari',
-        title: 'Chairman',
+        title: 'Chairperson',
         name: 'Dr. Bishal Kumar Bhandari',
         email: 'bishalkumarbhandari@gmail.com',
         address: 'Dolakha',
@@ -42,8 +42,8 @@ export const cecLeader : CecLeader[] = [
         photoUrl: rishiRamanKanal,
     },
     {
-        id: 'mona-aryal-treasurer',
-        title: 'Treasure',
+        id: 'prem-sagar-karmacharya',
+        title: 'Treasurer General',
         name: 'Mr. Prem Sagar Karmacharya',
         email: 'premsagarkarmacharya164@gmail.com',
         address: 'Kathmandu',
