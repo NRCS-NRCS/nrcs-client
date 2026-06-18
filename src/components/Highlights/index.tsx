@@ -76,8 +76,24 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                             />
                         )}
                         <div className={styles.content}>
-                            <Heading className={styles.heading} size="large">{highlight?.heading}</Heading>
-                            <p className={styles.description}>{highlight?.description}</p>
+                            <Heading
+                                className={styles.heading}
+                                size="large"
+                            >
+                                {highlight?.heading}
+                            </Heading>
+                            <p
+                                className={styles.description}
+                            >
+                                {highlight?.description}
+                            </p>
+                            <Link
+                                href={`highlight/${highlight.id}`}
+                                variant="underline"
+                                className={styles.readMore}
+                            >
+                                Read More
+                            </Link>
                             {highlight?.actionLinks?.length > 0 && (
                                 <div className={styles.actions}>
                                     {highlight.actionLinks.map((link) => (

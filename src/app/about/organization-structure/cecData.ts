@@ -12,11 +12,11 @@ import manjuSaudBohara from '#public/cec/9-Manju-Saud-Bohara.png';
 
 export interface CecMember {
     id: string;
-    name: string;
-    email: string;
-    address: string;
-    contact: string;
-    photoUrl: string | StaticImageData | null;
+    name?: string;
+    email?: string;
+    address?: string;
+    contact?: string;
+    photoUrl?: string | StaticImageData | null;
 }
 
 export interface CecLeader extends CecMember {
@@ -49,6 +49,20 @@ export const cecLeader : CecLeader[] = [
         address: 'Kathmandu',
         contact: '9851069338',
         photoUrl: premSagarKarmacharya,
+    },
+];
+
+export const staffLeader : CecLeader[] = [
+    {
+        id: 'mona-aryal',
+        title: 'Officiating Executive Director',
+        name: 'Mrs. Mona Aryal',
+    },
+    {
+        id: 'sakun-kumar-joshi',
+        title: 'Governance Secretariat',
+        name: 'Mr. Sakun Kumar Joshi',
+        email: 'sakun.joshi@nrcs.org',
     },
 ];
 

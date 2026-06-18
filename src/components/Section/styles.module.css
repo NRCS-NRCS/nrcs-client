@@ -6,6 +6,23 @@
     transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 
+    .headingSection {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .searchInput {
+            flex-shrink: 0;
+            max-width: 20rem;
+
+            @media (max-width: 768px) {
+                margin-top: var(--spacing-extra-small);
+                max-width: 100%;
+            }
+        }
+    }
+
+
     .content {
         display: flex;
         flex-direction: column;

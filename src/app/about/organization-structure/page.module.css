@@ -68,6 +68,15 @@
         overflow: hidden;
     }
 
+    .imageFallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-background-gray);
+        color: var(--color-text-neutral);
+        font-size: var(--font-size-extra-large);
+    }
+
     .memberName {
         display: flex;
         gap: var(--spacing-extra-small);

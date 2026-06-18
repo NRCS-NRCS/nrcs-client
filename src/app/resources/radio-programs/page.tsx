@@ -1,6 +1,10 @@
 'use client';
 
-import React, { Suspense } from 'react';
+import React, {
+    Suspense,
+    useMemo,
+    useState,
+} from 'react';
 import { isDefined } from '@togglecorp/fujs';
 import { useSearchParams } from 'next/navigation';
 
@@ -12,6 +16,7 @@ import Pager from '#components/Pager';
 import Section from '#components/Section';
 import allData from '#data/staticData.json';
 import { type AllQueryQuery } from '#generated/types/graphql';
+import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
 
 import styles from './page.module.css';
@@ -19,11 +24,19 @@ import styles from './page.module.css';
 type RadioType = NonNullable<AllQueryQuery['radioProgram']>
 
 function RadioProgramsPage() {
+    const [search, setSearch] = useState<string>('');
+    const debouncedSearchText = useDebouncedValue(search);
     const searchParams = useSearchParams();
     const page = searchParams?.get('page');
     const currentPage = page ?? 1;
     const pageSize = 5;
-    const radioProgramData = allData.radioProgram as unknown as RadioType;
+
+    const radioProgramData = useMemo(
+        () => (allData.resources as unknown as RadioType)
+            .filter((radio) => radio.title?.toLowerCase()
+                .includes(debouncedSearchText.toLowerCase())),
+        [debouncedSearchText],
+    );
     const paginateData = paginate(
         radioProgramData,
         Number(currentPage),
@@ -38,6 +51,9 @@ function RadioProgramsPage() {
                 heading="Radio Programs"
                 headingWithBackground
                 childrenContainerClassName={styles.pageContent}
+                searchField="title"
+                searchValue={search}
+                handleSearchChange={setSearch}
             >
                 <div className={styles.radioProgramsSection}>
                     <Heading
@@ -68,6 +84,7 @@ function RadioProgramsPage() {
                 <Pager
                     maxItemsPerPage={pageSize}
                     itemsCount={radioProgramData.length}
+                    search={debouncedSearchText}
                 />
             </Section>
         </Page>
