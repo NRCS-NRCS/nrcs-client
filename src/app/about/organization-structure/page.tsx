@@ -2,6 +2,7 @@ import {
     IoCallOutline,
     IoLocationOutline,
     IoMailOutline,
+    IoPersonOutline,
 } from 'react-icons/io5';
 import { _cs } from '@togglecorp/fujs';
 
@@ -18,6 +19,7 @@ import {
     cecLeader,
     type CecMember,
     cecMember,
+    staffLeader,
 } from './cecData';
 
 import styles from './page.module.css';
@@ -34,33 +36,47 @@ function CecMemberCard(props: Props) {
 
     return (
         <div className={styles.memberCard}>
-            <ImageWrapper
-                src={photoUrl ?? ''}
-                alt={name}
-                className={styles.image}
-                imageClassName={styles.imageInner}
-            />
+            {photoUrl ? (
+                <ImageWrapper
+                    src={photoUrl}
+                    alt={name ?? ''}
+                    className={styles.image}
+                    imageClassName={styles.imageInner}
+                />
+            ) : (
+                <div className={_cs(styles.image, styles.imageFallback)}>
+                    <IoPersonOutline />
+                </div>
+            )}
+
             <div className={styles.memberInfo}>
                 <Heading font="heading" size="small">
                     {name}
                 </Heading>
-                <Link
-                    href={`mailto:${email}`}
-                    target="_blank"
-                    className={_cs(styles.memberName, styles.link)}
-                >
-                    <IoMailOutline />
-                    {' '}
-                    {email}
-                </Link>
-                <Heading font="normal" size="extraSmall" className={styles.memberName}>
-                    <IoLocationOutline />
-                    {address}
-                </Heading>
-                <Heading font="normal" size="extraSmall" className={styles.memberName}>
-                    <IoCallOutline />
-                    {contact}
-                </Heading>
+                {email && (
+                    <Link
+                        href={`mailto:${email}`}
+                        target="_blank"
+                        className={_cs(styles.memberName, styles.link)}
+                    >
+                        <IoMailOutline />
+                        {' '}
+                        {email}
+                    </Link>
+                )}
+                {address && (
+                    <Heading font="normal" size="extraSmall" className={styles.memberName}>
+                        <IoLocationOutline />
+                        {address}
+                    </Heading>
+                ) }
+                {contact && (
+                    <Heading font="normal" size="extraSmall" className={styles.memberName}>
+                        <IoCallOutline />
+                        {contact}
+                    </Heading>
+                ) }
+
             </div>
         </div>
     );
@@ -116,6 +132,27 @@ export default function AboutUs() {
                             ))}
                         </div>
                     </div>
+                </div>
+            </Section>
+            <Section
+                childrenContainerClassName={styles.adminStructure}
+            >
+                <div className={styles.cecList}>
+                    {staffLeader.map((leader) => (
+                        <div key={leader.title} className={styles.leadership}>
+                            <Heading
+                                size="medium"
+                                className={styles.title}
+                                withBackground
+                            >
+                                {leader.title}
+                            </Heading>
+                            <CecMemberCard
+                                member={leader}
+                                key={leader.id}
+                            />
+                        </div>
+                    ))}
                 </div>
             </Section>
             <Section
