@@ -59,12 +59,12 @@ export const staffLeader : CecLeader[] = [
         name: 'Mrs. Mona Aryal',
         email: 'mona.aryal@nrcs.org',
     },
-    {
-        id: 'sakun-kumar-joshi',
-        title: 'Governance Secretariat',
-        name: 'Mr. Sakun Kumar Joshi',
-        email: 'sakun.joshi@nrcs.org',
-    },
+    // {
+    //     id: 'sakun-kumar-joshi',
+    //     title: 'Governance Secretariat',
+    //     name: 'Mr. Sakun Kumar Joshi',
+    //     email: 'sakun.joshi@nrcs.org',
+    // },
 ];
 
 export const cecMember : CecMember[] = [
