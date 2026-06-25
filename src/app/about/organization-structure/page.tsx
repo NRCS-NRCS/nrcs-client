@@ -4,7 +4,11 @@ import {
     IoMailOutline,
     IoPersonOutline,
 } from 'react-icons/io5';
-import { _cs } from '@togglecorp/fujs';
+import {
+    _cs,
+    isDefined,
+    isNotDefined,
+} from '@togglecorp/fujs';
 
 import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
@@ -36,14 +40,15 @@ function CecMemberCard(props: Props) {
 
     return (
         <div className={styles.memberCard}>
-            {photoUrl ? (
+            {isDefined(photoUrl) && (
                 <ImageWrapper
                     src={photoUrl}
                     alt={name ?? ''}
                     className={styles.image}
                     imageClassName={styles.imageInner}
                 />
-            ) : (
+            )}
+            {isNotDefined(photoUrl) && (
                 <div className={_cs(styles.image, styles.imageFallback)}>
                     <IoPersonOutline />
                 </div>
@@ -53,29 +58,29 @@ function CecMemberCard(props: Props) {
                 <Heading font="heading" size="small">
                     {name}
                 </Heading>
-                {email && (
+                {isDefined(email) && (Array.isArray(email) ? email : [email]).map((addr) => (
                     <Link
-                        href={`mailto:${email}`}
+                        key={addr}
+                        href={`mailto:${addr}`}
                         target="_blank"
                         className={_cs(styles.memberName, styles.link)}
                     >
                         <IoMailOutline />
-                        {' '}
-                        {email}
+                        {addr}
                     </Link>
-                )}
-                {address && (
+                ))}
+                {isDefined(address) && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoLocationOutline />
                         {address}
                     </Heading>
-                ) }
-                {contact && (
+                )}
+                {isDefined(contact) && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoCallOutline />
                         {contact}
                     </Heading>
-                ) }
+                )}
 
             </div>
         </div>

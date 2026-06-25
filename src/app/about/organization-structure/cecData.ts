@@ -13,7 +13,7 @@ import manjuSaudBohara from '#public/cec/9-Manju-Saud-Bohara.png';
 export interface CecMember {
     id: string;
     name?: string;
-    email?: string;
+    email?: string | string[];
     address?: string;
     contact?: string;
     photoUrl?: string | StaticImageData | null;
@@ -58,13 +58,15 @@ export const staffLeader : CecLeader[] = [
         title: 'Officiating Executive Director',
         name: 'Mrs. Mona Aryal',
         email: 'mona.aryal@nrcs.org',
+        contact: '9851146777',
     },
-    // {
-    //     id: 'sakun-kumar-joshi',
-    //     title: 'Governance Secretariat',
-    //     name: 'Mr. Sakun Kumar Joshi',
-    //     email: 'sakun.joshi@nrcs.org',
-    // },
+    {
+        id: 'sakun-kumar-joshi',
+        title: 'Governance Secretariat',
+        name: 'Ms. Tara Devi Gurung',
+        email: ['tara.gurung@nrcs.org', 'secretariat@nrcs.org'],
+        contact: '9809393760',
+    },
 ];
 
 export const cecMember : CecMember[] = [
