@@ -32,7 +32,7 @@ function RadioProgramsPage() {
     const pageSize = 5;
 
     const radioProgramData = useMemo(
-        () => (allData.resources as unknown as RadioType)
+        () => (allData.radioProgram as RadioType)
             .filter((radio) => radio.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
