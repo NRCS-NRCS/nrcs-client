@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
 import type { Metadata } from 'next';
 import {
     Montserrat,
@@ -29,6 +30,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en">
             <body className={`${montserrat.variable} ${openSans.variable}`}>
                 {children}
+                <GoogleAnalytics
+                    gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''}
+                    debugMode={process.env.NODE_ENV === 'development'}
+                />
             </body>
         </html>
     );
