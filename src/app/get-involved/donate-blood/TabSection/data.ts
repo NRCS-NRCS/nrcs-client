@@ -164,8 +164,8 @@ export const outsideValleyTable: OutsideValleyTable[] = [
     {
         id: 21,
         bloodCenter: 'Surkhet',
-        focalPerson: 'Prakash Shrestha',
-        contactNo: '083-520310',
+        focalPerson: 'Tapendra K.C',
+        contactNo: '9848025948',
         district: 'Surkhet',
     },
     {
