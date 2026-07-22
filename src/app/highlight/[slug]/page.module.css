@@ -1,0 +1,24 @@
+.highlightPage {
+    gap: var(--spacing-medium);
+    padding-bottom: var(--spacing-galactic);
+
+    .section {
+        .highlightChildren {
+            gap: var(--spacing-large) !important;
+        }
+
+        .actions {
+            text-transform: none;
+        }
+
+        .content {
+            padding-left: var(--spacing-galactic);
+            padding-right: var(--spacing-galactic);
+
+            @media (max-width: 768px) {
+                padding: 0;
+            }
+
+        }
+    }
+}

@@ -56,7 +56,7 @@ const query = gql`
             }
             title
         }
-        news(filters: { status: PUBLISHED }) {
+        news(filters: {status: PUBLISHED}, order: {publishedDate: DESC}) {
             content
             id
             publishedDate

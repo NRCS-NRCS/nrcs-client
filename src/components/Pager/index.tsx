@@ -1,6 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, {
+    useCallback,
+    useEffect,
+    useState,
+} from 'react';
 import {
     IoChevronBack,
     IoChevronForward,
@@ -17,11 +21,13 @@ import styles from './styles.module.css';
 type PaginationProps = {
     itemsCount?: number;
     maxItemsPerPage?: number;
+    search?: string
 };
 
 export default function Pager({
     itemsCount = 1,
     maxItemsPerPage = 10,
+    search,
 }: PaginationProps) {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -40,10 +46,14 @@ export default function Pager({
     }
     for (let i = start; i <= end; i += 1) pages.push(i);
 
-    const goToPage = (page: number) => {
+    const goToPage = useCallback((page: number) => {
         setCurrentPage(page);
         router.push(`?page=${page}`);
-    };
+    }, [router]);
+
+    useEffect(() => {
+        if (search) goToPage(1);
+    }, [goToPage, search]);
 
     return (
         itemsCount > maxItemsPerPage

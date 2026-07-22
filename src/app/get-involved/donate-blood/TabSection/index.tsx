@@ -151,16 +151,16 @@ export default function TabSection() {
                         organization by contacting
                         &nbsp;
                         <strong>
-                            Mr. Ram Bahadur Shrestha
+                            Mr. Sandesh Thapa
                         </strong>
                         &nbsp;
                         via email,
                         &nbsp;
                         <Link href="mailto:sandesh.thapa@nrcs.org" variant="navigation" className={styles.link}>
-                            ram.shrestha@nrcs.org
+                            sandesh.thapa@nrcs.org
                         </Link>
                         &nbsp;
-                        or phone, 9841398605.
+                        or phone, 9851047461.
                     </li>
 
                     <li>
