@@ -9,22 +9,23 @@ import Button from '#components/Button';
 import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
-import type { HighlightsQuery } from '#generated/types/graphql';
+import { type NewsQuery } from '#generated/types/graphql';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<NonNullable<HighlightsQuery['highlights']['results'][number]>>;
+type newsItems = NonNullable<NonNullable<NewsQuery['news']['results'][number]>>;
 
 interface Props {
-    highlights: Highlight[];
+    news: newsItems[];
 }
 const SWIPE_THRESHOLD = 60;
 
-export default function HighlightsCarousel({ highlights = [] }: Props) {
+export default function HighlightsCarousel({ news = [] }: Props) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [startX, setStartX] = useState<number | null>(null);
     const [isInteracting, setIsInteracting] = useState(false);
 
+    const highlights = news.filter((data) => data.isHighlighted);
     // Auto-slide every 6 seconds
     useEffect(() => {
         if (highlights.length <= 1 || isInteracting) {
@@ -67,10 +68,10 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                         key={highlight.id}
                         className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}
                     >
-                        {highlight.image?.url && (
+                        {highlight.coverImage?.url && (
                             <ImageWrapper
-                                src={highlight.image.url}
-                                alt={highlight.image.name ?? 'highlight image'}
+                                src={highlight.coverImage.url}
+                                alt={highlight.coverImage.name ?? 'highlight image'}
                                 className={styles.image}
                                 imageClassName={styles.imageInner}
                             />
@@ -80,35 +81,20 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                                 className={styles.heading}
                                 size="large"
                             >
-                                {highlight?.heading}
+                                {highlight?.title}
                             </Heading>
                             <p
                                 className={styles.description}
                             >
-                                {highlight?.description}
+                                {highlight?.content}
                             </p>
                             <Link
-                                href={`highlight/${highlight.id}`}
+                                href={`resources/news-and-events/${highlight.slug}`}
                                 variant="underline"
                                 className={styles.readMore}
                             >
                                 Read More
                             </Link>
-                            {highlight?.actionLinks?.length > 0 && (
-                                <div className={styles.actions}>
-                                    {(highlight?.actionLinks ?? []).map((link) => (
-                                        <Link
-                                            key={link?.url}
-                                            href={link?.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            variant="buttonReverse"
-                                        >
-                                            {link?.label}
-                                        </Link>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </div>
                 ))}
