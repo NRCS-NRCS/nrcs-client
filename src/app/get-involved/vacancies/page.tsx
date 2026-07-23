@@ -4,15 +4,12 @@ import { notFound } from 'next/navigation';
 import Page from '#components/Page';
 import Card from '#components/ProcurementVacancyCard';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
 
-type vacancies = NonNullable<NonNullable<AllQueryQuery['jobVacancies']>>;
-
 export default async function Vacancies() {
-    const vacancies = allData.jobVacancies as unknown as vacancies;
+    const vacancies = allData.jobVacancies.results ?? [];
 
     if (!vacancies) {
         return notFound();

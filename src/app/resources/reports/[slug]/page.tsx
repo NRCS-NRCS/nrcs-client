@@ -9,16 +9,13 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
 
 import styles from './page.module.css';
 
-type ResourcesType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-
 export async function generateStaticParams() {
-    const data = allData.resources as unknown as ResourcesType;
+    const data = allData.resources.results ?? [];
     if (!data || data?.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No reports found in GraphQL response');
@@ -40,11 +37,11 @@ export default async function reportDetailsPage({ params }: PageProps) {
     const {
         slug,
     } = await params;
-    const allResources = allData.resources as unknown as ResourcesType;
+    const allResources = allData.resources.results ?? [];
 
     const reportDetails = allResources.find(
         (data) => data.slug === slug && data.type === 'REPORT',
-    ) as unknown as ResourcesType[number];
+    );
 
     if (!reportDetails) {
         // eslint-disable-next-line no-console

@@ -12,8 +12,7 @@ import RecentNews from '#components/RecentNews';
 import RecentNewsCard from '#components/RecentNewsCard';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 import becomeMemberIcon from '#public/become-member.png';
 import bloodDonateIcon from '#public/blood-donate.png';
 import callIcon from '#public/call.png';
@@ -38,28 +37,19 @@ const nrcsOfficerTitleTwo = 'Information Officer';
 const nrcsOfficerContactNumber = '+977 9741695097';
 const nrcsOfficerEmail = 'bipul.neupane@nrcs.org';
 
-type HighlightsType = NonNullable<NonNullable<AllQueryQuery['highlights']>>;
-type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-type RadioType = NonNullable<NonNullable<AllQueryQuery['radioProgram']>>;
-
 export default async function Home() {
-    const radioPrograms = allData.radioProgram as unknown as RadioType;
+    const radioPrograms = allData.radioProgram.results ?? [];
 
-    const allResources = allData?.resources as unknown as ResourceType;
-    const allHighlights = allData?.highlights as unknown as HighlightsType;
-    const allReports = [
-        ...(allResources.filter((data) => data.type === 'REPORT') ?? []),
-    ] as unknown as ResourceType;
+    const allResources = allData?.resources.results ?? [];
+    const allHighlights = allData?.news.results ?? [];
+
+    const allReports = allResources.filter((data) => data.type === 'REPORT');
 
     const reports = allReports.slice(0, 4) || [];
 
-    const highlights = allHighlights.filter(
-        (data) => data?.isActive,
-    );
-
     return (
         <Page contentClassName={styles.page}>
-            <Highlights highlights={highlights ?? []} />
+            <Highlights news={allHighlights ?? []} />
             <Section
                 className={styles.introduction}
                 contentClassName={styles.introductionContent}
