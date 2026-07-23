@@ -88,6 +88,11 @@ const newsQuery = gql`
                     url
                     name
                 }
+                actionLinks {
+                    label
+                    url
+                }
+                isHighlighted
             }
             totalCount    
         }
@@ -118,28 +123,6 @@ const jobVacanciesQuery = gql`
     }
 `;
 
-const highlightsQuery = gql`
-    query Highlights($pagination: OffsetPaginationInput) {
-        highlights(pagination: $pagination) {
-            results {
-                description
-                isActive
-                heading
-                id
-                image {
-                    name
-                    size
-                    url
-                }
-                actionLinks {
-                    label
-                    url
-                }
-            }
-            totalCount
-        }
-    }
-`;
 
 const blogsQuery = gql`
     query Blogs($pagination: OffsetPaginationInput) {
@@ -355,7 +338,6 @@ async function fetchAndWriteData() {
             departments: departmentsQuery,
             news: newsQuery,
             jobVacancies: jobVacanciesQuery,
-            highlights: highlightsQuery,
             blogs: blogsQuery,
             majorResponsibilities: majorResponsibilitiesQuery,
             partners: partnersQuery,
