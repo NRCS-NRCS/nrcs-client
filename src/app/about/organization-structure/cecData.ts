@@ -54,13 +54,6 @@ export const cecLeader : CecLeader[] = [
 
 export const staffLeader : CecLeader[] = [
     {
-        id: 'mona-aryal',
-        title: 'Officiating Executive Director',
-        name: 'Mrs. Mona Aryal',
-        email: 'mona.aryal@nrcs.org',
-        contact: '9851146777',
-    },
-    {
         id: 'sakun-kumar-joshi',
         title: 'Governance Secretariat',
         name: 'Ms. Tara Devi Gurung',
