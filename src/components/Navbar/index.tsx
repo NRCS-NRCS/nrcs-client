@@ -286,17 +286,24 @@ export default function Navbar(props: Props) {
                                 <IoChevronDownOutline className={styles.drawerLinkHeaderButton} />
                             )}
                         </Button>
-                        {openItems.includes(item.link) && item.children.map((child) => (
-                            <Link
-                                key={child.link}
-                                className={styles.link}
-                                href={`${item.link}${child.link}`}
-                                variant="navigation"
-                                active={pathname === `${item.link}${child.link}`}
-                            >
-                                {child.label}
-                            </Link>
-                        ))}
+                        {openItems.includes(item.link) && item.children.map((child) => {
+                            const isExternal = !!child.externalLink;
+                            const href = isExternal ? child.externalLink! : `${item.link}${child.link}`;
+                            const active = !isExternal && pathname === `${item.link}${child.link}`;
+                            return (
+                                <Link
+                                    key={isExternal ? child.externalLink : child.link}
+                                    className={styles.popupLink}
+                                    variant="navigation"
+                                    href={href}
+                                    target={isExternal ? '_blank' : undefined}
+                                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                                    active={active}
+                                >
+                                    {child.label}
+                                </Link>
+                            );
+                        })}
                     </div>
                 ) : (
                     <Link
