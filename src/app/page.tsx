@@ -139,7 +139,7 @@ export default async function Home() {
                         </p>
                     )}
                     icon={donateIcon}
-                    link="https://donation.nrcs.org/"
+                    link={process.env.NEXT_PUBLIC_DONATION_URL ?? ''}
                     linkDescription="Donate"
                     isExternalLink
                 />
