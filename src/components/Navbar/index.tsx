@@ -38,6 +38,8 @@ interface ILink {
     children?: children[]
 }
 
+const donateLink = process.env.NEXT_PUBLIC_DONATION_URL ?? '';
+
 const links: ILink[] = [
     {
         label: 'About Us',
@@ -81,7 +83,7 @@ const links: ILink[] = [
             },
             {
                 label: 'Financial Donations',
-                externalLink: 'https://donation.nrcs.org/',
+                externalLink: donateLink,
             },
         ],
     },
@@ -190,7 +192,7 @@ export default function Navbar(props: Props) {
                         <Link
                             className={_cs(styles.hideableIcon, styles.expandedButton)}
                             variant="button"
-                            href="https://donation.nrcs.org/"
+                            href={process.env.NEXT_PUBLIC_DONATION_URL ?? ''}
                             target="_blank"
                         >
                             Donate
