@@ -19,6 +19,20 @@ interface Props {
     highlights: Highlight[];
 }
 const SWIPE_THRESHOLD = 60;
+const DESCRIPTION_MAX_LENGTH = 200;
+
+function truncateDescription(description: string | null | undefined) {
+    if (!description) {
+        return { text: '', isTruncated: false };
+    }
+    if (description.length <= DESCRIPTION_MAX_LENGTH) {
+        return { text: description, isTruncated: false };
+    }
+    return {
+        text: description.slice(0, DESCRIPTION_MAX_LENGTH).trimEnd(),
+        isTruncated: true,
+    };
+}
 
 export default function HighlightsCarousel({ highlights = [] }: Props) {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -62,56 +76,61 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                 onPointerDown={handlePointerDown}
                 onPointerUp={handlePointerUp}
             >
-                {highlights.map((highlight, index) => (
-                    <div
-                        key={highlight.id}
-                        className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}
-                    >
-                        {highlight.image?.url && (
-                            <ImageWrapper
-                                src={highlight.image.url}
-                                alt={highlight.image.name ?? 'highlight image'}
-                                className={styles.image}
-                                imageClassName={styles.imageInner}
-                            />
-                        )}
-                        <div className={styles.content}>
-                            <Heading
-                                className={styles.heading}
-                                size="large"
-                            >
-                                {highlight?.heading}
-                            </Heading>
-                            <p
-                                className={styles.description}
-                            >
-                                {highlight?.description}
-                            </p>
-                            <Link
-                                href={`highlight/${highlight.id}`}
-                                variant="underline"
-                                className={styles.readMore}
-                            >
-                                Read More
-                            </Link>
-                            {highlight?.actionLinks?.length > 0 && (
-                                <div className={styles.actions}>
-                                    {highlight.actionLinks.map((link) => (
-                                        <Link
-                                            key={link?.url}
-                                            href={link?.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            variant="buttonReverse"
-                                        >
-                                            {link?.label}
-                                        </Link>
-                                    ))}
-                                </div>
+                {highlights.map((highlight, index) => {
+                    const description = truncateDescription(highlight?.description);
+
+                    return (
+                        <div
+                            key={highlight.id}
+                            className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}
+                        >
+                            {highlight.image?.url && (
+                                <ImageWrapper
+                                    src={highlight.image.url}
+                                    alt={highlight.image.name ?? 'highlight image'}
+                                    className={styles.image}
+                                    imageClassName={styles.imageInner}
+                                />
                             )}
+                            <div className={styles.content}>
+                                <Heading
+                                    className={styles.heading}
+                                    size="large"
+                                >
+                                    {highlight?.heading}
+                                </Heading>
+                                <p
+                                    className={styles.description}
+                                >
+                                    {description.text}
+                                    {description.isTruncated && '... '}
+                                    <Link
+                                        href={`highlight/${highlight.id}`}
+                                        variant="underline"
+                                        className={styles.readMore}
+                                    >
+                                        read more
+                                    </Link>
+                                </p>
+                                {highlight?.actionLinks?.length > 0 && (
+                                    <div className={styles.actions}>
+                                        {highlight.actionLinks.map((link) => (
+                                            <Link
+                                                key={link?.url}
+                                                href={link?.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                variant="buttonReverse"
+                                            >
+                                                {link?.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {/* Dots */}
