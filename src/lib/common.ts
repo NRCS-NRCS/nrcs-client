@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export function stripMarkdown(input: string) {
     if (typeof input !== 'string') {
         return '';
@@ -24,4 +23,16 @@ export function stripMarkdown(input: string) {
         // Remove extra newlines
         .replace(/\n{2,}/g, '\n')
         .trim();
+}
+
+const WORDS_PER_MINUTE = 200;
+
+export function getReadTimeInMinutes(content: string | null | undefined) {
+    const plainText = stripMarkdown(content ?? '');
+    if (!plainText) {
+        return undefined;
+    }
+
+    const numWords = plainText.split(/\s+/).filter(Boolean).length;
+    return Math.max(1, Math.round(numWords / WORDS_PER_MINUTE));
 }

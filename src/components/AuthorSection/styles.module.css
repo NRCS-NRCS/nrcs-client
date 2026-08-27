@@ -9,7 +9,12 @@
 
     .rightContainer {
         display: flex;
+        align-items: center;
         gap: var(--spacing-super-small);
         font-size: var(--font-size-small);
+
+        .dateIcon {
+            flex-shrink: 0;
+        }
     }
 }

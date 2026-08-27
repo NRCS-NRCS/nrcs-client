@@ -1,0 +1,31 @@
+/* NOTE: sits above the page but below Popup and HighlightPopup, so a modal is
+never covered by it */
+/* NOTE: doubled selector so this outranks Button's own `.button` padding.
+Equal specificity would leave that padding in place, and with border-box it
+forces the width past 3rem and stretches the circle into an oval */
+.scrollToTop.scrollToTop {
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    right: var(--spacing-large);
+    bottom: var(--spacing-large);
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-primary);
+    box-shadow: 0 2px 8px var(--color-shadow);
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    color: var(--color-text-on-primary);
+    font-size: var(--font-size-large);
+
+    &:hover {
+        background-color: var(--color-primary-dark);
+    }
+
+    @media (max-width: 768px) {
+        right: var(--spacing-medium);
+        bottom: var(--spacing-medium);
+    }
+}

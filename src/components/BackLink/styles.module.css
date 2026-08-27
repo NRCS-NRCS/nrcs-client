@@ -1,0 +1,21 @@
+/* NOTE: the class is doubled so these rules outweigh the base .link rules they
+override. At equal specificity the winner depends on which of the two CSS
+modules a route happens to load last, which is not the same on every route */
+.backLink.backLink {
+    gap: var(--spacing-super-small);
+    /* NOTE: the base link keeps its bottom padding, so the label sits tight
+    against the top of the header but still clears the title below it */
+    padding-top: 0;
+    color: var(--color-text-neutral);
+    font-size: var(--font-size-small);
+    letter-spacing: 0.08em;
+
+    &:hover {
+        color: var(--color-text-link);
+        text-decoration: none;
+    }
+
+    .backIcon {
+        flex-shrink: 0;
+    }
+}

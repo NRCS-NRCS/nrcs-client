@@ -4,6 +4,8 @@ import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 
+import remarkImageCaption from '#lib/remarkImageCaption';
+import remarkTableWrapper from '#lib/remarkTableWrapper';
 import remarkVideoEmbed from '#lib/remarkVideoEmbed';
 
 import styles from './styles.module.css';
@@ -23,12 +25,19 @@ export default async function ArticleBody(props: Props) {
         .use(html, { sanitize: false })
         .use(remarkGfm)
         .use(remarkBreaks)
+        .use(remarkImageCaption, {
+            figureClassName: styles.imageFigure,
+            captionClassName: styles.imageCaption,
+        })
         .use(remarkVideoEmbed, {
             figureClassName: styles.videoEmbed,
             frameClassName: styles.videoEmbedFrame,
             horizontalClassName: styles.horizontal,
             verticalClassName: styles.vertical,
             captionClassName: styles.videoEmbedCaption,
+        })
+        .use(remarkTableWrapper, {
+            wrapperClassName: styles.tableWrapper,
         })
         .process(content);
     const contentHtml = processedContent.toString();

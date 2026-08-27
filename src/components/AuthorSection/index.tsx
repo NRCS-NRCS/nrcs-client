@@ -1,3 +1,4 @@
+import { IoCalendarOutline } from 'react-icons/io5';
 import {
     _cs,
     formatDateToString,
@@ -11,7 +12,8 @@ interface Props {
     author?: string;
     date?: string | null;
     articleLength: number | undefined;
-    authorClassName?: string
+    authorClassName?: string;
+    withDateIcon?: boolean;
 }
 
 export default function AuthorSection(props: Props) {
@@ -20,6 +22,7 @@ export default function AuthorSection(props: Props) {
         author,
         date,
         articleLength = 0, authorClassName,
+        withDateIcon,
     } = props;
 
     const minuteRead = Math.max(1, Math.ceil(articleLength / 5 / 200));
@@ -35,6 +38,9 @@ export default function AuthorSection(props: Props) {
                 </p>
             )}
             <div className={styles.rightContainer}>
+                {withDateIcon && (
+                    <IoCalendarOutline className={styles.dateIcon} />
+                )}
                 <p className={styles.date}>
                     {formattedDate}
                 </p>

@@ -7,7 +7,7 @@
         "_predev": "pnpm generate:type",
         "generate-and-watch:type": "graphql-codegen --require dotenv/config --config codegen.ts --watch",
         "generate:type": "graphql-codegen --require dotenv/config --config codegen.ts",
-        "dev": "next dev -p $PORT",
+        "dev": "next dev -p 3056",
         "build": "next build",
         "export": "next export",
         "_prestart": "pnpm generate:type",

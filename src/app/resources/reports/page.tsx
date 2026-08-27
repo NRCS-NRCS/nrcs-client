@@ -46,13 +46,19 @@ function ReportsPage() {
             <Section
                 heading="Published Reports"
                 headingWithBackground
+                withoutChildrenGap
                 searchField="title"
                 searchValue={search}
                 handleSearchChange={setSearch}
             >
                 {(isDefined(reportData) && reportData.length <= 0) ? (
                     <EmptyMessage
-                        message="No published reports available"
+                        title={debouncedSearchText
+                            ? `No results for “${debouncedSearchText}”`
+                            : 'No published reports yet'}
+                        description={debouncedSearchText
+                            ? "We couldn't find any reports matching your search. Try a different keyword."
+                            : 'Annual reports and other publications will appear here once they are published.'}
                     />
                 ) : paginateData?.map((report) => (
                     <ArticleCard

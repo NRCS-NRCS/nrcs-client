@@ -49,19 +49,19 @@ export default async function Home() {
     const reports = allReports.slice(0, 4) || [];
 
     const highlights = allHighlights.filter(
-        (data) => data?.isActive,
+        (data) => data.isHighlighted,
     );
 
-    const popupHighlight = highlights.find(
-        (data) => data?.showInPopup,
+    const popupNews = highlights.find(
+        (data) => data.showInPopup,
     );
 
     return (
         <Page contentClassName={styles.page}>
-            {popupHighlight && (
-                <HighlightPopup highlight={popupHighlight} />
+            {popupNews && (
+                <HighlightPopup news={popupNews} />
             )}
-            <Highlights highlights={highlights ?? []} />
+            <Highlights news={highlights} />
             <Section
                 className={styles.introduction}
                 contentClassName={styles.introductionContent}
