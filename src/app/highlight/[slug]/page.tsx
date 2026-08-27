@@ -5,6 +5,7 @@ import {
 
 import ArticleBody from '#components/ArticleBody';
 import Heading from '#components/Heading';
+import KeyStat from '#components/KeyStat';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
@@ -55,6 +56,10 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
         );
     }
 
+    const keyStats = [...(highlightDetails?.keyStats ?? [])].sort(
+        (a, b) => a.order - b.order,
+    );
+
     return (
         <Page contentClassName={styles.highlightPage}>
             <Section>
@@ -71,6 +76,19 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
                 contentClassName={styles.content}
                 childrenContainerClassName={styles.highlightChildren}
             >
+                {keyStats.length > 0 && (
+                    <div className={styles.keyStats}>
+                        {keyStats.map((keyStat) => (
+                            <KeyStat
+                                key={keyStat.order}
+                                className={styles.keyStat}
+                                label={keyStat.title}
+                                value={keyStat.stat}
+                                size="medium"
+                            />
+                        ))}
+                    </div>
+                )}
                 <ArticleBody
                     content={highlightDetails.description}
                 />

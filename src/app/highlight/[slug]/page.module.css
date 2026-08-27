@@ -11,6 +11,30 @@
             text-transform: none;
         }
 
+        .keyStats {
+            display: flex;
+            align-items: stretch;
+            padding: var(--spacing-medium) var(--spacing-large);
+            background-color: var(--color-background-secondary);
+            flex-wrap: wrap;
+
+            .keyStat {
+                flex: 1 1 0;
+                min-width: 6rem;
+                padding: 0 var(--spacing-large);
+                border-right: 1px solid var(--color-separator);
+
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                    border-right: none;
+                }
+            }
+        }
+
         .content {
             padding-left: var(--spacing-galactic);
             padding-right: var(--spacing-galactic);

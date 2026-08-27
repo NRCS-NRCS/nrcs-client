@@ -74,26 +74,51 @@
                     @media (max-width: 768px) {
                         font-size: var(--font-size-medium);
                     }
-
-                    .readMore {
-                        display: inline;
-                        padding: 0;
-                        text-transform: none;
-                        white-space: nowrap;
-                        text-decoration: underline;
-                        text-underline-offset: 0.15em;
-                        color: var(--color-text-on-primary);
-                        font-weight: var(--font-weight-bold);
-                        font-size: inherit;
-                    }
                 }
 
                 .actions {
                     display: flex;
                     flex-shrink: 0;
                     gap: var(--spacing-small);
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                }
+            }
+
+            .keyStats {
+                position: absolute;
+                bottom: var(--spacing-medium);
+                right: var(--spacing-medium);
+                display: flex;
+                align-items: stretch;
+                padding: var(--spacing-medium) var(--spacing-large);
+                background-color: var(--color-background-secondary);
+                gap: var(--spacing-medium);
+                z-index: 2;
+
+                @media (max-width: 768px) {
+                    position: relative;
+                    width: 100%;
+                    bottom: 0;
+                    right: 0;
                     justify-content: center;
                     flex-wrap: wrap;
+                }
+
+                .keyStat {
+                    flex: 1 1 0;
+                    min-width: 6rem;
+                    padding: 0 var(--spacing-large);
+                    border-right: 1px solid var(--color-separator);
+
+                    &:first-child {
+                        padding-left: 0;
+                    }
+
+                    &:last-child {
+                        padding-right: 0;
+                        border-right: none;
+                    }
                 }
             }
 

@@ -8,8 +8,10 @@ import {
 import Button from '#components/Button';
 import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
+import KeyStat from '#components/KeyStat';
 import Link from '#components/Link';
 import type { AllQueryQuery } from '#generated/types/graphql';
+import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
@@ -22,14 +24,15 @@ const SWIPE_THRESHOLD = 60;
 const DESCRIPTION_MAX_LENGTH = 200;
 
 function truncateDescription(description: string | null | undefined) {
-    if (!description) {
+    const plainText = stripMarkdown(description ?? '');
+    if (!plainText) {
         return { text: '', isTruncated: false };
     }
-    if (description.length <= DESCRIPTION_MAX_LENGTH) {
-        return { text: description, isTruncated: false };
+    if (plainText.length <= DESCRIPTION_MAX_LENGTH) {
+        return { text: plainText, isTruncated: false };
     }
     return {
-        text: description.slice(0, DESCRIPTION_MAX_LENGTH).trimEnd(),
+        text: plainText.slice(0, DESCRIPTION_MAX_LENGTH).trimEnd(),
         isTruncated: true,
     };
 }
@@ -39,13 +42,13 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
     const [startX, setStartX] = useState<number | null>(null);
     const [isInteracting, setIsInteracting] = useState(false);
 
-    // Auto-slide every 6 seconds
+    // Auto-slide every 15 seconds
     useEffect(() => {
         if (highlights.length <= 1 || isInteracting) {
             return undefined;
         } const interval = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % highlights.length);
-        }, 6000);
+        }, 15000);
 
         return () => clearInterval(interval);
     }, [highlights.length, isInteracting]);
@@ -78,6 +81,9 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
             >
                 {highlights.map((highlight, index) => {
                     const description = truncateDescription(highlight?.description);
+                    const keyStats = (highlight?.keyStats ?? [])
+                        .filter((keyStat) => keyStat.featured)
+                        .sort((a, b) => a.order - b.order);
 
                     return (
                         <div
@@ -103,31 +109,41 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                                     className={styles.description}
                                 >
                                     {description.text}
-                                    {description.isTruncated && '... '}
+                                    {description.isTruncated && '...'}
+                                </p>
+                                <div className={styles.actions}>
                                     <Link
                                         href={`highlight/${highlight.id}`}
-                                        variant="underline"
-                                        className={styles.readMore}
+                                        variant="buttonReverse"
                                     >
-                                        read more
+                                        Read more
                                     </Link>
-                                </p>
-                                {highlight?.actionLinks?.length > 0 && (
-                                    <div className={styles.actions}>
-                                        {highlight.actionLinks.map((link) => (
-                                            <Link
-                                                key={link?.url}
-                                                href={link?.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                variant="buttonReverse"
-                                            >
-                                                {link?.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
+                                    {highlight?.actionLinks?.map((link) => (
+                                        <Link
+                                            key={link?.url}
+                                            href={link?.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            variant="buttonReverse"
+                                        >
+                                            {link?.label}
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
+                            {keyStats.length > 0 && (
+                                <div className={styles.keyStats}>
+                                    {keyStats.map((keyStat) => (
+                                        <KeyStat
+                                            key={keyStat.order}
+                                            className={styles.keyStat}
+                                            label={keyStat.title}
+                                            value={keyStat.stat}
+                                            size="medium"
+                                        />
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     );
                 })}

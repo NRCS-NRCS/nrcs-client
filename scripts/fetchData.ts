@@ -101,6 +101,12 @@ const query = gql`
                 label
                 url
             }
+            keyStats {
+                order
+                title
+                stat
+                featured
+            }
         }
         blogs(filters: { status: PUBLISHED }) {
             title
