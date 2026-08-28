@@ -90,6 +90,7 @@ const query = gql`
         highlights {
             description
             isActive
+            showInPopup
             heading
             id
             image {

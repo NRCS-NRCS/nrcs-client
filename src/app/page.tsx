@@ -2,6 +2,7 @@ import React from 'react';
 
 import CallToAction from '#components/CallToAction';
 import Heading from '#components/Heading';
+import HighlightPopup from '#components/HighlightPopup';
 import ImageSlider from '#components/ImageSlider';
 import ImageWrapper from '#components/ImageWrapper';
 import KeyFigureCard from '#components/KeyFigureCard';
@@ -57,8 +58,15 @@ export default async function Home() {
         (data) => data?.isActive,
     );
 
+    const popupHighlight = highlights.find(
+        (data) => data?.showInPopup,
+    );
+
     return (
         <Page contentClassName={styles.page}>
+            {popupHighlight && (
+                <HighlightPopup highlight={popupHighlight} />
+            )}
             <Highlights highlights={highlights ?? []} />
             <Section
                 className={styles.introduction}
