@@ -107,6 +107,15 @@ const query = gql`
                 stat
                 featured
             }
+            files {
+                label
+                order
+                file {
+                    name
+                    size
+                    url
+                }
+            }
         }
         blogs(filters: { status: PUBLISHED }) {
             title
