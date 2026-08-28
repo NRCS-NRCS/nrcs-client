@@ -35,6 +35,13 @@
             }
         }
 
+        .files {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: var(--spacing-medium);
+        }
+
         .content {
             padding-left: var(--spacing-galactic);
             padding-right: var(--spacing-galactic);

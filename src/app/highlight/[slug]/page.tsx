@@ -4,6 +4,7 @@ import {
 } from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
+import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import KeyStat from '#components/KeyStat';
 import Link from '#components/Link';
@@ -60,6 +61,10 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
         (a, b) => a.order - b.order,
     );
 
+    const files = [...(highlightDetails?.files ?? [])].sort(
+        (a, b) => a.order - b.order,
+    );
+
     return (
         <Page contentClassName={styles.highlightPage}>
             <Section>
@@ -92,6 +97,22 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
                 <ArticleBody
                     content={highlightDetails.description}
                 />
+                {files.length > 0 && (
+                    <div>
+                        <Heading size="small">Supporting documents:</Heading>
+                        <div className={styles.files}>
+                            {files.map((highlightFile) => (
+                                <DownloadTemplate
+                                    key={highlightFile.order}
+                                    title={highlightFile.label || highlightFile.file.name}
+                                    file={highlightFile.file.url}
+                                    fileSize={highlightFile.file.size}
+                                    isExternalLink
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
                 {highlightDetails?.actionLinks?.length > 0 && (
                     <div>
                         <Heading size="small">Related Links</Heading>
