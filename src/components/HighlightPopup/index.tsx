@@ -34,6 +34,11 @@ function truncateDescription(description: string | null | undefined) {
 
 export default function HighlightPopup({ highlight }: Props) {
     const [visible, setVisible] = useState(true);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -45,7 +50,7 @@ export default function HighlightPopup({ highlight }: Props) {
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, []);
 
-    if (!visible) {
+    if (!visible || !mounted) {
         return null;
     }
 
