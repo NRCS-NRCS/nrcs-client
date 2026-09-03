@@ -190,7 +190,7 @@ export default function Navbar(props: Props) {
                             Volunteer
                         </Link>
                         <Link
-                            className={_cs(styles.hideableIcon, styles.expandedButton)}
+                            className={_cs(styles.expandedButton)}
                             variant="button"
                             href={process.env.NEXT_PUBLIC_DONATION_URL ?? ''}
                             target="_blank"
