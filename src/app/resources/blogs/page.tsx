@@ -43,13 +43,19 @@ function BlogPage() {
             <Section
                 heading="Blogs"
                 headingWithBackground
+                withoutChildrenGap
                 searchField="title"
                 searchValue={search}
                 handleSearchChange={setSearch}
             >
                 {(isDefined(blogData) && blogData.length <= 0) ? (
                     <EmptyMessage
-                        message="No blogs available"
+                        title={debouncedSearchText
+                            ? `No results for “${debouncedSearchText}”`
+                            : 'No blogs yet'}
+                        description={debouncedSearchText
+                            ? "We couldn't find any blogs matching your search. Try a different keyword."
+                            : 'Stories and reflections from across the Society will appear here once they are published.'}
                     />
                 ) : paginateData?.map((blog) => (
                     <ArticleCard

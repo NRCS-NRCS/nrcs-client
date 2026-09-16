@@ -1,8 +1,33 @@
 .empty {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    color: var(--color-text-neutral);
-    font-size: var(--font-size-large);
+    gap: var(--spacing-extra-small);
+    background-color:var(--color-background-secondary);
+    padding: var(--spacing-gigantic) var(--spacing-large);
+    width: 100%;
+    text-align: center;
+
+    .icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: var(--spacing-extra-small);
+        border-radius: var(--border-radius-circle);
+        background-color: var(--color-background);
+        width: 4.5rem;
+        height: 4.5rem;
+        color: var(--color-primary);
+        font-size: var(--font-size-super-large);
+    }
+
+    .title {
+        color: var(--color-heading);
+    }
+
+    .description {
+        max-width: 34rem;
+        color: var(--color-text-neutral);
+    }
 }

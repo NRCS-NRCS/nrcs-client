@@ -1,41 +1,86 @@
 .recentNewsChildrenContainer {
     display: flex;
     flex-direction: column;
-    padding: var(--spacing-super-large) var(--spacing-mega-large);
+    gap: var(--spacing-extra-large);
     background-color: var(--color-background-dark);
+    padding: var(--spacing-super-large) var(--spacing-mega-large);
     color: var(--color-text-on-dark);
+
     .navigation {
         display: flex;
         flex-direction: row;
-        color: white;
+        align-items: stretch;
+        gap: var(--spacing-small);
+        border-bottom: var(--width-separator-thin) solid rgba(255, 255, 255, 0.15);
         width: 100%;
-        justify-content: space-between;
     }
-    .activeTab {
-        color: var(--color-text-on-dark);
-    }
-    .tab {
-        color: var(--color-text-neutral);
-    }
+
     .tabs {
+        display: grid;
         flex: 1;
-        display: flex;
-        gap: var(--spacing-super-large);
-        margin-left: var(--spacing-large);
-        margin-right: var(--spacing-large);
+        grid-auto-flow: column;
+        grid-auto-columns: minmax(0, 1fr);
+        gap: var(--spacing-large);
+        min-width: 0;
     }
+
     .tabButton {
+        display: block;
+        transition: color 0.2s ease-in-out;
+        border-bottom: 2px solid transparent;
+        padding: 0 0 var(--spacing-small) 0;
+        width: 100%;
+        text-align: left;
         font-size: var(--font-size-medium);
-        padding: 0;
-        word-break: break-all;
+
         @media (max-width: 768px) {
             font-size: var(--font-size-extra-small);
         }
+
+        .tabLabel {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            height: calc(2 * 1.4em);
+            overflow: hidden;
+            overflow-wrap: break-word;
+            line-height: 1.4;
+        }
     }
-    .chevron {
+
+    .activeTab {
+        border-bottom-color: var(--color-primary);
         color: var(--color-text-on-dark);
+        font-weight: var(--font-weight-bold);
+    }
+
+    .tab {
+        color: var(--color-text-neutral);
+
+        &:hover {
+            color: var(--color-text-on-dark);
+        }
+    }
+
+    .cardDescription {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        max-height: calc(3 * 1.6em);
+        overflow: hidden;
+    }
+
+    .chevron {
         display: flex;
+        flex-shrink: 0;
         align-items: center;
         justify-content: center;
+        padding: 0 var(--spacing-extra-small) var(--spacing-small) var(--spacing-extra-small);
+        color: var(--color-text-on-dark);
+        font-size: var(--font-size-large);
+    }
+
+    @media (max-width: 768px) {
+        padding: var(--spacing-extra-large) var(--spacing-large);
     }
 }

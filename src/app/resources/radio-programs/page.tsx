@@ -63,7 +63,12 @@ function RadioProgramsPage() {
                     <div className={styles.radioProgramsList}>
                         {paginateData.length <= 0 ? (
                             <EmptyMessage
-                                message="No radio programs available"
+                                title={debouncedSearchText
+                                    ? `No results for “${debouncedSearchText}”`
+                                    : 'No radio programs yet'}
+                                description={debouncedSearchText
+                                    ? "We couldn't find any radio programs matching your search. Try a different keyword."
+                                    : 'Episodes of our radio programs will appear here once they are published.'}
                             />
                         ) : paginateData.map((item) => (
                             isDefined(item.audioFile) && (

@@ -72,17 +72,33 @@ const departmentsQuery = gql`
 
 const newsQuery = gql`
     query News($pagination: OffsetPaginationInput) {
-        news(pagination: $pagination, filters: { status: PUBLISHED }) {
+        news(
+            pagination: $pagination
+            filters: { status: PUBLISHED }
+            order: { publishedDate: DESC }
+        ) {
             results {
                 content
                 id
                 publishedDate
                 slug
                 title
-                file {
-                    name
-                    url
-                    size
+                attachments {
+                    id
+                    order
+                    label
+                    file {
+                        name
+                        url
+                        size
+                    }
+                }
+                keyStats {
+                    id
+                    order
+                    title
+                    stat
+                    featured
                 }
                 coverImage {
                     url
@@ -93,6 +109,7 @@ const newsQuery = gql`
                     url
                 }
                 isHighlighted
+                showInPopup
             }
             totalCount    
         }

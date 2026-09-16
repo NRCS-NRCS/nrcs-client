@@ -7,6 +7,8 @@ import {
     Open_Sans,
 } from 'next/font/google';
 
+import ScrollToTop from '#components/ScrollToTop';
+
 const montserrat = Montserrat({
     subsets: ['latin'],
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
@@ -30,6 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <html lang="en">
             <body className={`${montserrat.variable} ${openSans.variable}`}>
                 {children}
+                <ScrollToTop />
                 <GoogleAnalytics
                     gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || ''}
                     debugMode={process.env.NODE_ENV === 'development'}
