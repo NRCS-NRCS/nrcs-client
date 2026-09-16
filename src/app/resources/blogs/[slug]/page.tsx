@@ -2,9 +2,12 @@ import { isNotDefined } from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
 import AuthorSection from '#components/AuthorSection';
+import BackLink from '#components/BackLink';
+import Heading from '#components/Heading';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
 import Section from '#components/Section';
+import ShareButtons from '#components/ShareButtons';
 import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
 
@@ -51,25 +54,43 @@ export default async function BlogDetailsPage({ params }: PageProps) {
 
     return (
         <Page contentClassName={styles.resourcesPage}>
-            <Section>
-                <ResourcesBanner
-                    imageSrc={blogDetails.coverImage?.url ?? defaultImage}
-                    imageAlt={blogDetails.title}
-                    heading={blogDetails.title}
-                />
-            </Section>
             <Section
                 className={styles.section}
                 contentClassName={styles.content}
                 childrenContainerClassName={styles.resourcesChildren}
             >
-                <AuthorSection
-                    author={blogDetails.author}
-                    date={blogDetails.publishedDate}
-                    articleLength={blogDetails.content.length}
+                <div className={styles.articleHeader}>
+                    <BackLink
+                        href="/resources/blogs"
+                        label="Back to Blogs"
+                    />
+                    <Heading
+                        className={styles.title}
+                        size="extraLarge"
+                    >
+                        {blogDetails.title}
+                    </Heading>
+                    <AuthorSection
+                        author={blogDetails.author}
+                        date={blogDetails.publishedDate}
+                        articleLength={blogDetails.content.length}
+                    />
+                    <ShareButtons
+                        className={styles.share}
+                        title={blogDetails.title}
+                    />
+                </div>
+                <ResourcesBanner
+                    imageSrc={blogDetails.coverImage?.url ?? defaultImage}
+                    imageAlt={blogDetails.title}
                 />
                 <ArticleBody
                     content={blogDetails.content}
+                />
+                <ShareButtons
+                    className={styles.articleFooterShare}
+                    title={blogDetails.title}
+                    align="center"
                 />
             </Section>
         </Page>

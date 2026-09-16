@@ -10,15 +10,15 @@ import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import KeyStat from '#components/KeyStat';
 import Link from '#components/Link';
-import type { AllQueryQuery } from '#generated/types/graphql';
+import type { NewsQuery } from '#generated/types/graphql';
 import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
-type newsItems = NonNullable<NonNullable<NewsQuery['news']['results'][number]>>;
+type NewsItem = NonNullable<NonNullable<NewsQuery['news']['results']>[number]>;
 
 interface Props {
-    news: newsItems[];
+    news: NewsItem[];
 }
 const SWIPE_THRESHOLD = 60;
 const DESCRIPTION_MAX_LENGTH = 200;
@@ -37,21 +37,21 @@ function truncateDescription(description: string | null | undefined) {
     };
 }
 
-export default function HighlightsCarousel({ highlights = [] }: Props) {
+export default function HighlightsCarousel({ news = [] }: Props) {
     const [activeIndex, setActiveIndex] = useState(0);
     const [startX, setStartX] = useState<number | null>(null);
     const [isInteracting, setIsInteracting] = useState(false);
 
     // Auto-slide every 15 seconds
     useEffect(() => {
-        if (highlights.length <= 1 || isInteracting) {
+        if (news.length <= 1 || isInteracting) {
             return undefined;
         } const interval = setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % highlights.length);
+            setActiveIndex((prev) => (prev + 1) % news.length);
         }, 15000);
 
         return () => clearInterval(interval);
-    }, [highlights.length, isInteracting]);
+    }, [news.length, isInteracting]);
 
     /* Pointer handlers */
     const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
@@ -66,7 +66,7 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
         }
         const diff = startX - e.clientX;
         if (Math.abs(diff) >= SWIPE_THRESHOLD) {
-            setActiveIndex((prev) => (prev + 1) % highlights.length);
+            setActiveIndex((prev) => (prev + 1) % news.length);
         }
         setStartX(null);
         setIsInteracting(false);
@@ -79,21 +79,20 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                 onPointerDown={handlePointerDown}
                 onPointerUp={handlePointerUp}
             >
-                {highlights.map((highlight, index) => {
-                    const description = truncateDescription(highlight?.description);
-                    const keyStats = (highlight?.keyStats ?? [])
-                        .filter((keyStat) => keyStat.featured)
-                        .sort((a, b) => a.order - b.order);
+                {news.map((newsItem, index) => {
+                    const description = truncateDescription(newsItem.content);
+                    const keyStats = (newsItem.keyStats ?? [])
+                        .filter((keyStat) => keyStat.featured);
 
                     return (
                         <div
-                            key={highlight.id}
+                            key={newsItem.id}
                             className={`${styles.slide} ${index === activeIndex ? styles.active : ''}`}
                         >
-                            {highlight.image?.url && (
+                            {newsItem.coverImage?.url && (
                                 <ImageWrapper
-                                    src={highlight.image.url}
-                                    alt={highlight.image.name ?? 'highlight image'}
+                                    src={newsItem.coverImage.url}
+                                    alt={newsItem.coverImage.name ?? 'news image'}
                                     className={styles.image}
                                     imageClassName={styles.imageInner}
                                 />
@@ -103,7 +102,7 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                                     className={styles.heading}
                                     size="large"
                                 >
-                                    {highlight?.heading}
+                                    {newsItem.title}
                                 </Heading>
                                 <p
                                     className={styles.description}
@@ -113,29 +112,20 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
                                 </p>
                                 <div className={styles.actions}>
                                     <Link
-                                        href={`highlight/${highlight.id}`}
+                                        href={`/resources/news-and-events/${newsItem.slug}/`}
                                         variant="buttonReverse"
+
                                     >
                                         Read more
                                     </Link>
-                                    {highlight?.actionLinks?.map((link) => (
-                                        <Link
-                                            key={link?.url}
-                                            href={link?.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            variant="buttonReverse"
-                                        >
-                                            {link?.label}
-                                        </Link>
-                                    ))}
+
                                 </div>
                             </div>
                             {keyStats.length > 0 && (
                                 <div className={styles.keyStats}>
                                     {keyStats.map((keyStat) => (
                                         <KeyStat
-                                            key={keyStat.order}
+                                            key={keyStat.id}
                                             className={styles.keyStat}
                                             label={keyStat.title}
                                             value={keyStat.stat}
@@ -151,10 +141,10 @@ export default function HighlightsCarousel({ highlights = [] }: Props) {
 
             {/* Dots */}
             <div className={styles.dotsContainer}>
-                {highlights.map((highlight, index) => (
+                {news.map((newsItem, index) => (
                     <Button
                         name={undefined}
-                        key={highlight.id}
+                        key={newsItem.id}
                         onClick={() => setActiveIndex(index)}
                         className={`${styles.dot} ${index === activeIndex ? styles.activeDot : ''}`}
                     />

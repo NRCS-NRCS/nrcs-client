@@ -59,13 +59,11 @@ function RecentNews() {
             headingWithBackground
             childrenContainerClassName={styles.recentNewsChildrenContainer}
         >
-            <div
-                className={styles.navigation}
-            >
+            <div className={styles.navigation}>
                 <Button
                     name="prev"
                     variant="transparent"
-                    className={_cs(styles.tabButton, styles.chevron)}
+                    className={styles.chevron}
                     onClick={goPrev}
                     disabled={activeIndex === 0}
                 >
@@ -75,8 +73,6 @@ function RecentNews() {
                 <div className={styles.tabs} ref={tabsRef}>
                     {visibleNews.map((item, index) => {
                         const realIndex = windowStart + index;
-                        const isLastVisible = index === visibleNews.length - 1;
-                        const isActualLast = realIndex === news.length - 1;
                         return (
                             <Button
                                 key={item.id}
@@ -85,12 +81,13 @@ function RecentNews() {
                                 className={_cs(
                                     styles.tabButton,
                                     realIndex === activeIndex ? styles.activeTab : styles.tab,
-
                                 )}
                                 onClick={() => setActiveIndex(realIndex)}
+                                title={item.title}
                             >
-                                {item.title}
-                                {isLastVisible && !isActualLast ? '...' : ''}
+                                <span className={styles.tabLabel}>
+                                    {item.title}
+                                </span>
                             </Button>
                         );
                     })}
@@ -98,7 +95,7 @@ function RecentNews() {
                 <Button
                     name="next"
                     variant="transparent"
-                    className={_cs(styles.tabButton, styles.chevron)}
+                    className={styles.chevron}
                     onClick={goNext}
                     disabled={activeIndex === news.length - 1}
                 >
@@ -111,7 +108,7 @@ function RecentNews() {
                 description={news[activeIndex].content}
                 date={news[activeIndex].publishedDate}
                 image={news[activeIndex].coverImage?.url ?? defaultImage}
-                trimDescription={300}
+                descriptionClassName={styles.cardDescription}
                 link={`/resources/news-and-events/${news[activeIndex].slug}/`}
             />
         </Section>
