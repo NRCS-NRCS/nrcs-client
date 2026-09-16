@@ -80,7 +80,7 @@ export default function Footer(props: Props) {
                     </div>
                     <Link
                         className={styles.donateButton}
-                        href="https://donation.nrcs.org/"
+                        href={process.env.NEXT_PUBLIC_DONATION_URL ?? ''}
                         variant="button"
                         target="_blank"
                     >

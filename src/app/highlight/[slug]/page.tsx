@@ -4,7 +4,9 @@ import {
 } from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
+import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
+import KeyStat from '#components/KeyStat';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import ResourcesBanner from '#components/ResourcesBanner';
@@ -55,6 +57,14 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
         );
     }
 
+    const keyStats = [...(highlightDetails?.keyStats ?? [])].sort(
+        (a, b) => a.order - b.order,
+    );
+
+    const files = [...(highlightDetails?.files ?? [])].sort(
+        (a, b) => a.order - b.order,
+    );
+
     return (
         <Page contentClassName={styles.highlightPage}>
             <Section>
@@ -71,9 +81,38 @@ export default async function HighlightDetailsPage({ params }: PageProps) {
                 contentClassName={styles.content}
                 childrenContainerClassName={styles.highlightChildren}
             >
+                {keyStats.length > 0 && (
+                    <div className={styles.keyStats}>
+                        {keyStats.map((keyStat) => (
+                            <KeyStat
+                                key={keyStat.order}
+                                className={styles.keyStat}
+                                label={keyStat.title}
+                                value={keyStat.stat}
+                                size="medium"
+                            />
+                        ))}
+                    </div>
+                )}
                 <ArticleBody
                     content={highlightDetails.description}
                 />
+                {files.length > 0 && (
+                    <div>
+                        <Heading size="small">Supporting documents:</Heading>
+                        <div className={styles.files}>
+                            {files.map((highlightFile) => (
+                                <DownloadTemplate
+                                    key={highlightFile.order}
+                                    title={highlightFile.label || highlightFile.file.name}
+                                    file={highlightFile.file.url}
+                                    fileSize={highlightFile.file.size}
+                                    isExternalLink
+                                />
+                            ))}
+                        </div>
+                    </div>
+                )}
                 {highlightDetails?.actionLinks?.length > 0 && (
                     <div>
                         <Heading size="small">Related Links</Heading>

@@ -4,6 +4,8 @@ import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import html from 'remark-html';
 
+import remarkVideoEmbed from '#lib/remarkVideoEmbed';
+
 import styles from './styles.module.css';
 
 interface Props {
@@ -21,6 +23,13 @@ export default async function ArticleBody(props: Props) {
         .use(html, { sanitize: false })
         .use(remarkGfm)
         .use(remarkBreaks)
+        .use(remarkVideoEmbed, {
+            figureClassName: styles.videoEmbed,
+            frameClassName: styles.videoEmbedFrame,
+            horizontalClassName: styles.horizontal,
+            verticalClassName: styles.vertical,
+            captionClassName: styles.videoEmbedCaption,
+        })
         .process(content);
     const contentHtml = processedContent.toString();
 

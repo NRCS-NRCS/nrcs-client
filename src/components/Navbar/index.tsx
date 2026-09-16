@@ -38,6 +38,8 @@ interface ILink {
     children?: children[]
 }
 
+const donateLink = process.env.NEXT_PUBLIC_DONATION_URL ?? '';
+
 const links: ILink[] = [
     {
         label: 'About Us',
@@ -81,7 +83,7 @@ const links: ILink[] = [
             },
             {
                 label: 'Financial Donations',
-                externalLink: 'https://donation.nrcs.org/',
+                externalLink: donateLink,
             },
         ],
     },
@@ -188,9 +190,9 @@ export default function Navbar(props: Props) {
                             Volunteer
                         </Link>
                         <Link
-                            className={_cs(styles.hideableIcon, styles.expandedButton)}
+                            className={_cs(styles.expandedButton)}
                             variant="button"
-                            href="https://donation.nrcs.org/"
+                            href={process.env.NEXT_PUBLIC_DONATION_URL ?? ''}
                             target="_blank"
                         >
                             Donate
@@ -284,17 +286,24 @@ export default function Navbar(props: Props) {
                                 <IoChevronDownOutline className={styles.drawerLinkHeaderButton} />
                             )}
                         </Button>
-                        {openItems.includes(item.link) && item.children.map((child) => (
-                            <Link
-                                key={child.link}
-                                className={styles.link}
-                                href={`${item.link}${child.link}`}
-                                variant="navigation"
-                                active={pathname === `${item.link}${child.link}`}
-                            >
-                                {child.label}
-                            </Link>
-                        ))}
+                        {openItems.includes(item.link) && item.children.map((child) => {
+                            const isExternal = !!child.externalLink;
+                            const href = isExternal ? child.externalLink! : `${item.link}${child.link}`;
+                            const active = !isExternal && pathname === `${item.link}${child.link}`;
+                            return (
+                                <Link
+                                    key={isExternal ? child.externalLink : child.link}
+                                    className={styles.popupLink}
+                                    variant="navigation"
+                                    href={href}
+                                    target={isExternal ? '_blank' : undefined}
+                                    rel={isExternal ? 'noopener noreferrer' : undefined}
+                                    active={active}
+                                >
+                                    {child.label}
+                                </Link>
+                            );
+                        })}
                     </div>
                 ) : (
                     <Link

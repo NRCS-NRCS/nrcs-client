@@ -90,6 +90,7 @@ const query = gql`
         highlights {
             description
             isActive
+            showInPopup
             heading
             id
             image {
@@ -100,6 +101,21 @@ const query = gql`
             actionLinks {
                 label
                 url
+            }
+            keyStats {
+                order
+                title
+                stat
+                featured
+            }
+            files {
+                label
+                order
+                file {
+                    name
+                    size
+                    url
+                }
             }
         }
         blogs(filters: { status: PUBLISHED }) {

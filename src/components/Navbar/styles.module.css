@@ -18,7 +18,7 @@
             width: 100%;
             max-width: var(--width-page-max);
             padding: 0 0 0 var(--spacing-mega-large);
-            margin: auto;
+            margin: 0 auto;
 
             .imageContainer {
                 display: flex;
@@ -104,11 +104,11 @@
         flex-direction: column;
         height: 5rem;
         padding: 0;
+        border-bottom: none;
 
         .upperContent {
             height: 100%;
             z-index: 1;
-
             .content {
                 padding: 0;
 
