@@ -1,21 +1,20 @@
-import { isDefined } from '@togglecorp/fujs';
+import {
+    formatDateToString,
+    isDefined,
+} from '@togglecorp/fujs';
 import { notFound } from 'next/navigation';
 
-import ArticleBody from '#components/ArticleBody';
-import DownloadTemplate from '#components/DownloadTemplate';
-import Heading from '#components/Heading';
+import AnnouncementDetail, { type MetaItem } from '#components/AnnouncementDetail';
 import Page from '#components/Page';
-import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
 
-type ProcurementsType = NonNullable<NonNullable<AllQueryQuery['procurements']>>;
+const contactEmail = 'nrcs@nrcs.org';
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const data = allData.resources as unknown as ProcurementsType;
+    const data = allData.procurements.results ?? [];
 
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
@@ -34,11 +33,11 @@ export default async function ProcurementDetailPage(
     const {
         id,
     } = await params;
-    const allProcurements = allData.procurements as unknown as ProcurementsType;
+    const allProcurements = allData.procurements.results ?? [];
 
     const procurementDetails = allProcurements.find(
         (data) => data.id === id,
-    ) as unknown as ProcurementsType[number];
+    );
 
     if (!procurementDetails) {
         // eslint-disable-next-line no-console
@@ -46,33 +45,33 @@ export default async function ProcurementDetailPage(
         return notFound();
     }
 
+    const metaItems: MetaItem[] = [
+        {
+            label: 'Expiry date',
+            value: formatDateToString(new Date(procurementDetails.expiryDate), 'MMM dd, yyyy'),
+        },
+        ...(isDefined(procurementDetails.publishedDate) ? [{
+            label: 'Published on',
+            value: formatDateToString(new Date(procurementDetails.publishedDate), 'MMM dd, yyyy'),
+        }] : []),
+        {
+            label: 'Enquiries to',
+            value: contactEmail,
+            link: `mailto:${contactEmail}`,
+        },
+    ];
+
     return (
         <Page contentClassName={styles.procurementDetails}>
-            <Section
-                heading={procurementDetails?.title}
-            >
-                <Heading
-                    className={styles.heading}
-                    size="small"
-                    font="normal"
-                >
-                    Published on &nbsp;
-                    {procurementDetails?.publishedDate}
-                </Heading>
-            </Section>
-            <Section>
-                <ArticleBody
-                    content={procurementDetails?.description}
-                />
-                {isDefined(procurementDetails.file) && (
-                    <DownloadTemplate
-                        title={procurementDetails.title}
-                        file={procurementDetails.file.url}
-                        fileSize={procurementDetails.file.size}
-                        isExternalLink
-                    />
-                )}
-            </Section>
+            <AnnouncementDetail
+                backLink="/get-involved/procurements/"
+                backLabel="All procurements"
+                title={procurementDetails.title}
+                metaItems={metaItems}
+                description={procurementDetails.description}
+                attachmentHeading="Tender document"
+                attachment={procurementDetails.file}
+            />
         </Page>
     );
 }

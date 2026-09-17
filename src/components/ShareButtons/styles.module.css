@@ -1,0 +1,41 @@
+.shareButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-tiny);
+
+    &.center {
+        justify-content: center;
+    }
+
+    .shareItem.shareItem {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border: var(--width-separator-thin) solid var(--color-separator);
+        border-radius: var(--border-radius-extra-small);
+        background-color: var(--color-background);
+        padding: 0;
+        width: 2rem;
+        height: 2rem;
+        line-height: 1;
+        color: var(--color-text);
+        font-size: var(--font-size-medium);
+
+        &:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        &.mobileOnly {
+            @media (min-width: 769px) {
+                display: none;
+            }
+        }
+
+        &.copied {
+            background-color: var(--color-background-gray);
+            color: var(--color-primary);
+        }
+    }
+}

@@ -1,0 +1,25 @@
+.scrollToTop {
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    right: var(--spacing-large);
+    bottom: var(--spacing-large);
+
+    .scrollToTopButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-circle);
+        box-shadow: 0 2px 8px var(--color-shadow);
+        padding: 0;
+        width: 3rem;
+        height: 3rem;
+        line-height: 1;
+        font-size: var(--font-size-large);
+    }
+
+    @media (max-width: 768px) {
+        right: var(--spacing-medium);
+        bottom: var(--spacing-medium);
+    }
+}

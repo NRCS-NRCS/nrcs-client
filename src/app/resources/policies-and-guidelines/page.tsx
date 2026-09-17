@@ -13,13 +13,10 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
-
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 function PoliciesAndGuidelinesPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +27,7 @@ function PoliciesAndGuidelinesPage() {
     const pageSize = 5;
 
     const allResources = useMemo(
-        () => (allData.resources as unknown as ReportType)
+        () => (allData?.resources?.results ?? [])
             .filter((resource) => resource.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
@@ -48,13 +45,19 @@ function PoliciesAndGuidelinesPage() {
             <Section
                 heading="Policies and Guidelines"
                 headingWithBackground
+                withoutChildrenGap
                 searchField="title"
                 searchValue={search}
                 handleSearchChange={setSearch}
             >
                 {(isDefined(policyData) && policyData.length <= 0) ? (
                     <EmptyMessage
-                        message="No resources found"
+                        title={debouncedSearchText
+                            ? `No results for “${debouncedSearchText}”`
+                            : 'No policies or guidelines yet'}
+                        description={debouncedSearchText
+                            ? "We couldn't find any policies or guidelines matching your search. Try a different keyword."
+                            : 'Policy documents and guidelines will appear here once they are published.'}
                     />
                 ) : paginateData?.map((policy) => (
                     <ArticleCard
