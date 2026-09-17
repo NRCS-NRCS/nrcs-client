@@ -17,17 +17,8 @@ function ScrollToTop() {
     const [visible, setVisible] = useState(false);
 
     useEffect(() => {
-        let frame: number | undefined;
-
         const handleScroll = () => {
-            if (frame !== undefined) {
-                return;
-            }
-
-            frame = window.requestAnimationFrame(() => {
-                setVisible(window.scrollY > VISIBILITY_THRESHOLD);
-                frame = undefined;
-            });
+            setVisible(window.scrollY > VISIBILITY_THRESHOLD);
         };
 
         handleScroll();
@@ -35,23 +26,12 @@ function ScrollToTop() {
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-
-            if (frame !== undefined) {
-                window.cancelAnimationFrame(frame);
-            }
         };
     }, []);
 
     const handleClick = useCallback(
         () => {
-            const prefersReducedMotion = window.matchMedia(
-                '(prefers-reduced-motion: reduce)',
-            ).matches;
-
-            window.scrollTo({
-                top: 0,
-                behavior: prefersReducedMotion ? 'auto' : 'smooth',
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         },
         [],
     );
@@ -61,16 +41,18 @@ function ScrollToTop() {
     }
 
     return (
-        <Button
-            name={undefined}
-            variant="transparent"
-            className={styles.scrollToTop}
-            onClick={handleClick}
-            title="Back to top"
-            aria-label="Back to top"
-        >
-            <IoArrowUp />
-        </Button>
+        <div className={styles.scrollToTop}>
+            <Button
+                name={undefined}
+                variant="primary"
+                className={styles.scrollToTopButton}
+                onClick={handleClick}
+                title="Back to top"
+                aria-label="Back to top"
+            >
+                <IoArrowUp />
+            </Button>
+        </div>
     );
 }
 

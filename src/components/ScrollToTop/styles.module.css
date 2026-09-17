@@ -1,22 +1,21 @@
-.scrollToTop.scrollToTop {
+.scrollToTop {
     display: flex;
     position: fixed;
     z-index: 999;
     right: var(--spacing-large);
     bottom: var(--spacing-large);
-    align-items: center;
-    justify-content: center;
-    border-radius: var(--border-radius-circle);
-    background-color: var(--color-primary);
-    box-shadow: 0 2px 8px var(--color-shadow);
-    padding: 0;
-    width: 3rem;
-    height: 3rem;
-    color: var(--color-text-on-primary);
-    font-size: var(--font-size-large);
 
-    &:hover {
-        background-color: var(--color-primary-dark);
+    .scrollToTopButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-circle);
+        box-shadow: 0 2px 8px var(--color-shadow);
+        padding: 0;
+        width: 3rem;
+        height: 3rem;
+        line-height: 1;
+        font-size: var(--font-size-large);
     }
 
     @media (max-width: 768px) {

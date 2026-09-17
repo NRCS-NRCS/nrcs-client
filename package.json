@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "prebuild": "pnpm generate:type && ts-node -P tsconfig.scripts.json scripts/fetchData.ts",
+        "prebuild": "pnpm generate:type && ts-node --require dotenv/config -P tsconfig.scripts.json scripts/fetchData.ts",
         "_predev": "pnpm generate:type",
         "generate-and-watch:type": "graphql-codegen --require dotenv/config --config codegen.ts --watch",
         "generate:type": "graphql-codegen --require dotenv/config --config codegen.ts",
@@ -57,6 +57,7 @@
         "@types/react-dom": "^19",
         "@typescript-eslint/eslint-plugin": "^8.30.1",
         "@typescript-eslint/parser": "^8.30.1",
+        "dotenv": "^16.5.0",
         "eslint": "^9",
         "eslint-config-airbnb-typescript": "^18.0.0",
         "eslint-config-next": "15.3.1",

@@ -3,11 +3,16 @@ import { gql, GraphQLClient } from 'graphql-request';
 import path from 'path';
 
 const datadir = path.join(__dirname, '../data');
-const GRAPHQL_ENDPOINT =
-    process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN;
 const pipelineType = process.env.PIPELINE_TYPE;
 
-const client = new GraphQLClient(GRAPHQL_ENDPOINT);
+if (pipelineType !== 'ci' && !GRAPHQL_ENDPOINT) {
+    throw new Error(
+        'NEXT_PUBLIC_GRAPHQL_DOMAIN is not set. Define it in .env or the environment before running the build.',
+    );
+}
+
+const client = new GraphQLClient(GRAPHQL_ENDPOINT ?? '');
 
 const PAGE_SIZE = 1000;
 
@@ -348,7 +353,6 @@ async function fetchAndWriteData() {
     const data: Record<string, any> = { ...dummyData };
 
     if (pipelineType !== 'ci') {
-        console.log('-----------------------------------------------------------');
         // Define the queries mapping
         const queriesMap: Record<string, string> = {
             strategicDirectives: strategicDirectivesQuery,
@@ -377,7 +381,6 @@ async function fetchAndWriteData() {
         for (const [key, results] of entries) {
             data[key] = results;
         }
-        console.log('-----------------------------------------------------------');
     }
 
     // ensure the `data` directory exists
@@ -388,7 +391,6 @@ async function fetchAndWriteData() {
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
 
     console.log(`Data written to ${outputPath}`);
-    console.log(`Top-level keys: ${Object.keys(data ?? {}).join(', ')}`);
 }
 
 fetchAndWriteData();
