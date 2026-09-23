@@ -41,15 +41,15 @@ export const cecLeader : CecLeader[] = [
         contact: '9851069244',
         photoUrl: rishiRamanKanal,
     },
-    {
-        id: 'prem-sagar-karmacharya',
-        title: 'Treasurer General',
-        name: 'Mr. Prem Sagar Karmacharya',
-        email: 'premsagarkarmacharya164@gmail.com',
-        address: 'Kathmandu',
-        contact: '9851069338',
-        photoUrl: premSagarKarmacharya,
-    },
+    // {
+    //     id: 'prem-sagar-karmacharya',
+    //     title: 'Treasurer General',
+    //     name: 'Mr. Prem Sagar Karmacharya',
+    //     email: 'premsagarkarmacharya164@gmail.com',
+    //     address: 'Kathmandu',
+    //     contact: '9851069338',
+    //     photoUrl: premSagarKarmacharya,
+    // },
 ];
 
 export const staffLeader : CecLeader[] = [
@@ -63,14 +63,14 @@ export const staffLeader : CecLeader[] = [
 ];
 
 export const cecMember : CecMember[] = [
-    {
-        id: 'basanta-kumar-shrestha',
-        name: 'Mr. Basanta Kumar Shrestha',
-        email: 'basanta18@gmail.com',
-        address: 'Bhojpur',
-        contact: '9851071111',
-        photoUrl: basantaKumarShrestha,
-    },
+    // {
+    //     id: 'basanta-kumar-shrestha',
+    //     name: 'Mr. Basanta Kumar Shrestha',
+    //     email: 'basanta18@gmail.com',
+    //     address: 'Bhojpur',
+    //     contact: '9851071111',
+    //     photoUrl: basantaKumarShrestha,
+    // },
     {
         id: 'abishmi-neupane',
         name: 'Ms. Abishmi Neupane',
@@ -95,14 +95,14 @@ export const cecMember : CecMember[] = [
         contact: '9851043592',
         photoUrl: premLama,
     },
-    {
-        id: 'mohammad-ayatulla-rahaman',
-        name: 'Mr. Mohammad Ayatulla Rahaman',
-        email: 'mdayatulla2012@gmail.com',
-        address: 'Surkhet',
-        contact: '9849667159',
-        photoUrl: mohammadAyatullaRahaman,
-    },
+    // {
+    //     id: 'mohammad-ayatulla-rahaman',
+    //     name: 'Mr. Mohammad Ayatulla Rahaman',
+    //     email: 'mdayatulla2012@gmail.com',
+    //     address: 'Surkhet',
+    //     contact: '9849667159',
+    //     photoUrl: mohammadAyatullaRahaman,
+    // },
     {
         id: 'manju-saud-bohara',
         name: 'Ms. Manju Saud Bohara',
