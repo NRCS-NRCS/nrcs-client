@@ -30,6 +30,7 @@ const dummyData = {
     projects: { results: [] },
     faqs: { results: [] },
     radioProgram: { results: [] },
+    cecMembers: { results: [] },
 };
 
 const strategicDirectivesQuery = gql`
@@ -306,6 +307,32 @@ const radioProgramQuery = gql`
     }
 `;
 
+const cecMembersQuery = gql`
+    query CecMembers($pagination: OffsetPaginationInput) {
+        cecMembers(
+            pagination: $pagination
+            filters: { isActive: { exact: true } }
+            order: { orderIndex: ASC }
+        ) {
+            results {
+                id
+                name
+                memberType
+                designation
+                email
+                secondaryEmail
+                address
+                contactNumber
+                photo {
+                    name
+                    url
+                }
+            }
+            totalCount
+        }
+    }
+`;
+
 async function fetchAllPages(
     query: string,
     key: string,
@@ -367,6 +394,7 @@ async function fetchAndWriteData() {
             projects: projectsQuery,
             faqs: faqsQuery,
             radioProgram: radioProgramQuery,
+            cecMembers: cecMembersQuery,
         };
         // fetch each query in parallel
         const promises = Object.entries(queriesMap).map(async ([key, query]) => {
