@@ -72,13 +72,13 @@ function CecMemberCard(props: Props) {
                         {addr}
                     </Link>
                 ))}
-                {!!address && (
+                {address && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoLocationOutline />
                         {address}
                     </Heading>
                 )}
-                {!!contactNumber && (
+                {contactNumber && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoCallOutline />
                         {contactNumber}
