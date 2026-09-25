@@ -15,18 +15,19 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import allData, { type StaticData } from '#lib/staticData';
 import adminStructure from '#public/administrative-structure.jpg';
 import organizationStructure from '#public/organizational-structure.jpg';
 
-import {
-    cecDescription,
-    cecLeader,
-    type CecMember,
-    cecMember,
-    staffLeader,
-} from './cecData';
-
 import styles from './page.module.css';
+
+const cecDescription = 'Nepal Red Cross Society (NRCS) is '
+    + 'led by a Central Executive Committee (CEC). \n \n '
+    + 'Government of Nepal has formed a 9-member '
+    + 'Ad hoc Central Executive Committee (CEC) dated 26 Jestha 2083. '
+    + 'The name list of the committee with designation is as follows:';
+
+type CecMember = StaticData['cecMembers']['results'][number];
 
 interface Props {
     member: CecMember;
@@ -35,8 +36,10 @@ interface Props {
 function CecMemberCard(props: Props) {
     const { member } = props;
     const {
-        name, email, address, contact, photoUrl,
+        name, email, secondaryEmail, address, contactNumber, photo,
     } = member;
+    const photoUrl = photo?.url || undefined;
+    const emails = [email, secondaryEmail].filter(Boolean);
 
     return (
         <div className={styles.memberCard}>
@@ -58,7 +61,7 @@ function CecMemberCard(props: Props) {
                 <Heading font="heading" size="small">
                     {name}
                 </Heading>
-                {isDefined(email) && (Array.isArray(email) ? email : [email]).map((addr) => (
+                {emails.map((addr) => (
                     <Link
                         key={addr}
                         href={`mailto:${addr}`}
@@ -69,16 +72,16 @@ function CecMemberCard(props: Props) {
                         {addr}
                     </Link>
                 ))}
-                {isDefined(address) && (
+                {!!address && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoLocationOutline />
                         {address}
                     </Heading>
                 )}
-                {isDefined(contact) && (
+                {!!contactNumber && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
                         <IoCallOutline />
-                        {contact}
+                        {contactNumber}
                     </Heading>
                 )}
 
@@ -86,6 +89,11 @@ function CecMemberCard(props: Props) {
         </div>
     );
 }
+
+const cecMembers = allData.cecMembers?.results ?? [];
+const officeBearers = cecMembers.filter((member) => member.memberType === 'OFFICE_BEARER');
+const members = cecMembers.filter((member) => member.memberType === 'MEMBER');
+const staff = cecMembers.filter((member) => member.memberType === 'STAFF');
 
 export default function AboutUs() {
     return (
@@ -104,62 +112,60 @@ export default function AboutUs() {
                 </Heading>
                 <div className={styles.cecList}>
                     <div className={styles.leadership}>
-                        {cecLeader.map((leader) => (
-                            <div key={leader.title}>
+                        {officeBearers.map((leader) => (
+                            <div key={leader.id}>
                                 <Heading
                                     size="medium"
                                     className={styles.title}
                                     withBackground
                                 >
-                                    {leader.title}
+                                    {leader.designation}
                                 </Heading>
-                                <CecMemberCard
-                                    member={leader}
-                                    key={leader.id}
-                                />
+                                <CecMemberCard member={leader} />
                             </div>
                         ))}
                     </div>
-                    <div className={styles.members}>
-                        <Heading
-                            size="medium"
-                            className={styles.title}
-                            withBackground
-                        >
-                            Members
-                        </Heading>
-                        <div className={styles.memberList}>
-                            {cecMember.map((member) => (
-                                <CecMemberCard
-                                    member={member}
-                                    key={member.id}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </Section>
-            <Section
-                childrenContainerClassName={styles.adminStructure}
-            >
-                <div className={styles.cecList}>
-                    {staffLeader.map((leader) => (
-                        <div key={leader.title} className={styles.leadership}>
+                    {members.length > 0 && (
+                        <div className={styles.members}>
                             <Heading
                                 size="medium"
                                 className={styles.title}
                                 withBackground
                             >
-                                {leader.title}
+                                Members
                             </Heading>
-                            <CecMemberCard
-                                member={leader}
-                                key={leader.id}
-                            />
+                            <div className={styles.memberList}>
+                                {members.map((member) => (
+                                    <CecMemberCard
+                                        member={member}
+                                        key={member.id}
+                                    />
+                                ))}
+                            </div>
                         </div>
-                    ))}
+                    )}
                 </div>
             </Section>
+            {staff.length > 0 && (
+                <Section
+                    childrenContainerClassName={styles.adminStructure}
+                >
+                    <div className={styles.cecList}>
+                        {staff.map((leader) => (
+                            <div key={leader.id} className={styles.leadership}>
+                                <Heading
+                                    size="medium"
+                                    className={styles.title}
+                                    withBackground
+                                >
+                                    {leader.designation}
+                                </Heading>
+                                <CecMemberCard member={leader} />
+                            </div>
+                        ))}
+                    </div>
+                </Section>
+            )}
             <Section
                 heading="Administrative Structure"
                 childrenContainerClassName={styles.adminStructure}
