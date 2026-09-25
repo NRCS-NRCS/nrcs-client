@@ -81,7 +81,7 @@ const newsQuery = gql`
         news(
             pagination: $pagination
             filters: { status: PUBLISHED }
-            order: { publishedDate: DESC }
+            ordering: [{ publishedDate: DESC }]
         ) {
             results {
                 content
@@ -312,7 +312,7 @@ const cecMembersQuery = gql`
         cecMembers(
             pagination: $pagination
             filters: { isActive: { exact: true } }
-            order: { orderIndex: ASC }
+            ordering: [{ orderIndex: ASC }]
         ) {
             results {
                 id
