@@ -1,6 +1,7 @@
 import rawStaticData from '#data/staticData.json';
 import {
     type BlogsQuery,
+    type CecMembersQuery,
     type DepartmentsQuery,
     type FaqsQuery,
     type JobVacanciesQuery,
@@ -30,6 +31,7 @@ export interface StaticData {
     projects: ResultsOf<ProjectsQuery['projects']>;
     faqs: ResultsOf<FaqsQuery['faqs']>;
     radioProgram: ResultsOf<RadioProgramQuery['radioProgram']>;
+    cecMembers: ResultsOf<CecMembersQuery['cecMembers']>;
 }
 
 const staticData = rawStaticData as unknown as StaticData;
