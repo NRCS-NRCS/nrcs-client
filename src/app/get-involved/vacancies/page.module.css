@@ -1,19 +1,37 @@
 .vacancies {
     padding: var(--spacing-enormous) 0 var(--spacing-universal) 0;
 
-    .links {
-        font-weight: var(--font-weight-semi-bold);
-    }
-
-    .vacancyCard {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-medium);
+    .pageContent {
+        gap: var(--spacing-extra-large) !important;
     }
 
     .vacancyDescription {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-medium);
+        gap: var(--spacing-large);
+
+        .contactCallout {
+            display: flex;
+            gap: var(--spacing-small);
+            border-left: var(--spacing-tiny) solid var(--color-primary);
+            background-color: var(--color-primary-light);
+            padding: var(--spacing-medium) var(--spacing-large);
+
+            .calloutIcon {
+                flex-shrink: 0;
+                margin-top: var(--spacing-tiny);
+                color: var(--color-primary);
+                font-size: var(--font-size-large);
+            }
+
+            .link {
+                color: var(--color-text-link);
+                font-weight: var(--font-weight-bold);
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
     }
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { IoArrowForward } from 'react-icons/io5';
 import { _cs } from '@togglecorp/fujs';
 import { type StaticImageData } from 'next/image';
 
@@ -46,24 +47,32 @@ export default function ArticleCard(props: Props) {
                 alt={imageAlt}
             />
             <div className={styles.articleCardDescription}>
-                <Heading
-                    className={styles.heading}
-                    size={isSmall ? 'extraSmall' : 'medium'}
-                >
-                    {heading}
-                </Heading>
                 <AuthorSection
+                    className={styles.meta}
                     authorClassName={styles.author}
                     author={author}
                     date={date}
                     articleLength={description.length}
+                    withDateIcon
                 />
+                <Heading
+                    className={styles.heading}
+                    size={isSmall ? 'extraSmall' : 'small'}
+                >
+                    {heading}
+                </Heading>
                 {!isSmall && (
                     <p className={styles.description}>
                         {stripMarkdown(description)}
                     </p>
                 )}
             </div>
+            {link && !isSmall && !isHorizontal && (
+                <div className={styles.readSection}>
+                    Read
+                    <IoArrowForward className={styles.readIcon} />
+                </div>
+            )}
         </>
     );
 

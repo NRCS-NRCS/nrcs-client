@@ -1,0 +1,82 @@
+.content {
+    gap: 0 !important;
+    padding: 0 var(--spacing-enormous);
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
+}
+
+.children {
+    gap: var(--spacing-large) !important;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-extra-small);
+
+    .title {
+        line-height: 1.2;
+        text-transform: capitalize;
+    }
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-extra-small);
+    border-top: var(--width-separator-thin) solid var(--color-separator);
+    border-bottom: var(--width-separator-thin) solid var(--color-separator);
+    padding: var(--spacing-small) 0;
+
+    .metaItem {
+        display: grid;
+        grid-template-columns: 12rem 1fr;
+        gap: var(--spacing-medium);
+
+        .metaLabel {
+            color: var(--color-text-neutral);
+            font-size: var(--font-size-small);
+            font-weight: var(--font-weight-bold);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .metaValue {
+            font-weight: var(--font-weight-semi-bold);
+
+            .metaLink {
+                display: inline;
+                padding: 0;
+                color: var(--color-text-link);
+                font-weight: var(--font-weight-bold);
+                text-transform: lowercase;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: var(--spacing-tiny);
+        }
+    }
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-small);
+
+    .blockHeading {
+        border-bottom: var(--width-separator-thin) solid var(--color-separator);
+        padding-bottom: var(--spacing-extra-small);
+        color: var(--color-text-neutral);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+}

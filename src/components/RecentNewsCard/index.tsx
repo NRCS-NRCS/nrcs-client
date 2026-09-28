@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { IoCalendarOutline } from 'react-icons/io5';
 import {
     _cs,
     decodeDate,
@@ -22,7 +23,7 @@ interface Props {
     linkLabel?: string;
     headingSize?: SizeTypes;
     description?: string;
-    trimDescription?: number;
+    descriptionClassName?: string;
 }
 
 export default function RecentNewsCard(props: Props) {
@@ -33,8 +34,8 @@ export default function RecentNewsCard(props: Props) {
         date: fullDate,
         link,
         linkLabel = 'Read More',
-        trimDescription = 400,
         description,
+        descriptionClassName,
         headingSize = 'medium',
     } = props;
 
@@ -53,16 +54,6 @@ export default function RecentNewsCard(props: Props) {
     const strippedDescription = useMemo(() => (
         stripMarkdown(description ?? '')
     ), [description]);
-
-    const trimmedDescription = useMemo(() => {
-        if ((strippedDescription?.length ?? 0) > trimDescription) {
-            return `${strippedDescription?.substring(0, trimDescription)}...`;
-        }
-        return strippedDescription;
-    }, [
-        strippedDescription,
-        trimDescription,
-    ]);
 
     return (
         <div
@@ -85,18 +76,20 @@ export default function RecentNewsCard(props: Props) {
                     <Heading
                         className={styles.title}
                         size={headingSize}
+                        title={title}
                     >
-                        {title}
+                        <span className={styles.titleLabel}>
+                            {title}
+                        </span>
                     </Heading>
                 )}
-                <div className={styles.description}>
-                    {trimmedDescription}
+                <div className={_cs(styles.description, descriptionClassName)}>
+                    {strippedDescription}
                 </div>
                 {dateStrings?.date && dateStrings?.month && (
                     <div className={styles.dateContainer}>
-                        <p>{dateStrings.date}</p>
-                        <p>{dateStrings.month}</p>
-                        <p>{dateStrings.year}</p>
+                        <IoCalendarOutline className={styles.dateIcon} />
+                        <p>{`${dateStrings.month} ${dateStrings.date}, ${dateStrings.year}`}</p>
                     </div>
                 )}
                 {link && (

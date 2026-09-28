@@ -44,17 +44,20 @@ export default function DownloadTemplate(props: Props) {
             )}
         >
             <div className={styles.icon}>
-                <MdPictureAsPdf size={40} />
+                <MdPictureAsPdf size={28} />
             </div>
             <div className={styles.content}>
                 <Heading
                     className={styles.title}
                     size="extraSmall"
                     font="heading"
+                    title={title}
                 >
                     {title}
                 </Heading>
-                {fileSizeWithSuffix}
+                <div className={styles.fileSize}>
+                    {fileSizeWithSuffix}
+                </div>
                 <Link
                     className={styles.link}
                     href={file}

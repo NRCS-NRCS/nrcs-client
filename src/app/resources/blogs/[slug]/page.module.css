@@ -3,6 +3,7 @@
     padding-bottom: var(--spacing-galactic);
     .section {
         .content {
+            gap: 0;
             padding-left: var(--spacing-galactic);
             padding-right: var(--spacing-galactic);
             @media (max-width: 768px) {
@@ -11,6 +12,27 @@
             .resourcesChildren {
                 gap: var(--spacing-medium);
             }
+        }
+
+        .articleHeader {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .title {
+                line-height: 1.2;
+                text-transform: capitalize;
+            }
+
+            .share {
+                margin-top: var(--spacing-small);
+            }
+        }
+
+        .articleFooterShare {
+            border-top: var(--width-separator-thin) solid var(--color-separator);
+            padding-top: var(--spacing-large);
+            width: 100%;
         }
     }
 }

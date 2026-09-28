@@ -1,0 +1,16 @@
+.backLink.backLink {
+    gap: var(--spacing-super-small);
+    padding-top: 0;
+    color: var(--color-text-neutral);
+    font-size: var(--font-size-extra-small);
+    letter-spacing: 0.08em;
+
+    &:hover {
+        color: var(--color-text-link);
+        text-decoration: none;
+    }
+
+    .backIcon {
+        flex-shrink: 0;
+    }
+}

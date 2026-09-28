@@ -11,15 +11,15 @@ import Heading from '#components/Heading';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Portal from '#components/Portal';
-import type { AllQueryQuery } from '#generated/types/graphql';
+import type { NewsQuery } from '#generated/types/graphql';
 import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<NonNullable<AllQueryQuery['highlights'][number]>>;
+type NewsItem = NonNullable<NonNullable<NewsQuery['news']['results']>[number]>;
 
 interface Props {
-    highlight: Highlight;
+    news: NewsItem;
 }
 
 const DESCRIPTION_MAX_LENGTH = 240;
@@ -32,7 +32,7 @@ function truncateDescription(description: string | null | undefined) {
     return `${plainText.slice(0, DESCRIPTION_MAX_LENGTH).trimEnd()}...`;
 }
 
-export default function HighlightPopup({ highlight }: Props) {
+export default function HighlightPopup({ news }: Props) {
     const [visible, setVisible] = useState(true);
     const [mounted, setMounted] = useState(false);
 
@@ -54,7 +54,7 @@ export default function HighlightPopup({ highlight }: Props) {
         return null;
     }
 
-    const description = truncateDescription(highlight.description);
+    const description = truncateDescription(news.content);
 
     return (
         <Portal>
@@ -71,7 +71,7 @@ export default function HighlightPopup({ highlight }: Props) {
                     className={styles.modal}
                     role="dialog"
                     aria-modal="true"
-                    aria-label={highlight.heading}
+                    aria-label={news.title}
                 >
                     <Button
                         name={undefined}
@@ -82,22 +82,22 @@ export default function HighlightPopup({ highlight }: Props) {
                     >
                         <IoClose />
                     </Button>
-                    {highlight.image?.url && (
+                    {news.coverImage?.url && (
                         <ImageWrapper
-                            src={highlight.image.url}
-                            alt={highlight.image.name ?? 'highlight image'}
+                            src={news.coverImage.url}
+                            alt={news.coverImage.name ?? 'news image'}
                             className={styles.image}
                             imageClassName={styles.imageInner}
                         />
                     )}
                     <div className={styles.content}>
-                        <Heading size="large">{highlight.heading}</Heading>
+                        <Heading size="large">{news.title}</Heading>
                         {description && (
                             <p className={styles.description}>{description}</p>
                         )}
                         <div className={styles.actions}>
                             <Link
-                                href={`/highlight/${highlight.id}`}
+                                href={`/resources/news-and-events/${news.slug}/`}
                                 variant="button"
                                 onClick={() => setVisible(false)}
                             >

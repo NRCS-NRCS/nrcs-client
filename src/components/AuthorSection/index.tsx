@@ -1,3 +1,4 @@
+import { IoCalendarOutline } from 'react-icons/io5';
 import {
     _cs,
     formatDateToString,
@@ -11,7 +12,8 @@ interface Props {
     author?: string;
     date?: string | null;
     articleLength: number | undefined;
-    authorClassName?: string
+    authorClassName?: string;
+    withDateIcon?: boolean;
 }
 
 export default function AuthorSection(props: Props) {
@@ -20,6 +22,7 @@ export default function AuthorSection(props: Props) {
         author,
         date,
         articleLength = 0, authorClassName,
+        withDateIcon,
     } = props;
 
     const minuteRead = Math.max(1, Math.ceil(articleLength / 5 / 200));
@@ -30,19 +33,23 @@ export default function AuthorSection(props: Props) {
     return (
         <div className={_cs(className, styles.authorSection)}>
             {author && (
-                <p className={_cs(authorClassName, styles.author)}>
-                    {author}
-                </p>
+                <>
+                    <p className={_cs(authorClassName, styles.author)}>
+                        {author}
+                    </p>
+                    <p className={styles.separator}>•</p>
+                </>
             )}
-            <div className={styles.rightContainer}>
-                <p className={styles.date}>
-                    {formattedDate}
-                </p>
-                <p>•</p>
-                <p className={styles.date}>
-                    {`${minuteRead} min read`}
-                </p>
-            </div>
+            {withDateIcon && (
+                <IoCalendarOutline className={styles.dateIcon} />
+            )}
+            <p className={styles.date}>
+                {formattedDate}
+            </p>
+            <p className={styles.separator}>•</p>
+            <p className={styles.date}>
+                {`${minuteRead} min read`}
+            </p>
         </div>
     );
 }

@@ -11,8 +11,7 @@ import {
 } from 'react-icons/io5';
 import { _cs } from '@togglecorp/fujs';
 
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
 
 import Button from '../Button';
@@ -21,14 +20,12 @@ import Section from '../Section';
 
 import styles from './styles.module.css';
 
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
-
 function RecentNews() {
     const [activeIndex, setActiveIndex] = useState(0);
     const [windowSize, setWindowSize] = useState(5);
     const tabsRef = useRef<HTMLDivElement>(null);
 
-    const news = [...(allData?.news ?? [])].slice(0, 10) as unknown as NewsType;
+    const news = [...(allData?.news.results ?? [])].slice(0, 10);
     useEffect(() => {
         const calculateWindowSize = () => {
             if (!tabsRef.current) return;
@@ -62,13 +59,11 @@ function RecentNews() {
             headingWithBackground
             childrenContainerClassName={styles.recentNewsChildrenContainer}
         >
-            <div
-                className={styles.navigation}
-            >
+            <div className={styles.navigation}>
                 <Button
                     name="prev"
                     variant="transparent"
-                    className={_cs(styles.tabButton, styles.chevron)}
+                    className={styles.chevron}
                     onClick={goPrev}
                     disabled={activeIndex === 0}
                 >
@@ -78,8 +73,6 @@ function RecentNews() {
                 <div className={styles.tabs} ref={tabsRef}>
                     {visibleNews.map((item, index) => {
                         const realIndex = windowStart + index;
-                        const isLastVisible = index === visibleNews.length - 1;
-                        const isActualLast = realIndex === news.length - 1;
                         return (
                             <Button
                                 key={item.id}
@@ -88,12 +81,13 @@ function RecentNews() {
                                 className={_cs(
                                     styles.tabButton,
                                     realIndex === activeIndex ? styles.activeTab : styles.tab,
-
                                 )}
                                 onClick={() => setActiveIndex(realIndex)}
+                                title={item.title}
                             >
-                                {item.title}
-                                {isLastVisible && !isActualLast ? '...' : ''}
+                                <span className={styles.tabLabel}>
+                                    {item.title}
+                                </span>
                             </Button>
                         );
                     })}
@@ -101,7 +95,7 @@ function RecentNews() {
                 <Button
                     name="next"
                     variant="transparent"
-                    className={_cs(styles.tabButton, styles.chevron)}
+                    className={styles.chevron}
                     onClick={goNext}
                     disabled={activeIndex === news.length - 1}
                 >
@@ -114,7 +108,7 @@ function RecentNews() {
                 description={news[activeIndex].content}
                 date={news[activeIndex].publishedDate}
                 image={news[activeIndex].coverImage?.url ?? defaultImage}
-                trimDescription={300}
+                descriptionClassName={styles.cardDescription}
                 link={`/resources/news-and-events/${news[activeIndex].slug}/`}
             />
         </Section>
