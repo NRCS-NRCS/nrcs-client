@@ -2,12 +2,9 @@ import type { StaticImageData } from 'next/image';
 
 import bisalKumarBhandari from '#public/cec/1-Dr-Bisal-Kumar-Bhandari.png';
 import rishiRamanKanal from '#public/cec/2-Rishi-Raman-Khanal.png';
-import premSagarKarmacharya from '#public/cec/3-Prem-Sagar-Karmachaya.jpg';
-import basantaKumarShrestha from '#public/cec/4-Basanta-Kumar-Shrestha.jpg';
 import abishmiNeupane from '#public/cec/5-Abishmi-Neupane.jpg';
 import puspaDas from '#public/cec/6-Puspa-Das.jpg';
 import premLama from '#public/cec/7-Prem-Lama.jpg';
-import mohammadAyatullaRahaman from '#public/cec/8-Mohammad-Ayatulla-Rahaman.jpg';
 import manjuSaudBohara from '#public/cec/9-Manju-Saud-Bohara.png';
 
 export interface CecMember {
@@ -41,15 +38,13 @@ export const cecLeader : CecLeader[] = [
         contact: '9851069244',
         photoUrl: rishiRamanKanal,
     },
-    // {
-    //     id: 'prem-sagar-karmacharya',
-    //     title: 'Treasurer General',
-    //     name: 'Mr. Prem Sagar Karmacharya',
-    //     email: 'premsagarkarmacharya164@gmail.com',
-    //     address: 'Kathmandu',
-    //     contact: '9851069338',
-    //     photoUrl: premSagarKarmacharya,
-    // },
+    {
+        id: 'kabindra-karki',
+        title: 'Treasurer General',
+        name: 'Mr. Kabindra Karki',
+        email: 'kabinkarki55555@gmail.com',
+        contact: '9851174594',
+    },
 ];
 
 export const staffLeader : CecLeader[] = [
@@ -63,14 +58,12 @@ export const staffLeader : CecLeader[] = [
 ];
 
 export const cecMember : CecMember[] = [
-    // {
-    //     id: 'basanta-kumar-shrestha',
-    //     name: 'Mr. Basanta Kumar Shrestha',
-    //     email: 'basanta18@gmail.com',
-    //     address: 'Bhojpur',
-    //     contact: '9851071111',
-    //     photoUrl: basantaKumarShrestha,
-    // },
+    {
+        id: 'sharada-kumar-neupane',
+        name: 'Mr. Sharada kumar Neupane',
+        email: 'neupanesaroj476@gmail.com',
+        contact: '9851032146',
+    },
     {
         id: 'abishmi-neupane',
         name: 'Ms. Abishmi Neupane',
@@ -95,14 +88,12 @@ export const cecMember : CecMember[] = [
         contact: '9851043592',
         photoUrl: premLama,
     },
-    // {
-    //     id: 'mohammad-ayatulla-rahaman',
-    //     name: 'Mr. Mohammad Ayatulla Rahaman',
-    //     email: 'mdayatulla2012@gmail.com',
-    //     address: 'Surkhet',
-    //     contact: '9849667159',
-    //     photoUrl: mohammadAyatullaRahaman,
-    // },
+    {
+        id: 'bicky-kumar-sarraf',
+        name: 'Bicky kumar Sarraf',
+        email: 'bickysarraf08@gmail.com',
+        contact: '9809161010',
+    },
     {
         id: 'manju-saud-bohara',
         name: 'Ms. Manju Saud Bohara',
