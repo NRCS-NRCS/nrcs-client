@@ -1,14 +1,13 @@
-import { isDefined } from '@togglecorp/fujs';
+import { formatDateToString } from '@togglecorp/fujs';
 import { notFound } from 'next/navigation';
 
-import ArticleBody from '#components/ArticleBody';
-import DownloadTemplate from '#components/DownloadTemplate';
-import Heading from '#components/Heading';
+import AnnouncementDetail, { type MetaItem } from '#components/AnnouncementDetail';
 import Page from '#components/Page';
-import Section from '#components/Section';
 import allData from '#lib/staticData';
 
 import styles from './page.module.css';
+
+const contactEmail = 'nrcs@nrcs.org';
 
 /* eslint-disable react-refresh/only-export-components */
 export async function generateStaticParams() {
@@ -47,33 +46,37 @@ export default async function VacancyDetailPage({ params }: PageProps) {
         return notFound();
     }
 
+    const metaItems: MetaItem[] = [
+        {
+            label: 'Expiry date',
+            value: formatDateToString(new Date(vacancyDetails.expiryDate), 'MMM dd, yyyy'),
+        },
+        ...(vacancyDetails.position ? [{
+            label: 'Position',
+            value: vacancyDetails.position,
+        }] : []),
+        ...(vacancyDetails.numberOfVacancies > 0 ? [{
+            label: 'No. of vacancies',
+            value: vacancyDetails.numberOfVacancies,
+        }] : []),
+        {
+            label: 'Apply to',
+            value: contactEmail,
+            link: `mailto:${contactEmail}`,
+        },
+    ];
+
     return (
         <Page contentClassName={styles.vacancyDetails}>
-            <Section
-                heading={vacancyDetails?.title}
-            >
-                <Heading
-                    className={styles.heading}
-                    size="small"
-                    font="normal"
-                >
-                    Published on &nbsp;
-                    {/* // TODO: Add published date */}
-                </Heading>
-            </Section>
-            <Section>
-                <ArticleBody
-                    content={vacancyDetails?.description}
-                />
-                {isDefined(vacancyDetails.file) && (
-                    <DownloadTemplate
-                        title={vacancyDetails.file.name}
-                        file={vacancyDetails.file.url}
-                        fileSize={vacancyDetails.file.size}
-                        isExternalLink
-                    />
-                )}
-            </Section>
+            <AnnouncementDetail
+                backLink="/get-involved/vacancies/"
+                backLabel="All vacancies"
+                title={vacancyDetails.title}
+                metaItems={metaItems}
+                description={vacancyDetails.description}
+                attachmentHeading="Announcement"
+                attachment={vacancyDetails.file}
+            />
         </Page>
     );
 }

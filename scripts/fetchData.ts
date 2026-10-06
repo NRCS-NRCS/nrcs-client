@@ -3,11 +3,16 @@ import { gql, GraphQLClient } from 'graphql-request';
 import path from 'path';
 
 const datadir = path.join(__dirname, '../data');
-const GRAPHQL_ENDPOINT =
-    process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN || 'http://localhost:8000/graphql/';
+const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_DOMAIN;
 const pipelineType = process.env.PIPELINE_TYPE;
 
-const client = new GraphQLClient(GRAPHQL_ENDPOINT);
+if (pipelineType !== 'ci' && !GRAPHQL_ENDPOINT) {
+    throw new Error(
+        'NEXT_PUBLIC_GRAPHQL_DOMAIN is not set. Define it in .env or the environment before running the build.',
+    );
+}
+
+const client = new GraphQLClient(GRAPHQL_ENDPOINT ?? '');
 
 const PAGE_SIZE = 1000;
 
@@ -84,10 +89,22 @@ const newsQuery = gql`
                 publishedDate
                 slug
                 title
-                file {
-                    name
-                    url
-                    size
+                attachments {
+                    id
+                    order
+                    label
+                    file {
+                        name
+                        url
+                        size
+                    }
+                }
+                keyStats {
+                    id
+                    order
+                    title
+                    stat
+                    featured
                 }
                 coverImage {
                     url
@@ -98,6 +115,7 @@ const newsQuery = gql`
                     url
                 }
                 isHighlighted
+                showInPopup
             }
             totalCount    
         }
@@ -106,8 +124,11 @@ const newsQuery = gql`
 
 
 const jobVacanciesQuery = gql`
-    query JobVacancies($pagination: OffsetPaginationInput) {
-        jobVacancies(pagination: $pagination) {
+    query JobVacancies($pagination: OffsetPaginationInput, $today: Date!) {
+        jobVacancies(
+            pagination: $pagination
+            filters: { expiryDate: { gte: $today } }
+        ) {
             results {
                 isArchived
                 id
@@ -131,14 +152,16 @@ const jobVacanciesQuery = gql`
 
 const blogsQuery = gql`
     query Blogs($pagination: OffsetPaginationInput) {
-        blogs(pagination: $pagination) {
+        blogs(
+            pagination: $pagination
+            filters: { status: PUBLISHED }
+        ) {
             results {
                 title
                 status
                 slug
                 publishedDate
                 id
-                featured
                 content
                 author
                 coverImage {
@@ -186,8 +209,11 @@ const partnersQuery = gql`
 `;
 
 const procurementsQuery = gql`
-    query Procurements($pagination: OffsetPaginationInput) {
-        procurements(pagination: $pagination) {
+    query Procurements($pagination: OffsetPaginationInput, $today: Date!) {
+        procurements(
+            pagination: $pagination
+            filters: { expiryDate: { gte: $today } }
+        ) {
             results {
                 title
                 publishedDate
@@ -318,6 +344,7 @@ const cecMembersQuery = gql`
 async function fetchAllPages(
     query: string,
     key: string,
+    extraVariables: Record<string, unknown> = {},
 ) {
     let offset = 0;
     let allResults: any[] = [];
@@ -325,6 +352,7 @@ async function fetchAllPages(
 
     while (true) {
         const variables = {
+            ...extraVariables,
             pagination: {
                 limit: PAGE_SIZE,
                 offset,
@@ -341,10 +369,6 @@ async function fetchAllPages(
 
         allResults = [...allResults, ...results];
 
-        console.log(
-            `${key}: fetched ${results.length} items (offset ${offset}, total ${totalCount})`,
-        );
-
         offset += PAGE_SIZE;
 
         if (offset >= totalCount) {
@@ -357,12 +381,9 @@ async function fetchAllPages(
 
 
 async function fetchAndWriteData() {
-    console.log('Fetching data from GraphQL endpoint from ', GRAPHQL_ENDPOINT);
-
     const data: Record<string, any> = { ...dummyData };
 
     if (pipelineType !== 'ci') {
-        console.log('-----------------------------------------------------------');
         // Define the queries mapping
         const queriesMap: Record<string, string> = {
             strategicDirectives: strategicDirectivesQuery,
@@ -380,8 +401,13 @@ async function fetchAndWriteData() {
             cecMembers: cecMembersQuery,
         };
         // fetch each query in parallel
+        const today = new Date().toISOString().slice(0, 10);
+        const variablesMap: Record<string, Record<string, unknown>> = {
+            jobVacancies: { today },
+            procurements: { today },
+        };
         const promises = Object.entries(queriesMap).map(async ([key, query]) => {
-            const results = await fetchAllPages(query, key);
+            const results = await fetchAllPages(query, key, variablesMap[key]);
             return [key, results] as const;
         });
 
@@ -392,7 +418,6 @@ async function fetchAndWriteData() {
         for (const [key, results] of entries) {
             data[key] = results;
         }
-        console.log('-----------------------------------------------------------');
     }
 
     // ensure the `data` directory exists
@@ -401,9 +426,6 @@ async function fetchAndWriteData() {
     }
     const outputPath = path.join(__dirname, '../data/staticData.json');
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2));
-
-    console.log(`Data written to ${outputPath}`);
-    console.log(`Top-level keys: ${Object.keys(data ?? {}).join(', ')}`);
 }
 
 fetchAndWriteData();

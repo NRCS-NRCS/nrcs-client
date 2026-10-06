@@ -13,6 +13,7 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import { iconSize } from '#lib/common';
 import allData from '#lib/staticData';
 import bannerImg from '#public/nrcs_building.jpg';
 
@@ -153,35 +154,35 @@ export default async function Contact() {
                                 href="https://www.instagram.com/nrcsnepal2020"
                                 className={styles.icon}
                             >
-                                <IoLogoInstagram />
+                                <IoLogoInstagram size={iconSize.medium} />
                             </Link>
                             <Link
                                 // TODO: Fix this link
                                 href="https://www.facebook.com/nrcsnepal2020"
                                 className={styles.icon}
                             >
-                                <IoLogoFacebook />
+                                <IoLogoFacebook size={iconSize.medium} />
                             </Link>
                             <Link
                                 // TODO: Fix this link
                                 href="https://www.youtube.com/@nrcs.nepal"
                                 className={styles.icon}
                             >
-                                <IoLogoYoutube />
+                                <IoLogoYoutube size={iconSize.medium} />
                             </Link>
                             <Link
                                 // TODO: Fix this link
                                 href="https://www.linkedin.com/company/citizenship-affected-people-s-network-nepal"
                                 className={styles.icon}
                             >
-                                <IoLogoLinkedin />
+                                <IoLogoLinkedin size={iconSize.medium} />
                             </Link>
                             <Link
                                 // TODO: Fix this link
                                 href="https://twitter.com"
                                 className={styles.icon}
                             >
-                                <RiTwitterXFill />
+                                <RiTwitterXFill size={iconSize.medium} />
                             </Link>
                         </div>
                     </div>

@@ -24,6 +24,8 @@ const sizeToStyleMap: {
 
 interface Props {
     className?: string;
+    valueClassName?: string;
+    labelClassName?: string;
     label: string;
     subLabel?: string;
     value: number | undefined | null;
@@ -38,6 +40,8 @@ interface Props {
 function KeyStat(props: Props) {
     const {
         className,
+        valueClassName,
+        labelClassName,
         label,
         subLabel,
         value,
@@ -65,14 +69,14 @@ function KeyStat(props: Props) {
             )}
         >
             <Numeral
-                className={styles.value}
+                className={_cs(styles.value, valueClassName)}
                 value={counterValue}
                 placeholder="N/A"
                 abbreviate={abbreviated}
                 prefix={prefix}
                 suffix={suffix}
             />
-            <div className={styles.label}>
+            <div className={_cs(styles.label, labelClassName)}>
                 {label}
             </div>
             {subLabel && (

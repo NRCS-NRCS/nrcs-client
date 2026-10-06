@@ -49,19 +49,19 @@ export default async function Home() {
     const reports = allReports.slice(0, 4) || [];
 
     const highlights = allHighlights.filter(
-        (data) => data?.isActive,
+        (data) => data.isHighlighted,
     );
 
-    const popupHighlight = highlights.find(
-        (data) => data?.showInPopup,
+    const popupNews = highlights.find(
+        (data) => data.showInPopup,
     );
 
     return (
         <Page contentClassName={styles.page}>
-            {popupHighlight && (
-                <HighlightPopup highlight={popupHighlight} />
+            {popupNews && (
+                <HighlightPopup news={popupNews} />
             )}
-            <Highlights highlights={highlights ?? []} />
+            <Highlights news={highlights} />
             <Section
                 className={styles.introduction}
                 contentClassName={styles.introductionContent}
@@ -164,7 +164,6 @@ export default async function Home() {
             >
                 <RecentNewsCard
                     description={nrcsPlanDescription}
-                    trimDescription={1000}
                     image={developmentPlanImage}
                     linkLabel="Download PDF"
                     link="https://drive.google.com/file/d/1XYPHwa5oMHtpCM0TatQJQcus5FNjG5wU/view"

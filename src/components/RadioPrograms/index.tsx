@@ -66,7 +66,8 @@ export default function RadioPrograms(props: Props) {
             >
                 {radioRedCrossList.length <= 0 ? (
                     <EmptyMessage
-                        message="No radio programs available"
+                        title="No episodes yet"
+                        description="Episodes of this program will appear here once they are published."
                     />
                 ) : radioRedCrossList.map((item) => (
                     isDefined(item.audioFile)
@@ -80,7 +81,8 @@ export default function RadioPrograms(props: Props) {
             >
                 {togetherForHumanityList.length <= 0 ? (
                     <EmptyMessage
-                        message="No radio programs available"
+                        title="No episodes yet"
+                        description="Episodes of this program will appear here once they are published."
                     />
                 ) : togetherForHumanityList.map((item) => (
                     isDefined(item.audioFile)

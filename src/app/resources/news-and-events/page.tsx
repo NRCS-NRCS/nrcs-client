@@ -43,13 +43,19 @@ function NewsAndEventsPage() {
             <Section
                 heading="News and Events"
                 headingWithBackground
+                withoutChildrenGap
                 searchField="title"
                 searchValue={search}
                 handleSearchChange={setSearch}
             >
                 {newsList.length <= 0 ? (
                     <EmptyMessage
-                        message="No news or events available"
+                        title={debouncedSearchText
+                            ? `No results for “${debouncedSearchText}”`
+                            : 'No news or events yet'}
+                        description={debouncedSearchText
+                            ? "We couldn't find any news or events matching your search. Try a different keyword."
+                            : 'Notices, updates and event announcements will appear here once they are published.'}
                     />
                 ) : paginateData.map((news) => (
                     <ArticleCard

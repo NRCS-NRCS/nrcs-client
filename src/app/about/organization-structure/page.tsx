@@ -15,6 +15,7 @@ import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import { iconSize } from '#lib/common';
 import allData, { type StaticData } from '#lib/staticData';
 import adminStructure from '#public/administrative-structure.jpg';
 import organizationStructure from '#public/organizational-structure.jpg';
@@ -53,7 +54,7 @@ function CecMemberCard(props: Props) {
             )}
             {isNotDefined(photoUrl) && (
                 <div className={_cs(styles.image, styles.imageFallback)}>
-                    <IoPersonOutline />
+                    <IoPersonOutline size={iconSize.extraLarge} />
                 </div>
             )}
 
@@ -68,19 +69,19 @@ function CecMemberCard(props: Props) {
                         target="_blank"
                         className={_cs(styles.memberName, styles.link)}
                     >
-                        <IoMailOutline />
+                        <IoMailOutline size={iconSize.medium} />
                         {addr}
                     </Link>
                 ))}
                 {address && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
-                        <IoLocationOutline />
+                        <IoLocationOutline size={iconSize.medium} />
                         {address}
                     </Heading>
                 )}
                 {contactNumber && (
                     <Heading font="normal" size="extraSmall" className={styles.memberName}>
-                        <IoCallOutline />
+                        <IoCallOutline size={iconSize.medium} />
                         {contactNumber}
                     </Heading>
                 )}
@@ -150,7 +151,7 @@ export default function AboutUs() {
                 <Section
                     childrenContainerClassName={styles.adminStructure}
                 >
-                    <div className={styles.cecList}>
+                    <div className={_cs(styles.cecList, styles.staffList)}>
                         {staff.map((leader) => (
                             <div key={leader.id} className={styles.leadership}>
                                 <Heading

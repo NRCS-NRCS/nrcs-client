@@ -7,6 +7,7 @@ import Heading from '#components/Heading';
 import Link from '#components/Link';
 import Page from '#components/Page';
 import Section from '#components/Section';
+import { iconSize } from '#lib/common';
 
 import styles from './page.module.css';
 
@@ -85,7 +86,7 @@ export default function Volunteer() {
                         >
                             Fill out the online form
                             &nbsp;
-                            <HiOutlineArrowTopRightOnSquare />
+                            <HiOutlineArrowTopRightOnSquare size={iconSize.medium} />
                         </Link>
                     )}
                     <Link
@@ -97,7 +98,7 @@ export default function Volunteer() {
                     >
                         Fill out the form in Nepali
                         &nbsp;
-                        <IoDownload />
+                        <IoDownload size={iconSize.medium} />
                     </Link>
                     {/* NOTE: Remove as requested, need to add once the new form is ready */}
                     {/* <Link
@@ -109,7 +110,7 @@ export default function Volunteer() {
                     >
                         Fill out the form in English
                         &nbsp;
-                        <IoDownload />
+                        <IoDownload  size={iconSize.medium} />
                     </Link> */}
                 </div>
             </Section>

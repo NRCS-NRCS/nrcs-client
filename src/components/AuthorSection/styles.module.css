@@ -1,15 +1,23 @@
 .authorSection {
-    font-size: var(--font-size-medium);
-    color: var(--color-text);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-super-small);
+    color: var(--color-text-neutral);
+    font-size: var(--font-size-small);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+
     .author {
         font-weight: var(--font-weight-medium);
-        font-size: var(--font-size-large);
-        margin-bottom: var(--spacing-super-small);
+        text-transform: capitalize;
     }
 
-    .rightContainer {
-        display: flex;
-        gap: var(--spacing-super-small);
-        font-size: var(--font-size-small);
+    .separator {
+        opacity: 0.6;
+    }
+
+    .dateIcon {
+        flex-shrink: 0;
     }
 }
