@@ -13,13 +13,10 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
-
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 function PoliciesAndGuidelinesPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +27,7 @@ function PoliciesAndGuidelinesPage() {
     const pageSize = 5;
 
     const allResources = useMemo(
-        () => (allData.resources as unknown as ReportType)
+        () => (allData?.resources?.results ?? [])
             .filter((resource) => resource.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

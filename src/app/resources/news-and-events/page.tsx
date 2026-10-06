@@ -12,13 +12,10 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
-
-type NewsType = NonNullable<NonNullable<AllQueryQuery['news']>>;
 
 function NewsAndEventsPage() {
     const [search, setSearch] = useState<string>('');
@@ -29,7 +26,7 @@ function NewsAndEventsPage() {
     const pageSize = 5;
 
     const newsList = useMemo(
-        () => (allData.news as unknown as NewsType)
+        () => (allData.news.results ?? [])
             .filter((news) => news.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],

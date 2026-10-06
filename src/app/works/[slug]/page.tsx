@@ -9,19 +9,16 @@ import MajorResponsibilityCard from '#components/MajorResponsibilityCard';
 import Page from '#components/Page';
 import Section from '#components/Section';
 import WorkCard from '#components/WorkCard';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import { type DepartmentsQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
 
-type DepartmentType = NonNullable<NonNullable<AllQueryQuery['departments']>>;
-type ProjectType = NonNullable<NonNullable<AllQueryQuery['projects']>>;
-type ResourceType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
-type StrategicDirectivesType = NonNullable<NonNullable<AllQueryQuery['strategicDirectives']>>;
+type DepartmentType = NonNullable<NonNullable<DepartmentsQuery['departments']>['results'][number]>;
 
 // eslint-disable-next-line react-refresh/only-export-components
 export async function generateStaticParams() {
-    const data: StrategicDirectivesType = allData.strategicDirectives;
+    const data = allData.strategicDirectives.results ?? [];
     if (!data || data.length === 0) {
         // eslint-disable-next-line no-console
         console.warn('No works found in GraphQL response');
@@ -37,20 +34,20 @@ export default async function WorkDetailPage(
     { params }: { params: Promise<{ slug: string }> },
 ) {
     const { slug } = await params;
-    const directivesFromQuery: StrategicDirectivesType = allData.strategicDirectives;
-    const directive = directivesFromQuery.find((d: { slug: string }) => d.slug === slug);
-    const projectsData = allData.projects as unknown as ProjectType;
-    const resourcesData = allData.resources as unknown as ResourceType;
-    const departmentData = allData.departments as unknown as DepartmentType;
+    const directivesFromQuery = allData.strategicDirectives.results ?? [];
+    const directive = directivesFromQuery.find((d) => d.slug === slug);
+    const projectsData = allData.projects.results ?? [];
+    const resourcesData = allData.resources.results ?? [];
+    const departmentData = allData.departments.results ?? [];
     const departmentProjectsData = projectsData.filter(
-        (data) => data?.department?.strategicDirective.id === directive?.id,
+        (data) => data?.department?.strategicDirective?.id === directive?.id,
     );
 
     const resourcesForDirective = resourcesData.filter(
-        (data) => data?.directive?.pk === directive?.id,
+        (data) => data?.directiveId === directive?.id,
     );
 
-    const projectsForDepartmentRenderer = (dept: DepartmentType[number]) => {
+    const projectsForDepartmentRenderer = (dept: DepartmentType) => {
         if (!dept) {
             return undefined;
         }
@@ -98,8 +95,8 @@ export default async function WorkDetailPage(
         );
     };
 
-    const departmentsForDirective: DepartmentType = departmentData
-        ?.filter((dept) => dept.strategicDirective.id === directive?.id)
+    const departmentsForDirective = departmentData
+        ?.filter((dept) => dept?.strategicDirective?.id === directive?.id)
         ?.map((dept) => ({
             ...dept,
             children: projectsForDepartmentRenderer(dept),

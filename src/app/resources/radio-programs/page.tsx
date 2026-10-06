@@ -14,14 +14,11 @@ import Heading from '#components/Heading';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 
 import styles from './page.module.css';
-
-type RadioType = NonNullable<AllQueryQuery['radioProgram']>
 
 function RadioProgramsPage() {
     const [search, setSearch] = useState<string>('');
@@ -32,7 +29,7 @@ function RadioProgramsPage() {
     const pageSize = 5;
 
     const radioProgramData = useMemo(
-        () => (allData.radioProgram as RadioType)
+        () => (allData.radioProgram.results ?? [])
             .filter((radio) => radio.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
@@ -41,7 +38,7 @@ function RadioProgramsPage() {
         radioProgramData,
         Number(currentPage),
         pageSize,
-    ) as unknown as RadioType;
+    );
 
     const radioProgramDescriptions = 'Weekly radio programs run by NRCS speak on current events in an interesting and easy-to-understand way. You will hear the latest on the daily risks, good practices, household skills, Red Cross news and experiences from different communities all around Nepal.\n \n Radio episodes reach thousands of people throughout the country.';
 

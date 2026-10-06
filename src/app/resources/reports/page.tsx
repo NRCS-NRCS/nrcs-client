@@ -12,15 +12,12 @@ import ArticleCard from '#components/ArticleCard';
 import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
 
 import Pager from '@/components/Pager';
 import useDebouncedValue from '@/hooks/useDebouncedValue';
 import paginate from '@/lib/paginate';
-
-type ReportType = NonNullable<NonNullable<AllQueryQuery['resources']>>;
 
 function ReportsPage() {
     const [search, setSearch] = useState<string>('');
@@ -32,7 +29,7 @@ function ReportsPage() {
     const pageSize = 5;
 
     const allResources = useMemo(
-        () => (allData.resources as unknown as ReportType)
+        () => (allData.resources.results ?? [])
             .filter((resource) => resource.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
