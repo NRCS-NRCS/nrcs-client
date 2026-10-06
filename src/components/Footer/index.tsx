@@ -17,6 +17,7 @@ import { _cs } from '@togglecorp/fujs';
 import Heading from '#components/Heading';
 import Image from '#components/ImageWrapper';
 import Link from '#components/Link';
+import { iconSize } from '#lib/common';
 import logo from '#public/wide-logo.jpg';
 
 import styles from './styles.module.css';
@@ -54,28 +55,28 @@ export default function Footer(props: Props) {
                             className={styles.icon}
                             target="_blank"
                         >
-                            <IoLogoFacebook />
+                            <IoLogoFacebook size={iconSize.medium} />
                         </Link>
                         <Link
                             href="https://www.youtube.com/channel/UCwA1CYDYvIH7KaRBpYy50ow"
                             className={styles.icon}
                             target="_blank"
                         >
-                            <IoLogoYoutube />
+                            <IoLogoYoutube size={iconSize.medium} />
                         </Link>
                         <Link
                             href="https://x.com/NepalRedCross"
                             className={styles.icon}
                             target="_blank"
                         >
-                            <RiTwitterXFill />
+                            <RiTwitterXFill size={iconSize.medium} />
                         </Link>
                         <Link
                             href="https://www.tiktok.com/@nepalredcross1130"
                             className={styles.icon}
                             target="_blank"
                         >
-                            <RiTiktokFill />
+                            <RiTiktokFill size={iconSize.medium} />
                         </Link>
                     </div>
                     <Link
@@ -129,7 +130,7 @@ export default function Footer(props: Props) {
                     </Heading>
                     <div className={styles.links}>
                         <div className={styles.phoneNumbers}>
-                            <FaPhone />
+                            <FaPhone size={iconSize.medium} />
                             <Link
                                 className={styles.link}
                                 href="tel:+977-1-5370650"
@@ -145,7 +146,7 @@ export default function Footer(props: Props) {
                             </Link>
                         </div>
                         <div className={styles.link}>
-                            <IoMail />
+                            <IoMail size={iconSize.medium} />
                             <div className={styles.inline}>
                                 <Link
                                     href="mailto:info@nrcs.org"
@@ -165,7 +166,7 @@ export default function Footer(props: Props) {
                         <div
                             className={styles.link}
                         >
-                            <IoLocationSharp />
+                            <IoLocationSharp size={iconSize.medium} />
                             <span>
                                 Redcross Marg, Kalimati
                             </span>
@@ -173,7 +174,7 @@ export default function Footer(props: Props) {
                         <div
                             className={styles.link}
                         >
-                            <RiPrinterFill />
+                            <RiPrinterFill size={iconSize.medium} />
                             <span>
                                 Post Box No: 217
                             </span>
@@ -181,7 +182,7 @@ export default function Footer(props: Props) {
                         <div
                             className={styles.link}
                         >
-                            <PiMailboxFill />
+                            <PiMailboxFill size={iconSize.medium} />
                             <span>
                                 Fax: +977-4271915, 4273285
                             </span>

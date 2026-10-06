@@ -17,6 +17,7 @@ interface Props {
     headingClassName?: string;
     headingSize?: SizeTypes;
     headingWithBackground?: boolean;
+    withoutChildrenGap?: boolean;
     skipAnimation?: boolean;
     children: React.ReactNode;
     className?: string;
@@ -33,6 +34,7 @@ export default function Section(props: Props) {
         heading,
         headingClassName,
         headingWithBackground,
+        withoutChildrenGap,
         headingSize = 'extraLarge',
         children,
         contentClassName,
@@ -84,29 +86,36 @@ export default function Section(props: Props) {
             <div
                 className={_cs(contentClassName, styles.content)}
             >
-                <div className={styles.headingSection}>
-                    {heading && (
-                        <Heading
-                            className={_cs(headingClassName, styles.heading)}
-                            size={headingSize}
-                            withBackground={headingWithBackground}
-                        >
-                            {heading}
-                        </Heading>
-                    )}
-                    {searchField && (
-                        <TextInput
-                            name={String(searchField)}
-                            className={styles.searchInput}
-                            type="text"
-                            value={searchValue ?? ''}
-                            onChange={handleSearch}
-                            placeholder={`Search by ${String(searchField)}...`}
-                        />
-                    )}
-                </div>
+                {(heading || searchField) && (
+                    <div className={styles.headingSection}>
+                        {heading && (
+                            <Heading
+                                className={_cs(headingClassName, styles.heading)}
+                                size={headingSize}
+                                withBackground={headingWithBackground}
+                            >
+                                {heading}
+                            </Heading>
+                        )}
+                        {searchField && (
+                            <TextInput
+                                name={String(searchField)}
+                                className={styles.searchInput}
+                                type="text"
+                                value={searchValue ?? ''}
+                                onChange={handleSearch}
+                                placeholder={`Search by ${String(searchField)}...`}
+                            />
+                        )}
+                    </div>
+                )}
+
                 <div
-                    className={_cs(childrenContainerClassName, styles.childrenContainer)}
+                    className={_cs(
+                        childrenContainerClassName,
+                        styles.childrenContainer,
+                        withoutChildrenGap && styles.withoutGap,
+                    )}
                 >
                     {children}
                 </div>

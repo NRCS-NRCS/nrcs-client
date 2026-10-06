@@ -17,28 +17,51 @@
 
     .rightContent {
         display: flex;
+        flex: 1;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-medium);
+        min-width: 0;
 
         .dateContainer {
             display: flex;
-            gap: var(--spacing-tiny);
             flex-shrink: 0;
+            align-items: center;
+            gap: var(--spacing-super-small);
             z-index: 10;
+            color: var(--color-text-neutral);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: var(--font-size-small);
+
+            .dateIcon {
+                flex-shrink: 0;
+            }
         }
 
         .title {
             position: relative;
             flex-shrink: 0;
+            max-width: 42rem;
             color: var(--color-text-on-dark);
+            line-height: 1.3;
+            text-transform: capitalize;
+
+            .titleLabel {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                max-height: calc(2 * 1.3em);
+                overflow: hidden;
+                overflow-wrap: break-word;
+            }
         }
 
         .description {
             position: relative;
-            max-width: 42rem;
             flex-shrink: 0;
-            line-height: 1.5;
+            max-width: 42rem;
+            line-height: 1.6;
         }
     }
 

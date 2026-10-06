@@ -34,7 +34,6 @@
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
         padding: var(--spacing-extra-small);
         color: #ffffff;
-        font-size: var(--font-size-large);
         line-height: 1;
         cursor: pointer;
 

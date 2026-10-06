@@ -14,6 +14,8 @@ import {
     useSearchParams,
 } from 'next/navigation';
 
+import { iconSize } from '#lib/common';
+
 import Button from '../Button';
 
 import styles from './styles.module.css';
@@ -66,7 +68,7 @@ export default function Pager({
                     disabled={currentPage <= 1}
                     className={styles.pagerBtn}
                 >
-                    <IoChevronBack size={18} />
+                    <IoChevronBack size={iconSize.large} />
                 </Button>
 
                 {pages.map((p) => (
@@ -88,7 +90,7 @@ export default function Pager({
                     disabled={currentPage >= totalPages}
                     className={styles.pagerBtn}
                 >
-                    <IoChevronForward size={18} />
+                    <IoChevronForward size={iconSize.large} />
                 </Button>
             </div>
         )
