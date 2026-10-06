@@ -15,10 +15,10 @@ import { stripMarkdown } from '#lib/common';
 
 import styles from './styles.module.css';
 
-type Highlight = NonNullable<NonNullable<HighlightsQuery['highlights']['results'][number]>>;
+type newsItems = NonNullable<NonNullable<NewsQuery['news']['results'][number]>>;
 
 interface Props {
-    highlights: Highlight[];
+    news: newsItems[];
 }
 const SWIPE_THRESHOLD = 60;
 const DESCRIPTION_MAX_LENGTH = 200;
