@@ -19,6 +19,7 @@ import { usePathname } from 'next/navigation';
 import Button from '#components/Button';
 import ImageWrapper from '#components/ImageWrapper';
 import Link from '#components/Link';
+import { iconSize } from '#lib/common';
 import logo from '#public/wide-logo.jpg';
 
 import PopupButton from '../PopupButton';
@@ -36,6 +37,7 @@ interface ILink {
     link: string
     order: number
     children?: children[]
+    relatedLinks?: string[]
 }
 
 const donateLink = process.env.NEXT_PUBLIC_DONATION_URL ?? '';
@@ -145,12 +147,20 @@ export default function Navbar(props: Props) {
                 link: '/works',
                 order: 2,
                 children: works,
+                relatedLinks: ['/projects'],
             },
         ];
         return newVal.sort((a, b) => a.order - b.order);
     }, [works]);
 
     const pathname = usePathname();
+
+    const isSectionActive = useCallback((item: ILink) => (
+        [item.link, ...(item.relatedLinks ?? [])].some((link) => {
+            const prefix = link.endsWith('/') ? link : `${link}/`;
+            return `${pathname}/`.startsWith(prefix);
+        })
+    ), [pathname]);
 
     const [isNavShown, setNavShown] = useState(false);
 
@@ -209,7 +219,7 @@ export default function Navbar(props: Props) {
                                 NRCS Hotline
                             </span>
                             <span className={styles.hotline}>
-                                <MdLocalPhone />
+                                <MdLocalPhone size={iconSize.medium} />
                                 &nbsp;
                                 1130
                             </span>
@@ -220,50 +230,53 @@ export default function Navbar(props: Props) {
                             variant="transparent"
                             onClick={handleNavToggle}
                         >
-                            <MdMenu />
+                            <MdMenu size={iconSize.extraLarge} />
                         </Button>
                     </div>
                 </div>
             </div>
-            <div className={styles.lowerContent}>
-                <div className={_cs(isNavShown && styles.navShown, styles.links)}>
-                    {finalPaths?.map((item) => (item.children ? (
-                        <PopupButton
-                            name={undefined}
-                            key={item.link}
-                            persistent={false}
-                            label={item.label}
-                        >
-                            {item.children.map((child) => {
-                                const isExternal = !!child.externalLink;
-                                const href = isExternal ? child.externalLink! : `${item.link}${child.link}`;
-                                const active = !isExternal && pathname === `${item.link}${child.link}`;
-                                return (
-                                    <Link
-                                        key={isExternal ? child.externalLink : child.link}
-                                        className={styles.popupLink}
-                                        variant="navigation"
-                                        href={href}
-                                        target={isExternal ? '_blank' : undefined}
-                                        rel={isExternal ? 'noopener noreferrer' : undefined}
-                                        active={active}
-                                    >
-                                        {child.label}
-                                    </Link>
-                                );
-                            })}
-                        </PopupButton>
-                    ) : (
-                        <Link
-                            className={styles.link}
-                            key={item.link}
-                            href={item.link}
-                            variant="navigation"
-                            active={pathname === item.link}
-                        >
-                            {item.label}
-                        </Link>
-                    )))}
+            <div className={styles.lowerContainer}>
+                <div className={styles.lowerContent}>
+                    <div className={_cs(isNavShown && styles.navShown, styles.links)}>
+                        {finalPaths?.map((item) => (item.children ? (
+                            <PopupButton
+                                name={undefined}
+                                key={item.link}
+                                persistent={false}
+                                label={item.label}
+                                active={isSectionActive(item)}
+                            >
+                                {item.children.map((child) => {
+                                    const isExternal = !!child.externalLink;
+                                    const href = isExternal ? child.externalLink! : `${item.link}${child.link}`;
+                                    const active = !isExternal && pathname === `${item.link}${child.link}`;
+                                    return (
+                                        <Link
+                                            key={isExternal ? child.externalLink : child.link}
+                                            className={styles.popupLink}
+                                            variant="navigation"
+                                            href={href}
+                                            target={isExternal ? '_blank' : undefined}
+                                            rel={isExternal ? 'noopener noreferrer' : undefined}
+                                            active={active}
+                                        >
+                                            {child.label}
+                                        </Link>
+                                    );
+                                })}
+                            </PopupButton>
+                        ) : (
+                            <Link
+                                className={styles.link}
+                                key={item.link}
+                                href={item.link}
+                                variant="navigation"
+                                active={isSectionActive(item)}
+                            >
+                                {item.label}
+                            </Link>
+                        )))}
+                    </div>
                 </div>
             </div>
             <div className={_cs(isNavShown && styles.navShown, styles.drawer)}>
@@ -276,14 +289,23 @@ export default function Navbar(props: Props) {
                             onClick={toggleItem}
                         >
                             <span
-                                className={styles.drawerLinkHeaderLabel}
+                                className={_cs(
+                                    styles.drawerLinkHeaderLabel,
+                                    isSectionActive(item) && styles.active,
+                                )}
                             >
                                 {item.label}
                             </span>
                             {openItems.includes(item.link) ? (
-                                <IoChevronUpOutline className={styles.drawerLinkHeaderButton} />
+                                <IoChevronUpOutline
+                                    className={styles.drawerLinkHeaderButton}
+                                    size={iconSize.medium}
+                                />
                             ) : (
-                                <IoChevronDownOutline className={styles.drawerLinkHeaderButton} />
+                                <IoChevronDownOutline
+                                    className={styles.drawerLinkHeaderButton}
+                                    size={iconSize.medium}
+                                />
                             )}
                         </Button>
                         {openItems.includes(item.link) && item.children.map((child) => {
@@ -311,7 +333,7 @@ export default function Navbar(props: Props) {
                         href={item.link}
                         className={styles.link}
                         variant="navigation"
-                        active={pathname === item.link}
+                        active={isSectionActive(item)}
                     >
                         {item.label}
                     </Link>

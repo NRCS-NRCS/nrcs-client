@@ -1,10 +1,10 @@
 .downloadTemplate {
     display: flex;
-    padding: var(--spacing-medium) var(--spacing-large);
+    padding: var(--spacing-small) var(--spacing-medium);
     background-color: var(--color-banner);
-    gap: var(--spacing-extra-large);
+    gap: var(--spacing-medium);
     color: var(--color-text-on-dark);
-    max-width: 30rem;
+    max-width: 24rem;
     width: 100%;
 
     .icon {
@@ -12,8 +12,8 @@
         align-items: center;
         flex-shrink: 0;
         justify-content: center;
-        width: 4rem;
-        height: 4rem;
+        width: 3rem;
+        height: 3rem;
         border-radius: var(--border-radius-circle);
         border: var(--width-separator-thin) solid var(--color-background-yellow);
     }
@@ -23,15 +23,29 @@
         flex-grow: 1;
         flex-direction: column;
         align-items: flex-start;
-        gap: var(--spacing-medium);
+        gap: var(--spacing-small);
+        min-width: 0;
 
         .title {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+            max-width: 100%;
+            overflow-wrap: anywhere;
             color: var(--color-text-on-dark);
         }
 
+        .fileSize {
+            font-size: var(--font-size-small);
+        }
+
         .link {
+            padding: var(--spacing-super-small) var(--spacing-medium);
             background-color: var(--color-text-on-dark);
             color: var(--color-text-black);
+            font-size: var(--font-size-small);
 
             &:hover {
                 background-color: var(--color-text-on-dark);

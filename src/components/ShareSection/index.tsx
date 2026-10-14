@@ -11,6 +11,8 @@ import {
 import { RiTwitterXFill } from 'react-icons/ri';
 import { usePathname } from 'next/navigation';
 
+import { iconSize } from '#lib/common';
+
 import styles from './styles.module.css';
 
 export default function ShareSection({ title }: { title: string }) {
@@ -40,13 +42,13 @@ export default function ShareSection({ title }: { title: string }) {
             <p className={styles.shareTitle}>Share this vacancy</p>
             <div className={styles.shareIcons}>
                 <a href={shareLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <IoLogoLinkedin />
+                    <IoLogoLinkedin size={iconSize.extraLarge} />
                 </a>
                 <a href={shareLinks.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                    <IoLogoFacebook />
+                    <IoLogoFacebook size={iconSize.extraLarge} />
                 </a>
                 <a href={shareLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                    <RiTwitterXFill />
+                    <RiTwitterXFill size={iconSize.extraLarge} />
                 </a>
             </div>
         </div>

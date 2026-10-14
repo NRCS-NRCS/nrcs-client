@@ -1,11 +1,5 @@
 .navbar {
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    width: 100%;
-    z-index: 100000;
-    border-bottom: var(--width-separator-thin) solid var(--color-separator);
-    background-color: var(--color-background);
+    display: contents;
     font-family: var(--font-text), sans-serif;
 
     .upperContent {
@@ -67,11 +61,18 @@
                     display: none;
                     color: var(--color-text);
                     line-height: 100%;
-                    font-size: var(--font-size-extra-large);
                     padding: var(--spacing-small) var(--spacing-extra-large);
                 }
             }
         }
+    }
+
+    .lowerContainer {
+        position: sticky;
+        top: 0;
+        z-index: 100000;
+        border-bottom: var(--width-separator-thin) solid var(--color-separator);
+        background-color: var(--color-background);
     }
 
     .lowerContent {
@@ -101,7 +102,12 @@
     }
 
     @media (max-width: 768px) {
+        display: flex;
         flex-direction: column;
+        margin: 0 auto;
+        width: 100%;
+        z-index: 100000;
+        background-color: var(--color-background);
         height: 5rem;
         padding: 0;
         border-bottom: none;
@@ -131,6 +137,10 @@
                     }
                 }
             }
+        }
+
+        .lowerContainer {
+            display: none;
         }
 
         .lowerContent {
@@ -176,6 +186,10 @@
                     text-align: left;
                     flex-grow: 1;
                     font-weight: var(--font-weight-bold);
+
+                    &.active {
+                        color: var(--color-text-link);
+                    }
                 }
                 .drawerLinkHeaderButton {
                     color: var(--color-text);

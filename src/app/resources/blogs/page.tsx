@@ -13,13 +13,10 @@ import EmptyMessage from '#components/EmptyMessage';
 import Page from '#components/Page';
 import Pager from '#components/Pager';
 import Section from '#components/Section';
-import allData from '#data/staticData.json';
-import { type AllQueryQuery } from '#generated/types/graphql';
 import useDebouncedValue from '#hooks/useDebouncedValue';
 import paginate from '#lib/paginate';
+import allData from '#lib/staticData';
 import defaultImage from '#public/defaultImage.png';
-
-type BlogType = NonNullable<NonNullable<AllQueryQuery['blogs']>>;
 
 function BlogPage() {
     const [search, setSearch] = useState<string>('');
@@ -30,7 +27,7 @@ function BlogPage() {
     const pageSize = 5;
 
     const blogData = useMemo(
-        () => (allData.blogs as unknown as BlogType)
+        () => (allData.blogs.results ?? [])
             .filter((blog) => blog.title?.toLowerCase()
                 .includes(debouncedSearchText.toLowerCase())),
         [debouncedSearchText],
@@ -46,13 +43,19 @@ function BlogPage() {
             <Section
                 heading="Blogs"
                 headingWithBackground
+                withoutChildrenGap
                 searchField="title"
                 searchValue={search}
                 handleSearchChange={setSearch}
             >
                 {(isDefined(blogData) && blogData.length <= 0) ? (
                     <EmptyMessage
-                        message="No blogs available"
+                        title={debouncedSearchText
+                            ? `No results for “${debouncedSearchText}”`
+                            : 'No blogs yet'}
+                        description={debouncedSearchText
+                            ? "We couldn't find any blogs matching your search. Try a different keyword."
+                            : 'Stories and reflections from across the Society will appear here once they are published.'}
                     />
                 ) : paginateData?.map((blog) => (
                     <ArticleCard

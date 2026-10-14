@@ -19,6 +19,15 @@
             flex-direction: column;
         }
 
+        &.staffList {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            @media (max-width: 768px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .title {
             width: fit-content;
             padding: 8px;
@@ -74,7 +83,6 @@
         justify-content: center;
         background-color: var(--color-background-gray);
         color: var(--color-text-neutral);
-        font-size: var(--font-size-extra-large);
     }
 
     .memberName {

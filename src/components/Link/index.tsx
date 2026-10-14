@@ -3,6 +3,8 @@ import { IoArrowForward } from 'react-icons/io5';
 import { _cs } from '@togglecorp/fujs';
 import NextLink, { type LinkProps as NextLinkProps } from 'next/link';
 
+import { iconSize } from '#lib/common';
+
 import styles from './styles.module.css';
 
 type Variant = 'navigation' | 'transparent' | 'button' | 'buttonTransparent' | 'icon' | 'underline' | 'reverse' | 'div' | 'buttonReverse';
@@ -61,7 +63,7 @@ function Link(props: Props) {
             href={href}
         >
             {children}
-            {showIcon && <IoArrowForward className={styles.icon} />}
+            {showIcon && <IoArrowForward className={styles.icon} size={iconSize.medium} />}
         </NextLink>
     );
 }

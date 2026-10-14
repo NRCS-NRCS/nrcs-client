@@ -10,6 +10,8 @@ import {
 } from 'react-icons/io';
 import { _cs } from '@togglecorp/fujs';
 
+import { iconSize } from '#lib/common';
+
 import useBlurEffect from '../../hooks/useBlurEffect';
 import Button, { type Props as ButtonProps } from '../Button';
 import Popup from '../Popup';
@@ -28,6 +30,7 @@ export interface PopupButtonProps<T extends string | undefined> extends Omit<But
     defaultShown?: boolean;
     elementRef?: React.RefObject<HTMLButtonElement>;
     actions?: React.ReactNode;
+    active?: boolean;
 }
 
 function PopupButton<T extends string | undefined>(props: PopupButtonProps<T>) {
@@ -38,6 +41,7 @@ function PopupButton<T extends string | undefined>(props: PopupButtonProps<T>) {
         label,
         name,
         actions,
+        active,
         componentRef,
         arrowHidden,
         persistent,
@@ -86,10 +90,13 @@ function PopupButton<T extends string | undefined>(props: PopupButtonProps<T>) {
                 elementRef={buttonRef}
                 onClick={handleShowPopup}
                 variant="transparent"
-                className={_cs(popupShown && styles.active, styles.popupButton)}
+                className={_cs((popupShown || active) && styles.active, styles.popupButton)}
             >
                 {label}
-                {!arrowHidden && (popupShown ? <IoIosArrowUp /> : <IoIosArrowDown />)}
+                {!arrowHidden && (popupShown
+                    ? <IoIosArrowUp size={iconSize.medium} />
+                    : <IoIosArrowDown size={iconSize.medium} />
+                )}
                 {actions}
             </Button>
             {popupShown && (

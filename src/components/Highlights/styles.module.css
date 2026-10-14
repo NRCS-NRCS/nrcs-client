@@ -54,26 +54,14 @@
                 color: var(--color-text-on-primary);
                 z-index: 2;
 
-                @media (max-width: 768px) {
-                    position: relative;
-                }
-
                 .heading {
                     color: var(--color-text-on-primary);
                     flex-shrink: 0;
                     text-align: left;
-
-                    @media (max-width: 768px) {
-                        font-size: var(--font-size-large);
-                    }
                 }
 
                 .description {
                     text-align: left;
-
-                    @media (max-width: 768px) {
-                        font-size: var(--font-size-medium);
-                    }
                 }
 
                 .actions {
@@ -96,15 +84,6 @@
                 gap: var(--spacing-medium);
                 z-index: 2;
 
-                @media (max-width: 768px) {
-                    position: relative;
-                    width: 100%;
-                    bottom: 0;
-                    right: 0;
-                    justify-content: center;
-                    flex-wrap: wrap;
-                }
-
                 .keyStat {
                     flex: 1 1 0;
                     min-width: 6rem;
@@ -123,11 +102,47 @@
             }
 
             @media (max-width: 768px) {
+                height: auto;
+
+                .image {
+                    height: 14rem;
+                    flex-shrink: 0;
+                }
+
                 .content {
-                    bottom: 0;
+                    position: relative;
+                    bottom: auto;
+                    left: auto;
+                    transform: none;
                     width: 100%;
                     max-width: 100%;
-                    transform: none;
+                    min-height: auto;
+                    padding: var(--spacing-large);
+
+                    .heading {
+                        font-size: var(--font-size-large);
+                    }
+
+                    .description {
+                        font-size: var(--font-size-medium);
+                    }
+                }
+
+                .keyStats {
+                    position: relative;
+                    bottom: auto;
+                    right: auto;
+                    display: grid;
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    width: 100%;
+                    padding: var(--spacing-large);
+                    gap: var(--spacing-large);
+
+                    .keyStat {
+                        min-width: 0;
+                        padding: 0;
+                        border-right: none;
+                    }
                 }
             }
         }
@@ -137,7 +152,7 @@
         display: flex;
         justify-content: center;
         gap: 0.5rem;
-        margin-top: 1rem;
+        margin: var(--spacing-medium) 0;
 
         .dot {
             width: 10px;
