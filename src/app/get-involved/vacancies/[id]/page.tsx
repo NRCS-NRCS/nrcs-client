@@ -59,11 +59,11 @@ export default async function VacancyDetailPage({ params }: PageProps) {
             label: 'No. of vacancies',
             value: vacancyDetails.numberOfVacancies,
         }] : []),
-        {
+        ...(!vacancyDetails.formUrl ? [{
             label: 'Apply to',
             value: contactEmail,
             link: `mailto:${contactEmail}`,
-        },
+        }] : []),
     ];
 
     return (
@@ -76,6 +76,7 @@ export default async function VacancyDetailPage({ params }: PageProps) {
                 description={vacancyDetails.description}
                 attachmentHeading="Announcement"
                 attachment={vacancyDetails.file}
+                formUrl={vacancyDetails.formUrl}
             />
         </Page>
     );

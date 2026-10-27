@@ -1,4 +1,5 @@
 import React from 'react';
+import { HiOutlineArrowTopRightOnSquare } from 'react-icons/hi2';
 import { isDefined } from '@togglecorp/fujs';
 
 import ArticleBody from '#components/ArticleBody';
@@ -7,6 +8,7 @@ import DownloadTemplate from '#components/DownloadTemplate';
 import Heading from '#components/Heading';
 import Link from '#components/Link';
 import Section from '#components/Section';
+import { iconSize } from '#lib/common';
 
 import styles from './styles.module.css';
 
@@ -31,6 +33,7 @@ interface Props {
     description?: string | null;
     attachmentHeading?: string;
     attachment?: Attachment | null;
+    formUrl?: string | null;
 }
 
 export default async function AnnouncementDetail(props: Props) {
@@ -43,6 +46,7 @@ export default async function AnnouncementDetail(props: Props) {
         description,
         attachmentHeading,
         attachment,
+        formUrl,
     } = props;
 
     return (
@@ -90,6 +94,29 @@ export default async function AnnouncementDetail(props: Props) {
             )}
             {description && (
                 <ArticleBody content={description} />
+            )}
+            {formUrl && (
+                <div className={styles.block}>
+                    <Heading
+                        className={styles.blockHeading}
+                        size="extraSmall"
+                    >
+                        How to apply
+                    </Heading>
+                    <p className={styles.formDescription}>
+                        Submit your application through the online form.
+                    </p>
+                    <Link
+                        className={styles.formLink}
+                        href={formUrl}
+                        variant="button"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Fill up the form
+                        <HiOutlineArrowTopRightOnSquare size={iconSize.medium} />
+                    </Link>
+                </div>
             )}
             {isDefined(attachment) && (
                 <div className={styles.block}>
