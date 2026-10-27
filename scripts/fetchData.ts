@@ -143,6 +143,7 @@ const jobVacanciesQuery = gql`
                 position
                 title
                 publishedAt
+                formUrl
             }
             totalCount
         }
